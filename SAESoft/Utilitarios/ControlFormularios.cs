@@ -12,7 +12,7 @@ namespace SAESoft.Utilitarios
     {
         public static void Abrir<MiForm>(Panel panel) where MiForm : Form, new()
         {
-            Form formulario;
+            Form? formulario;
             formulario = panel.Controls.OfType<MiForm>().FirstOrDefault();
             if (formulario == null)
             {
@@ -131,6 +131,12 @@ namespace SAESoft.Utilitarios
                     }
                 }
             }
+        }
+
+        public static void msgError(Label label, string msg)
+        {
+            label.Text = "        " + msg;
+            label.Visible = true;
         }
     }
 }

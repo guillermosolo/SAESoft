@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+﻿using SAESoft.AdministracionSistema;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SAESoft.AdministracionSistema;
-using SAESoft.Utilitarios;
+using static SAESoft.Cache.UserData;
+using static SAESoft.Utilitarios.ControlFormularios;
 
 namespace SAESoft
 {
@@ -108,7 +100,16 @@ namespace SAESoft
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
-            ControlFormularios.Abrir<frmMenuAdmin>(panelFormularios); 
+            Abrir<frmMenuAdmin>(panelFormularios); 
+        }
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            tsslUsuario.Text = usuarioLogged?.UserName;
         }
     }
 }

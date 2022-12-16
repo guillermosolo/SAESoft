@@ -1,14 +1,4 @@
-﻿using FontAwesome.Sharp;
-using SAESoft.Utilitarios;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using static SAESoft.Utilitarios.ControlFormularios;
 
 namespace SAESoft.AdministracionSistema
 {
@@ -26,23 +16,23 @@ namespace SAESoft.AdministracionSistema
 
         private void ibtnUsuarios_Click(object sender, EventArgs e)
         {
-            ControlFormularios.Abrir<frmUsuarios>(panelFormularios);
-            ControlFormularios.menuActivo(ibtnUsuarios, panelMenu);
+            Abrir<frmUsuarios>(panelFormularios);
+            menuActivo(ibtnUsuarios, panelMenu);
         }
 
         private void ibtnRoles_Click(object sender, EventArgs e)
         {
-            ControlFormularios.Abrir<frmRoles>(panelFormularios);
-            ControlFormularios.menuActivo(ibtnRoles, panelMenu);
+            Abrir<frmRoles>(panelFormularios);
+            menuActivo(ibtnRoles, panelMenu);
         }
 
         private void ibtnRolPermiso_Click(object sender, EventArgs e)
         {
-            ControlFormularios.Abrir<frmPermisosRoles>(panelFormularios);
-            ControlFormularios.menuActivo(ibtnRolPermiso, panelMenu);
+            Abrir<frmPermisosRoles>(panelFormularios);
+            menuActivo(ibtnRolPermiso, panelMenu);
         }
 
-        private void CloseForms(object sender, ControlEventArgs e) {
+        private void CloseForms(object? sender, ControlEventArgs e) {
             if (Application.OpenForms["frmUsuario"]==null)
                 ibtnUsuarios.BackColor = Color.FromArgb(0, 122, 204);
             if (Application.OpenForms["frmPermisosRoles"] == null)

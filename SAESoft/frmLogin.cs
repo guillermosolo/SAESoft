@@ -1,8 +1,9 @@
 using SAESoft.Models;
-using SAESoft.Models.AdministracionSistema;
-using SAESoft.Utilitarios;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
+using static SAESoft.Cache.UserData;
+using static SAESoft.Utilitarios.Password;
+using static SAESoft.Utilitarios.ControlFormularios;
 
 namespace SAESoft
 {
@@ -40,34 +41,57 @@ namespace SAESoft
 
         private void icbLogin_Click(object sender, EventArgs e)
         {
+            lblError.Visible = false;
             using (DB_Context _Contexto = new DB_Context())
             {
-                Usuario usuarioLogged = _Contexto.Usuarios.FirstOrDefault(c => c.UserName == txtUser.Text);
+                usuarioLogged = _Contexto.Usuarios.FirstOrDefault(c => c.UserName == txtUser.Text);
                 if (usuarioLogged != null)
                 {
-                    if (!Password.ConfirmHash(txtPass.Text, usuarioLogged.Password))
+                    if (!ConfirmHash(txtPass.Text, usuarioLogged.Password))
                     {
-                        MessageBox.Show("La contraseña no es la correcta.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                       msgError(lblError,"La contraseña no es la correcta.");
+                        txtPass.SelectAll();
                         txtPass.Focus();
                         return;
+                    } else
+                    {
+                        if (!usuarioLogged.Activo)
+                        {
+                            msgError(lblError,"El usuario no se encuentra activo.");
+;                           txtUser.SelectAll();
+                            txtUser.Focus();
+                            return;
+                        }
                     }
                 } else
                 {
-                    MessageBox.Show("El usuario no existe en la base de datos","Información",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    msgError(lblError, "El usuario no existe en la base de datos.");
+                    txtUser.SelectAll();
                     txtUser.Focus();
                     return;
                 }
             }
-            new frmPrincipal().Show();
+            frmPrincipal mainMenu = new frmPrincipal();
+            mainMenu.Show();
+            mainMenu.FormClosed += Logout;
             this.Hide();
         }
 
         private void txtPass_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode ==Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 icbLogin_Click(sender, e);
             }
+        }
+
+        private void Logout(object? sender, FormClosedEventArgs e)
+        {
+            txtUser.Text = "";
+            txtPass.Text = "";
+            lblError.Visible = false;
+            this.Show();
+            txtUser.Focus();
         }
     }
 }

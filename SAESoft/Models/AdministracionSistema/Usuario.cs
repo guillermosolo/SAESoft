@@ -13,20 +13,24 @@ namespace SAESoft.Models.AdministracionSistema
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdUsuario { get; set; }
-        public string Nombres { get; set; }
-        public string Apellidos { get; set; }
-        public string Email { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public required string Nombres { get; set; }
+        public required string Apellidos { get; set; }
+        public required string Email { get; set; }
+        public required string UserName { get; set; }
+        public required string Password { get; set; }
         public int IdRol { get; set; }
         [ForeignKey("IdRol")]
-        public virtual Rol Rol { get; set; }
+        public virtual Rol Rol { get; set; } = null!;
         public Boolean Activo { get; set; }
         public DateTime FechaCreacion { get; set; }
 
         public int? IdUsuarioCreacion { get; set; }
-        [ForeignKey("IdUsuario")]
-        public virtual Usuario UsuarioCreacion { get; set; }
-        
+        [ForeignKey("IdUsuarioCreacion")]
+
+        public virtual Usuario UsuarioCreacion { get; set; } = null!;
+        public DateTime? FechaUltimaMod { get; set; }
+        public int? IdUsuarioMod { get; set; }
+        [ForeignKey("IdUsuarioMod")]
+        public virtual Usuario UsuarioMod { get; set; } = null!;
     }
 }

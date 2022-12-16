@@ -30,6 +30,11 @@
         {
             this.panelContenedor = new System.Windows.Forms.Panel();
             this.panelFormularios = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tsslUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnImportaciones = new System.Windows.Forms.Button();
             this.btnConfiguracion = new System.Windows.Forms.Button();
             this.panelBarraTitulo = new System.Windows.Forms.Panel();
@@ -39,6 +44,7 @@
             this.icbCerrar = new FontAwesome.Sharp.IconButton();
             this.panelContenedor.SuspendLayout();
             this.panelFormularios.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.panelBarraTitulo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +61,8 @@
             // 
             // panelFormularios
             // 
+            this.panelFormularios.Controls.Add(this.button1);
+            this.panelFormularios.Controls.Add(this.statusStrip1);
             this.panelFormularios.Controls.Add(this.btnImportaciones);
             this.panelFormularios.Controls.Add(this.btnConfiguracion);
             this.panelFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -62,6 +70,56 @@
             this.panelFormularios.Name = "panelFormularios";
             this.panelFormularios.Size = new System.Drawing.Size(850, 610);
             this.panelFormularios.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button1.Image = global::SAESoft.Properties.Resources.logout;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(745, 544);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 37);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Logout";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslUsuario,
+            this.toolStripStatusLabel2,
+            this.tsslVersion});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 584);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(850, 26);
+            this.statusStrip1.TabIndex = 5;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tsslUsuario
+            // 
+            this.tsslUsuario.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tsslUsuario.Name = "tsslUsuario";
+            this.tsslUsuario.Size = new System.Drawing.Size(65, 21);
+            this.tsslUsuario.Text = "usuario";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(635, 21);
+            this.toolStripStatusLabel2.Spring = true;
+            // 
+            // tsslVersion
+            // 
+            this.tsslVersion.Name = "tsslVersion";
+            this.tsslVersion.Size = new System.Drawing.Size(104, 21);
+            this.tsslVersion.Text = "Versión 1.0.0";
             // 
             // btnImportaciones
             // 
@@ -184,8 +242,12 @@
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPrincipal";
+            this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.panelContenedor.ResumeLayout(false);
             this.panelFormularios.ResumeLayout(false);
+            this.panelFormularios.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.panelBarraTitulo.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -202,5 +264,10 @@
         private Panel panelFormularios;
         private Button btnImportaciones;
         private Button btnConfiguracion;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel tsslUsuario;
+        private ToolStripStatusLabel toolStripStatusLabel2;
+        private ToolStripStatusLabel tsslVersion;
+        private Button button1;
     }
 }

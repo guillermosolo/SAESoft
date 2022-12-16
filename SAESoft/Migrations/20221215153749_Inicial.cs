@@ -38,7 +38,9 @@ namespace SAESoft.Migrations
                     IdRol = table.Column<int>(type: "int", nullable: false),
                     Activo = table.Column<bool>(type: "bit", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdUsuarioCreacion = table.Column<int>(type: "int", nullable: true)
+                    IdUsuarioCreacion = table.Column<int>(type: "int", nullable: true),
+                    FechaUltimaMod = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IdUsuarioMod = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -49,6 +51,16 @@ namespace SAESoft.Migrations
                         principalTable: "Roles",
                         principalColumn: "IdRol",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Usuarios_Usuarios_IdUsuarioCreacion",
+                        column: x => x.IdUsuarioCreacion,
+                        principalTable: "Usuarios",
+                        principalColumn: "IdUsuario");
+                    table.ForeignKey(
+                        name: "FK_Usuarios_Usuarios_IdUsuarioMod",
+                        column: x => x.IdUsuarioMod,
+                        principalTable: "Usuarios",
+                        principalColumn: "IdUsuario");
                 });
 
             migrationBuilder.InsertData(
@@ -58,13 +70,23 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "IdUsuario", "Activo", "Apellidos", "Email", "FechaCreacion", "IdRol", "IdUsuarioCreacion", "Nombres", "Password", "UserName" },
-                values: new object[] { 1, true, "Admin", "sa@sae-a.com", new DateTime(2022, 12, 13, 8, 15, 59, 329, DateTimeKind.Local).AddTicks(4039), 1, null, "Super", "+UEo9BWte1G6LZTx2yT8132Dql9DNOVhReee7sfDCKCjaaVFF58CfJOTGMRxsVXLd0eMKEx0sSZzfZboUmBIs3n2UoFVzA==", "sa" });
+                columns: new[] { "IdUsuario", "Activo", "Apellidos", "Email", "FechaCreacion", "FechaUltimaMod", "IdRol", "IdUsuarioCreacion", "IdUsuarioMod", "Nombres", "Password", "UserName" },
+                values: new object[] { 1, true, "Admin", "sa@sae-a.com", new DateTime(2022, 12, 15, 9, 37, 49, 261, DateTimeKind.Local).AddTicks(245), null, 1, null, null, "Super", "27T5a68SocpAbVjQfy5V47tm90grfKjLZbab/wVyvEFKUsjbB8KVa2TlpHuGyDGJhuc6sA4tMErYTJZ409U9qBPYgqo=", "sa" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Usuarios_IdRol",
                 table: "Usuarios",
                 column: "IdRol");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_IdUsuarioCreacion",
+                table: "Usuarios",
+                column: "IdUsuarioCreacion");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_IdUsuarioMod",
+                table: "Usuarios",
+                column: "IdUsuarioMod");
         }
 
         /// <inheritdoc />

@@ -38,6 +38,7 @@
             this.icbLogin = new FontAwesome.Sharp.IconButton();
             this.icbSalir = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -129,7 +130,7 @@
             this.icbLogin.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.icbLogin.IconSize = 30;
             this.icbLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icbLogin.Location = new System.Drawing.Point(355, 219);
+            this.icbLogin.Location = new System.Drawing.Point(355, 234);
             this.icbLogin.Name = "icbLogin";
             this.icbLogin.Size = new System.Drawing.Size(124, 51);
             this.icbLogin.TabIndex = 7;
@@ -148,7 +149,7 @@
             this.icbSalir.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.icbSalir.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.icbSalir.IconSize = 30;
-            this.icbSalir.Location = new System.Drawing.Point(504, 219);
+            this.icbSalir.Location = new System.Drawing.Point(504, 233);
             this.icbSalir.Name = "icbSalir";
             this.icbSalir.Size = new System.Drawing.Size(124, 51);
             this.icbSalir.TabIndex = 10;
@@ -168,12 +169,27 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "LOGIN";
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Image = global::SAESoft.Properties.Resources.sign;
+            this.lblError.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblError.Location = new System.Drawing.Point(310, 198);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(170, 21);
+            this.lblError.TabIndex = 12;
+            this.lblError.Text = "        Mensaje de Error";
+            this.lblError.Visible = false;
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(780, 330);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.icbSalir);
             this.Controls.Add(this.icbLogin);
@@ -208,5 +224,6 @@
         private FontAwesome.Sharp.IconButton icbLogin;
         private FontAwesome.Sharp.IconButton icbSalir;
         private Label label1;
+        private Label lblError;
     }
 }

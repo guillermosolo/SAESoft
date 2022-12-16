@@ -121,6 +121,7 @@
             this.chkActivo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkActivo.Enabled = false;
             this.chkActivo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chkActivo.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkActivo.Location = new System.Drawing.Point(405, 31);
             this.chkActivo.Name = "chkActivo";
             this.chkActivo.Size = new System.Drawing.Size(82, 25);
@@ -261,7 +262,7 @@
             this.tsbSalir});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(234, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(409, 39);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -284,6 +285,7 @@
             this.tsbBuscar.Name = "tsbBuscar";
             this.tsbBuscar.Size = new System.Drawing.Size(36, 36);
             this.tsbBuscar.Text = "Buscar";
+            this.tsbBuscar.Click += new System.EventHandler(this.tsbBuscar_Click);
             // 
             // tsbListar
             // 
@@ -293,6 +295,7 @@
             this.tsbListar.Name = "tsbListar";
             this.tsbListar.Size = new System.Drawing.Size(36, 36);
             this.tsbListar.Text = "Listar";
+            this.tsbListar.Click += new System.EventHandler(this.tsbListar_Click);
             // 
             // tsbModificar
             // 
@@ -303,6 +306,7 @@
             this.tsbModificar.Name = "tsbModificar";
             this.tsbModificar.Size = new System.Drawing.Size(36, 36);
             this.tsbModificar.Text = "Editar";
+            this.tsbModificar.Click += new System.EventHandler(this.tsbModificar_Click);
             // 
             // tsbEliminar
             // 
@@ -313,6 +317,7 @@
             this.tsbEliminar.Name = "tsbEliminar";
             this.tsbEliminar.Size = new System.Drawing.Size(36, 36);
             this.tsbEliminar.Text = "Eliminar";
+            this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
             // toolStripSeparator1
             // 
@@ -350,6 +355,7 @@
             this.tsbAnterior.Size = new System.Drawing.Size(36, 36);
             this.tsbAnterior.Text = "Anterior";
             this.tsbAnterior.Visible = false;
+            this.tsbAnterior.Click += new System.EventHandler(this.tsbAnterior_Click);
             // 
             // tsbSiguiente
             // 
@@ -360,6 +366,7 @@
             this.tsbSiguiente.Size = new System.Drawing.Size(36, 36);
             this.tsbSiguiente.Text = "Siguiente";
             this.tsbSiguiente.Visible = false;
+            this.tsbSiguiente.Click += new System.EventHandler(this.tsbSiguiente_Click);
             // 
             // tsbSalir
             // 
@@ -369,7 +376,7 @@
             this.tsbSalir.Name = "tsbSalir";
             this.tsbSalir.Size = new System.Drawing.Size(36, 36);
             this.tsbSalir.Text = "Salir";
-            this.tsbSalir.Click += new System.EventHandler(this.toolStripButton8_Click);
+            this.tsbSalir.Click += new System.EventHandler(this.tsbSalir_Click);
             // 
             // frmUsuarios
             // 

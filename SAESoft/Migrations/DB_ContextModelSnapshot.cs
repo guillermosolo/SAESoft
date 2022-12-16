@@ -68,10 +68,16 @@ namespace SAESoft.Migrations
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("FechaUltimaMod")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("IdRol")
                         .HasColumnType("int");
 
                     b.Property<int?>("IdUsuarioCreacion")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdUsuarioMod")
                         .HasColumnType("int");
 
                     b.Property<string>("Nombres")
@@ -90,6 +96,10 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdRol");
 
+                    b.HasIndex("IdUsuarioCreacion");
+
+                    b.HasIndex("IdUsuarioMod");
+
                     b.ToTable("Usuarios");
 
                     b.HasData(
@@ -99,10 +109,10 @@ namespace SAESoft.Migrations
                             Activo = true,
                             Apellidos = "Admin",
                             Email = "sa@sae-a.com",
-                            FechaCreacion = new DateTime(2022, 12, 13, 8, 15, 59, 329, DateTimeKind.Local).AddTicks(4039),
+                            FechaCreacion = new DateTime(2022, 12, 15, 9, 37, 49, 261, DateTimeKind.Local).AddTicks(245),
                             IdRol = 1,
                             Nombres = "Super",
-                            Password = "+UEo9BWte1G6LZTx2yT8132Dql9DNOVhReee7sfDCKCjaaVFF58CfJOTGMRxsVXLd0eMKEx0sSZzfZboUmBIs3n2UoFVzA==",
+                            Password = "27T5a68SocpAbVjQfy5V47tm90grfKjLZbab/wVyvEFKUsjbB8KVa2TlpHuGyDGJhuc6sA4tMErYTJZ409U9qBPYgqo=",
                             UserName = "sa"
                         });
                 });
@@ -117,13 +127,17 @@ namespace SAESoft.Migrations
 
                     b.HasOne("SAESoft.Models.AdministracionSistema.Usuario", "UsuarioCreacion")
                         .WithMany()
-                        .HasForeignKey("IdUsuario")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdUsuarioCreacion");
+
+                    b.HasOne("SAESoft.Models.AdministracionSistema.Usuario", "UsuarioMod")
+                        .WithMany()
+                        .HasForeignKey("IdUsuarioMod");
 
                     b.Navigation("Rol");
 
                     b.Navigation("UsuarioCreacion");
+
+                    b.Navigation("UsuarioMod");
                 });
 
             modelBuilder.Entity("SAESoft.Models.AdministracionSistema.Rol", b =>

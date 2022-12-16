@@ -14,7 +14,7 @@ namespace SAESoft.Models.AdministracionSistema
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdRol { get; set; }
-        public string Nombre { get; set; }
-        public virtual ICollection<Usuario> Usuarios { get;set; }
+        public required string Nombre { get; set; }
+        public virtual ICollection<Usuario> Usuarios { get; set; } = null!;
     }
 }
