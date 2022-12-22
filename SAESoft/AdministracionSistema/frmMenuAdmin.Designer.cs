@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.ibtnRolPermiso = new FontAwesome.Sharp.IconButton();
+            this.ibtnModulos = new FontAwesome.Sharp.IconButton();
+            this.ibtnPermisos = new FontAwesome.Sharp.IconButton();
             this.ibtnSalir = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
             this.ibtnRoles = new FontAwesome.Sharp.IconButton();
@@ -41,7 +42,8 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.panelMenu.Controls.Add(this.ibtnRolPermiso);
+            this.panelMenu.Controls.Add(this.ibtnModulos);
+            this.panelMenu.Controls.Add(this.ibtnPermisos);
             this.panelMenu.Controls.Add(this.ibtnSalir);
             this.panelMenu.Controls.Add(this.label1);
             this.panelMenu.Controls.Add(this.ibtnRoles);
@@ -52,25 +54,43 @@
             this.panelMenu.Size = new System.Drawing.Size(200, 450);
             this.panelMenu.TabIndex = 0;
             // 
-            // ibtnRolPermiso
+            // ibtnModulos
             // 
-            this.ibtnRolPermiso.FlatAppearance.BorderSize = 0;
-            this.ibtnRolPermiso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnRolPermiso.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ibtnRolPermiso.ForeColor = System.Drawing.Color.White;
-            this.ibtnRolPermiso.IconChar = FontAwesome.Sharp.IconChar.CheckSquare;
-            this.ibtnRolPermiso.IconColor = System.Drawing.Color.White;
-            this.ibtnRolPermiso.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnRolPermiso.IconSize = 32;
-            this.ibtnRolPermiso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnRolPermiso.Location = new System.Drawing.Point(3, 134);
-            this.ibtnRolPermiso.Name = "ibtnRolPermiso";
-            this.ibtnRolPermiso.Size = new System.Drawing.Size(197, 55);
-            this.ibtnRolPermiso.TabIndex = 4;
-            this.ibtnRolPermiso.Text = "Asignacion de Permisos";
-            this.ibtnRolPermiso.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ibtnRolPermiso.UseVisualStyleBackColor = true;
-            this.ibtnRolPermiso.Click += new System.EventHandler(this.ibtnRolPermiso_Click);
+            this.ibtnModulos.FlatAppearance.BorderSize = 0;
+            this.ibtnModulos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnModulos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ibtnModulos.ForeColor = System.Drawing.Color.White;
+            this.ibtnModulos.IconChar = FontAwesome.Sharp.IconChar.UsersLine;
+            this.ibtnModulos.IconColor = System.Drawing.Color.White;
+            this.ibtnModulos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnModulos.IconSize = 32;
+            this.ibtnModulos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ibtnModulos.Location = new System.Drawing.Point(3, 178);
+            this.ibtnModulos.Name = "ibtnModulos";
+            this.ibtnModulos.Size = new System.Drawing.Size(197, 55);
+            this.ibtnModulos.TabIndex = 5;
+            this.ibtnModulos.Text = "Módulos";
+            this.ibtnModulos.UseVisualStyleBackColor = true;
+            this.ibtnModulos.Click += new System.EventHandler(this.ibtnModulos_Click);
+            // 
+            // ibtnPermisos
+            // 
+            this.ibtnPermisos.FlatAppearance.BorderSize = 0;
+            this.ibtnPermisos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnPermisos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ibtnPermisos.ForeColor = System.Drawing.Color.White;
+            this.ibtnPermisos.IconChar = FontAwesome.Sharp.IconChar.UserLock;
+            this.ibtnPermisos.IconColor = System.Drawing.Color.White;
+            this.ibtnPermisos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnPermisos.IconSize = 32;
+            this.ibtnPermisos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ibtnPermisos.Location = new System.Drawing.Point(3, 134);
+            this.ibtnPermisos.Name = "ibtnPermisos";
+            this.ibtnPermisos.Size = new System.Drawing.Size(197, 55);
+            this.ibtnPermisos.TabIndex = 4;
+            this.ibtnPermisos.Text = "Permisos";
+            this.ibtnPermisos.UseVisualStyleBackColor = true;
+            this.ibtnPermisos.Click += new System.EventHandler(this.ibtnRolPermiso_Click);
             // 
             // ibtnSalir
             // 
@@ -109,7 +129,7 @@
             this.ibtnRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ibtnRoles.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ibtnRoles.ForeColor = System.Drawing.Color.White;
-            this.ibtnRoles.IconChar = FontAwesome.Sharp.IconChar.UserCog;
+            this.ibtnRoles.IconChar = FontAwesome.Sharp.IconChar.UserTag;
             this.ibtnRoles.IconColor = System.Drawing.Color.White;
             this.ibtnRoles.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ibtnRoles.IconSize = 32;
@@ -172,6 +192,7 @@
         private FontAwesome.Sharp.IconButton ibtnUsuarios;
         private FontAwesome.Sharp.IconButton ibtnSalir;
         private Label label1;
-        private FontAwesome.Sharp.IconButton ibtnRolPermiso;
+        private FontAwesome.Sharp.IconButton ibtnPermisos;
+        private FontAwesome.Sharp.IconButton ibtnModulos;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SAESoft.AdministracionSistema
 {
-    partial class frmBusqueda
+    partial class frmBuscarUsuarios
     {
         /// <summary>
         /// Required designer variable.
@@ -78,6 +78,7 @@
             // 
             // txtApellidos
             // 
+            this.txtApellidos.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtApellidos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtApellidos.Location = new System.Drawing.Point(132, 52);
             this.txtApellidos.Name = "txtApellidos";
@@ -96,6 +97,7 @@
             // 
             // txtNombres
             // 
+            this.txtNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombres.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtNombres.Location = new System.Drawing.Point(132, 6);
             this.txtNombres.Name = "txtNombres";
@@ -130,7 +132,7 @@
             this.icbBuscar.UseVisualStyleBackColor = true;
             this.icbBuscar.Click += new System.EventHandler(this.icbBuscar_Click);
             // 
-            // frmBusqueda
+            // frmBuscarUsuarios
             // 
             this.AcceptButton = this.icbBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -148,7 +150,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmBusqueda";
+            this.Name = "frmBuscarUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.frmBusqueda_Load);
             this.ResumeLayout(false);

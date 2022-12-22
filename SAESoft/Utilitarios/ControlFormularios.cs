@@ -1,6 +1,7 @@
 ﻿using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace SAESoft.Utilitarios
         {
             foreach (ToolStripItem btn in toolbar.Items)
             {
-                if (btn.GetType() == typeof(ToolStripButton))
+                if (btn.GetType() == typeof(ToolStripButton)||btn.GetType() == typeof(ToolStripLabel))
                 {
                     if (botones.Contains(btn.Name))
                     {
@@ -67,7 +68,7 @@ namespace SAESoft.Utilitarios
         {
             foreach (Control c in cont.Controls)
             {
-                if (c is TextBox || c is ComboBox ||c is CheckBox|| c is NumericUpDown ||c is DateTimePicker)
+                if (c is TextBox || c is ComboBox ||c is CheckBox|| c is NumericUpDown ||c is DateTimePicker || c is toggleSwitch || c is DataGridView)
                 {
                     if (c.Name != "txtId")
                     {
@@ -107,6 +108,10 @@ namespace SAESoft.Utilitarios
                 if (c is DateTimePicker)
                 {
                     ((DateTimePicker)c).Value = DateTime.Now;
+                }
+                if (c is toggleSwitch)
+                {
+                    ((toggleSwitch)c).Checked = false;
                 }
                 if (c is TabControl || c is TabPage || c is GroupBox || c is Panel || c is ToolStripContainer)
                 {

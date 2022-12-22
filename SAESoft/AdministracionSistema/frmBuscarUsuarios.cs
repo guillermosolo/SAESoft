@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace SAESoft.AdministracionSistema
 {
-    public partial class frmBusqueda : Form
+    public partial class frmBuscarUsuarios : Form
     {
-        public frmBusqueda()
+        public frmBuscarUsuarios()
         {
             InitializeComponent();
         }

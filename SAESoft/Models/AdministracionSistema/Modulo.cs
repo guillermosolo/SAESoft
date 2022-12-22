@@ -1,23 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
 
 namespace SAESoft.Models.AdministracionSistema
 {
-    public class Rol
+    [Index(nameof(Nombre), IsUnique = true)]
+    public class Modulo
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdRol { get; set; }
+        public int IdModulo { get; set; }
         public required string Nombre { get; set; }
         public Boolean Habilitado { get; set; } = true;
-        public virtual ICollection<Usuario> Usuarios { get; set; } = null!;
-        public virtual ICollection<Permiso> Permisos { get; set; } = null!;
         public DateTime FechaCreacion { get; set; }
         public int? IdUsuarioCreacion { get; set; }
         public DateTime? FechaUltimaMod { get; set; }

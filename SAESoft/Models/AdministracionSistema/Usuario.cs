@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SAESoft.Models.AdministracionSistema
 {
+    [Index(nameof(Email), IsUnique = true)]
+    [Index(nameof(UserName), IsUnique = true)]
     public class Usuario
     {
         [Key]
@@ -23,14 +27,8 @@ namespace SAESoft.Models.AdministracionSistema
         public virtual Rol Rol { get; set; } = null!;
         public Boolean Activo { get; set; }
         public DateTime FechaCreacion { get; set; }
-
         public int? IdUsuarioCreacion { get; set; }
-        [ForeignKey("IdUsuarioCreacion")]
-
-        public virtual Usuario UsuarioCreacion { get; set; } = null!;
         public DateTime? FechaUltimaMod { get; set; }
         public int? IdUsuarioMod { get; set; }
-        [ForeignKey("IdUsuarioMod")]
-        public virtual Usuario UsuarioMod { get; set; } = null!;
     }
 }

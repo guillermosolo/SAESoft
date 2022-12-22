@@ -28,15 +28,15 @@ namespace SAESoft.AdministracionSistema
 
         private void ibtnRolPermiso_Click(object sender, EventArgs e)
         {
-            Abrir<frmPermisosRoles>(panelFormularios);
-            menuActivo(ibtnRolPermiso, panelMenu);
+            Abrir<frmPermisos>(panelFormularios);
+            menuActivo(ibtnPermisos, panelMenu);
         }
 
         private void CloseForms(object? sender, ControlEventArgs e) {
             if (Application.OpenForms["frmUsuario"]==null)
                 ibtnUsuarios.BackColor = Color.FromArgb(0, 122, 204);
             if (Application.OpenForms["frmPermisosRoles"] == null)
-                ibtnRolPermiso.BackColor = Color.FromArgb(0, 122, 204);
+                ibtnPermisos.BackColor = Color.FromArgb(0, 122, 204);
             if (Application.OpenForms["frmRoles"] == null)
                 ibtnRoles.BackColor = Color.FromArgb(0, 122, 204);
 
@@ -45,6 +45,12 @@ namespace SAESoft.AdministracionSistema
         private void frmMenuAdmin_Load(object sender, EventArgs e)
         {
             panelFormularios.ControlRemoved += new ControlEventHandler(CloseForms);
+        }
+
+        private void ibtnModulos_Click(object sender, EventArgs e)
+        {
+            Abrir<frmModulos>(panelFormularios);
+            menuActivo(ibtnModulos, panelMenu);
         }
     }
 }
