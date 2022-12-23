@@ -152,5 +152,13 @@ namespace SAESoft.Utilitarios
             label.Text = "        " + msg;
             label.Visible = true;
         }
+
+        public static void cambiarColorIcono(object sender)
+        {
+            if (((IconButton)sender).Enabled)
+                ((IconButton)sender).IconColor = Color.White;
+            else
+                ((IconButton)sender).IconColor = Color.DarkGray;
+        }
     }
 }

@@ -71,6 +71,7 @@
             this.ibtnModulos.TabIndex = 5;
             this.ibtnModulos.Text = "Módulos";
             this.ibtnModulos.UseVisualStyleBackColor = true;
+            this.ibtnModulos.EnabledChanged += new System.EventHandler(this.ibtnModulos_EnabledChanged);
             this.ibtnModulos.Click += new System.EventHandler(this.ibtnModulos_Click);
             // 
             // ibtnPermisos
@@ -90,6 +91,7 @@
             this.ibtnPermisos.TabIndex = 4;
             this.ibtnPermisos.Text = "Permisos";
             this.ibtnPermisos.UseVisualStyleBackColor = true;
+            this.ibtnPermisos.EnabledChanged += new System.EventHandler(this.ibtnPermisos_EnabledChanged);
             this.ibtnPermisos.Click += new System.EventHandler(this.ibtnRolPermiso_Click);
             // 
             // ibtnSalir
@@ -140,6 +142,7 @@
             this.ibtnRoles.TabIndex = 1;
             this.ibtnRoles.Text = "Roles";
             this.ibtnRoles.UseVisualStyleBackColor = true;
+            this.ibtnRoles.EnabledChanged += new System.EventHandler(this.ibtnRoles_EnabledChanged);
             this.ibtnRoles.Click += new System.EventHandler(this.ibtnRoles_Click);
             // 
             // ibtnUsuarios
@@ -159,6 +162,7 @@
             this.ibtnUsuarios.TabIndex = 0;
             this.ibtnUsuarios.Text = "Usuarios";
             this.ibtnUsuarios.UseVisualStyleBackColor = true;
+            this.ibtnUsuarios.EnabledChanged += new System.EventHandler(this.ibtnUsuarios_EnabledChanged);
             this.ibtnUsuarios.Click += new System.EventHandler(this.ibtnUsuarios_Click);
             // 
             // panelFormularios

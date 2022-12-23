@@ -1,5 +1,6 @@
 ﻿using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Cache.UserData;
+using FontAwesome.Sharp;
 
 namespace SAESoft.AdministracionSistema
 {
@@ -61,6 +62,26 @@ namespace SAESoft.AdministracionSistema
             ibtnPermisos.Enabled = hasPermission("VER.PERMISOS");
             ibtnModulos.Enabled = hasPermission("VER.MODULOS");
             ibtnRoles.Enabled = hasPermission("VER.ROLES");
+        }
+
+        private void ibtnUsuarios_EnabledChanged(object sender, EventArgs e)
+        {
+            cambiarColorIcono(sender);
+        }
+
+        private void ibtnRoles_EnabledChanged(object sender, EventArgs e)
+        {
+            cambiarColorIcono(sender);
+        }
+
+        private void ibtnPermisos_EnabledChanged(object sender, EventArgs e)
+        {
+            cambiarColorIcono(sender);
+        }
+
+        private void ibtnModulos_EnabledChanged(object sender, EventArgs e)
+        {
+            cambiarColorIcono(sender);
         }
     }
 }
