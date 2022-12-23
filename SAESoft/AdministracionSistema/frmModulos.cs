@@ -47,20 +47,20 @@ namespace SAESoft.AdministracionSistema
                 {
                     String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbAnterior","tslIndice", "tsbSiguiente", "tsbSalir" };
                     CambiarVisibilidadBotones(botones, toolStrip1, true);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1);
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "MODULOS");
                 }
                 else
                 {
                     String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
                     CambiarVisibilidadBotones(botones, toolStrip1, true);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1);
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "MODULOS");
                 }
             }
             else
             {
                 String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
                 CambiarVisibilidadBotones(botones, toolStrip1, true);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1);
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1,"MODULOS");
                 limpiarFormulario(this);
             }
             habilitarFormulario(this, false);
@@ -149,7 +149,7 @@ namespace SAESoft.AdministracionSistema
                     String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
                     CambiarVisibilidadBotones(botones, toolStrip1, true);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1);
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1,"MODULOS");
                 habilitarFormulario(this, false);
             }
         }
@@ -191,7 +191,7 @@ namespace SAESoft.AdministracionSistema
                             String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
                             CambiarVisibilidadBotones(botones, toolStrip1, true);
                         }
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1);
+                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "MODULOS");
                     }
                     else
                     {
@@ -199,7 +199,7 @@ namespace SAESoft.AdministracionSistema
                         limpiarFormulario(this);
                         String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
                         CambiarVisibilidadBotones(botones, toolStrip1, true);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1);
+                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "MODULOS");
                     }
                 }
             }
@@ -247,7 +247,7 @@ namespace SAESoft.AdministracionSistema
                             limpiarFormulario(this);
                             String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
                             CambiarVisibilidadBotones(botones, toolStrip1, true);
-                            CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1);
+                            CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1,"MODULOS");
                         }
                     }
                     catch (DbUpdateException ex)
@@ -295,9 +295,14 @@ namespace SAESoft.AdministracionSistema
                     despliegaDatos();
                     String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
                     CambiarVisibilidadBotones(botones, toolStrip1, true);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1);
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1,"MODULOS");
                 }
             }
+        }
+
+        private void frmModulos_Load(object sender, EventArgs e)
+        {
+            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "MODULOS");
         }
     }
 }

@@ -273,6 +273,7 @@
             this.tsbAceptar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbAceptar.Image = global::SAESoft.Properties.Resources.check;
             this.tsbAceptar.Name = "tsbAceptar";
+            this.tsbAceptar.Click += new System.EventHandler(this.tsbAceptar_Click);
             // 
             // tsbCancelar
             // 

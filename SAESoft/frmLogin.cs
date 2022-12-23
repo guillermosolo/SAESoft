@@ -4,6 +4,7 @@ using System.Security.Principal;
 using static SAESoft.Cache.UserData;
 using static SAESoft.Utilitarios.Password;
 using static SAESoft.Utilitarios.ControlFormularios;
+using Microsoft.EntityFrameworkCore;
 
 namespace SAESoft
 {
@@ -44,7 +45,9 @@ namespace SAESoft
             lblError.Visible = false;
             using (DB_Context _Contexto = new DB_Context())
             {
-                usuarioLogged = _Contexto.Usuarios.FirstOrDefault(c => c.UserName == txtUser.Text);
+                usuarioLogged = _Contexto.Usuarios.Include(r=>r.Rol)
+                                                  .Include(r=>r.Rol.Permisos)
+                                                  .FirstOrDefault(c => c.UserName == txtUser.Text);
                 if (usuarioLogged != null)
                 {
                     if (!ConfirmHash(txtPass.Text, usuarioLogged.Password))

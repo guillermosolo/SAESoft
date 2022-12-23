@@ -110,6 +110,9 @@ namespace SAESoft
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             tsslUsuario.Text = usuarioLogged?.UserName;
+            btnConfiguracion.Enabled = hasPermission("VER.ADMINISTRACION SISTEMA");
+            btnImportaciones.Enabled = hasPermission("VER.IMPORTACIONES");
+
         }
     }
 }

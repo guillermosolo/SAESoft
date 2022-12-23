@@ -1,11 +1,5 @@
 ﻿using FontAwesome.Sharp;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.Design.AxImporter;
+using static SAESoft.Cache.UserData;
 
 namespace SAESoft.Utilitarios
 {
@@ -32,11 +26,11 @@ namespace SAESoft.Utilitarios
             }
         }
 
-        public static void CambiarVisibilidadBotones (String[] botones, ToolStrip toolbar, Boolean visible)
+        public static void CambiarVisibilidadBotones(String[] botones, ToolStrip toolbar, Boolean visible)
         {
             foreach (ToolStripItem btn in toolbar.Items)
             {
-                if (btn.GetType() == typeof(ToolStripButton)||btn.GetType() == typeof(ToolStripLabel))
+                if (btn.GetType() == typeof(ToolStripButton) || btn.GetType() == typeof(ToolStripLabel))
                 {
                     if (botones.Contains(btn.Name))
                     {
@@ -50,7 +44,7 @@ namespace SAESoft.Utilitarios
             }
         }
 
-        public static void CambiarEstadoBotones(String[] botones, Boolean estado,ToolStrip toolbar)
+        public static void CambiarEstadoBotones(String[] botones, Boolean estado, ToolStrip toolbar, string Opcion)
         {
             foreach (ToolStripItem btn in toolbar.Items)
             {
@@ -58,24 +52,38 @@ namespace SAESoft.Utilitarios
                 {
                     if (botones.Contains(btn.Name))
                     {
-                        btn.Enabled = estado;
+                        switch (btn.Name)
+                        {
+                            case "tsbNuevo":
+                                btn.Enabled = estado && hasPermission("CREAR." + Opcion);
+                                break;
+                            case "tsbModificar":
+                                btn.Enabled = estado && hasPermission("MODIFICAR." + Opcion);
+                                break;
+                            case "tsbEliminar":
+                                btn.Enabled = estado && hasPermission("ELIMINAR." + Opcion);
+                                break;
+                            default:
+                                btn.Enabled = estado;
+                                break;
+                        }
                     }
                 }
             }
         }
 
-        public static void habilitarFormulario (Control cont, Boolean opcion)
+        public static void habilitarFormulario(Control cont, Boolean opcion)
         {
             foreach (Control c in cont.Controls)
             {
-                if (c is TextBox || c is ComboBox ||c is CheckBox|| c is NumericUpDown ||c is DateTimePicker || c is toggleSwitch || c is DataGridView)
+                if (c is TextBox || c is ComboBox || c is CheckBox || c is NumericUpDown || c is DateTimePicker || c is toggleSwitch || c is DataGridView)
                 {
                     if (c.Name != "txtId")
                     {
                         c.Enabled = opcion;
                     }
                 }
-                if (c is TabControl ||c is TabPage ||c is GroupBox||c is Panel ||c is ToolStripContainer)
+                if (c is TabControl || c is TabPage || c is GroupBox || c is Panel || c is ToolStripContainer)
                 {
                     habilitarFormulario(c, opcion);
                 }
@@ -119,7 +127,7 @@ namespace SAESoft.Utilitarios
                 }
             }
         }
-        public static void menuActivo(IconButton boton,Panel panel)
+        public static void menuActivo(IconButton boton, Panel panel)
         {
             IconButton btn;
             foreach (Control ctrl in panel.Controls)
@@ -130,9 +138,10 @@ namespace SAESoft.Utilitarios
                     if (btn.Name == boton.Name)
                     {
                         boton.BackColor = Color.FromArgb(0, 140, 250);
-                    } else
+                    }
+                    else
                     {
-                        btn.BackColor = Color.FromArgb(0,122,204);
+                        btn.BackColor = Color.FromArgb(0, 122, 204);
                     }
                 }
             }

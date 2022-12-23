@@ -5,3 +5,12 @@ dotnet_diagnostic.CS8602.severity = none
 
 # CS8765: La nulabilidad del tipo de parámetro no coincide con el miembro invalidado (posiblemente debido a los atributos de nulabilidad).
 dotnet_diagnostic.CS8765.severity = none
+
+# CS8600: Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
+dotnet_diagnostic.CS8600.severity = none
+
+# CS8634: El tipo no se puede usar como parámetro de tipo en el tipo o método genérico. La nulabilidad del argumento de tipo no coincide con la restricción "class"
+dotnet_diagnostic.CS8634.severity = none
+
+# CS8604: Posible argumento de referencia nulo
+dotnet_diagnostic.CS8604.severity = none

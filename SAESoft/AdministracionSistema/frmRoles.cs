@@ -4,6 +4,7 @@ using SAESoft.Models;
 using SAESoft.Models.AdministracionSistema;
 using System.Data;
 using static SAESoft.Utilitarios.ControlFormularios;
+using static SAESoft.Cache.UserData;
 
 namespace SAESoft.AdministracionSistema
 {
@@ -84,7 +85,7 @@ namespace SAESoft.AdministracionSistema
             {
                 if (Convert.ToInt32(dataGridView1[6, j].Value) == 0)
                 {
-                    for (int i = 0; i < dataGridView1.Columns.Count -1; i++)
+                    for (int i = 0; i < dataGridView1.Columns.Count - 1; i++)
                     {
                         if (i == 0)
                         {
@@ -189,7 +190,7 @@ namespace SAESoft.AdministracionSistema
                             String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
                             CambiarVisibilidadBotones(botones, toolStrip1, true);
                         }
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1);
+                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ROLES");
                     }
                     else
                     {
@@ -198,7 +199,7 @@ namespace SAESoft.AdministracionSistema
                         llenarGridVacio();
                         String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
                         CambiarVisibilidadBotones(botones, toolStrip1, true);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1);
+                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "ROLES");
                     }
                 }
             }
@@ -206,6 +207,7 @@ namespace SAESoft.AdministracionSistema
 
         private void frmRoles_Load(object sender, EventArgs e)
         {
+            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "ROLES");
             estructuraGrid();
             llenarGridVacio();
         }
@@ -283,7 +285,7 @@ namespace SAESoft.AdministracionSistema
                                     llenarGridVacio();
                                     String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
                                     CambiarVisibilidadBotones(botones, toolStrip1, true);
-                                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1);
+                                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "ROLES");
                                 }
                             }
                             catch (Exception ex)
@@ -314,20 +316,20 @@ namespace SAESoft.AdministracionSistema
                 {
                     String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbSalir" };
                     CambiarVisibilidadBotones(botones, toolStrip1, true);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1);
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ROLES");
                 }
                 else
                 {
                     String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
                     CambiarVisibilidadBotones(botones, toolStrip1, true);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1);
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ROLES");
                 }
             }
             else
             {
                 String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
                 CambiarVisibilidadBotones(botones, toolStrip1, true);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1);
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "ROLES");
                 limpiarFormulario(this);
                 llenarGridVacio();
             }
@@ -381,12 +383,135 @@ namespace SAESoft.AdministracionSistema
             {
                 using (DB_Context _Contexto = new DB_Context())
                 {
-                    rs = _Contexto.Roles.Include(r=>r.Permisos).Where(p => p.IdRol == formListar.Id).ToList();
+                    rs = _Contexto.Roles.Include(r => r.Permisos).Where(p => p.IdRol == formListar.Id).ToList();
                     CurrentIndex = 0;
                     despliegaDatos();
                     String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
                     CambiarVisibilidadBotones(botones, toolStrip1, true);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1);
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1,"ROLES");
+                }
+            }
+        }
+        private Boolean ValidarDatos()
+        {
+            errorProvider1.Clear();
+            if (txtNombre.Text == "")
+            {
+                errorProvider1.SetError(txtNombre, "No puede estar vacío.");
+                txtNombre.Focus();
+                return false;
+            }
+            return true;
+        }
+        private void tsbAceptar_Click(object sender, EventArgs e)
+        {
+            dataGridView1.EndEdit();
+            if (ValidarDatos())
+            {
+                if (esNuevo)
+                {
+                    using (DB_Context _Contexto = new DB_Context())
+                    {
+                        try
+                        {
+                            Rol rol = new Rol()
+                            {
+                                Nombre = txtNombre.Text,
+                                Habilitado = tsActivo.Checked,
+                                FechaCreacion = DateTime.UtcNow,
+                                IdUsuarioCreacion = usuarioLogged.IdUsuario
+                            };
+                            _Contexto.Roles.Add(rol);
+                            _Contexto.SaveChanges();
+                            actualizarPermisos(rol.IdRol);
+                            rs.Add(rol);
+                            CurrentIndex = rs.Count - 1;
+                            despliegaDatos();
+                            MessageBox.Show("Usuario Grabado Exitosamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (DbUpdateException ex)
+                        {
+                            if (ex.InnerException != null)
+                                MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            else
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                    }
+                }
+                else
+                {
+                    Rol temp = rs[CurrentIndex];
+                    using (DB_Context _Contexto = new DB_Context())
+                    {
+                        try
+                        {
+                            Rol rolActual = _Contexto.Roles.Include(r => r.Permisos).Where(r => r.IdRol == rs[CurrentIndex].IdRol).FirstOrDefault();
+                            _Contexto.Entry(rolActual).State = EntityState.Modified;
+                            rolActual.Nombre = txtNombre.Text;
+                            rolActual.Habilitado = tsActivo.Checked;
+                            rolActual.FechaUltimaMod = DateTime.UtcNow;
+                            rolActual.IdUsuarioMod = usuarioLogged.IdUsuario;
+                            _Contexto.Roles.Update(rolActual);
+                            _Contexto.SaveChanges();
+                            actualizarPermisos(rolActual.IdRol);
+                        }
+                        catch (Exception ex)
+                        {
+                            if (ex.InnerException != null)
+                                MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            else
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            rs[CurrentIndex] = temp;
+                            return;
+                        }
+
+                    }
+                }
+                if (rs.Count > 1)
+                {
+                    String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbSalir" };
+                    CambiarVisibilidadBotones(botones, toolStrip1, true);
+                }
+                else
+                {
+                    String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
+                    CambiarVisibilidadBotones(botones, toolStrip1, true);
+                }
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1,"ROLES");
+                habilitarFormulario(this, false);
+            }
+        }
+
+        private void actualizarPermisos(int rolId)
+        {
+            string nom;
+            foreach (DataRow dr in dt.Rows)
+            {
+                if (Convert.ToInt32(dr[6]) != 0)
+                {
+                    for (int i = 1; i < 6; i++)
+                    {
+
+                        using (DB_Context _Contexto = new DB_Context())
+                        {
+                            Rol rol = _Contexto.Roles.Include(r => r.Permisos).FirstOrDefault(r => r.IdRol == rolId);
+                            nom = dt.Columns[i].ColumnName.ToUpper() + "." + dr[0].ToString();
+                            Permiso per = _Contexto.Permisos.FirstOrDefault(p => p.Nombre == nom);
+                            if (Convert.ToBoolean(dr[i]))
+                            {
+                                if (rol.Permisos.FirstOrDefault(p => p.Nombre == nom) == null)
+                                    rol.Permisos.Add(per);
+                            }
+                            else
+                            {
+                                if (per != null && rol.Permisos.FirstOrDefault(p => p.Nombre == nom) != null)
+                                    rol.Permisos.Remove(per);
+                            }
+                            _Contexto.SaveChanges();
+                        }
+                    }
                 }
             }
         }

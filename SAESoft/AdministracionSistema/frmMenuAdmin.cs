@@ -1,4 +1,5 @@
 ﻿using static SAESoft.Utilitarios.ControlFormularios;
+using static SAESoft.Cache.UserData;
 
 namespace SAESoft.AdministracionSistema
 {
@@ -44,6 +45,7 @@ namespace SAESoft.AdministracionSistema
 
         private void frmMenuAdmin_Load(object sender, EventArgs e)
         {
+            habilitarMenu();
             panelFormularios.ControlRemoved += new ControlEventHandler(CloseForms);
         }
 
@@ -51,6 +53,14 @@ namespace SAESoft.AdministracionSistema
         {
             Abrir<frmModulos>(panelFormularios);
             menuActivo(ibtnModulos, panelMenu);
+        }
+
+        private void habilitarMenu()
+        {
+            ibtnUsuarios.Enabled = hasPermission("VER.USUARIOS");
+            ibtnPermisos.Enabled = hasPermission("VER.PERMISOS");
+            ibtnModulos.Enabled = hasPermission("VER.MODULOS");
+            ibtnRoles.Enabled = hasPermission("VER.ROLES");
         }
     }
 }
