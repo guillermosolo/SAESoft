@@ -1,4 +1,5 @@
 ﻿using FontAwesome.Sharp;
+using System.Windows.Forms;
 using static SAESoft.Cache.UserData;
 
 namespace SAESoft.Utilitarios
@@ -24,6 +25,18 @@ namespace SAESoft.Utilitarios
             {
                 formulario.BringToFront();
             }
+        }
+
+        public static void BotonesIniciales(ToolStrip toolbar)
+        {
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
+            CambiarVisibilidadBotones(botones, toolbar, true);
+        }
+
+        public static void BotonesInicialesNavegacion(ToolStrip toolbar)
+        {
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbSalir" };
+            CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
         public static void CambiarVisibilidadBotones(String[] botones, ToolStrip toolbar, Boolean visible)

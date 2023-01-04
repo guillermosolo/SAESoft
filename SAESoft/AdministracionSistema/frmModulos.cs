@@ -45,21 +45,18 @@ namespace SAESoft.AdministracionSistema
                 despliegaDatos();
                 if (rs.Count > 1)
                 {
-                    String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbAnterior","tslIndice", "tsbSiguiente", "tsbSalir" };
-                    CambiarVisibilidadBotones(botones, toolStrip1, true);
+                    BotonesInicialesNavegacion(toolStrip1);
                     CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "MODULOS");
                 }
                 else
                 {
-                    String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
-                    CambiarVisibilidadBotones(botones, toolStrip1, true);
+                    BotonesIniciales(toolStrip1);
                     CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "MODULOS");
                 }
             }
             else
             {
-                String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
-                CambiarVisibilidadBotones(botones, toolStrip1, true);
+                BotonesIniciales(toolStrip1);
                 CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1,"MODULOS");
                 limpiarFormulario(this);
             }
@@ -141,13 +138,11 @@ namespace SAESoft.AdministracionSistema
                 }
                 if (rs.Count > 1)
                 {
-                    String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbAnterior","tslIndice", "tsbSiguiente", "tsbSalir" };
-                    CambiarVisibilidadBotones(botones, toolStrip1, true);
+                    BotonesInicialesNavegacion(toolStrip1);
                 }
                 else
                 {
-                    String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
-                    CambiarVisibilidadBotones(botones, toolStrip1, true);
+                    BotonesIniciales(toolStrip1);
                 }
                 CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1,"MODULOS");
                 habilitarFormulario(this, false);
@@ -183,13 +178,11 @@ namespace SAESoft.AdministracionSistema
                         despliegaDatos();
                         if (rs.Count > 1)
                         {
-                            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbAnterior","tslIndice", "tsbSiguiente", "tsbSalir" };
-                            CambiarVisibilidadBotones(botones, toolStrip1, true);
+                            BotonesInicialesNavegacion(toolStrip1);
                         }
                         else
                         {
-                            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
-                            CambiarVisibilidadBotones(botones, toolStrip1, true);
+                            BotonesIniciales(toolStrip1);
                         }
                         CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "MODULOS");
                     }
@@ -197,8 +190,7 @@ namespace SAESoft.AdministracionSistema
                     {
                         MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         limpiarFormulario(this);
-                        String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
-                        CambiarVisibilidadBotones(botones, toolStrip1, true);
+                        BotonesIniciales(toolStrip1);
                         CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "MODULOS");
                     }
                 }
@@ -231,22 +223,19 @@ namespace SAESoft.AdministracionSistema
                             if (rs.Count > 1)
                             {
                                 CurrentIndex--;
-                                String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbAnterior","tslIndice", "tsbSiguiente", "tsbSalir" };
-                                CambiarVisibilidadBotones(botones, toolStrip1, true);
+                                BotonesInicialesNavegacion(toolStrip1);
                             }
                             else
                             {
                                 CurrentIndex = 0;
-                                String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
-                                CambiarVisibilidadBotones(botones, toolStrip1, true);
+                                BotonesIniciales(toolStrip1);
                             }
                             despliegaDatos();
                         }
                         else
                         {
                             limpiarFormulario(this);
-                            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
-                            CambiarVisibilidadBotones(botones, toolStrip1, true);
+                            BotonesIniciales(toolStrip1);
                             CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1,"MODULOS");
                         }
                     }
@@ -293,8 +282,7 @@ namespace SAESoft.AdministracionSistema
                     rs = _Contexto.Modulos.Where(p => p.IdModulo == formListar.Id).ToList();
                     CurrentIndex = 0;
                     despliegaDatos();
-                    String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
-                    CambiarVisibilidadBotones(botones, toolStrip1, true);
+                    BotonesIniciales(toolStrip1);
                     CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1,"MODULOS");
                 }
             }

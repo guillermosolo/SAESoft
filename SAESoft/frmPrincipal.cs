@@ -1,4 +1,5 @@
 ﻿using SAESoft.AdministracionSistema;
+using SAESoft.Importaciones;
 using System.Runtime.InteropServices;
 using static SAESoft.Cache.UserData;
 using static SAESoft.Utilitarios.ControlFormularios;
@@ -113,6 +114,11 @@ namespace SAESoft
             btnConfiguracion.Enabled = hasPermission("VER.ADMINISTRACION SISTEMA");
             btnImportaciones.Enabled = hasPermission("VER.IMPORTACIONES");
 
+        }
+
+        private void btnImportaciones_Click(object sender, EventArgs e)
+        {
+            Abrir<frmMenuImportaciones>(panelFormularios);
         }
     }
 }

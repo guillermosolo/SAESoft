@@ -38,6 +38,8 @@
             this.btnImportaciones = new System.Windows.Forms.Button();
             this.btnConfiguracion = new System.Windows.Forms.Button();
             this.panelBarraTitulo = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.icbRestaurar = new FontAwesome.Sharp.IconButton();
             this.icbMinimizar = new FontAwesome.Sharp.IconButton();
             this.icbMaximizar = new FontAwesome.Sharp.IconButton();
@@ -46,6 +48,7 @@
             this.panelFormularios.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.panelBarraTitulo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelContenedor
@@ -55,7 +58,7 @@
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(0, 0);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(850, 650);
+            this.panelContenedor.Size = new System.Drawing.Size(1000, 800);
             this.panelContenedor.TabIndex = 0;
             this.panelContenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContenedor_Paint);
             // 
@@ -68,7 +71,7 @@
             this.panelFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFormularios.Location = new System.Drawing.Point(0, 40);
             this.panelFormularios.Name = "panelFormularios";
-            this.panelFormularios.Size = new System.Drawing.Size(850, 610);
+            this.panelFormularios.Size = new System.Drawing.Size(1000, 760);
             this.panelFormularios.TabIndex = 1;
             // 
             // button1
@@ -79,9 +82,9 @@
             this.button1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button1.Image = global::SAESoft.Properties.Resources.logout;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(745, 544);
+            this.button1.Location = new System.Drawing.Point(878, 688);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 37);
+            this.button1.Size = new System.Drawing.Size(119, 43);
             this.button1.TabIndex = 6;
             this.button1.Text = "Logout";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -95,9 +98,9 @@
             this.tsslUsuario,
             this.toolStripStatusLabel2,
             this.tsslVersion});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 584);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 734);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(850, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1000, 26);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -112,7 +115,7 @@
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(635, 21);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(816, 21);
             this.toolStripStatusLabel2.Spring = true;
             // 
             // tsslVersion
@@ -135,6 +138,7 @@
             this.btnImportaciones.Text = "Importaciones";
             this.btnImportaciones.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnImportaciones.UseVisualStyleBackColor = true;
+            this.btnImportaciones.Click += new System.EventHandler(this.btnImportaciones_Click);
             // 
             // btnConfiguracion
             // 
@@ -155,6 +159,8 @@
             // panelBarraTitulo
             // 
             this.panelBarraTitulo.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panelBarraTitulo.Controls.Add(this.label1);
+            this.panelBarraTitulo.Controls.Add(this.pictureBox1);
             this.panelBarraTitulo.Controls.Add(this.icbRestaurar);
             this.panelBarraTitulo.Controls.Add(this.icbMinimizar);
             this.panelBarraTitulo.Controls.Add(this.icbMaximizar);
@@ -162,9 +168,32 @@
             this.panelBarraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelBarraTitulo.Location = new System.Drawing.Point(0, 0);
             this.panelBarraTitulo.Name = "panelBarraTitulo";
-            this.panelBarraTitulo.Size = new System.Drawing.Size(850, 40);
+            this.panelBarraTitulo.Size = new System.Drawing.Size(1000, 40);
             this.panelBarraTitulo.TabIndex = 0;
             this.panelBarraTitulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelBarraTitulo_MouseMove);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Location = new System.Drawing.Point(41, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 37);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "S&&G, S.A.";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SAESoft.Properties.Resources.logo_blue;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // icbRestaurar
             // 
@@ -175,7 +204,7 @@
             this.icbRestaurar.IconColor = System.Drawing.Color.White;
             this.icbRestaurar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icbRestaurar.IconSize = 36;
-            this.icbRestaurar.Location = new System.Drawing.Point(778, 0);
+            this.icbRestaurar.Location = new System.Drawing.Point(928, 0);
             this.icbRestaurar.Name = "icbRestaurar";
             this.icbRestaurar.Size = new System.Drawing.Size(36, 40);
             this.icbRestaurar.TabIndex = 5;
@@ -192,7 +221,7 @@
             this.icbMinimizar.IconColor = System.Drawing.Color.White;
             this.icbMinimizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icbMinimizar.IconSize = 36;
-            this.icbMinimizar.Location = new System.Drawing.Point(746, 0);
+            this.icbMinimizar.Location = new System.Drawing.Point(896, 0);
             this.icbMinimizar.Name = "icbMinimizar";
             this.icbMinimizar.Size = new System.Drawing.Size(36, 40);
             this.icbMinimizar.TabIndex = 4;
@@ -208,7 +237,7 @@
             this.icbMaximizar.IconColor = System.Drawing.Color.White;
             this.icbMaximizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icbMaximizar.IconSize = 36;
-            this.icbMaximizar.Location = new System.Drawing.Point(778, 0);
+            this.icbMaximizar.Location = new System.Drawing.Point(928, 0);
             this.icbMaximizar.Name = "icbMaximizar";
             this.icbMaximizar.Size = new System.Drawing.Size(36, 40);
             this.icbMaximizar.TabIndex = 3;
@@ -224,7 +253,7 @@
             this.icbCerrar.IconColor = System.Drawing.Color.White;
             this.icbCerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icbCerrar.IconSize = 36;
-            this.icbCerrar.Location = new System.Drawing.Point(811, 0);
+            this.icbCerrar.Location = new System.Drawing.Point(961, 0);
             this.icbCerrar.Name = "icbCerrar";
             this.icbCerrar.Size = new System.Drawing.Size(36, 40);
             this.icbCerrar.TabIndex = 2;
@@ -235,7 +264,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 650);
+            this.ClientSize = new System.Drawing.Size(1000, 800);
             this.Controls.Add(this.panelContenedor);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(650, 400);
@@ -249,6 +278,8 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.panelBarraTitulo.ResumeLayout(false);
+            this.panelBarraTitulo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -269,5 +300,7 @@
         private ToolStripStatusLabel toolStripStatusLabel2;
         private ToolStripStatusLabel tsslVersion;
         private Button button1;
+        private PictureBox pictureBox1;
+        private Label label1;
     }
 }
