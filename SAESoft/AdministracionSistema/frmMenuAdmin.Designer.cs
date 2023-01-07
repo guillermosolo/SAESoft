@@ -65,7 +65,7 @@
             this.ibtnModulos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ibtnModulos.IconSize = 32;
             this.ibtnModulos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnModulos.Location = new System.Drawing.Point(3, 178);
+            this.ibtnModulos.Location = new System.Drawing.Point(3, 181);
             this.ibtnModulos.Name = "ibtnModulos";
             this.ibtnModulos.Size = new System.Drawing.Size(197, 55);
             this.ibtnModulos.TabIndex = 5;
@@ -85,7 +85,7 @@
             this.ibtnPermisos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ibtnPermisos.IconSize = 32;
             this.ibtnPermisos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnPermisos.Location = new System.Drawing.Point(3, 134);
+            this.ibtnPermisos.Location = new System.Drawing.Point(3, 137);
             this.ibtnPermisos.Name = "ibtnPermisos";
             this.ibtnPermisos.Size = new System.Drawing.Size(197, 55);
             this.ibtnPermisos.TabIndex = 4;
@@ -101,7 +101,7 @@
             this.ibtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ibtnSalir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ibtnSalir.ForeColor = System.Drawing.Color.White;
-            this.ibtnSalir.IconChar = FontAwesome.Sharp.IconChar.RightFromBracket;
+            this.ibtnSalir.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
             this.ibtnSalir.IconColor = System.Drawing.Color.White;
             this.ibtnSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ibtnSalir.IconSize = 32;
@@ -116,11 +116,11 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(-3, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 43);
+            this.label1.Size = new System.Drawing.Size(200, 53);
             this.label1.TabIndex = 2;
             this.label1.Text = "Administración del Sistema";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -136,7 +136,7 @@
             this.ibtnRoles.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ibtnRoles.IconSize = 32;
             this.ibtnRoles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnRoles.Location = new System.Drawing.Point(3, 95);
+            this.ibtnRoles.Location = new System.Drawing.Point(3, 98);
             this.ibtnRoles.Name = "ibtnRoles";
             this.ibtnRoles.Size = new System.Drawing.Size(197, 43);
             this.ibtnRoles.TabIndex = 1;
@@ -151,12 +151,12 @@
             this.ibtnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ibtnUsuarios.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ibtnUsuarios.ForeColor = System.Drawing.Color.White;
-            this.ibtnUsuarios.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
+            this.ibtnUsuarios.IconChar = FontAwesome.Sharp.IconChar.UserLarge;
             this.ibtnUsuarios.IconColor = System.Drawing.Color.White;
             this.ibtnUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ibtnUsuarios.IconSize = 32;
             this.ibtnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnUsuarios.Location = new System.Drawing.Point(3, 55);
+            this.ibtnUsuarios.Location = new System.Drawing.Point(3, 58);
             this.ibtnUsuarios.Name = "ibtnUsuarios";
             this.ibtnUsuarios.Size = new System.Drawing.Size(197, 43);
             this.ibtnUsuarios.TabIndex = 0;

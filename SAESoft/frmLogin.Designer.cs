@@ -90,10 +90,10 @@
             this.txtPass.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtPass.Location = new System.Drawing.Point(355, 164);
             this.txtPass.Name = "txtPass";
-            this.txtPass.PasswordChar = '●';
             this.txtPass.PlaceholderText = "CONTRASEÑA";
             this.txtPass.Size = new System.Drawing.Size(305, 20);
             this.txtPass.TabIndex = 4;
+            this.txtPass.UseSystemPasswordChar = true;
             this.txtPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPass_KeyDown);
             // 
             // groupBox2
@@ -108,7 +108,7 @@
             // 
             this.iconPictureBox1.BackColor = System.Drawing.Color.White;
             this.iconPictureBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.UserLarge;
             this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox1.IconSize = 31;

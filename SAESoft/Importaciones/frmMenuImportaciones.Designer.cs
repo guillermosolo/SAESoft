@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.ibtnAereo = new FontAwesome.Sharp.IconButton();
+            this.ibtnMaritimo = new FontAwesome.Sharp.IconButton();
             this.ibtnDashboard = new FontAwesome.Sharp.IconButton();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.ibtnSalir = new FontAwesome.Sharp.IconButton();
@@ -40,6 +42,8 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.panelMenu.Controls.Add(this.ibtnAereo);
+            this.panelMenu.Controls.Add(this.ibtnMaritimo);
             this.panelMenu.Controls.Add(this.ibtnDashboard);
             this.panelMenu.Controls.Add(this.iconButton1);
             this.panelMenu.Controls.Add(this.ibtnSalir);
@@ -49,6 +53,46 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(200, 450);
             this.panelMenu.TabIndex = 1;
+            // 
+            // ibtnAereo
+            // 
+            this.ibtnAereo.FlatAppearance.BorderSize = 0;
+            this.ibtnAereo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnAereo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ibtnAereo.ForeColor = System.Drawing.Color.White;
+            this.ibtnAereo.IconChar = FontAwesome.Sharp.IconChar.Plane;
+            this.ibtnAereo.IconColor = System.Drawing.Color.White;
+            this.ibtnAereo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnAereo.IconSize = 32;
+            this.ibtnAereo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ibtnAereo.Location = new System.Drawing.Point(0, 148);
+            this.ibtnAereo.Name = "ibtnAereo";
+            this.ibtnAereo.Size = new System.Drawing.Size(197, 56);
+            this.ibtnAereo.TabIndex = 9;
+            this.ibtnAereo.Text = "Aéreo  y\r\nTerrestre";
+            this.ibtnAereo.UseVisualStyleBackColor = true;
+            this.ibtnAereo.EnabledChanged += new System.EventHandler(this.ibtnAereo_EnabledChanged);
+            this.ibtnAereo.Click += new System.EventHandler(this.ibtnAereo_Click);
+            // 
+            // ibtnMaritimo
+            // 
+            this.ibtnMaritimo.FlatAppearance.BorderSize = 0;
+            this.ibtnMaritimo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnMaritimo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ibtnMaritimo.ForeColor = System.Drawing.Color.White;
+            this.ibtnMaritimo.IconChar = FontAwesome.Sharp.IconChar.Ship;
+            this.ibtnMaritimo.IconColor = System.Drawing.Color.White;
+            this.ibtnMaritimo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnMaritimo.IconSize = 32;
+            this.ibtnMaritimo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ibtnMaritimo.Location = new System.Drawing.Point(3, 102);
+            this.ibtnMaritimo.Name = "ibtnMaritimo";
+            this.ibtnMaritimo.Size = new System.Drawing.Size(197, 43);
+            this.ibtnMaritimo.TabIndex = 8;
+            this.ibtnMaritimo.Text = "Marítimo";
+            this.ibtnMaritimo.UseVisualStyleBackColor = true;
+            this.ibtnMaritimo.EnabledChanged += new System.EventHandler(this.ibtnMaritimo_EnabledChanged);
+            this.ibtnMaritimo.Click += new System.EventHandler(this.ibtnMaritimo_Click);
             // 
             // ibtnDashboard
             // 
@@ -61,12 +105,13 @@
             this.ibtnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ibtnDashboard.IconSize = 32;
             this.ibtnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnDashboard.Location = new System.Drawing.Point(3, 47);
+            this.ibtnDashboard.Location = new System.Drawing.Point(3, 53);
             this.ibtnDashboard.Name = "ibtnDashboard";
-            this.ibtnDashboard.Size = new System.Drawing.Size(197, 29);
+            this.ibtnDashboard.Size = new System.Drawing.Size(197, 43);
             this.ibtnDashboard.TabIndex = 7;
             this.ibtnDashboard.Text = "Dashboard";
             this.ibtnDashboard.UseVisualStyleBackColor = true;
+            this.ibtnDashboard.EnabledChanged += new System.EventHandler(this.ibtnDashboard_EnabledChanged);
             this.ibtnDashboard.Click += new System.EventHandler(this.ibtnDashboard_Click);
             // 
             // iconButton1
@@ -110,14 +155,14 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(-3, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 43);
             this.label1.TabIndex = 2;
             this.label1.Text = "Importaciones";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelFormularios
             // 
@@ -150,5 +195,7 @@
         private Panel panelFormularios;
         private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconButton ibtnDashboard;
+        private FontAwesome.Sharp.IconButton ibtnAereo;
+        private FontAwesome.Sharp.IconButton ibtnMaritimo;
     }
 }

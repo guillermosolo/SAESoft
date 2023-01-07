@@ -4,6 +4,7 @@ using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Cache.UserData;
 using Microsoft.EntityFrameworkCore;
 using SAESoft.Comunes;
+using SAESoft.Utilitarios;
 
 namespace SAESoft.AdministracionSistema
 {
@@ -62,7 +63,7 @@ namespace SAESoft.AdministracionSistema
                             {
                                 Nombre = txtNombre.Text,
                                 IdModulo = Convert.ToInt32(cboModulos.SelectedValue),
-                                FechaCreacion = DateTime.UtcNow,
+                                FechaCreacion = DatosServer.FechaServer(),
                                 IdUsuarioCreacion = usuarioLogged.IdUsuario
                             };
                             _Contexto.Permisos.Add(permiso);
@@ -92,7 +93,7 @@ namespace SAESoft.AdministracionSistema
                             _Contexto.Entry(rs[CurrentIndex]).State = EntityState.Modified;
                             rs[CurrentIndex].Nombre = txtNombre.Text;
                             rs[CurrentIndex].IdModulo = Convert.ToInt32(cboModulos.SelectedValue);
-                            rs[CurrentIndex].FechaUltimaMod = DateTime.UtcNow;
+                            rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
                             rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
                             _Contexto.Permisos.Update(rs[CurrentIndex]);
                             _Contexto.SaveChanges();

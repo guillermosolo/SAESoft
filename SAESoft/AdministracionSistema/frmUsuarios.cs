@@ -8,6 +8,7 @@ using static SAESoft.Cache.UserData;
 using SAESoft.Comunes;
 using System.Text.RegularExpressions;
 using System.Data;
+using SAESoft.Utilitarios;
 
 namespace SAESoft.AdministracionSistema
 {
@@ -76,7 +77,7 @@ namespace SAESoft.AdministracionSistema
                                 Password = ComputeHash(txtPassword.Text),
                                 IdRol = Convert.ToInt32(cboRoles.SelectedValue),
                                 Activo = tsActivo.Checked,
-                                FechaCreacion = DateTime.UtcNow,
+                                FechaCreacion = DatosServer.FechaServer(),
                                 IdUsuarioCreacion = usuarioLogged.IdUsuario
                             };
                             _Contexto.Usuarios.Add(usuario);
@@ -112,7 +113,7 @@ namespace SAESoft.AdministracionSistema
                             if (txtPassword.Text != "xxxxxxxxxxxxx")
                                 rs[CurrentIndex].Password = ComputeHash(txtPassword.Text);
                             rs[CurrentIndex].IdRol = Convert.ToInt32(cboRoles.SelectedValue);
-                            rs[CurrentIndex].FechaUltimaMod = DateTime.UtcNow;
+                            rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
                             rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
                             _Contexto.Usuarios.Update(rs[CurrentIndex]);
                             _Contexto.SaveChanges();

@@ -4,6 +4,7 @@ using SAESoft.Models.AdministracionSistema;
 using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Cache.UserData;
 using SAESoft.Comunes;
+using SAESoft.Utilitarios;
 
 namespace SAESoft.AdministracionSistema
 {
@@ -90,7 +91,7 @@ namespace SAESoft.AdministracionSistema
                             {
                                 Nombre = txtNombre.Text,
                                 Habilitado = tsActivo.Checked,
-                                FechaCreacion = DateTime.UtcNow,
+                                FechaCreacion = DatosServer.FechaServer(),
                                 IdUsuarioCreacion = usuarioLogged.IdUsuario
                             };
                             _Contexto.Modulos.Add(modulo);
@@ -120,7 +121,7 @@ namespace SAESoft.AdministracionSistema
                             _Contexto.Entry(rs[CurrentIndex]).State = EntityState.Modified;
                             rs[CurrentIndex].Nombre = txtNombre.Text;
                             rs[CurrentIndex].Habilitado = tsActivo.Checked;
-                            rs[CurrentIndex].FechaUltimaMod = DateTime.UtcNow;
+                            rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
                             rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
                             _Contexto.Modulos.Update(rs[CurrentIndex]);
                             _Contexto.SaveChanges();

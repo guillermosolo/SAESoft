@@ -163,6 +163,16 @@ namespace SAESoft.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap location {
+            get {
+                object obj = ResourceManager.GetObject("location", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logo_blue {
             get {
                 object obj = ResourceManager.GetObject("logo-blue", resourceCulture);

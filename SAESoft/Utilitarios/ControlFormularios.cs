@@ -29,13 +29,13 @@ namespace SAESoft.Utilitarios
 
         public static void BotonesIniciales(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbSalir" };
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsbProceso", "tsbSalir" };
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
         public static void BotonesInicialesNavegacion(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbSalir" };
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tspProceso", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbSalir" };
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 

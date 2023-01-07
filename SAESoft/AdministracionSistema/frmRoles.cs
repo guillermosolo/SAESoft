@@ -5,6 +5,7 @@ using SAESoft.Models.AdministracionSistema;
 using System.Data;
 using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Cache.UserData;
+using SAESoft.Utilitarios;
 
 namespace SAESoft.AdministracionSistema
 {
@@ -408,7 +409,7 @@ namespace SAESoft.AdministracionSistema
                             {
                                 Nombre = txtNombre.Text,
                                 Habilitado = tsActivo.Checked,
-                                FechaCreacion = DateTime.UtcNow,
+                                FechaCreacion = DatosServer.FechaServer(),
                                 IdUsuarioCreacion = usuarioLogged.IdUsuario
                             };
                             _Contexto.Roles.Add(rol);
@@ -441,7 +442,7 @@ namespace SAESoft.AdministracionSistema
                             _Contexto.Entry(rolActual).State = EntityState.Modified;
                             rolActual.Nombre = txtNombre.Text;
                             rolActual.Habilitado = tsActivo.Checked;
-                            rolActual.FechaUltimaMod = DateTime.UtcNow;
+                            rolActual.FechaUltimaMod = DatosServer.FechaServer();
                             rolActual.IdUsuarioMod = usuarioLogged.IdUsuario;
                             _Contexto.Roles.Update(rolActual);
                             _Contexto.SaveChanges();

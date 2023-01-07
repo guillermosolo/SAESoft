@@ -41,7 +41,8 @@ namespace SAESoft.AdministracionSistema
                 ibtnPermisos.BackColor = Color.FromArgb(0, 122, 204);
             if (Application.OpenForms["frmRoles"] == null)
                 ibtnRoles.BackColor = Color.FromArgb(0, 122, 204);
-
+            if (Application.OpenForms["frmModulos"]==null)
+                ibtnModulos.BackColor = Color.FromArgb(0, 122, 204);
         }
 
         private void frmMenuAdmin_Load(object sender, EventArgs e)

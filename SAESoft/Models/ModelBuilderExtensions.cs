@@ -62,7 +62,11 @@ namespace SAESoft.Models
                 new Permiso{IdPermiso = 23, Nombre = "VER.MODULOS", IdModulo = 2, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Permiso{IdPermiso = 24, Nombre = "CREAR.MODULOS", IdModulo = 2, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Permiso{IdPermiso = 25, Nombre = "MODIFICAR.MODULOS", IdModulo = 2, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Permiso{IdPermiso = 26, Nombre = "ELIMINAR.MODULOS", IdModulo = 2, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1}
+                new Permiso{IdPermiso = 26, Nombre = "ELIMINAR.MODULOS", IdModulo = 2, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+
+                new Permiso{IdPermiso = 27, Nombre = "VER.DASHBOARD", IdModulo = 3, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+                new Permiso{IdPermiso = 28, Nombre = "VER.MARITIMO", IdModulo = 3, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+                new Permiso{IdPermiso = 29, Nombre = "VER.AEREO", IdModulo = 3, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
             };  
             modelBuilder.Entity<Permiso>().HasData(permisos);
 
