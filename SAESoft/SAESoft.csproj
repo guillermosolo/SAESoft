@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>logo-blue.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,11 @@
 
   <ItemGroup>
     <None Remove="AdministracionSistema\gxbmedlg.3xq~" />
+    <None Remove="Importaciones\frmMenuImportaciones.resx~RF635635ba.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="logo-blue.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +29,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="WinForms.DataVisualization" Version="1.7.0-pr" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,7 +49,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Resources\" />
+    <Folder Include="Models\Importaciones\" />
   </ItemGroup>
 
   <ItemGroup>
