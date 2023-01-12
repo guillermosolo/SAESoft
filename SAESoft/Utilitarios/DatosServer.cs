@@ -1,10 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ConnectUNCWithCredentials;
+using Microsoft.EntityFrameworkCore;
 using SAESoft.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SAESoft.Utilitarios
 {
@@ -19,6 +22,20 @@ namespace SAESoft.Utilitarios
           
             }
             return fecha;
+        }
+
+        public static Boolean ConectarFileServer(string path)
+        {
+            using (UNCAccessWithCredentials unc = new UNCAccessWithCredentials())
+            {
+                if (!unc.NetUseWithCredentials(path, "saesoft", "", "$@3$oft2023"))
+                {
+                    return false;
+                } else
+                {
+                    return true;
+                }
+            }
         }
     }
 }

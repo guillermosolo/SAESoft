@@ -1,4 +1,6 @@
 ﻿using FontAwesome.Sharp;
+using SAESoft.Models;
+using SAESoft.Models.Importaciones;
 using System.Windows.Forms;
 using static SAESoft.Cache.UserData;
 
@@ -29,13 +31,13 @@ namespace SAESoft.Utilitarios
 
         public static void BotonesIniciales(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsbProceso", "tsbSalir" };
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsddbProceso","tsbUpload", "tsbSalir" };
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
         public static void BotonesInicialesNavegacion(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tspProceso", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbSalir" };
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsddbProceso","tsbUpload", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbSalir" };
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
@@ -43,7 +45,7 @@ namespace SAESoft.Utilitarios
         {
             foreach (ToolStripItem btn in toolbar.Items)
             {
-                if (btn.GetType() == typeof(ToolStripButton) || btn.GetType() == typeof(ToolStripLabel))
+                if (btn.GetType() == typeof(ToolStripButton) || btn.GetType() == typeof(ToolStripLabel) || btn.GetType() == typeof(ToolStripDropDownButton))
                 {
                     if (botones.Contains(btn.Name))
                     {
@@ -61,7 +63,7 @@ namespace SAESoft.Utilitarios
         {
             foreach (ToolStripItem btn in toolbar.Items)
             {
-                if (btn.GetType() == typeof(ToolStripButton))
+                if (btn.GetType() == typeof(ToolStripButton) || btn.GetType() == typeof(ToolStripDropDownButton))
                 {
                     if (botones.Contains(btn.Name))
                     {
@@ -89,7 +91,7 @@ namespace SAESoft.Utilitarios
         {
             foreach (Control c in cont.Controls)
             {
-                if (c is TextBox || c is ComboBox || c is CheckBox || c is NumericUpDown || c is DateTimePicker || c is toggleSwitch || c is DataGridView)
+                if (c is TextBox || c is ComboBox || c is CheckBox || c is NumericUpDown || c is DateTimePicker || c is toggleSwitch || c is DataGridView || c is ListBox || c is CheckedListBox)
                 {
                     if (c.Name != "txtId")
                     {
@@ -134,6 +136,22 @@ namespace SAESoft.Utilitarios
                 {
                     ((toggleSwitch)c).Checked = false;
                 }
+                if (c is ListBox && !(c is CheckedListBox))
+                {
+                    ((ListBox)c).DataSource = null;
+                    ((ListBox)c).Items.Clear();
+                }
+                if (c is CheckedListBox)
+                {
+                    for (int i = 0;i< ((CheckedListBox)c).Items.Count;i++)
+                    {
+                        ((CheckedListBox)c).SetItemChecked(i, false);
+                    }
+                }
+                if (c is ListView)
+                {
+                    ((ListView)c).Items.Clear();
+                }
                 if (c is TabControl || c is TabPage || c is GroupBox || c is Panel || c is ToolStripContainer)
                 {
                     limpiarFormulario(c);
@@ -172,6 +190,16 @@ namespace SAESoft.Utilitarios
                 ((IconButton)sender).IconColor = Color.White;
             else
                 ((IconButton)sender).IconColor = Color.DarkGray;
+        }
+
+        public static void llenarNombres(ComboBox c,string g)
+        {
+            using (DB_Context _Contexto = new DB_Context())
+            {
+                c.DataSource = _Contexto.Nombres.Where(n=>n.Grupo.Nombre ==g).OrderBy(n=>n.Descripcion).ToList();
+                c.DisplayMember = "Descripcion";
+                c.ValueMember = "IdNombre";
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SAESoft.Models.AdministracionSistema;
+using SAESoft.Models.Importaciones;
 using SAESoft.Utilitarios;
 using System.Configuration;
 
@@ -17,6 +18,17 @@ namespace SAESoft.Models
         public DbSet<Rol> Roles { get; set; }
         public DbSet<Permiso> Permisos { get; set; }
         public DbSet<Modulo> Modulos { get; set; }
+        public DbSet<Grupo> Grupos { get; set; }
+        public DbSet<Nombre> Nombres { get; set; }
+        public DbSet<Shipper> Shippers { get; set; }
+        public DbSet<Aduana> Aduanas { get; set; }
+        public DbSet<Terminal> Terminales { get; set; }
+        public DbSet<Revision> Revisiones { get; set; }
+        public DbSet<Importacion> Importaciones { get; set; }
+        public DbSet<Poliza> Polizas { get; set; } 
+        public DbSet<BL> BL { get; set; }
+        public DbSet<Contenedor> Contenedores { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

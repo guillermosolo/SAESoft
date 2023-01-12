@@ -5,6 +5,7 @@ using static SAESoft.Cache.UserData;
 using static SAESoft.Utilitarios.Password;
 using static SAESoft.Utilitarios.ControlFormularios;
 using Microsoft.EntityFrameworkCore;
+using SAESoft.Utilitarios;
 
 namespace SAESoft
 {
@@ -74,10 +75,19 @@ namespace SAESoft
                     return;
                 }
             }
-            frmPrincipal mainMenu = new frmPrincipal();
-            mainMenu.Show();
-            mainMenu.FormClosed += Logout;
-            this.Hide();
+            var path = @"\\192.168.50.37\SAESoft";
+            if (DatosServer.ConectarFileServer(path))
+            {
+                frmPrincipal mainMenu = new frmPrincipal();
+                mainMenu.Show();
+                mainMenu.FormClosed += Logout;
+                this.Hide();
+            } else
+            {
+                MessageBox.Show("Error al conectarse al servidor de Archivos Compartidos,\r\n" +
+                                "Intente de nuevo, si el problema persiste \r\n" +
+                                "comuníquese con el Administrador del Sistema", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtPass_KeyDown(object sender, KeyEventArgs e)

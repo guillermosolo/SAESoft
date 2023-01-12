@@ -8,19 +8,15 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
-namespace SAESoft.Models.AdministracionSistema
+namespace SAESoft.Models.Importaciones
 {
     [Index(nameof(Nombre), IsUnique = true)]
-    public class Permiso:Audit
+    public class Terminal:Audit
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdPermiso { get; set; }
+        public int IdTerminal { get; set; }
         public required string Nombre { get; set; }
-        public int IdModulo { get; set; }
-        [ForeignKey("IdModulo")]
-        public virtual Modulo Modulo { get; set; } = null!;
-
-        public virtual ICollection<Rol> Roles { get; set; } = null!;
+        public required char Via { get; set; }
     }
 }

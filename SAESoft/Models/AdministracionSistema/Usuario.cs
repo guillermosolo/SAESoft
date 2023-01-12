@@ -12,7 +12,7 @@ namespace SAESoft.Models.AdministracionSistema
 {
     [Index(nameof(Email), IsUnique = true)]
     [Index(nameof(UserName), IsUnique = true)]
-    public class Usuario
+    public class Usuario:Audit
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -26,9 +26,5 @@ namespace SAESoft.Models.AdministracionSistema
         [ForeignKey("IdRol")]
         public virtual Rol Rol { get; set; } = null!;
         public Boolean Activo { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public int? IdUsuarioCreacion { get; set; }
-        public DateTime? FechaUltimaMod { get; set; }
-        public int? IdUsuarioMod { get; set; }
     }
 }

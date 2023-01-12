@@ -6,10 +6,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace SAESoft.Models.AdministracionSistema
 {
-    public class Rol
+    [Index(nameof(Nombre), IsUnique = true)]
+    public class Rol:Audit
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -18,9 +20,5 @@ namespace SAESoft.Models.AdministracionSistema
         public Boolean Habilitado { get; set; } = true;
         public virtual ICollection<Usuario> Usuarios { get; set; } = null!;
         public virtual ICollection<Permiso> Permisos { get; set; } = null!;
-        public DateTime FechaCreacion { get; set; }
-        public int? IdUsuarioCreacion { get; set; }
-        public DateTime? FechaUltimaMod { get; set; }
-        public int? IdUsuarioMod { get; set; }
     }
 }

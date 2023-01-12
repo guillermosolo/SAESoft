@@ -36,12 +36,16 @@
             this.ibtnRoles = new FontAwesome.Sharp.IconButton();
             this.ibtnUsuarios = new FontAwesome.Sharp.IconButton();
             this.panelFormularios = new System.Windows.Forms.Panel();
+            this.icbNombres = new FontAwesome.Sharp.IconButton();
+            this.icbGrupos = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.panelMenu.Controls.Add(this.icbGrupos);
+            this.panelMenu.Controls.Add(this.icbNombres);
             this.panelMenu.Controls.Add(this.ibtnModulos);
             this.panelMenu.Controls.Add(this.ibtnPermisos);
             this.panelMenu.Controls.Add(this.ibtnSalir);
@@ -173,6 +177,42 @@
             this.panelFormularios.Size = new System.Drawing.Size(600, 450);
             this.panelFormularios.TabIndex = 1;
             // 
+            // icbNombres
+            // 
+            this.icbNombres.FlatAppearance.BorderSize = 0;
+            this.icbNombres.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icbNombres.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.icbNombres.ForeColor = System.Drawing.Color.White;
+            this.icbNombres.IconChar = FontAwesome.Sharp.IconChar.N;
+            this.icbNombres.IconColor = System.Drawing.Color.White;
+            this.icbNombres.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.icbNombres.IconSize = 24;
+            this.icbNombres.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icbNombres.Location = new System.Drawing.Point(3, 220);
+            this.icbNombres.Name = "icbNombres";
+            this.icbNombres.Size = new System.Drawing.Size(197, 55);
+            this.icbNombres.TabIndex = 6;
+            this.icbNombres.Text = "Nombres";
+            this.icbNombres.UseVisualStyleBackColor = true;
+            // 
+            // icbGrupos
+            // 
+            this.icbGrupos.FlatAppearance.BorderSize = 0;
+            this.icbGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icbGrupos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.icbGrupos.ForeColor = System.Drawing.Color.White;
+            this.icbGrupos.IconChar = FontAwesome.Sharp.IconChar.LayerGroup;
+            this.icbGrupos.IconColor = System.Drawing.Color.White;
+            this.icbGrupos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.icbGrupos.IconSize = 32;
+            this.icbGrupos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icbGrupos.Location = new System.Drawing.Point(2, 258);
+            this.icbGrupos.Name = "icbGrupos";
+            this.icbGrupos.Size = new System.Drawing.Size(197, 55);
+            this.icbGrupos.TabIndex = 7;
+            this.icbGrupos.Text = "Grupos";
+            this.icbGrupos.UseVisualStyleBackColor = true;
+            // 
             // frmMenuAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -198,5 +238,7 @@
         private Label label1;
         private FontAwesome.Sharp.IconButton ibtnPermisos;
         private FontAwesome.Sharp.IconButton ibtnModulos;
+        private FontAwesome.Sharp.IconButton icbGrupos;
+        private FontAwesome.Sharp.IconButton icbNombres;
     }
 }
