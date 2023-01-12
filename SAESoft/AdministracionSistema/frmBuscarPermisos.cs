@@ -19,9 +19,9 @@ namespace SAESoft.AdministracionSistema
         }
         private void llenarCombos()
         {
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
-                cboModulos.DataSource = _Contexto.Modulos.ToList();
+                cboModulos.DataSource = db.Modulos.ToList();
                 cboModulos.DisplayMember = "Nombre";
                 cboModulos.ValueMember = "IdModulo";
                 cboModulos.SelectedIndex = -1;

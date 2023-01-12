@@ -39,9 +39,9 @@ namespace SAESoft.AdministracionSistema
             String? moduloAnt = null;
             DataRow row;
             dt.Clear();
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
-                var permisos = _Contexto.Permisos.Include(p => p.Modulo).ToList();
+                var permisos = db.Permisos.Include(p => p.Modulo).ToList();
                 foreach (var p in permisos)
                 {
                     nombre = p.Nombre.Substring(p.Nombre.IndexOf(".") + 1);
@@ -114,10 +114,10 @@ namespace SAESoft.AdministracionSistema
             {
                 for (int i = 1; i < 6; i++)
                 {
-                    using (DB_Context _Contexto = new DB_Context())
+                    using (SAESoftContext db = new SAESoftContext())
                     {
                         string nom = dt.Columns[i].ColumnName.ToUpper() + "." + row.Cells[0].Value.ToString();
-                        var existe = _Contexto.Permisos.FirstOrDefault(p => p.Nombre == nom);
+                        var existe = db.Permisos.FirstOrDefault(p => p.Nombre == nom);
                         if (existe == null)
                         {
                             row.Cells[i].ReadOnly = true;
@@ -135,9 +135,9 @@ namespace SAESoft.AdministracionSistema
         private void despliegaGrid(int IdRol)
         {
             dataGridView1.ClearSelection();
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
-                var rs = _Contexto.Roles.Include(p => p.Permisos).Where(r => r.IdRol == IdRol).First();
+                var rs = db.Roles.Include(p => p.Permisos).Where(r => r.IdRol == IdRol).First();
                 foreach (DataRow row in dt.Rows)
                 {
                     for (int i = 1; i < 6; i++)
@@ -172,9 +172,9 @@ namespace SAESoft.AdministracionSistema
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
-                using (DB_Context _Contexto = new DB_Context())
+                using (SAESoftContext db = new SAESoftContext())
                 {
-                    var queryable = _Contexto.Roles.Include(p => p.Permisos).Where(b => 1 == 1);
+                    var queryable = db.Roles.Include(p => p.Permisos).Where(b => 1 == 1);
                     if (buscar.nombre != null)
                         queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
                     rs = queryable.ToList();
@@ -249,16 +249,16 @@ namespace SAESoft.AdministracionSistema
                 DialogResult resp = MessageBox.Show("¿En realidad desea borrar este registro?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resp == DialogResult.Yes)
                 {
-                    using (DB_Context _Contexto = new DB_Context())
+                    using (SAESoftContext db = new SAESoftContext())
                     {
-                        using (var dbContextTransaction = _Contexto.Database.BeginTransaction())
+                        using (var dbContextTransaction = db.Database.BeginTransaction())
                         {
                             try
                             {
-                                Rol? rolActual = _Contexto.Roles.Include(r => r.Permisos).Where(r => r.IdRol == rs[CurrentIndex].IdRol).FirstOrDefault();
+                                Rol? rolActual = db.Roles.Include(r => r.Permisos).Where(r => r.IdRol == rs[CurrentIndex].IdRol).FirstOrDefault();
                                 rolActual.Permisos.Clear();
-                                _Contexto.Roles.Remove(rolActual);
-                                _Contexto.SaveChanges();
+                                db.Roles.Remove(rolActual);
+                                db.SaveChanges();
                                 dbContextTransaction.Commit();
                                 rs.Remove(rs[CurrentIndex]);
                                 if (rs.Count > 0)
@@ -365,17 +365,17 @@ namespace SAESoft.AdministracionSistema
         private void tsbListar_Click(object sender, EventArgs e)
         {
             frmListar formListar = new frmListar();
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
-                var lista = _Contexto.Roles.Select(p => new { p.IdRol, p.Nombre, p.Habilitado }).ToList();
+                var lista = db.Roles.Select(p => new { p.IdRol, p.Nombre, p.Habilitado }).ToList();
                 formListar.ds.DataSource = lista;
             }
             DialogResult resp = formListar.ShowDialog();
             if (resp == DialogResult.OK)
             {
-                using (DB_Context _Contexto = new DB_Context())
+                using (SAESoftContext db = new SAESoftContext())
                 {
-                    rs = _Contexto.Roles.Include(r => r.Permisos).Where(p => p.IdRol == formListar.Id).ToList();
+                    rs = db.Roles.Include(r => r.Permisos).Where(p => p.IdRol == formListar.Id).ToList();
                     CurrentIndex = 0;
                     despliegaDatos();
                     BotonesIniciales(toolStrip1);
@@ -401,7 +401,7 @@ namespace SAESoft.AdministracionSistema
             {
                 if (esNuevo)
                 {
-                    using (DB_Context _Contexto = new DB_Context())
+                    using (SAESoftContext db = new SAESoftContext())
                     {
                         try
                         {
@@ -412,8 +412,8 @@ namespace SAESoft.AdministracionSistema
                                 FechaCreacion = DatosServer.FechaServer(),
                                 IdUsuarioCreacion = usuarioLogged.IdUsuario
                             };
-                            _Contexto.Roles.Add(rol);
-                            _Contexto.SaveChanges();
+                            db.Roles.Add(rol);
+                            db.SaveChanges();
                             actualizarPermisos(rol.IdRol);
                             rs.Add(rol);
                             CurrentIndex = rs.Count - 1;
@@ -434,18 +434,18 @@ namespace SAESoft.AdministracionSistema
                 else
                 {
                     Rol temp = rs[CurrentIndex];
-                    using (DB_Context _Contexto = new DB_Context())
+                    using (SAESoftContext db = new SAESoftContext())
                     {
                         try
                         {
-                            Rol rolActual = _Contexto.Roles.Include(r => r.Permisos).Where(r => r.IdRol == rs[CurrentIndex].IdRol).FirstOrDefault();
-                            _Contexto.Entry(rolActual).State = EntityState.Modified;
+                            Rol rolActual = db.Roles.Include(r => r.Permisos).Where(r => r.IdRol == rs[CurrentIndex].IdRol).FirstOrDefault();
+                            db.Entry(rolActual).State = EntityState.Modified;
                             rolActual.Nombre = txtNombre.Text;
                             rolActual.Habilitado = tsActivo.Checked;
                             rolActual.FechaUltimaMod = DatosServer.FechaServer();
                             rolActual.IdUsuarioMod = usuarioLogged.IdUsuario;
-                            _Contexto.Roles.Update(rolActual);
-                            _Contexto.SaveChanges();
+                            db.Roles.Update(rolActual);
+                            db.SaveChanges();
                             actualizarPermisos(rolActual.IdRol);
                         }
                         catch (Exception ex)
@@ -483,11 +483,11 @@ namespace SAESoft.AdministracionSistema
                     for (int i = 1; i < 6; i++)
                     {
 
-                        using (DB_Context _Contexto = new DB_Context())
+                        using (SAESoftContext db = new SAESoftContext())
                         {
-                            Rol rol = _Contexto.Roles.Include(r => r.Permisos).FirstOrDefault(r => r.IdRol == rolId);
+                            Rol rol = db.Roles.Include(r => r.Permisos).FirstOrDefault(r => r.IdRol == rolId);
                             nom = dt.Columns[i].ColumnName.ToUpper() + "." + dr[0].ToString();
-                            Permiso per = _Contexto.Permisos.FirstOrDefault(p => p.Nombre == nom);
+                            Permiso per = db.Permisos.FirstOrDefault(p => p.Nombre == nom);
                             if (Convert.ToBoolean(dr[i]))
                             {
                                 if (rol.Permisos.FirstOrDefault(p => p.Nombre == nom) == null)
@@ -498,7 +498,7 @@ namespace SAESoft.AdministracionSistema
                                 if (per != null && rol.Permisos.FirstOrDefault(p => p.Nombre == nom) != null)
                                     rol.Permisos.Remove(per);
                             }
-                            _Contexto.SaveChanges();
+                            db.SaveChanges();
                         }
                     }
                 }

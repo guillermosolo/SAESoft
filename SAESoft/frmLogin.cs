@@ -44,9 +44,9 @@ namespace SAESoft
         private void icbLogin_Click(object sender, EventArgs e)
         {
             lblError.Visible = false;
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
-                usuarioLogged = _Contexto.Usuarios.Include(r=>r.Rol)
+                usuarioLogged = db.Usuarios.Include(r=>r.Rol)
                                                   .Include(r=>r.Rol.Permisos)
                                                   .FirstOrDefault(c => c.UserName == txtUser.Text);
                 if (usuarioLogged != null)

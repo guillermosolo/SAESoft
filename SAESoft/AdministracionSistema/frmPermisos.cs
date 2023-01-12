@@ -41,9 +41,9 @@ namespace SAESoft.AdministracionSistema
 
         private void llenarCombos()
         {
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
-                cboModulos.DataSource = _Contexto.Modulos.ToList();
+                cboModulos.DataSource = db.Modulos.ToList();
                 cboModulos.DisplayMember = "Nombre";
                 cboModulos.ValueMember = "IdModulo";
             }
@@ -55,7 +55,7 @@ namespace SAESoft.AdministracionSistema
             {
                 if (esNuevo)
                 {
-                    using (DB_Context _Contexto = new DB_Context())
+                    using (SAESoftContext db = new SAESoftContext())
                     {
                         try
                         {
@@ -66,8 +66,8 @@ namespace SAESoft.AdministracionSistema
                                 FechaCreacion = DatosServer.FechaServer(),
                                 IdUsuarioCreacion = usuarioLogged.IdUsuario
                             };
-                            _Contexto.Permisos.Add(permiso);
-                            _Contexto.SaveChanges();
+                            db.Permisos.Add(permiso);
+                            db.SaveChanges();
                             rs.Add(permiso);
                             CurrentIndex = rs.Count - 1;
                             despliegaDatos();
@@ -86,17 +86,17 @@ namespace SAESoft.AdministracionSistema
                 else
                 {
                     Permiso temp = rs[CurrentIndex];
-                    using (DB_Context _Contexto = new DB_Context())
+                    using (SAESoftContext db = new SAESoftContext())
                     {
                         try
                         {
-                            _Contexto.Entry(rs[CurrentIndex]).State = EntityState.Modified;
+                            db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
                             rs[CurrentIndex].Nombre = txtNombre.Text;
                             rs[CurrentIndex].IdModulo = Convert.ToInt32(cboModulos.SelectedValue);
                             rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
                             rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
-                            _Contexto.Permisos.Update(rs[CurrentIndex]);
-                            _Contexto.SaveChanges();
+                            db.Permisos.Update(rs[CurrentIndex]);
+                            db.SaveChanges();
                         }
                         catch (DbUpdateException ex)
                         {
@@ -181,12 +181,12 @@ namespace SAESoft.AdministracionSistema
                 DialogResult resp = MessageBox.Show("¿En realidad desea borrar este registro?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resp == DialogResult.Yes)
                 {
-                    using (DB_Context _Contexto = new DB_Context())
+                    using (SAESoftContext db = new SAESoftContext())
                     {
                         try
                         {
-                            _Contexto.Permisos.Remove(rs[CurrentIndex]);
-                            _Contexto.SaveChanges();
+                            db.Permisos.Remove(rs[CurrentIndex]);
+                            db.SaveChanges();
                             rs.Remove(rs[CurrentIndex]);
                             if (rs.Count > 0)
                             {
@@ -223,17 +223,17 @@ namespace SAESoft.AdministracionSistema
         private void tsbListar_Click(object sender, EventArgs e)
         {
             frmListar formListar = new frmListar();
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
-                var lista = _Contexto.Permisos.Include(p => p.Modulo).Select(p => new { p.IdPermiso, p.Nombre,Módulo = p.Modulo.Nombre }).ToList();
+                var lista = db.Permisos.Include(p => p.Modulo).Select(p => new { p.IdPermiso, p.Nombre,Módulo = p.Modulo.Nombre }).ToList();
                 formListar.ds.DataSource = lista;
             }
             DialogResult resp = formListar.ShowDialog();
             if (resp == DialogResult.OK)
             {
-                using (DB_Context _Contexto = new DB_Context())
+                using (SAESoftContext db = new SAESoftContext())
                 {
-                    rs = _Contexto.Permisos.Where(p => p.IdPermiso == formListar.Id).ToList();
+                    rs = db.Permisos.Where(p => p.IdPermiso == formListar.Id).ToList();
                     CurrentIndex = 0;
                     despliegaDatos();
                     BotonesIniciales(toolStrip1);
@@ -264,9 +264,9 @@ namespace SAESoft.AdministracionSistema
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
-                using (DB_Context _Contexto = new DB_Context())
+                using (SAESoftContext db = new SAESoftContext())
                 {
-                    var queryable = _Contexto.Permisos.Where(b => 1 == 1);
+                    var queryable = db.Permisos.Where(b => 1 == 1);
                     if (buscar.nombre != null)
                         queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
                     if (buscar.modulo != -1)

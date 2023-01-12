@@ -16,9 +16,9 @@ namespace SAESoft.Utilitarios
         public static DateTime FechaServer()
         {
             DateTime fecha;
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
-              fecha = _Contexto.Database.SqlQuery<DateTime>($"SELECT GETDATE() AS [Value]").First();
+              fecha = db.Database.SqlQuery<DateTime>($"SELECT GETDATE() AS [Value]").First();
           
             }
             return fecha;

@@ -1,7 +1,5 @@
 ﻿using FontAwesome.Sharp;
 using SAESoft.Models;
-using SAESoft.Models.Importaciones;
-using System.Windows.Forms;
 using static SAESoft.Cache.UserData;
 
 namespace SAESoft.Utilitarios
@@ -194,9 +192,9 @@ namespace SAESoft.Utilitarios
 
         public static void llenarNombres(ComboBox c,string g)
         {
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
-                c.DataSource = _Contexto.Nombres.Where(n=>n.Grupo.Nombre ==g).OrderBy(n=>n.Descripcion).ToList();
+                c.DataSource = db.Nombres.Where(n=>n.Grupo.Nombre ==g).OrderBy(n=>n.Descripcion).ToList();
                 c.DisplayMember = "Descripcion";
                 c.ValueMember = "IdNombre";
             }

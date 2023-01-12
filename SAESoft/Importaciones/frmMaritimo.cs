@@ -83,18 +83,18 @@ namespace SAESoft.Importaciones
 
         private void llenarCombos()
         {
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
-                cboShipper.DataSource = _Contexto.Shippers.Where(s => s.Maritimo).OrderBy(s => s.Nombre).ToList();
+                cboShipper.DataSource = db.Shippers.Where(s => s.Maritimo).OrderBy(s => s.Nombre).ToList();
                 cboShipper.DisplayMember = "Nombre";
                 cboShipper.ValueMember = "IdShipper";
-                cboAduana.DataSource = _Contexto.Aduanas.Where(a => a.Via == 'M').OrderBy(a => a.Nombre).ToList();
+                cboAduana.DataSource = db.Aduanas.Where(a => a.Via == 'M').OrderBy(a => a.Nombre).ToList();
                 cboAduana.DisplayMember = "Nombre";
                 cboAduana.ValueMember = "IdAduana";
-                cboTerminal.DataSource = _Contexto.Terminales.Where(t => t.Via == 'M').OrderBy(t => t.Nombre).ToList();
+                cboTerminal.DataSource = db.Terminales.Where(t => t.Via == 'M').OrderBy(t => t.Nombre).ToList();
                 cboTerminal.DisplayMember = "Nombre";
                 cboTerminal.ValueMember = "IdTerminal";
-                clbRevisiones.DataSource = _Contexto.Revisiones.OrderBy(r => r.Descripcion).ToList();
+                clbRevisiones.DataSource = db.Revisiones.OrderBy(r => r.Descripcion).ToList();
                 clbRevisiones.DisplayMember = "Descripcion";
                 clbRevisiones.ValueMember = "IdRevision";
             }
@@ -185,9 +185,9 @@ namespace SAESoft.Importaciones
             {
                 if (esNuevo)
                 {
-                    using (DB_Context _Contexto = new DB_Context())
+                    using (SAESoftContext db = new SAESoftContext())
                     {
-                        using (var transaction = _Contexto.Database.BeginTransaction())
+                        using (var transaction = db.Database.BeginTransaction())
                         {
                             try
                             {
@@ -207,15 +207,15 @@ namespace SAESoft.Importaciones
                                     FechaCreacion = DatosServer.FechaServer(),
                                     IdUsuarioCreacion = usuarioLogged.IdUsuario,
                                 };
-                                _Contexto.Importaciones.Add(im);
-                                _Contexto.SaveChanges();
+                                db.Importaciones.Add(im);
+                                db.SaveChanges();
                                 List<Revision> rev = new List<Revision>();
                                 foreach (Revision item in clbRevisiones.CheckedItems)
                                 {
                                     rev.Add(item);
                                 }
                                 rs[CurrentIndex].Revisiones = rev;
-                                AgregarRevisiones(_Contexto, im.IdImport, rev);
+                                AgregarRevisiones(db, im.IdImport, rev);
                                 List<BL> _bl = new List<BL>();
                                 List<Contenedor> _con = new List<Contenedor>();
                                 foreach (var item in lsbBL.Items)
@@ -227,11 +227,11 @@ namespace SAESoft.Importaciones
                                     _con.Add(new Contenedor {Numero = item.ToString(),IdImportacion = im.IdImport,FechaCreacion=im.FechaCreacion,IdUsuarioCreacion=im.IdUsuarioCreacion });
             
                                 }
-                                _Contexto.BL.AddRange(_bl);
-                                _Contexto.Contenedores.AddRange(_con);
+                                db.BL.AddRange(_bl);
+                                db.Contenedores.AddRange(_con);
                                 rs[CurrentIndex].Contenedores = _con;
                                 rs[CurrentIndex].BL= _bl;
-                                _Contexto.SaveChanges();
+                                db.SaveChanges();
                                 path = PATH + @"\" + im.Codigo.ToString();
                                 if (!Directory.Exists(path))
                                     Directory.CreateDirectory(path);
@@ -265,7 +265,7 @@ namespace SAESoft.Importaciones
             }
         }
 
-        private void AgregarRevisiones(DB_Context db,int id, List<Revision> rev)
+        private void AgregarRevisiones(SAESoftContext db,int id, List<Revision> rev)
         {
             var im = db.Importaciones.Include(i=>i.Revisiones).FirstOrDefault(i=>i.IdImport == id);
             im.Revisiones = rev;

@@ -30,9 +30,9 @@ namespace SAESoft.AdministracionSistema
 
         private void llenarCombos()
         {
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
-                cboRoles.DataSource = _Contexto.Roles.ToList();
+                cboRoles.DataSource = db.Roles.ToList();
                 cboRoles.DisplayMember = "Nombre";
                 cboRoles.ValueMember = "IdRol";
                 cboRoles.SelectedIndex = -1;

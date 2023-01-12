@@ -14,7 +14,7 @@ namespace SAESoft.Cache
 
         public static Boolean hasPermission(string permiso)
         {
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
                 return usuarioLogged.Rol.Permisos.FirstOrDefault(p => p.Nombre == permiso) != null;
             }
@@ -22,7 +22,7 @@ namespace SAESoft.Cache
 
         public static Boolean hasRole(int idRol)
         {
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
                 return usuarioLogged.Rol.IdRol == idRol;
             }

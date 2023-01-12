@@ -83,7 +83,7 @@ namespace SAESoft.AdministracionSistema
             {
                 if (esNuevo)
                 {
-                    using (DB_Context _Contexto = new DB_Context())
+                    using (SAESoftContext db = new SAESoftContext())
                     {
                         try
                         {
@@ -94,8 +94,8 @@ namespace SAESoft.AdministracionSistema
                                 FechaCreacion = DatosServer.FechaServer(),
                                 IdUsuarioCreacion = usuarioLogged.IdUsuario
                             };
-                            _Contexto.Modulos.Add(modulo);
-                            _Contexto.SaveChanges();
+                            db.Modulos.Add(modulo);
+                            db.SaveChanges();
                             rs.Add(modulo);
                             CurrentIndex = rs.Count - 1;
                             despliegaDatos();
@@ -114,17 +114,17 @@ namespace SAESoft.AdministracionSistema
                 else
                 {
                     Modulo temp = rs[CurrentIndex];
-                    using (DB_Context _Contexto = new DB_Context())
+                    using (SAESoftContext db = new SAESoftContext())
                     {
                         try
                         {
-                            _Contexto.Entry(rs[CurrentIndex]).State = EntityState.Modified;
+                            db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
                             rs[CurrentIndex].Nombre = txtNombre.Text;
                             rs[CurrentIndex].Habilitado = tsActivo.Checked;
                             rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
                             rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
-                            _Contexto.Modulos.Update(rs[CurrentIndex]);
-                            _Contexto.SaveChanges();
+                            db.Modulos.Update(rs[CurrentIndex]);
+                            db.SaveChanges();
                         }
                         catch (DbUpdateException ex)
                         {
@@ -168,9 +168,9 @@ namespace SAESoft.AdministracionSistema
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
-                using (DB_Context _Contexto = new DB_Context())
+                using (SAESoftContext db = new SAESoftContext())
                 {
-                    var queryable = _Contexto.Modulos.Where(b => 1 == 1);
+                    var queryable = db.Modulos.Where(b => 1 == 1);
                     if (buscar.nombre != null)
                         queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
                     rs = queryable.ToList();
@@ -212,12 +212,12 @@ namespace SAESoft.AdministracionSistema
             DialogResult resp = MessageBox.Show("¿En realidad desea borrar este registro?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resp == DialogResult.Yes)
             {
-                using (DB_Context _Contexto = new DB_Context())
+                using (SAESoftContext db = new SAESoftContext())
                 {
                     try
                     {
-                        _Contexto.Modulos.Remove(rs[CurrentIndex]);
-                        _Contexto.SaveChanges();
+                        db.Modulos.Remove(rs[CurrentIndex]);
+                        db.SaveChanges();
                         rs.Remove(rs[CurrentIndex]);
                         if (rs.Count > 0)
                         {
@@ -270,17 +270,17 @@ namespace SAESoft.AdministracionSistema
         private void tsbListar_Click(object sender, EventArgs e)
         {
             frmListar formListar = new frmListar();
-            using (DB_Context _Contexto = new DB_Context())
+            using (SAESoftContext db = new SAESoftContext())
             {
-                var lista = _Contexto.Modulos.Select(p => new {p.IdModulo, p.Nombre,p.Habilitado }).ToList();
+                var lista = db.Modulos.Select(p => new {p.IdModulo, p.Nombre,p.Habilitado }).ToList();
                 formListar.ds.DataSource = lista;
             }
             DialogResult resp = formListar.ShowDialog();
             if (resp == DialogResult.OK)
             {
-                using (DB_Context _Contexto = new DB_Context())
+                using (SAESoftContext db = new SAESoftContext())
                 {
-                    rs = _Contexto.Modulos.Where(p => p.IdModulo == formListar.Id).ToList();
+                    rs = db.Modulos.Where(p => p.IdModulo == formListar.Id).ToList();
                     CurrentIndex = 0;
                     despliegaDatos();
                     BotonesIniciales(toolStrip1);

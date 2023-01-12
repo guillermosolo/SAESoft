@@ -6,7 +6,7 @@ using System.Configuration;
 
 namespace SAESoft.Models
 {
-    public class DB_Context : DbContext
+    public class SAESoftContext : DbContext
     {
        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
