@@ -18,7 +18,7 @@ namespace SAESoft.AdministracionSistema
         {
             InitializeComponent();
         }
-        private Boolean esNuevo = true;
+        private Boolean esNuevo = false;
         private List<Usuario>? rs = new List<Usuario>();
         private int CurrentIndex = 0;
 

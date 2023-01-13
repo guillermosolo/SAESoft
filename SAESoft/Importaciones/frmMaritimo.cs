@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.IdentityModel.Tokens;
 using SAESoft.Models;
 using SAESoft.Models.AdministracionSistema;
 using SAESoft.Models.Importaciones;
@@ -18,7 +19,7 @@ namespace SAESoft.Importaciones
         {
             InitializeComponent();
         }
-        private Boolean esNuevo = true;
+        private Boolean esNuevo = false;
         private List<Importacion>? rs = new List<Importacion>();
         private int CurrentIndex = 0;
 
@@ -35,6 +36,7 @@ namespace SAESoft.Importaciones
             listView1.Items.Clear();
             imageList1.Images.Clear();
             path = PATH + opcion;
+            fileSystemWatcher1.Path = path;
             foreach (string file in Directory.GetFiles(path).Where(f => (new FileInfo(f).Attributes & FileAttributes.Hidden) == 0))
             {
                 imageList1.Images.Add(Icon.ExtractAssociatedIcon(file));
@@ -42,7 +44,6 @@ namespace SAESoft.Importaciones
                 listFiles.Add(fi.FullName);
                 listView1.Items.Add(fi.Name, imageList1.Images.Count - 1);
             }
-            fileSystemWatcher1.Path = path;
         }
 
         private void listView1_ItemActivate(object sender, EventArgs e)
@@ -57,13 +58,13 @@ namespace SAESoft.Importaciones
 
         private void fileSystemWatcher1_Created(object sender, FileSystemEventArgs e)
         {
-            cargarArchivos("");
+            cargarArchivos(@"\" + rs[CurrentIndex].Codigo);
         }
 
         private void tsbUpload_Click(object sender, EventArgs e)
         {
             var resp = openFileDialog1.ShowDialog();
-            if (resp == System.Windows.Forms.DialogResult.OK)
+            if (resp == DialogResult.OK)
             {
                 try
                 {
@@ -148,7 +149,34 @@ namespace SAESoft.Importaciones
 
         private void despliegaDatos()
         {
-
+            lsbBL.Items.Clear();
+            lsbEquipos.Items.Clear();
+            for (int i = 0; i < clbRevisiones.Items.Count; i++)
+            {
+                Revision item = (Revision)clbRevisiones.Items[i];
+                var resp = rs[CurrentIndex].Revisiones.Where(r=>r.IdRevision==item.IdRevision).Count()>0;
+                clbRevisiones.SetItemChecked(i, resp);
+            }
+            txtId.Text = rs?[CurrentIndex].IdImport.ToString();
+            tsConsolidado.Checked = rs[CurrentIndex].Consolidado;
+            cboShipper.SelectedValue = rs[CurrentIndex].IdShipper;
+            cboNaviera.SelectedValue = rs[CurrentIndex].IdNaviera;
+            cboForwarder.SelectedValue = rs[CurrentIndex].IdForwarder;
+            cboDestino.SelectedValue = rs[CurrentIndex].IdDestino;
+            dtpETA.Value = rs[CurrentIndex].ETA;
+            tsSelectivo.Checked = !rs[CurrentIndex].SelectivoRojo;
+            cboTerminal.SelectedValue = rs[CurrentIndex].IdTerminal;
+            cboAduana.SelectedValue = rs[CurrentIndex].IdAduana;
+            lsbBL.DataSource = rs[CurrentIndex].BL.ToList();
+            lsbBL.ValueMember = "IdBL";
+            lsbBL.DisplayMember = "Numero";
+            lsbBL.SelectedIndex = -1;
+            lsbEquipos.DataSource = rs[CurrentIndex].Contenedores.ToList();
+            lsbEquipos.ValueMember = "IdContenedor";
+            lsbEquipos.DisplayMember = "Numero";
+            lsbEquipos.SelectedIndex = -1;
+            cargarArchivos(@"\" + rs[CurrentIndex].Codigo);
+            tslIndice.Text = $"Registro {CurrentIndex + 1} de {rs.Count}";
         }
 
         private void tsbSalir_Click(object sender, EventArgs e)
@@ -176,7 +204,7 @@ namespace SAESoft.Importaciones
 
         private void fileSystemWatcher1_Deleted(object sender, FileSystemEventArgs e)
         {
-            cargarArchivos("");
+            cargarArchivos(@"\" + rs[CurrentIndex].Codigo);
         }
 
         private void tsbAceptar_Click(object sender, EventArgs e)
@@ -209,6 +237,8 @@ namespace SAESoft.Importaciones
                                 };
                                 db.Importaciones.Add(im);
                                 db.SaveChanges();
+                                rs.Add(im);
+                                CurrentIndex = rs.Count - 1;
                                 List<Revision> rev = new List<Revision>();
                                 foreach (Revision item in clbRevisiones.CheckedItems)
                                 {
@@ -220,17 +250,17 @@ namespace SAESoft.Importaciones
                                 List<Contenedor> _con = new List<Contenedor>();
                                 foreach (var item in lsbBL.Items)
                                 {
-                                   _bl.Add(new BL { Numero = item.ToString(), IdImportacion = im.IdImport, FechaCreacion = im.FechaCreacion, IdUsuarioCreacion = im.IdUsuarioCreacion });
+                                    _bl.Add(new BL { Numero = item.ToString(), IdImportacion = im.IdImport, FechaCreacion = im.FechaCreacion, IdUsuarioCreacion = im.IdUsuarioCreacion });
                                 };
                                 foreach (var item in lsbEquipos.Items)
                                 {
-                                    _con.Add(new Contenedor {Numero = item.ToString(),IdImportacion = im.IdImport,FechaCreacion=im.FechaCreacion,IdUsuarioCreacion=im.IdUsuarioCreacion });
-            
+                                    _con.Add(new Contenedor { Numero = item.ToString(), IdImportacion = im.IdImport, FechaCreacion = im.FechaCreacion, IdUsuarioCreacion = im.IdUsuarioCreacion });
+
                                 }
                                 db.BL.AddRange(_bl);
                                 db.Contenedores.AddRange(_con);
                                 rs[CurrentIndex].Contenedores = _con;
-                                rs[CurrentIndex].BL= _bl;
+                                rs[CurrentIndex].BL = _bl;
                                 db.SaveChanges();
                                 path = PATH + @"\" + im.Codigo.ToString();
                                 if (!Directory.Exists(path))
@@ -260,14 +290,14 @@ namespace SAESoft.Importaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar","tsddbProceso","tsbUpload" }, true, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload" }, true, toolStrip1, "MARITIMO");
                 habilitarFormulario(this, false);
             }
         }
 
-        private void AgregarRevisiones(SAESoftContext db,int id, List<Revision> rev)
+        private void AgregarRevisiones(SAESoftContext db, int id, List<Revision> rev)
         {
-            var im = db.Importaciones.Include(i=>i.Revisiones).FirstOrDefault(i=>i.IdImport == id);
+            var im = db.Importaciones.Include(i => i.Revisiones).FirstOrDefault(i => i.IdImport == id);
             im.Revisiones = rev;
             db.SaveChanges();
         }
@@ -325,6 +355,38 @@ namespace SAESoft.Importaciones
             }
         }
 
-
+        private void tsbBuscar_Click(object sender, EventArgs e)
+        {
+            esNuevo= false;
+            using (SAESoftContext db = new SAESoftContext())
+            {
+                var queryable = db.Importaciones.Include(r=>r.Revisiones)
+                                                .Include(r=>r.BL)
+                                                .Include(r=>r.Contenedores)
+                                                .Where(b => 1 == 1);
+                rs = queryable.ToList();
+                if (rs.Count > 0)
+                {
+                    CambiarEstadoBotones(new[] { "tsddbProceso", "tsbUpload" }, true, toolStrip1, "MARITIMO");
+                    despliegaDatos();
+                    if (rs.Count > 1)
+                    {
+                        BotonesInicialesNavegacion(toolStrip1);
+                    }
+                    else
+                    {
+                        BotonesIniciales(toolStrip1);
+                    }
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "MARITIMO");
+                }
+                else
+                {
+                    MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    limpiarFormulario(this);
+                    BotonesIniciales(toolStrip1);
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "MARITIMO");
+                }
+            }
+        }
     }
 }

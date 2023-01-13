@@ -69,14 +69,11 @@
   <data name="&gt;&gt;toolStripContainer1.BottomToolStripPanel.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lsbEquipos.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lsbEquipos.Font" type="System.Drawing.Font, System.Drawing">
     <value>Century Gothic, 10pt</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lsbEquipos.ItemHeight" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
@@ -151,9 +148,6 @@
   </data>
   <data name="&gt;&gt;grpEquipos.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="lsbBL.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="lsbBL.Font" type="System.Drawing.Font, System.Drawing">
     <value>Century Gothic, 10pt</value>

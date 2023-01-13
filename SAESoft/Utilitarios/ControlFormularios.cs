@@ -89,7 +89,7 @@ namespace SAESoft.Utilitarios
         {
             foreach (Control c in cont.Controls)
             {
-                if (c is TextBox || c is ComboBox || c is CheckBox || c is NumericUpDown || c is DateTimePicker || c is toggleSwitch || c is DataGridView || c is ListBox || c is CheckedListBox)
+                if (c is TextBox || c is ComboBox || c is CheckBox || c is NumericUpDown || c is DateTimePicker || c is toggleSwitch || c is DataGridView || c is CheckedListBox)
                 {
                     if (c.Name != "txtId")
                     {

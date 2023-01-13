@@ -151,6 +151,7 @@
             resources.ApplyResources(this.lsbEquipos, "lsbEquipos");
             this.lsbEquipos.FormattingEnabled = true;
             this.lsbEquipos.Name = "lsbEquipos";
+            this.lsbEquipos.TabStop = false;
             this.lsbEquipos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lsbEquipos_KeyDown);
             // 
             // txtEquipos
@@ -173,6 +174,7 @@
             resources.ApplyResources(this.lsbBL, "lsbBL");
             this.lsbBL.FormattingEnabled = true;
             this.lsbBL.Name = "lsbBL";
+            this.lsbBL.TabStop = false;
             this.lsbBL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lsbBL_KeyDown);
             // 
             // txtBL
@@ -239,6 +241,7 @@
             // 
             // clbRevisiones
             // 
+            this.clbRevisiones.CheckOnClick = true;
             resources.ApplyResources(this.clbRevisiones, "clbRevisiones");
             this.clbRevisiones.FormattingEnabled = true;
             this.clbRevisiones.Name = "clbRevisiones";
@@ -376,6 +379,7 @@
             this.tsbBuscar.Image = global::SAESoft.Properties.Resources.file;
             resources.ApplyResources(this.tsbBuscar, "tsbBuscar");
             this.tsbBuscar.Name = "tsbBuscar";
+            this.tsbBuscar.Click += new System.EventHandler(this.tsbBuscar_Click);
             // 
             // tsbListar
             // 
