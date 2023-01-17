@@ -354,54 +354,6 @@
   <data name="&gt;&gt;tsddbProceso.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;entregarDatosADigitadorToolStripMenuItem1.Name" xml:space="preserve">
-    <value>entregarDatosADigitadorToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;entregarDatosADigitadorToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;elaborarPólizaToolStripMenuItem1.Name" xml:space="preserve">
-    <value>elaborarPólizaToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;elaborarPólizaToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;enviarPólizaToolStripMenuItem1.Name" xml:space="preserve">
-    <value>enviarPólizaToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;enviarPólizaToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;aTCYAduanaToolStripMenuItem1.Name" xml:space="preserve">
-    <value>aTCYAduanaToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;aTCYAduanaToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;documentosATransportistaToolStripMenuItem1.Name" xml:space="preserve">
-    <value>documentosATransportistaToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;documentosATransportistaToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;llegadaAFábricaToolStripMenuItem1.Name" xml:space="preserve">
-    <value>llegadaAFábricaToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;llegadaAFábricaToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;salidaDeFábricaToolStripMenuItem1.Name" xml:space="preserve">
-    <value>salidaDeFábricaToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;salidaDeFábricaToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;finalizarToolStripMenuItem1.Name" xml:space="preserve">
-    <value>finalizarToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;finalizarToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
     <value>toolStripSeparator1</value>
   </data>
@@ -1244,54 +1196,6 @@
   </data>
   <data name="tsbUpload.Text" xml:space="preserve">
     <value>Subir Archivo</value>
-  </data>
-  <data name="entregarDatosADigitadorToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
-  </data>
-  <data name="entregarDatosADigitadorToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Entregar Datos a Digitador</value>
-  </data>
-  <data name="elaborarPólizaToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
-  </data>
-  <data name="elaborarPólizaToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Elaborar Póliza</value>
-  </data>
-  <data name="enviarPólizaToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
-  </data>
-  <data name="enviarPólizaToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Enviar Póliza</value>
-  </data>
-  <data name="aTCYAduanaToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
-  </data>
-  <data name="aTCYAduanaToolStripMenuItem1.Text" xml:space="preserve">
-    <value>ATC y Aduana</value>
-  </data>
-  <data name="documentosATransportistaToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
-  </data>
-  <data name="documentosATransportistaToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Documentos a Transportista</value>
-  </data>
-  <data name="llegadaAFábricaToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
-  </data>
-  <data name="llegadaAFábricaToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Llegada a Fábrica</value>
-  </data>
-  <data name="salidaDeFábricaToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
-  </data>
-  <data name="salidaDeFábricaToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Salida de Fábrica</value>
-  </data>
-  <data name="finalizarToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
-  </data>
-  <data name="finalizarToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Finalizar</value>
   </data>
   <data name="tsddbProceso.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>

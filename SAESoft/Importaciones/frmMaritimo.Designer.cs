@@ -70,14 +70,6 @@
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.tsbUpload = new System.Windows.Forms.ToolStripButton();
             this.tsddbProceso = new System.Windows.Forms.ToolStripDropDownButton();
-            this.entregarDatosADigitadorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.elaborarPólizaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.enviarPólizaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.aTCYAduanaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.documentosATransportistaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.llegadaAFábricaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.salidaDeFábricaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.finalizarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbAceptar = new System.Windows.Forms.ToolStripButton();
             this.tsbCancelar = new System.Windows.Forms.ToolStripButton();
@@ -413,58 +405,10 @@
             // tsddbProceso
             // 
             this.tsddbProceso.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsddbProceso.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.entregarDatosADigitadorToolStripMenuItem1,
-            this.elaborarPólizaToolStripMenuItem1,
-            this.enviarPólizaToolStripMenuItem1,
-            this.aTCYAduanaToolStripMenuItem1,
-            this.documentosATransportistaToolStripMenuItem1,
-            this.llegadaAFábricaToolStripMenuItem1,
-            this.salidaDeFábricaToolStripMenuItem1,
-            this.finalizarToolStripMenuItem1});
             resources.ApplyResources(this.tsddbProceso, "tsddbProceso");
             this.tsddbProceso.Image = global::SAESoft.Properties.Resources.location;
             this.tsddbProceso.Name = "tsddbProceso";
-            // 
-            // entregarDatosADigitadorToolStripMenuItem1
-            // 
-            this.entregarDatosADigitadorToolStripMenuItem1.Name = "entregarDatosADigitadorToolStripMenuItem1";
-            resources.ApplyResources(this.entregarDatosADigitadorToolStripMenuItem1, "entregarDatosADigitadorToolStripMenuItem1");
-            // 
-            // elaborarPólizaToolStripMenuItem1
-            // 
-            this.elaborarPólizaToolStripMenuItem1.Name = "elaborarPólizaToolStripMenuItem1";
-            resources.ApplyResources(this.elaborarPólizaToolStripMenuItem1, "elaborarPólizaToolStripMenuItem1");
-            // 
-            // enviarPólizaToolStripMenuItem1
-            // 
-            this.enviarPólizaToolStripMenuItem1.Name = "enviarPólizaToolStripMenuItem1";
-            resources.ApplyResources(this.enviarPólizaToolStripMenuItem1, "enviarPólizaToolStripMenuItem1");
-            // 
-            // aTCYAduanaToolStripMenuItem1
-            // 
-            this.aTCYAduanaToolStripMenuItem1.Name = "aTCYAduanaToolStripMenuItem1";
-            resources.ApplyResources(this.aTCYAduanaToolStripMenuItem1, "aTCYAduanaToolStripMenuItem1");
-            // 
-            // documentosATransportistaToolStripMenuItem1
-            // 
-            this.documentosATransportistaToolStripMenuItem1.Name = "documentosATransportistaToolStripMenuItem1";
-            resources.ApplyResources(this.documentosATransportistaToolStripMenuItem1, "documentosATransportistaToolStripMenuItem1");
-            // 
-            // llegadaAFábricaToolStripMenuItem1
-            // 
-            this.llegadaAFábricaToolStripMenuItem1.Name = "llegadaAFábricaToolStripMenuItem1";
-            resources.ApplyResources(this.llegadaAFábricaToolStripMenuItem1, "llegadaAFábricaToolStripMenuItem1");
-            // 
-            // salidaDeFábricaToolStripMenuItem1
-            // 
-            this.salidaDeFábricaToolStripMenuItem1.Name = "salidaDeFábricaToolStripMenuItem1";
-            resources.ApplyResources(this.salidaDeFábricaToolStripMenuItem1, "salidaDeFábricaToolStripMenuItem1");
-            // 
-            // finalizarToolStripMenuItem1
-            // 
-            this.finalizarToolStripMenuItem1.Name = "finalizarToolStripMenuItem1";
-            resources.ApplyResources(this.finalizarToolStripMenuItem1, "finalizarToolStripMenuItem1");
+            this.tsddbProceso.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsddbProceso_DropDownItemClicked);
             // 
             // toolStripSeparator1
             // 
@@ -493,6 +437,7 @@
             this.tsbAnterior.Image = global::SAESoft.Properties.Resources.arrow_l;
             resources.ApplyResources(this.tsbAnterior, "tsbAnterior");
             this.tsbAnterior.Name = "tsbAnterior";
+            this.tsbAnterior.Click += new System.EventHandler(this.tsbAnterior_Click);
             // 
             // tslIndice
             // 
@@ -505,6 +450,7 @@
             this.tsbSiguiente.Image = global::SAESoft.Properties.Resources.arrow_r;
             resources.ApplyResources(this.tsbSiguiente, "tsbSiguiente");
             this.tsbSiguiente.Name = "tsbSiguiente";
+            this.tsbSiguiente.Click += new System.EventHandler(this.tsbSiguiente_Click);
             // 
             // tsbSalir
             // 
@@ -616,14 +562,6 @@
         private ComboBox cboShipper;
         private ComboBox cboTerminal;
         private ToolStripDropDownButton tsddbProceso;
-        private ToolStripMenuItem entregarDatosADigitadorToolStripMenuItem1;
-        private ToolStripMenuItem elaborarPólizaToolStripMenuItem1;
-        private ToolStripMenuItem enviarPólizaToolStripMenuItem1;
-        private ToolStripMenuItem aTCYAduanaToolStripMenuItem1;
-        private ToolStripMenuItem documentosATransportistaToolStripMenuItem1;
-        private ToolStripMenuItem llegadaAFábricaToolStripMenuItem1;
-        private ToolStripMenuItem salidaDeFábricaToolStripMenuItem1;
-        private ToolStripMenuItem finalizarToolStripMenuItem1;
         private GroupBox grpBL;
         private ListBox lsbBL;
         private TextBox txtBL;

@@ -54,5 +54,10 @@ namespace SAESoft.Models.Importaciones
         public int? IdUsuario { get; set; }
         [ForeignKey("IdUsuario")]
         public virtual Usuario Usuario { get; set; } = null!;
+
+        public int IdImportStatus { get; set; }
+        [ForeignKey("IdImportStatus")]
+        public virtual ImportStatus ImportStatus { get; set; } = null!; 
+        public virtual ICollection<ImportHistorial> ImportHistorial { get; set; } = null!;
     }
 }

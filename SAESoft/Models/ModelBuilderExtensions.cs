@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SAESoft.Models.AdministracionSistema;
 using SAESoft.Models.Importaciones;
+using System.Net.Http.Headers;
 using static SAESoft.Utilitarios.Password;
 
 namespace SAESoft.Models
@@ -9,15 +10,13 @@ namespace SAESoft.Models
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-            Rol rol = new Rol()
+           List<Rol> roles = new List<Rol>()
             {
-                IdRol = 1,
-                Nombre = "Super Admin",
-                FechaCreacion = DateTime.Now,
-                IdUsuarioCreacion = 1
+               new Rol {IdRol = 1,Nombre = "Super Admin",FechaCreacion = DateTime.Now,IdUsuarioCreacion = 1 },
+            //   new Rol {IdRol = 2,Nombre = "Digitador Importaciones",FechaCreacion=DateTime.Now,IdUsuarioCreacion=1}
             };
             modelBuilder.Entity<Rol>()
-                .HasData(rol);
+                .HasData(roles);
 
             Usuario sa = new Usuario()
             {
@@ -78,6 +77,7 @@ namespace SAESoft.Models
             };
             modelBuilder.Entity<Permiso>().HasData(permisos);
 
+            Rol rol = roles.FirstOrDefault(r => r.IdRol ==1);
             foreach (Permiso p in permisos)
             {
                 modelBuilder.Entity<Rol>()
@@ -85,6 +85,7 @@ namespace SAESoft.Models
                             .WithMany(r => r.Roles)
                             .UsingEntity(j => j.HasData(new { RolesIdRol = rol.IdRol, PermisosIdPermiso = p.IdPermiso }));
             }
+
 
             List<Grupo> grupos = new List<Grupo>
             {
@@ -339,6 +340,30 @@ namespace SAESoft.Models
                 new Terminal{IdTerminal = 7, Nombre = "TDL", Via ='A', FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
             };
             modelBuilder.Entity<Terminal>().HasData(terminales);
+
+            List<ImportStatus> importStatuses = new List<ImportStatus>
+            {
+                new ImportStatus{IdImportStatus = 1,Descripcion="Ingreso Inicial",orden=1,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 2,Descripcion="Entrega de Datos a Digitador",orden=2,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 3,Descripcion="Elaborar Póliza",orden=3,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 4,Descripcion="Enviar Póliza a Puerto",orden=4,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 5,Descripcion="ATC y Aduana",orden=5,Via='M',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 6,Descripcion ="Documentos a Transportista",orden=6,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 7,Descripcion="Llegada a Fábrica",orden=7,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 8,Descripcion="Salida de Fábrica",orden=8,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 9,Descripcion="Finalizado",orden=9,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =10,Descripcion="Ingreso Inicial",orden=1,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =11,Descripcion="Elaborar Póliza",orden=2,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =12,Descripcion="Enviar Póliza Aeropuerto",orden=3,Via='A',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =13,Descripcion="Llegada a Fabrica",orden=4,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =14,Descripcion="Finalizado",orden=5,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                 new ImportStatus{IdImportStatus =15,Descripcion="Ingreso Inicial",orden=1,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =16,Descripcion="Elaborar Póliza",orden=2,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =17,Descripcion="Enviar Póliza",orden=3,Via='T',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =18,Descripcion="Llegada a Fabrica",orden=4,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =19,Descripcion="Finalizado",orden=5,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+            };
+            modelBuilder.Entity<ImportStatus>().HasData(importStatuses);
         }
     }
 }

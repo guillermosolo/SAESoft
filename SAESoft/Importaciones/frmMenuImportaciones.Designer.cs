@@ -166,6 +166,8 @@
             // 
             // panelFormularios
             // 
+            this.panelFormularios.BackgroundImage = global::SAESoft.Properties.Resources.logo_blue;
+            this.panelFormularios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panelFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFormularios.Location = new System.Drawing.Point(200, 0);
             this.panelFormularios.Name = "panelFormularios";

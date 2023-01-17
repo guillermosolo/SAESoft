@@ -1,14 +1,12 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.IdentityModel.Tokens;
 using SAESoft.Models;
-using SAESoft.Models.AdministracionSistema;
 using SAESoft.Models.Importaciones;
 using SAESoft.Utilitarios;
 using System.Data;
 using System.Diagnostics;
 using static SAESoft.Cache.UserData;
+using static SAESoft.Cache.Constantes;
 using static SAESoft.Utilitarios.ControlFormularios;
 
 namespace SAESoft.Importaciones
@@ -24,18 +22,14 @@ namespace SAESoft.Importaciones
         private int CurrentIndex = 0;
 
         List<string> listFiles = new List<string>();
-        const string PATH = @"\\192.168.50.37\SAESoft\Import\Soporte";
-        string path = PATH;
-
-
-
+        string path = PATH_Import;
 
         private void cargarArchivos(string opcion)
         {
             listFiles.Clear();
             listView1.Items.Clear();
             imageList1.Images.Clear();
-            path = PATH + opcion;
+            path = PATH_Import + opcion;
             fileSystemWatcher1.Path = path;
             foreach (string file in Directory.GetFiles(path).Where(f => (new FileInfo(f).Attributes & FileAttributes.Hidden) == 0))
             {
@@ -120,10 +114,10 @@ namespace SAESoft.Importaciones
         private void frmMaritimo_Load(object sender, EventArgs e)
         {
             CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "MARITIMO");
+            llenarMenu();
         }
-
         private void tsbCancelar_Click(object sender, EventArgs e)
-        {
+        { 
             if (rs?.Count > 0)
             {
                 despliegaDatos();
@@ -149,12 +143,12 @@ namespace SAESoft.Importaciones
 
         private void despliegaDatos()
         {
-            lsbBL.Items.Clear();
-            lsbEquipos.Items.Clear();
+            lsbBL.DataSource = null;
+            lsbEquipos.DataSource = null;
             for (int i = 0; i < clbRevisiones.Items.Count; i++)
             {
                 Revision item = (Revision)clbRevisiones.Items[i];
-                var resp = rs[CurrentIndex].Revisiones.Where(r=>r.IdRevision==item.IdRevision).Count()>0;
+                var resp = rs[CurrentIndex].Revisiones.Where(r => r.IdRevision == item.IdRevision).Count() > 0;
                 clbRevisiones.SetItemChecked(i, resp);
             }
             txtId.Text = rs?[CurrentIndex].IdImport.ToString();
@@ -177,8 +171,33 @@ namespace SAESoft.Importaciones
             lsbEquipos.SelectedIndex = -1;
             cargarArchivos(@"\" + rs[CurrentIndex].Codigo);
             tslIndice.Text = $"Registro {CurrentIndex + 1} de {rs.Count}";
+            checkProceso(rs[CurrentIndex].ImportStatus.orden);
         }
 
+        private void checkProceso(uint ord)
+        {
+            using (SAESoftContext db = new SAESoftContext())
+            {
+                var im = db.ImportStatus.Where(i => i.Via == 'M').OrderBy(i => i.orden).ToList();
+                int i = 0;
+                foreach (var item in im)
+                {
+                    if (item.orden <= ord)
+                    {
+                        tsddbProceso.DropDownItems[i].Image = Properties.Resources.check2;
+                        tsddbProceso.DropDownItems[i].Enabled = false;
+                    }
+                    else if (item.orden != ord + 1)
+                    {
+                        tsddbProceso.DropDownItems[i].Enabled = false;
+                    } else
+                    {
+                        tsddbProceso.DropDownItems[i].Enabled = true;
+                    }
+                    i++;
+                }
+            }
+        }
         private void tsbSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -232,6 +251,7 @@ namespace SAESoft.Importaciones
                                     IdAduana = Convert.ToInt32(cboAduana.SelectedValue),
                                     SelectivoRojo = !tsSelectivo.Checked,
                                     Consolidado = tsConsolidado.Checked,
+                                    IdImportStatus = db.ImportStatus.FirstOrDefault(i => i.Via == 'M' && i.orden == 1).IdImportStatus,
                                     FechaCreacion = DatosServer.FechaServer(),
                                     IdUsuarioCreacion = usuarioLogged.IdUsuario,
                                 };
@@ -262,7 +282,12 @@ namespace SAESoft.Importaciones
                                 rs[CurrentIndex].Contenedores = _con;
                                 rs[CurrentIndex].BL = _bl;
                                 db.SaveChanges();
-                                path = PATH + @"\" + im.Codigo.ToString();
+                                var status = db.ImportStatus.Where(s => s.Via == 'M').OrderBy(s => s.orden).FirstOrDefault();
+                                ImportHistorial ih = new ImportHistorial {IdImport = im.IdImport, IdImportStatus = status.IdImportStatus,FechaCreacion=im.FechaCreacion,IdUsuarioCreacion=im.IdUsuarioCreacion};
+                                db.ImportHistorial.Add(ih);
+                                rs[CurrentIndex].ImportHistorial.Add(ih);
+                                db.SaveChanges();
+                                path = PATH_Import + @"\" + im.Codigo.ToString();
                                 if (!Directory.Exists(path))
                                     Directory.CreateDirectory(path);
                                 transaction.Commit();
@@ -357,12 +382,14 @@ namespace SAESoft.Importaciones
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            esNuevo= false;
+            esNuevo = false;
             using (SAESoftContext db = new SAESoftContext())
             {
-                var queryable = db.Importaciones.Include(r=>r.Revisiones)
-                                                .Include(r=>r.BL)
-                                                .Include(r=>r.Contenedores)
+                var queryable = db.Importaciones.Include(r => r.Revisiones)
+                                                .Include(r => r.BL)
+                                                .Include(r => r.Contenedores)
+                                                .Include(r => r.ImportStatus)
+                                                .Include(r => r.ImportHistorial)
                                                 .Where(b => 1 == 1);
                 rs = queryable.ToList();
                 if (rs.Count > 0)
@@ -388,5 +415,103 @@ namespace SAESoft.Importaciones
                 }
             }
         }
+
+        private void tsbSiguiente_Click(object sender, EventArgs e)
+        {
+            if (CurrentIndex + 1 >= rs?.Count)
+                return;
+            CurrentIndex++;
+            despliegaDatos();
+        }
+
+        private void tsbAnterior_Click(object sender, EventArgs e)
+        {
+            if (CurrentIndex <= 0)
+                return;
+            CurrentIndex--;
+            despliegaDatos();
+        }
+
+        private void tsddbProceso_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Image == null)
+            {
+                switch (rs[CurrentIndex].ImportStatus.IdImportStatus)
+                {
+                    case 1:
+                        {
+                            break;
+                        };
+                    default:
+                        {
+                            MessageBox.Show("Aquí solo cambia estatus");
+                            break;
+                        }
+                }
+
+            }
+        }
+
+        private void llenarMenu()
+        {
+            using (SAESoftContext db = new SAESoftContext())
+            {
+                var im = db.ImportStatus.Where(i => i.Via == 'M').OrderBy(i => i.orden).ToList();
+                int i = 0;
+                foreach (var item in im)
+                {
+                    tsddbProceso.DropDownItems.Add(item.Descripcion);
+                    tsddbProceso.DropDownItems[i].ImageScaling = ToolStripItemImageScaling.None;
+                    if (i == 2)
+                    {
+                        var items = db.Usuarios.Include(u => u.Rol).Where(u => u.Rol.IdRol == DigitadorImportaciones);
+                        foreach (var item2 in items)
+                        {
+                            ((ToolStripMenuItem)tsddbProceso.DropDownItems[i - 1]).DropDownItems.Add(item2.Nombres + " " + item2.Apellidos, null, (s, e) => seleccionaDigitador(item2.IdUsuario));
+                        }
+                    }
+                    i++;
+                }
+            }
+        }
+        private void seleccionaDigitador(int codigo)
+        {
+            using (SAESoftContext db = new SAESoftContext())
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var digitador = db.Usuarios.FirstOrDefault(u => u.IdUsuario == codigo);
+                        var resp = MessageBox.Show("Desea asignar el presente documento al digitador: \r\n" + digitador.Nombres + " " + digitador.Apellidos, "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (resp == DialogResult.Yes)
+                        {
+                            db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
+                            rs[CurrentIndex].IdUsuario = codigo;
+                            var status = db.ImportStatus.Where(s => s.Via == 'M' && s.orden > rs[CurrentIndex].ImportStatus.orden).OrderBy(s => s.orden).FirstOrDefault();
+                            rs[CurrentIndex].IdImportStatus = status.IdImportStatus;
+                            db.SaveChanges();
+                            ImportHistorial ih = new ImportHistorial { IdImport = rs[CurrentIndex].IdImport, IdImportStatus = status.IdImportStatus, FechaCreacion = DatosServer.FechaServer(), IdUsuarioCreacion = usuarioLogged.IdUsuario };
+                            db.ImportHistorial.Add(ih);
+                            rs[CurrentIndex].ImportHistorial.Add(ih);
+                            db.SaveChanges();
+                            transaction.Commit();
+                            despliegaDatos();
+                            MessageBox.Show("Documento correctamente asignado", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        if (ex.InnerException != null)
+                            MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+            }
+        }
+
     }
 }
