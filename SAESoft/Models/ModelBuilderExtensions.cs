@@ -362,6 +362,8 @@ namespace SAESoft.Models
                 new ImportStatus{IdImportStatus =17,Descripcion="Enviar Póliza",orden=3,Via='T',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus =18,Descripcion="Llegada a Fabrica",orden=4,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus =19,Descripcion="Finalizado",orden=5,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 20,Descripcion="Cambio ETA",orden = 0,Via = 'O', FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 21,Descripcion="Cambio Destino",orden = 0,Via = 'O', FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
             };
             modelBuilder.Entity<ImportStatus>().HasData(importStatuses);
         }

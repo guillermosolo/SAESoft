@@ -17,5 +17,21 @@ namespace SAESoft.Utilitarios
 
             return new Regex(pattern, RegexOptions.IgnoreCase);
         }
+
+        public static Boolean decimales(Object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+               (e.KeyChar != '.'))
+            {
+                return true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

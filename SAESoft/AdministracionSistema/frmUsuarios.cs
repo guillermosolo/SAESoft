@@ -176,6 +176,12 @@ namespace SAESoft.AdministracionSistema
                 txtPassword.Focus();
                 return false;
             }
+            if (cboRoles.SelectedIndex== -1)
+            {
+                errorProvider1.SetError(cboRoles, "No puede estar vacío.");
+                cboRoles.Focus();
+                return false;
+            }
             return true;
         }
         private void llenarCombos()
@@ -301,7 +307,8 @@ namespace SAESoft.AdministracionSistema
                             {
                                 if (rs.Count > 1)
                                 {
-                                    CurrentIndex--;
+                                    if (CurrentIndex != 0)
+                                        CurrentIndex--;
                                     BotonesInicialesNavegacion(toolStrip1);
                                 }
                                 else
@@ -318,7 +325,7 @@ namespace SAESoft.AdministracionSistema
                                 CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "USUARIOS");
                             }
                         }
-                        catch (DbUpdateException ex)
+                        catch (Exception ex)
                         {
                             if (ex.InnerException != null)
                                 MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

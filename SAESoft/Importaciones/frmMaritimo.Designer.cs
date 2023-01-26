@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMaritimo));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.dgvHistorial = new System.Windows.Forms.DataGridView();
             this.grpEquipos = new System.Windows.Forms.GroupBox();
             this.lsbEquipos = new System.Windows.Forms.ListBox();
             this.txtEquipos = new System.Windows.Forms.TextBox();
@@ -65,7 +67,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
             this.tsbBuscar = new System.Windows.Forms.ToolStripButton();
-            this.tsbListar = new System.Windows.Forms.ToolStripButton();
+            this.tsbListarXXX = new System.Windows.Forms.ToolStripButton();
             this.tsbModificar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.tsbUpload = new System.Windows.Forms.ToolStripButton();
@@ -84,6 +86,7 @@
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).BeginInit();
             this.grpEquipos.SuspendLayout();
             this.grpBL.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -98,6 +101,7 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.dgvHistorial);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.grpEquipos);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.grpBL);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.cboTerminal);
@@ -129,6 +133,26 @@
             // toolStripContainer1.TopToolStripPanel
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            // 
+            // dgvHistorial
+            // 
+            this.dgvHistorial.AllowUserToAddRows = false;
+            this.dgvHistorial.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            resources.ApplyResources(this.dgvHistorial, "dgvHistorial");
+            this.dgvHistorial.Name = "dgvHistorial";
+            this.dgvHistorial.ReadOnly = true;
+            this.dgvHistorial.RowHeadersVisible = false;
+            this.dgvHistorial.RowTemplate.Height = 25;
+            this.dgvHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             // 
             // grpEquipos
             // 
@@ -248,8 +272,10 @@
             resources.ApplyResources(this.tsConsolidado, "tsConsolidado");
             this.tsConsolidado.Name = "tsConsolidado";
             this.tsConsolidado.OffBackColor = System.Drawing.Color.Firebrick;
+            this.tsConsolidado.OffDisabledColor = System.Drawing.Color.Gray;
             this.tsConsolidado.OffTogglecolor = System.Drawing.Color.Firebrick;
             this.tsConsolidado.OnBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
+            this.tsConsolidado.OnDisabledcolor = System.Drawing.Color.Gray;
             this.tsConsolidado.OnTogglecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
             this.tsConsolidado.SolidStyle = false;
             this.tsConsolidado.UseVisualStyleBackColor = true;
@@ -261,8 +287,10 @@
             resources.ApplyResources(this.tsSelectivo, "tsSelectivo");
             this.tsSelectivo.Name = "tsSelectivo";
             this.tsSelectivo.OffBackColor = System.Drawing.Color.Firebrick;
+            this.tsSelectivo.OffDisabledColor = System.Drawing.Color.IndianRed;
             this.tsSelectivo.OffTogglecolor = System.Drawing.Color.Firebrick;
             this.tsSelectivo.OnBackColor = System.Drawing.Color.Green;
+            this.tsSelectivo.OnDisabledcolor = System.Drawing.Color.PaleGreen;
             this.tsSelectivo.OnTogglecolor = System.Drawing.Color.Green;
             this.tsSelectivo.SolidStyle = false;
             this.tsSelectivo.UseVisualStyleBackColor = true;
@@ -343,7 +371,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbNuevo,
             this.tsbBuscar,
-            this.tsbListar,
+            this.tsbListarXXX,
             this.tsbModificar,
             this.tsbEliminar,
             this.tsbUpload,
@@ -373,12 +401,12 @@
             this.tsbBuscar.Name = "tsbBuscar";
             this.tsbBuscar.Click += new System.EventHandler(this.tsbBuscar_Click);
             // 
-            // tsbListar
+            // tsbListarXXX
             // 
-            this.tsbListar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbListar.Image = global::SAESoft.Properties.Resources.listar;
-            resources.ApplyResources(this.tsbListar, "tsbListar");
-            this.tsbListar.Name = "tsbListar";
+            this.tsbListarXXX.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbListarXXX.Image = global::SAESoft.Properties.Resources.listar;
+            resources.ApplyResources(this.tsbListarXXX, "tsbListarXXX");
+            this.tsbListarXXX.Name = "tsbListarXXX";
             // 
             // tsbModificar
             // 
@@ -386,6 +414,7 @@
             resources.ApplyResources(this.tsbModificar, "tsbModificar");
             this.tsbModificar.Image = global::SAESoft.Properties.Resources.edit;
             this.tsbModificar.Name = "tsbModificar";
+            this.tsbModificar.Click += new System.EventHandler(this.tsbModificar_Click);
             // 
             // tsbEliminar
             // 
@@ -393,6 +422,7 @@
             resources.ApplyResources(this.tsbEliminar, "tsbEliminar");
             this.tsbEliminar.Image = global::SAESoft.Properties.Resources.delete;
             this.tsbEliminar.Name = "tsbEliminar";
+            this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
             // tsbUpload
             // 
@@ -501,6 +531,7 @@
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).EndInit();
             this.grpEquipos.ResumeLayout(false);
             this.grpEquipos.PerformLayout();
             this.grpBL.ResumeLayout(false);
@@ -522,7 +553,7 @@
         private ToolStrip toolStrip1;
         private ToolStripButton tsbNuevo;
         private ToolStripButton tsbBuscar;
-        private ToolStripButton tsbListar;
+        private ToolStripButton tsbListarXXX;
         private ToolStripButton tsbModificar;
         private ToolStripButton tsbEliminar;
         private ToolStripSeparator toolStripSeparator1;
@@ -568,5 +599,6 @@
         private GroupBox grpEquipos;
         private ListBox lsbEquipos;
         private TextBox txtEquipos;
+        private DataGridView dgvHistorial;
     }
 }

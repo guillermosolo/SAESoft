@@ -37,5 +37,16 @@ namespace SAESoft.Utilitarios
                 }
             }
         }
+
+        public static String NombreUsuario(int? id)
+        {
+            string nombre;
+            using (SAESoftContext db = new SAESoftContext())
+            {
+                var u = db.Usuarios.FirstOrDefault(u=>u.IdUsuario == id);
+                nombre = u.Nombres + " " + u.Apellidos;
+            }
+            return nombre;
+        }
     }
 }

@@ -265,7 +265,8 @@ namespace SAESoft.AdministracionSistema
                                 {
                                     if (rs.Count > 1)
                                     {
-                                        CurrentIndex--;
+                                        if (CurrentIndex != 0)
+                                            CurrentIndex--;
                                         BotonesInicialesNavegacion(toolStrip1);
                                     }
                                     else

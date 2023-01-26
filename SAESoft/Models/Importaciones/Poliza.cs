@@ -23,5 +23,6 @@ namespace SAESoft.Models.Importaciones
         public int IdModalidad { get; set; }
         [ForeignKey("IdModalidad")]
         public virtual Nombre Modalidad { get; set; } = null!;
+        public string? Observaciones { get; set; }
     }
 }

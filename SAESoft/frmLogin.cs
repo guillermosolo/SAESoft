@@ -46,32 +46,44 @@ namespace SAESoft
             lblError.Visible = false;
             using (SAESoftContext db = new SAESoftContext())
             {
-                usuarioLogged = db.Usuarios.Include(r=>r.Rol)
-                                                  .Include(r=>r.Rol.Permisos)
-                                                  .FirstOrDefault(c => c.UserName == txtUser.Text);
-                if (usuarioLogged != null)
+                try
                 {
-                    if (!ConfirmHash(txtPass.Text, usuarioLogged.Password))
+                    usuarioLogged = db.Usuarios.Include(r => r.Rol)
+                                                      .Include(r => r.Rol.Permisos)
+                                                      .FirstOrDefault(c => c.UserName == txtUser.Text);
+                    if (usuarioLogged != null)
                     {
-                       msgError(lblError,"La contraseña no es la correcta.");
-                        txtPass.SelectAll();
-                        txtPass.Focus();
-                        return;
-                    } else
-                    {
-                        if (!usuarioLogged.Activo)
+                        if (!ConfirmHash(txtPass.Text, usuarioLogged.Password))
                         {
-                            msgError(lblError,"El usuario no se encuentra activo.");
-;                           txtUser.SelectAll();
-                            txtUser.Focus();
+                            msgError(lblError, "La contraseña no es la correcta.");
+                            txtPass.SelectAll();
+                            txtPass.Focus();
                             return;
                         }
+                        else
+                        {
+                            if (!usuarioLogged.Activo)
+                            {
+                                msgError(lblError, "El usuario no se encuentra activo.");
+                                ; txtUser.SelectAll();
+                                txtUser.Focus();
+                                return;
+                            }
+                        }
                     }
-                } else
+                    else
+                    {
+                        msgError(lblError, "El usuario no existe en la base de datos.");
+                        txtUser.SelectAll();
+                        txtUser.Focus();
+                        return;
+                    }
+                } catch(Exception ex)
                 {
-                    msgError(lblError, "El usuario no existe en la base de datos.");
-                    txtUser.SelectAll();
-                    txtUser.Focus();
+                    if (ex.InnerException != null)
+                        MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }

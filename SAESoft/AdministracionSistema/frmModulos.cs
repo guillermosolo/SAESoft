@@ -223,7 +223,8 @@ namespace SAESoft.AdministracionSistema
                         {
                             if (rs.Count > 1)
                             {
-                                CurrentIndex--;
+                                if (CurrentIndex != 0)
+                                    CurrentIndex--;
                                 BotonesInicialesNavegacion(toolStrip1);
                             }
                             else
@@ -240,7 +241,7 @@ namespace SAESoft.AdministracionSistema
                             CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1,"MODULOS");
                         }
                     }
-                    catch (DbUpdateException ex)
+                    catch (Exception ex)
                     {
                         if (ex.InnerException != null)
                             MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

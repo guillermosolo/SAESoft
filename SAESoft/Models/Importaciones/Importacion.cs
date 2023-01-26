@@ -27,7 +27,7 @@ namespace SAESoft.Models.Importaciones
         [ForeignKey("IdForwarder")]
         public virtual Nombre Forwarder { get; set; } = null!;
         public virtual ICollection<Contenedor> Contenedores { get; set; } = null!;
-        public int IdDestino { get; set; }
+        public int? IdDestino { get; set; }
         [ForeignKey("IdDestino")]
         public virtual Nombre Destino { get; set; } = null!;
         public DateTime ETA { get; set; }
@@ -59,5 +59,11 @@ namespace SAESoft.Models.Importaciones
         [ForeignKey("IdImportStatus")]
         public virtual ImportStatus ImportStatus { get; set; } = null!; 
         public virtual ICollection<ImportHistorial> ImportHistorial { get; set; } = null!;
+
+        [Column(TypeName = "money")]
+        public decimal? Monto { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal? Mora { get; set; }
     }
 }
