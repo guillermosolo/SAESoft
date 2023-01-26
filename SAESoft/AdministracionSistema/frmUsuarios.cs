@@ -231,6 +231,7 @@ namespace SAESoft.AdministracionSistema
                     if (buscar.rol != -1)
                         queryable = queryable.Where(b => b.IdRol == buscar.rol);
                     rs = queryable.ToList();
+                    buscar.Dispose();
                     if (rs.Count > 0)
                     {
                         despliegaDatos();
@@ -357,6 +358,7 @@ namespace SAESoft.AdministracionSistema
                     CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "USUARIOS");
                 }
             }
+            formListar.Dispose();
         }
 
         private void tsActivo_CheckedChanged(object sender, EventArgs e)

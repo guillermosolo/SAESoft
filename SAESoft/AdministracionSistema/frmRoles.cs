@@ -178,6 +178,7 @@ namespace SAESoft.AdministracionSistema
                     if (buscar.nombre != null)
                         queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
                     rs = queryable.ToList();
+                    buscar.Dispose();
                     if (rs.Count > 0)
                     {
                         despliegaDatos();
@@ -383,6 +384,7 @@ namespace SAESoft.AdministracionSistema
                     CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1,"ROLES");
                 }
             }
+            formListar.Dispose();
         }
         private Boolean ValidarDatos()
         {

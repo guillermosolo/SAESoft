@@ -173,6 +173,7 @@ namespace SAESoft.AdministracionSistema
                     var queryable = db.Modulos.Where(b => 1 == 1);
                     if (buscar.nombre != null)
                         queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
+                    buscar.Dispose();
                     rs = queryable.ToList();
                     if (rs.Count > 0)
                     {
@@ -288,6 +289,7 @@ namespace SAESoft.AdministracionSistema
                     CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1,"MODULOS");
                 }
             }
+            formListar.Dispose();
         }
 
         private void frmModulos_Load(object sender, EventArgs e)

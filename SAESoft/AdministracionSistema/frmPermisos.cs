@@ -247,6 +247,7 @@ namespace SAESoft.AdministracionSistema
                     CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "PERMISOS");
                 }
             }
+            formListar.Dispose();
         }
 
         private void tsbAnterior_Click(object sender, EventArgs e)
@@ -279,6 +280,7 @@ namespace SAESoft.AdministracionSistema
                     if (buscar.modulo != -1)
                         queryable = queryable.Where(b => b.IdModulo == buscar.modulo);
                     rs = queryable.ToList();
+                    buscar.Dispose();
                     if (rs.Count > 0)
                     {
                         despliegaDatos();

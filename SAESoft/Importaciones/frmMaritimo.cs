@@ -547,6 +547,7 @@ namespace SAESoft.Importaciones
                     if (!buscar.todos)
                         queryable = queryable.Where(r => buscar.ids.Contains(r.IdImport));
                     rs = queryable.ToList();
+                    buscar.Dispose();
                     if (rs.Count > 0)
                     {
                         CambiarEstadoBotones(new[] { "tsddbProceso", "tsbUpload" }, true, toolStrip1, "MARITIMO");
