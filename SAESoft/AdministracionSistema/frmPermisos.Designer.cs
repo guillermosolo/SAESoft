@@ -82,9 +82,11 @@
             // 
             // cboModulos
             // 
+            this.cboModulos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboModulos.Enabled = false;
             this.cboModulos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cboModulos.FormattingEnabled = true;
+            this.cboModulos.IntegralHeight = false;
             this.cboModulos.Location = new System.Drawing.Point(213, 126);
             this.cboModulos.Name = "cboModulos";
             this.cboModulos.Size = new System.Drawing.Size(296, 29);
@@ -158,7 +160,7 @@
             this.tsbSalir});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(493, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(234, 39);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 

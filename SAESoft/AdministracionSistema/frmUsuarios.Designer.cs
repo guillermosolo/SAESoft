@@ -118,8 +118,10 @@
             this.tsActivo.MinimumSize = new System.Drawing.Size(45, 22);
             this.tsActivo.Name = "tsActivo";
             this.tsActivo.OffBackColor = System.Drawing.Color.Firebrick;
+            this.tsActivo.OffDisabledColor = System.Drawing.Color.Gray;
             this.tsActivo.OffTogglecolor = System.Drawing.Color.Firebrick;
             this.tsActivo.OnBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
+            this.tsActivo.OnDisabledcolor = System.Drawing.Color.Gray;
             this.tsActivo.OnTogglecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
             this.tsActivo.Size = new System.Drawing.Size(45, 25);
             this.tsActivo.SolidStyle = false;
@@ -131,9 +133,11 @@
             // cboRoles
             // 
             this.cboRoles.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboRoles.Enabled = false;
             this.cboRoles.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cboRoles.FormattingEnabled = true;
+            this.cboRoles.IntegralHeight = false;
             this.cboRoles.Location = new System.Drawing.Point(211, 304);
             this.cboRoles.Name = "cboRoles";
             this.cboRoles.Size = new System.Drawing.Size(296, 28);

@@ -41,7 +41,7 @@
             this.icbBuscar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.icbBuscar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.icbBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
-            this.icbBuscar.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.icbBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
             this.icbBuscar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.icbBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icbBuscar.IconSize = 24;
@@ -58,6 +58,7 @@
             // 
             this.cboModulos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cboModulos.FormattingEnabled = true;
+            this.cboModulos.IntegralHeight = false;
             this.cboModulos.Location = new System.Drawing.Point(132, 48);
             this.cboModulos.Name = "cboModulos";
             this.cboModulos.Size = new System.Drawing.Size(241, 29);

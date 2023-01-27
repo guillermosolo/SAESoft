@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMaritimo));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.dgvHistorial = new System.Windows.Forms.DataGridView();
@@ -80,7 +80,6 @@
             this.tsbSiguiente = new System.Windows.Forms.ToolStripButton();
             this.tsbSalir = new System.Windows.Forms.ToolStripButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -138,14 +137,14 @@
             // 
             this.dgvHistorial.AllowUserToAddRows = false;
             this.dgvHistorial.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             resources.ApplyResources(this.dgvHistorial, "dgvHistorial");
             this.dgvHistorial.Name = "dgvHistorial";
@@ -202,12 +201,14 @@
             // 
             // cboTerminal
             // 
+            this.cboTerminal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.cboTerminal, "cboTerminal");
             this.cboTerminal.FormattingEnabled = true;
             this.cboTerminal.Name = "cboTerminal";
             // 
             // cboShipper
             // 
+            this.cboShipper.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.cboShipper, "cboShipper");
             this.cboShipper.FormattingEnabled = true;
             this.cboShipper.Name = "cboShipper";
@@ -239,6 +240,7 @@
             // 
             // cboNaviera
             // 
+            this.cboNaviera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.cboNaviera, "cboNaviera");
             this.cboNaviera.FormattingEnabled = true;
             this.cboNaviera.Name = "cboNaviera";
@@ -302,6 +304,7 @@
             // 
             // cboAduana
             // 
+            this.cboAduana.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.cboAduana, "cboAduana");
             this.cboAduana.FormattingEnabled = true;
             this.cboAduana.Name = "cboAduana";
@@ -329,6 +332,7 @@
             // 
             // cboDestino
             // 
+            this.cboDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.cboDestino, "cboDestino");
             this.cboDestino.FormattingEnabled = true;
             this.cboDestino.Name = "cboDestino";
@@ -340,6 +344,7 @@
             // 
             // cboForwarder
             // 
+            this.cboForwarder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.cboForwarder, "cboForwarder");
             this.cboForwarder.FormattingEnabled = true;
             this.cboForwarder.Name = "cboForwarder";
@@ -494,17 +499,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // iconSplitButton1
-            // 
-            this.iconSplitButton1.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.iconSplitButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconSplitButton1.IconColor = System.Drawing.Color.Black;
-            this.iconSplitButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconSplitButton1.IconSize = 48;
-            this.iconSplitButton1.Name = "iconSplitButton1";
-            this.iconSplitButton1.Rotation = 0D;
-            resources.ApplyResources(this.iconSplitButton1, "iconSplitButton1");
-            // 
             // fileSystemWatcher1
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
@@ -568,7 +562,6 @@
         private ComboBox cboForwarder;
         private Label label2;
         private Label label7;
-        private FontAwesome.Sharp.IconSplitButton iconSplitButton1;
         private ComboBox cboAduana;
         private Label label6;
         private Label label5;
