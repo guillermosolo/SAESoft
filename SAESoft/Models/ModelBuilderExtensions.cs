@@ -13,7 +13,7 @@ namespace SAESoft.Models
            List<Rol> roles = new List<Rol>()
             {
                new Rol {IdRol = 1,Nombre = "Super Admin",FechaCreacion = DateTime.Now,IdUsuarioCreacion = 1 },
-            //   new Rol {IdRol = 2,Nombre = "Digitador Importaciones",FechaCreacion=DateTime.Now,IdUsuarioCreacion=1}
+               new Rol {IdRol = 2,Nombre = "Digitador Importaciones",FechaCreacion=DateTime.Now,IdUsuarioCreacion=1}
             };
             modelBuilder.Entity<Rol>()
                 .HasData(roles);
@@ -86,6 +86,16 @@ namespace SAESoft.Models
                             .UsingEntity(j => j.HasData(new { RolesIdRol = rol.IdRol, PermisosIdPermiso = p.IdPermiso }));
             }
 
+            Rol di = roles.FirstOrDefault(r => r.IdRol == 2);
+            List<Permiso> permisosDI = new List<Permiso>();
+            permisosDI = permisos.Where(p => new[] { 2, 27, 28, 30, 32, 34 }.Contains(p.IdPermiso)).ToList();
+            foreach (Permiso p in permisosDI)
+            {
+                modelBuilder.Entity<Rol>()
+                            .HasMany(r => r.Permisos)
+                            .WithMany(r => r.Roles)
+                            .UsingEntity(j => j.HasData(new { RolesIdRol = di.IdRol, PermisosIdPermiso = p.IdPermiso }));
+            }
 
             List<Grupo> grupos = new List<Grupo>
             {
@@ -165,6 +175,7 @@ namespace SAESoft.Models
                 new Revision{IdRevision = 2, Descripcion = "DIPAFRONT", FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Revision{IdRevision = 3, Descripcion = "MAGA",FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Revision{IdRevision = 4, Descripcion = "RAYOS X",FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+                new Revision{IdRevision = 5, Descripcion = "SELECTIVO ROJO",FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
             };
             modelBuilder.Entity<Revision>().HasData(revisiones);   
 

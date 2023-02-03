@@ -50,8 +50,6 @@
             this.clbRevisiones = new System.Windows.Forms.CheckedListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tsConsolidado = new SAESoft.Utilitarios.toggleSwitch();
-            this.tsSelectivo = new SAESoft.Utilitarios.toggleSwitch();
-            this.lblActivo = new System.Windows.Forms.Label();
             this.cboAduana = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -111,8 +109,6 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.groupBox2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label8);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tsConsolidado);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.tsSelectivo);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.lblActivo);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.cboAduana);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label6);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label5);
@@ -281,26 +277,6 @@
             this.tsConsolidado.OnTogglecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
             this.tsConsolidado.SolidStyle = false;
             this.tsConsolidado.UseVisualStyleBackColor = true;
-            // 
-            // tsSelectivo
-            // 
-            this.tsSelectivo.Checked = true;
-            this.tsSelectivo.CheckState = System.Windows.Forms.CheckState.Checked;
-            resources.ApplyResources(this.tsSelectivo, "tsSelectivo");
-            this.tsSelectivo.Name = "tsSelectivo";
-            this.tsSelectivo.OffBackColor = System.Drawing.Color.Firebrick;
-            this.tsSelectivo.OffDisabledColor = System.Drawing.Color.IndianRed;
-            this.tsSelectivo.OffTogglecolor = System.Drawing.Color.Firebrick;
-            this.tsSelectivo.OnBackColor = System.Drawing.Color.Green;
-            this.tsSelectivo.OnDisabledcolor = System.Drawing.Color.PaleGreen;
-            this.tsSelectivo.OnTogglecolor = System.Drawing.Color.Green;
-            this.tsSelectivo.SolidStyle = false;
-            this.tsSelectivo.UseVisualStyleBackColor = true;
-            // 
-            // lblActivo
-            // 
-            resources.ApplyResources(this.lblActivo, "lblActivo");
-            this.lblActivo.Name = "lblActivo";
             // 
             // cboAduana
             // 
@@ -569,8 +545,6 @@
         private Label label4;
         private ComboBox cboDestino;
         private Label label3;
-        private Utilitarios.toggleSwitch tsSelectivo;
-        private Label lblActivo;
         private ComboBox cboNaviera;
         private Label label9;
         private GroupBox groupBox2;

@@ -36,8 +36,6 @@
             this.dgvContenedores = new System.Windows.Forms.DataGridView();
             this.txtBL = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.tsSelectivo = new SAESoft.Utilitarios.toggleSwitch();
-            this.lblActivo = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.clbRevisiones = new System.Windows.Forms.CheckedListBox();
             this.dgvHistorial = new System.Windows.Forms.DataGridView();
@@ -102,8 +100,6 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.dgvContenedores);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.txtBL);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label10);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.tsSelectivo);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.lblActivo);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.groupBox2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.dgvHistorial);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.groupBox4);
@@ -187,39 +183,6 @@
             this.label10.Size = new System.Drawing.Size(150, 21);
             this.label10.TabIndex = 63;
             this.label10.Text = "Docto. Transporte";
-            // 
-            // tsSelectivo
-            // 
-            this.tsSelectivo.Checked = true;
-            this.tsSelectivo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tsSelectivo.Enabled = false;
-            this.tsSelectivo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tsSelectivo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.tsSelectivo.Location = new System.Drawing.Point(423, 209);
-            this.tsSelectivo.MinimumSize = new System.Drawing.Size(45, 22);
-            this.tsSelectivo.Name = "tsSelectivo";
-            this.tsSelectivo.OffBackColor = System.Drawing.Color.Firebrick;
-            this.tsSelectivo.OffDisabledColor = System.Drawing.Color.IndianRed;
-            this.tsSelectivo.OffTogglecolor = System.Drawing.Color.Firebrick;
-            this.tsSelectivo.OnBackColor = System.Drawing.Color.Green;
-            this.tsSelectivo.OnDisabledcolor = System.Drawing.Color.PaleGreen;
-            this.tsSelectivo.OnTogglecolor = System.Drawing.Color.Green;
-            this.tsSelectivo.Size = new System.Drawing.Size(45, 25);
-            this.tsSelectivo.SolidStyle = false;
-            this.tsSelectivo.TabIndex = 62;
-            this.tsSelectivo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.tsSelectivo.UseVisualStyleBackColor = true;
-            // 
-            // lblActivo
-            // 
-            this.lblActivo.AutoSize = true;
-            this.lblActivo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblActivo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblActivo.Location = new System.Drawing.Point(336, 210);
-            this.lblActivo.Name = "lblActivo";
-            this.lblActivo.Size = new System.Drawing.Size(81, 21);
-            this.lblActivo.TabIndex = 61;
-            this.lblActivo.Text = "Selectivo";
             // 
             // groupBox2
             // 
@@ -555,7 +518,7 @@
             this.tsbSalir});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(574, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(279, 39);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -794,8 +757,6 @@
         private CheckedListBox clbRevisiones;
         private ComboBox cboTerminal;
         private Label label5;
-        private Utilitarios.toggleSwitch tsSelectivo;
-        private Label lblActivo;
         private TextBox txtBL;
         private Label label10;
         private DataGridView dgvContenedores;

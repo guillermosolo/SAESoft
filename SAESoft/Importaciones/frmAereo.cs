@@ -265,7 +265,6 @@ namespace SAESoft.Importaciones
             }
             llenarMenu();
             dtpETA.Value = rs[CurrentIndex].ETA;
-            tsSelectivo.Checked = !rs[CurrentIndex].SelectivoRojo;
             cboAduana.SelectedValue = rs[CurrentIndex].IdAduana;
             cargarArchivos(@"\" + rs[CurrentIndex].Codigo);
             tslIndice.Text = $"Registro {CurrentIndex + 1} de {rs.Count}";
@@ -350,7 +349,6 @@ namespace SAESoft.Importaciones
             limpiarFormulario(this);
             dt.Rows.Clear();
             dtc.Rows.Clear();
-            tsSelectivo.Checked = true;
             cboShipper.Focus();
         }
 
@@ -400,7 +398,6 @@ namespace SAESoft.Importaciones
                                     IdNaviera = Convert.ToInt32(cboNaviera.SelectedValue),
                                     ETA = dtpETA.Value,
                                     IdAduana = Convert.ToInt32(cboAduana.SelectedValue),
-                                    SelectivoRojo = !tsSelectivo.Checked,
                                     Consolidado = false,
                                     IdImportStatus = db.ImportStatus.FirstOrDefault(i => i.Via == Via && i.orden == 1).IdImportStatus,
                                     FechaCreacion = DatosServer.FechaServer(),
@@ -491,7 +488,6 @@ namespace SAESoft.Importaciones
                                     rs[CurrentIndex].IdDestino = Convert.ToInt32(cboDestino.SelectedValue);
                                 else if (rs[CurrentIndex].IdDestino != null)
                                     throw new Exception("No se puede cambiar el destino.");
-                                rs[CurrentIndex].SelectivoRojo = !tsSelectivo.Checked;
                                 rs[CurrentIndex].ETA = dtpETA.Value;
                                 rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
                                 rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
@@ -814,7 +810,6 @@ namespace SAESoft.Importaciones
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             dtpETA.Enabled = true;
             cboDestino.Enabled = true;
-            tsSelectivo.Enabled = true;
             if (clbRevisiones.CheckedItems.Count == 0)
                 clbRevisiones.Enabled = true;
             dtpETA.Focus();

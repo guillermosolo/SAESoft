@@ -12,7 +12,7 @@ using SAESoft.Models;
 namespace SAESoft.Migrations
 {
     [DbContext(typeof(SAESoftContext))]
-    [Migration("20230201215336_Inicial")]
+    [Migration("20230203211628_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -189,6 +189,36 @@ namespace SAESoft.Migrations
                         {
                             PermisosIdPermiso = 35,
                             RolesIdRol = 1
+                        },
+                        new
+                        {
+                            PermisosIdPermiso = 2,
+                            RolesIdRol = 2
+                        },
+                        new
+                        {
+                            PermisosIdPermiso = 27,
+                            RolesIdRol = 2
+                        },
+                        new
+                        {
+                            PermisosIdPermiso = 28,
+                            RolesIdRol = 2
+                        },
+                        new
+                        {
+                            PermisosIdPermiso = 30,
+                            RolesIdRol = 2
+                        },
+                        new
+                        {
+                            PermisosIdPermiso = 32,
+                            RolesIdRol = 2
+                        },
+                        new
+                        {
+                            PermisosIdPermiso = 34,
+                            RolesIdRol = 2
                         });
                 });
 
@@ -230,7 +260,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdModulo = 1,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8053),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9187),
                             Habilitado = true,
                             IdUsuarioCreacion = 1,
                             Nombre = "MENÚ PRINCIPAL"
@@ -238,7 +268,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdModulo = 2,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8058),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9190),
                             Habilitado = true,
                             IdUsuarioCreacion = 1,
                             Nombre = "ADMINISTRACIÓN DEL SISTEMA"
@@ -246,7 +276,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdModulo = 3,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8059),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9192),
                             Habilitado = true,
                             IdUsuarioCreacion = 1,
                             Nombre = "IMPORTACIONES"
@@ -293,7 +323,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 1,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8089),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9222),
                             IdModulo = 1,
                             IdUsuarioCreacion = 1,
                             Nombre = "VER.ADMINISTRACION SISTEMA"
@@ -301,7 +331,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 2,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8092),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9226),
                             IdModulo = 1,
                             IdUsuarioCreacion = 1,
                             Nombre = "VER.IMPORTACIONES"
@@ -309,7 +339,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 11,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8094),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9227),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "VER.USUARIOS"
@@ -317,7 +347,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 12,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8095),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9229),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "CREAR.USUARIOS"
@@ -325,7 +355,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 13,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8097),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9230),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "MODIFICAR.USUARIOS"
@@ -333,7 +363,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 14,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8105),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9239),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "ELIMINAR.USUARIOS"
@@ -341,7 +371,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 15,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8106),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9240),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "VER.ROLES"
@@ -349,7 +379,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 16,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8108),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9242),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "CREAR.ROLES"
@@ -357,7 +387,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 17,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8110),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9243),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "MODIFICAR.ROLES"
@@ -365,7 +395,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 18,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8112),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9246),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "ELIMINAR.ROLES"
@@ -373,7 +403,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 19,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8114),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9248),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "VER.PERMISOS"
@@ -381,7 +411,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 20,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8115),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9249),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "CREAR.PERMISOS"
@@ -389,7 +419,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 21,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8117),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9251),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "MODIFICAR.PERMISOS"
@@ -397,7 +427,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 22,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8118),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9252),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "ELIMINAR.PERMISOS"
@@ -405,7 +435,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 23,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8120),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9254),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "VER.MODULOS"
@@ -413,7 +443,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 24,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8121),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9255),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "CREAR.MODULOS"
@@ -421,7 +451,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 25,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8123),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9257),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "MODIFICAR.MODULOS"
@@ -429,7 +459,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 26,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8126),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9261),
                             IdModulo = 2,
                             IdUsuarioCreacion = 1,
                             Nombre = "ELIMINAR.MODULOS"
@@ -437,7 +467,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 27,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8127),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9262),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "VER.DASHBOARD"
@@ -445,7 +475,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 28,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8129),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9263),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "VER.MARITIMO"
@@ -453,7 +483,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 29,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8131),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9265),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "CREAR.MARITIMO"
@@ -461,7 +491,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 30,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8133),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9266),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "MODIFICAR.MARITIMO"
@@ -469,7 +499,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 31,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8135),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9268),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "ELIMINAR.MARITIMO"
@@ -477,7 +507,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 32,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8137),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9270),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "VER.AEREO"
@@ -485,7 +515,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 33,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8138),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9271),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "CREAR.AEREO"
@@ -493,7 +523,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 34,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8140),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9272),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "MODIFICAR.AEREO"
@@ -501,7 +531,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdPermiso = 35,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(8141),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9274),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "ELIMINAR.AEREO"
@@ -546,10 +576,18 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdRol = 1,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(6329),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(7207),
                             Habilitado = true,
                             IdUsuarioCreacion = 1,
                             Nombre = "Super Admin"
+                        },
+                        new
+                        {
+                            IdRol = 2,
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(7225),
+                            Habilitado = true,
+                            IdUsuarioCreacion = 1,
+                            Nombre = "Digitador Importaciones"
                         });
                 });
 
@@ -618,11 +656,11 @@ namespace SAESoft.Migrations
                             Activo = true,
                             Apellidos = "Admin",
                             Email = "sa@sae-a.com",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 459, DateTimeKind.Local).AddTicks(7878),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 281, DateTimeKind.Local).AddTicks(9011),
                             IdRol = 1,
                             IdUsuarioCreacion = 1,
                             Nombres = "Super",
-                            Password = "Lk00O+ziC33S2/2vEF6yvB9UShrbySPawGnGtQNKICywdJsz33H0k+lgkh75axSYEOmrMktngewV5C0CsGzuEJmeufrJHikn1XtM",
+                            Password = "aCbg3cCuyX/IGYKYxEc4oKauwDF9jI8HtsOlfN2J8EH8c+iweRHGTm1RgTK1oajSUREQVwNXQ1ttouiZDwL1LZG1WQ9+dVCr",
                             UserName = "sa"
                         });
                 });
@@ -675,7 +713,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 1,
                             Abreviatura = "ST",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1802),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4471),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA SANTO TOMAS DE CASTILLA",
                             Via = "M"
@@ -684,7 +722,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 2,
                             Abreviatura = "PQ",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1805),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4475),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA PUERTO QUETZAL",
                             Via = "M"
@@ -693,7 +731,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 3,
                             Abreviatura = "PB",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1807),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4477),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA PUERTO BARRIOS",
                             Via = "M"
@@ -702,7 +740,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 4,
                             Abreviatura = "TU",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1808),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4478),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA TECUN UMAN",
                             Via = "T"
@@ -711,7 +749,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 5,
                             Abreviatura = "EC",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1810),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4480),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA EL CARMEN",
                             Via = "T"
@@ -720,7 +758,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 6,
                             Abreviatura = "LM",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1812),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4482),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA LA MESILLA",
                             Via = "T"
@@ -729,7 +767,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 7,
                             Abreviatura = "MM",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1814),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4484),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA MELCHOR DE MENCOS",
                             Via = "T"
@@ -738,7 +776,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 8,
                             Abreviatura = "EF",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1816),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4486),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA EL FLORIDO",
                             Via = "T"
@@ -747,7 +785,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 9,
                             Abreviatura = "AV",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1817),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4487),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA DE VEHICULOS",
                             Via = "T"
@@ -756,7 +794,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 10,
                             Abreviatura = "CH",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1820),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4490),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA CHAMPERICO",
                             Via = "M"
@@ -765,7 +803,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 11,
                             Abreviatura = "PA",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1822),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4491),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA PEDRO DE ALVARADO",
                             Via = "T"
@@ -774,7 +812,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 12,
                             Abreviatura = "VN",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1823),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4493),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA VALLE NUEVO",
                             Via = "T"
@@ -783,7 +821,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 13,
                             Abreviatura = "SC",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1825),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4495),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA SAN CRISTOBAL",
                             Via = "T"
@@ -792,7 +830,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 14,
                             Abreviatura = "AC",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1827),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4497),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA AGUA CALIENTE",
                             Via = "T"
@@ -801,7 +839,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 15,
                             Abreviatura = "LE",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1828),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4498),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA LA ERMITA",
                             Via = "T"
@@ -810,7 +848,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 16,
                             Abreviatura = "CB",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1830),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4500),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA EL CEIBO",
                             Via = "T"
@@ -819,7 +857,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 17,
                             Abreviatura = "SE",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1831),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4502),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA SANTA ELENA",
                             Via = "A"
@@ -828,7 +866,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 18,
                             Abreviatura = "CA",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1840),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4505),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA CENTRAL DE AVIACION",
                             Via = "A"
@@ -837,7 +875,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 19,
                             Abreviatura = "EA",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1841),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4506),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA EXPRESS AEREO",
                             Via = "A"
@@ -846,7 +884,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 20,
                             Abreviatura = "CG",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1843),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4508),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA CENTRAL DE GUATEMALA",
                             Via = "T"
@@ -855,7 +893,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 21,
                             Abreviatura = "FP",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1844),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4515),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA FARDOS POSTALES",
                             Via = "C"
@@ -864,7 +902,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 22,
                             Abreviatura = "S1",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1846),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4516),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA PUERTO ACAJUTLA",
                             Via = "M"
@@ -873,7 +911,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 23,
                             Abreviatura = "S2",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1848),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4518),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA PUERTO DE COTUCO",
                             Via = "M"
@@ -882,7 +920,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 24,
                             Abreviatura = "H1",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1849),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4520),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA PUERTO CORTES",
                             Via = "M"
@@ -891,7 +929,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 25,
                             Abreviatura = "N1",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1851),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4521),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA PUERTO CORINTO",
                             Via = "M"
@@ -900,7 +938,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 26,
                             Abreviatura = "N2",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1852),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4523),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA PEÑAS BLANCAS",
                             Via = "T"
@@ -909,7 +947,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 27,
                             Abreviatura = "G1",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1855),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4524),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA ALMACENADORA INTEGRADA",
                             Via = "T"
@@ -918,7 +956,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 28,
                             Abreviatura = "G2",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1856),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4526),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA ALMINTER",
                             Via = "T"
@@ -927,7 +965,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 29,
                             Abreviatura = "G3",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1858),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4528),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA ALPASA",
                             Via = "T"
@@ -936,7 +974,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 30,
                             Abreviatura = "G4",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1860),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4529),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA ALSERSA",
                             Via = "T"
@@ -945,7 +983,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 31,
                             Abreviatura = "G5",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1861),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4531),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA CEALSA",
                             Via = "T"
@@ -954,7 +992,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 32,
                             Abreviatura = "G6",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1863),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4533),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA ALMAGUATE",
                             Via = "T"
@@ -963,7 +1001,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 33,
                             Abreviatura = "G7",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1864),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4534),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA ALCORSA",
                             Via = "T"
@@ -972,7 +1010,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 34,
                             Abreviatura = "G8",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1867),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4537),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA CENTRALSA",
                             Via = "T"
@@ -981,7 +1019,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 35,
                             Abreviatura = "H6",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1869),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4539),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA INTEGRADA CORINTO",
                             Via = "T"
@@ -990,7 +1028,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 36,
                             Abreviatura = "H7",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1870),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4541),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA INTEGRADA AGUA CALIENTE",
                             Via = "T"
@@ -999,7 +1037,7 @@ namespace SAESoft.Migrations
                         {
                             IdAduana = 37,
                             Abreviatura = "H8",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1872),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4542),
                             IdUsuarioCreacion = 1,
                             Nombre = "ADUANA INTEGRADA EL FLORIDO",
                             Via = "T"
@@ -1123,7 +1161,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdGrupo = 1,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1303),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3632),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "EMPRESA"
@@ -1131,7 +1169,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdGrupo = 2,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1309),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3638),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "FORWARDER"
@@ -1139,7 +1177,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdGrupo = 3,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1311),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3640),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "DESTINO"
@@ -1147,7 +1185,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdGrupo = 4,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1312),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3642),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "MODALIDAD"
@@ -1155,7 +1193,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdGrupo = 5,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1314),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3643),
                             IdModulo = 3,
                             IdUsuarioCreacion = 1,
                             Nombre = "ALMACENADORA"
@@ -1237,7 +1275,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 1,
                             Descripcion = "Ingreso Inicial",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1946),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4617),
                             IdUsuarioCreacion = 1,
                             Via = "M",
                             orden = 1L
@@ -1246,7 +1284,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 2,
                             Descripcion = "Entrega de Datos a Digitador",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1949),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4620),
                             IdUsuarioCreacion = 1,
                             Via = "M",
                             orden = 2L
@@ -1255,7 +1293,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 3,
                             Descripcion = "Elaborar Póliza",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1951),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4622),
                             IdUsuarioCreacion = 1,
                             Via = "M",
                             orden = 3L
@@ -1264,7 +1302,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 4,
                             Descripcion = "Enviar Póliza a Puerto",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1952),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4624),
                             IdUsuarioCreacion = 1,
                             Via = "M",
                             orden = 4L
@@ -1273,7 +1311,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 5,
                             Descripcion = "ATC y Aduana",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1954),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4625),
                             IdUsuarioCreacion = 1,
                             Via = "M",
                             orden = 5L
@@ -1282,7 +1320,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 6,
                             Descripcion = "Documentos a Transportista",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1956),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4628),
                             IdUsuarioCreacion = 1,
                             Via = "M",
                             orden = 6L
@@ -1291,7 +1329,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 7,
                             Descripcion = "Llegada a Fábrica",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1958),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4629),
                             IdUsuarioCreacion = 1,
                             Via = "M",
                             orden = 7L
@@ -1300,7 +1338,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 8,
                             Descripcion = "Salida de Fábrica",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1959),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4632),
                             IdUsuarioCreacion = 1,
                             Via = "M",
                             orden = 8L
@@ -1309,7 +1347,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 9,
                             Descripcion = "Finalizado",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1961),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4633),
                             IdUsuarioCreacion = 1,
                             Via = "M",
                             orden = 9L
@@ -1318,7 +1356,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 10,
                             Descripcion = "Ingreso Inicial",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1964),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4636),
                             IdUsuarioCreacion = 1,
                             Via = "A",
                             orden = 1L
@@ -1327,7 +1365,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 11,
                             Descripcion = "Entrega de Datos a Digitador",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1965),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4638),
                             IdUsuarioCreacion = 1,
                             Via = "A",
                             orden = 2L
@@ -1336,43 +1374,43 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 12,
                             Descripcion = "Elaborar Póliza",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1967),
-                            IdUsuarioCreacion = 1,
-                            Via = "A",
-                            orden = 2L
-                        },
-                        new
-                        {
-                            IdImportStatus = 13,
-                            Descripcion = "Enviar Póliza Aeropuerto",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1968),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4639),
                             IdUsuarioCreacion = 1,
                             Via = "A",
                             orden = 3L
                         },
                         new
                         {
-                            IdImportStatus = 14,
-                            Descripcion = "Llegada a Fabrica",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1970),
+                            IdImportStatus = 13,
+                            Descripcion = "Enviar Póliza Aeropuerto",
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4641),
                             IdUsuarioCreacion = 1,
                             Via = "A",
                             orden = 4L
                         },
                         new
                         {
-                            IdImportStatus = 15,
-                            Descripcion = "Finalizado",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1971),
+                            IdImportStatus = 14,
+                            Descripcion = "Llegada a Fabrica",
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4643),
                             IdUsuarioCreacion = 1,
                             Via = "A",
                             orden = 5L
                         },
                         new
                         {
+                            IdImportStatus = 15,
+                            Descripcion = "Finalizado",
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4645),
+                            IdUsuarioCreacion = 1,
+                            Via = "A",
+                            orden = 6L
+                        },
+                        new
+                        {
                             IdImportStatus = 16,
                             Descripcion = "Ingreso Inicial",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1973),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4646),
                             IdUsuarioCreacion = 1,
                             Via = "T",
                             orden = 1L
@@ -1381,7 +1419,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 17,
                             Descripcion = "Entrega de Datos a Digitador",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1975),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4648),
                             IdUsuarioCreacion = 1,
                             Via = "T",
                             orden = 2L
@@ -1390,7 +1428,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 18,
                             Descripcion = "Elaborar Póliza",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1977),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4650),
                             IdUsuarioCreacion = 1,
                             Via = "T",
                             orden = 3L
@@ -1399,7 +1437,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 19,
                             Descripcion = "Enviar Póliza",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1978),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4652),
                             IdUsuarioCreacion = 1,
                             Via = "T",
                             orden = 4L
@@ -1408,7 +1446,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 20,
                             Descripcion = "Llegada a Almacenadora",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1980),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4653),
                             IdUsuarioCreacion = 1,
                             Via = "T",
                             orden = 5L
@@ -1417,7 +1455,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 21,
                             Descripcion = "Llegada a Fabrica",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1982),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4655),
                             IdUsuarioCreacion = 1,
                             Via = "T",
                             orden = 6L
@@ -1426,7 +1464,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 22,
                             Descripcion = "Finalizado",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1983),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4656),
                             IdUsuarioCreacion = 1,
                             Via = "T",
                             orden = 7L
@@ -1435,7 +1473,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 23,
                             Descripcion = "Cambio ETA",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1985),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4658),
                             IdUsuarioCreacion = 1,
                             Via = "O",
                             orden = 0L
@@ -1444,7 +1482,7 @@ namespace SAESoft.Migrations
                         {
                             IdImportStatus = 24,
                             Descripcion = "Cambio Destino",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1986),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4660),
                             IdUsuarioCreacion = 1,
                             Via = "O",
                             orden = 0L
@@ -1512,9 +1550,6 @@ namespace SAESoft.Migrations
 
                     b.Property<decimal?>("Mora")
                         .HasColumnType("money");
-
-                    b.Property<bool>("SelectivoRojo")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Via")
                         .IsRequired()
@@ -1584,7 +1619,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 1,
                             Descripcion = "SEABOARD",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1344),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3681),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1592,7 +1627,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 2,
                             Descripcion = "ONE LINE ",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1347),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3684),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1600,7 +1635,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 3,
                             Descripcion = "CROWLEY",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1349),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3686),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1608,7 +1643,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 4,
                             Descripcion = "MAERSK",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1351),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3688),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1616,7 +1651,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 5,
                             Descripcion = "EVERGREEN",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1352),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3689),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1624,7 +1659,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 6,
                             Descripcion = "HYUNDAI",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1355),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3692),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1632,7 +1667,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 7,
                             Descripcion = "CHIQUITA",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1356),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3694),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1640,7 +1675,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 8,
                             Descripcion = "WAN HAI",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1358),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3695),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1648,7 +1683,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 9,
                             Descripcion = "HMM GLOBAL",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1359),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3697),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1656,7 +1691,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 10,
                             Descripcion = "ATLANTIC",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1362),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3700),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1664,7 +1699,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 11,
                             Descripcion = "SEALAND",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1364),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3701),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1672,7 +1707,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 12,
                             Descripcion = "CMA CGM",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1365),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3703),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1680,7 +1715,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 13,
                             Descripcion = "EXPEDITORS",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1367),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3704),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1688,7 +1723,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 14,
                             Descripcion = "YANG MIN",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1369),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3706),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1696,7 +1731,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 15,
                             Descripcion = "TRANSPORTES TRANSREYES",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1370),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3707),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1704,7 +1739,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 16,
                             Descripcion = "CENTRASERVI S.A. DE C.V",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1372),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3709),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1712,7 +1747,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 17,
                             Descripcion = "TRANSPORTES LOS ROBLES",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1373),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3710),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1720,7 +1755,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 18,
                             Descripcion = "LOGISTRANS S.A.",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1378),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3713),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1728,7 +1763,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 19,
                             Descripcion = "TRANSPORTES VILLEDA",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1380),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3714),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1736,7 +1771,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 20,
                             Descripcion = "INTERNATIONAL CARGO",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1382),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3716),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1744,7 +1779,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 21,
                             Descripcion = "CROWLEY LOGISTIC",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1383),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3717),
                             IdGrupo = 1,
                             IdUsuarioCreacion = 1
                         },
@@ -1752,7 +1787,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 22,
                             Descripcion = "BLUE LOGISTC ",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1385),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3719),
                             IdGrupo = 2,
                             IdUsuarioCreacion = 1
                         },
@@ -1760,7 +1795,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 23,
                             Descripcion = "DHL",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1387),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3720),
                             IdGrupo = 2,
                             IdUsuarioCreacion = 1
                         },
@@ -1768,7 +1803,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 24,
                             Descripcion = "DONGSUE",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1388),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3722),
                             IdGrupo = 2,
                             IdUsuarioCreacion = 1
                         },
@@ -1776,7 +1811,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 25,
                             Descripcion = "AVIANCA ",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1390),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3724),
                             IdGrupo = 2,
                             IdUsuarioCreacion = 1
                         },
@@ -1784,7 +1819,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 26,
                             Descripcion = "TACA INTERNACIONAL",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1391),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3725),
                             IdGrupo = 2,
                             IdUsuarioCreacion = 1
                         },
@@ -1792,7 +1827,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 27,
                             Descripcion = "FEDEX",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1393),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3727),
                             IdGrupo = 2,
                             IdUsuarioCreacion = 1
                         },
@@ -1800,7 +1835,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 28,
                             Descripcion = "BODEGA ACCESORIOS",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1394),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3728),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1808,7 +1843,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 29,
                             Descripcion = "BODEGA DE STOCKS",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1396),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3730),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1816,7 +1851,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 30,
                             Descripcion = "BODEGA DE HILO PALIN",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1397),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3732),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1824,7 +1859,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 31,
                             Descripcion = "CENTEXSA 2",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1400),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3733),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1832,7 +1867,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 32,
                             Descripcion = "HANAH TRADING",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1401),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3735),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1840,7 +1875,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 33,
                             Descripcion = "CENTEXSA",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1403),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3737),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1848,7 +1883,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 34,
                             Descripcion = "JS TEXTILES",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1405),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3739),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1856,7 +1891,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 35,
                             Descripcion = "J.W.TEXTILES",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1407),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3741),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1864,7 +1899,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 36,
                             Descripcion = "JJ TRADING",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1408),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3742),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1872,7 +1907,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 37,
                             Descripcion = "K&H",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1410),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3744),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1880,7 +1915,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 38,
                             Descripcion = "KNITOPIA , S.A.",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1413),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3745),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1888,7 +1923,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 39,
                             Descripcion = "KOA MODAS",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1415),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3747),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1896,7 +1931,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 40,
                             Descripcion = "K.P TEXTILE",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1417),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3748),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1904,7 +1939,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 41,
                             Descripcion = "PANTEX",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1419),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3750),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1912,7 +1947,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 42,
                             Descripcion = "S&G",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1420),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3751),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1920,7 +1955,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 43,
                             Descripcion = "SAE-A TEXPIA",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1422),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3753),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1928,7 +1963,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 44,
                             Descripcion = "SAE-A TEXPIA 2",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1423),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3754),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1936,7 +1971,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 45,
                             Descripcion = "SAE-A TEXPÍA 3",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1425),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3756),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1944,7 +1979,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 46,
                             Descripcion = "TEXSION",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1426),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3758),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1952,7 +1987,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 47,
                             Descripcion = "TEXTILES CHANG WOO",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1428),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3759),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1960,7 +1995,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 48,
                             Descripcion = "WINNERS",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1429),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3761),
                             IdGrupo = 3,
                             IdUsuarioCreacion = 1
                         },
@@ -1968,7 +2003,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 49,
                             Descripcion = "MI",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1431),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3763),
                             IdGrupo = 4,
                             IdUsuarioCreacion = 1
                         },
@@ -1976,7 +2011,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 50,
                             Descripcion = "ID",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1432),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3765),
                             IdGrupo = 4,
                             IdUsuarioCreacion = 1
                         },
@@ -1984,7 +2019,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 51,
                             Descripcion = "MA",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1434),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3767),
                             IdGrupo = 4,
                             IdUsuarioCreacion = 1
                         },
@@ -1992,7 +2027,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 52,
                             Descripcion = "DV",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1435),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3769),
                             IdGrupo = 4,
                             IdUsuarioCreacion = 1
                         },
@@ -2000,7 +2035,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 53,
                             Descripcion = "DI",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1437),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3770),
                             IdGrupo = 4,
                             IdUsuarioCreacion = 1
                         },
@@ -2008,7 +2043,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 54,
                             Descripcion = "MQ",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1438),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3772),
                             IdGrupo = 4,
                             IdUsuarioCreacion = 1
                         },
@@ -2016,7 +2051,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 55,
                             Descripcion = "DS",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1440),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3774),
                             IdGrupo = 4,
                             IdUsuarioCreacion = 1
                         },
@@ -2024,7 +2059,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 56,
                             Descripcion = "ALMAGUATE",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1441),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3776),
                             IdGrupo = 5,
                             IdUsuarioCreacion = 1
                         },
@@ -2032,7 +2067,7 @@ namespace SAESoft.Migrations
                         {
                             IdNombre = 57,
                             Descripcion = "ALSERSA",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1444),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3778),
                             IdGrupo = 5,
                             IdUsuarioCreacion = 1
                         });
@@ -2119,28 +2154,35 @@ namespace SAESoft.Migrations
                         {
                             IdRevision = 1,
                             Descripcion = "SGAIA",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1495),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3829),
                             IdUsuarioCreacion = 1
                         },
                         new
                         {
                             IdRevision = 2,
                             Descripcion = "DIPAFRONT",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1498),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3835),
                             IdUsuarioCreacion = 1
                         },
                         new
                         {
                             IdRevision = 3,
                             Descripcion = "MAGA",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1499),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3836),
                             IdUsuarioCreacion = 1
                         },
                         new
                         {
                             IdRevision = 4,
                             Descripcion = "RAYOS X",
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1500),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3838),
+                            IdUsuarioCreacion = 1
+                        },
+                        new
+                        {
+                            IdRevision = 5,
+                            Descripcion = "SELECTIVO ROJO",
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(3839),
                             IdUsuarioCreacion = 1
                         });
                 });
@@ -2190,7 +2232,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 1,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1522),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4053),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "ANTEX KNITTING MILLS",
@@ -2200,7 +2242,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 2,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1525),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4057),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "BOHOTEX CO, LTD",
@@ -2210,7 +2252,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 3,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1527),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4059),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "BROS MACAO COMERCIAL",
@@ -2220,7 +2262,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 4,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1529),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4061),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "CHAKIM SRL",
@@ -2230,7 +2272,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 5,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1530),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4063),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "CHINA JUNYE TEXTILE",
@@ -2240,7 +2282,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 6,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1533),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4069),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "COLOR & TOUCH VINA CO.,LTD",
@@ -2250,7 +2292,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 7,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1535),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4071),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "DAP AMERICA INC",
@@ -2260,7 +2302,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 8,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1537),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4072),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "DONGGUAN TEXWINCA",
@@ -2270,7 +2312,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 9,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1538),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4074),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "HENIX FAR EAST",
@@ -2280,7 +2322,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 10,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1541),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4077),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "JUNGWOO VINA",
@@ -2290,7 +2332,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 11,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1543),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4079),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "KAN HIM PIECE",
@@ -2300,7 +2342,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 12,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1545),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4081),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "KEER AMERICA",
@@ -2310,7 +2352,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 13,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1547),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4082),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "MAINETTI EASTERN CHINA",
@@ -2320,7 +2362,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 14,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1549),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4084),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "MANH DAT MANUFACTURE",
@@ -2330,7 +2372,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 15,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1550),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4086),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "NICE DYEING FACTORY",
@@ -2340,7 +2382,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 16,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1552),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4088),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "OAK HNI",
@@ -2350,7 +2392,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 17,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1554),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4090),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "OCEAN NETWORK EXPRESS",
@@ -2360,7 +2402,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 18,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1556),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4092),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "PACIFIC TEXTILES",
@@ -2370,7 +2412,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 19,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1558),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4094),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "PARKDALE MILLS",
@@ -2380,7 +2422,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 20,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1560),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4097),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "PHU BAI SPINNING MILL",
@@ -2390,7 +2432,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 21,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1562),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4099),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "PT TOKAI TEXPRINT",
@@ -2400,7 +2442,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 22,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1563),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4100),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "PT. WIN TEXTILE",
@@ -2410,7 +2452,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 23,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1565),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4102),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "S&H GLOBAL, S.A.",
@@ -2420,7 +2462,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 24,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1567),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4104),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "SAE-A DOMINICANA",
@@ -2430,7 +2472,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 25,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1569),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4106),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "SAE-A EINS",
@@ -2440,7 +2482,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 26,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1571),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4107),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "SAE-A SPINNING, S.A.",
@@ -2450,7 +2492,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 27,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1572),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4109),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SAE-A TRADING",
@@ -2460,7 +2502,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 28,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1575),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4111),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "SAMIL VINA",
@@ -2470,7 +2512,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 29,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1577),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4113),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "SEJIN SILICONE USA",
@@ -2480,7 +2522,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 30,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1578),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4115),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "SEWANG VINA",
@@ -2490,7 +2532,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 31,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1580),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4116),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "SHAOXING QIONGHUA TRADING CO.,LTD",
@@ -2500,7 +2542,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 32,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1582),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4118),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "SUNG BU VINA",
@@ -2510,7 +2552,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 33,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1584),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4120),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "SUNGPIL KANG",
@@ -2520,7 +2562,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 34,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1586),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4123),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "VN JUNGWOO CHINA",
@@ -2530,7 +2572,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 35,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1588),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4124),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "YAMATO USA",
@@ -2540,7 +2582,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 36,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1590),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4127),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "YANG JI INTERNATIONAL",
@@ -2550,7 +2592,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 37,
                             Aereo = true,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1592),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4129),
                             IdUsuarioCreacion = 1,
                             Maritimo = false,
                             Nombre = "YKK VIETNAM",
@@ -2560,7 +2602,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 38,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1594),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4130),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "ACHROMA",
@@ -2570,7 +2612,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 39,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1595),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4132),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "ALVANON HK LTD",
@@ -2580,7 +2622,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 40,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1597),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4134),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "ALPINE",
@@ -2590,7 +2632,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 41,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1598),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4136),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "BRAND ID HK",
@@ -2600,7 +2642,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 42,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1600),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4137),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "BROS EASTERN CO",
@@ -2610,7 +2652,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 43,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1602),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4139),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "AVERY DENNISON",
@@ -2620,7 +2662,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 44,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1604),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4141),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "CENTURY INTERNATIONAL",
@@ -2630,7 +2672,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 45,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1606),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4142),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "BUHLER QUALITY YARNS CORP",
@@ -2640,7 +2682,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 46,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1608),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4144),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "COLOR SOLUTION",
@@ -2650,7 +2692,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 47,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1610),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4146),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "CONG TY TNHH",
@@ -2660,7 +2702,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 48,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1611),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4148),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "CRYSTAL TOWN LIMITED",
@@ -2670,7 +2712,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 49,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1613),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4149),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "CS CENTRAL AMERICA S.A. DE C.V.",
@@ -2680,7 +2722,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 50,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1615),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4151),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "DAEIL GAGONG",
@@ -2690,7 +2732,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 51,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1617),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4153),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "DAESONG LABTECH",
@@ -2700,7 +2742,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 52,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1619),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4154),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "DATACOLOR TECHNOLOGY",
@@ -2710,7 +2752,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 53,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1620),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4157),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "DESERT EMPIRE",
@@ -2720,7 +2762,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 54,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1622),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4159),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "DESICCA, LLCS",
@@ -2730,7 +2772,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 55,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1624),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4160),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "DETAILTEX",
@@ -2740,7 +2782,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 56,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1626),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4162),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "DICKS SPORTING",
@@ -2750,7 +2792,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 57,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1627),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4164),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "DONG HING LABEL",
@@ -2760,7 +2802,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 58,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1629),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4165),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "DURKOPP ADLER",
@@ -2770,7 +2812,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 59,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1631),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4167),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "DYSTAR LP DBA COLOR",
@@ -2780,7 +2822,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 60,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1633),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4169),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "E TEXTINT CORP",
@@ -2790,7 +2832,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 61,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1635),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4171),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "FAVORABLE TECHNOLOGY",
@@ -2800,7 +2842,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 62,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1637),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4172),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "EMBSENSE TEXTILE",
@@ -2810,7 +2852,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 63,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1639),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4174),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "FINE LINE TECHNO",
@@ -2820,7 +2862,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 64,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1640),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4176),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "EMSIG MANUFACTURING",
@@ -2830,7 +2872,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 65,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1642),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4177),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "FLASH GLOBAL GSC",
@@ -2840,7 +2882,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 66,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1652),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4186),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "FRANCIA HELENA YATE",
@@ -2850,7 +2892,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 67,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1654),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4188),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "FREUDENBERG",
@@ -2860,7 +2902,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 68,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1655),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4190),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "GAP INTERNATIONAL",
@@ -2870,7 +2912,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 69,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1657),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4192),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "HASBUN SILHY",
@@ -2880,7 +2922,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 70,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1659),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4194),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "HANSAE INTERNATIONAL",
@@ -2890,7 +2932,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 72,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1661),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4196),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "HHH VIETNAM CO LTD",
@@ -2900,7 +2942,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 73,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1662),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4198),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "INVISIN",
@@ -2910,7 +2952,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 74,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1664),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4199),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "JD LINK INC",
@@ -2920,7 +2962,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 80,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1666),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4201),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "KEUN YONG MACHINERY",
@@ -2930,7 +2972,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 81,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1667),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4203),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "KWIN VIET HAN CO., LTD",
@@ -2940,7 +2982,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 82,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1669),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4205),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "LECTRA SYSTEMES S,A",
@@ -2950,7 +2992,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 83,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1672),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4206),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "LONG JIA HAO",
@@ -2960,7 +3002,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 84,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1673),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4208),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "M TO M COMPORATION",
@@ -2970,7 +3012,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 85,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1675),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4209),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "MAINETTI VIETNAM",
@@ -2980,7 +3022,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 86,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1677),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4211),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "MARUWA CO., LTD",
@@ -2990,7 +3032,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 87,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1678),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4213),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "MEI SHENG ",
@@ -3000,7 +3042,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 88,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1680),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4215),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "NEMTEX S.A. DE C.V.",
@@ -3010,7 +3052,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 89,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1682),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4216),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "NEXGEN PACKAGING",
@@ -3020,7 +3062,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 90,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1683),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4218),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "OAK HNF",
@@ -3030,7 +3072,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 91,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1685),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4221),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "OCTANES",
@@ -3040,7 +3082,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 92,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1687),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4222),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "OPTIMER BRANDS",
@@ -3050,7 +3092,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 93,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1689),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4224),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "ORDELY INDUSTRIAL",
@@ -3060,7 +3102,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 94,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1691),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4226),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "PAXAR CHINA LIMITED",
@@ -3070,7 +3112,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 95,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1692),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4227),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "PETTENATI CENTRO",
@@ -3080,7 +3122,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 96,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1694),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4354),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "PRIDE PERFORMANCE",
@@ -3090,7 +3132,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 97,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1696),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4356),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "PT ANYTAPE INDO",
@@ -3100,7 +3142,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 98,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1697),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4357),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "R-PAC VIETNAM",
@@ -3110,7 +3152,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 99,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1700),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4359),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "S&S INDUSTRIES, S DE R.L",
@@ -3120,7 +3162,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 100,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1701),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4361),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SAE A TECHNOTEX",
@@ -3130,7 +3172,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 101,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1703),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4363),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SAE-A SPINNING, S.R.L",
@@ -3140,7 +3182,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 102,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1705),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4364),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SAE-A TEXTUFIL",
@@ -3150,7 +3192,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 104,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1707),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4366),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SAE-A VIETNAM",
@@ -3160,7 +3202,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 105,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1708),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4368),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SHINING LABELS",
@@ -3170,7 +3212,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 106,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1710),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4370),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SILVER PRINTING",
@@ -3180,7 +3222,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 107,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1712),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4371),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SML DOMINICANA",
@@ -3190,7 +3232,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 108,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1713),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4374),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SML HONG KONG ",
@@ -3200,7 +3242,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 109,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1715),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4375),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SML VIETNAM",
@@ -3210,7 +3252,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 110,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1717),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4381),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SOJI COLORWORKS",
@@ -3220,7 +3262,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 111,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1718),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4383),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "STAPROS INDUSTRIAL",
@@ -3230,7 +3272,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 112,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1720),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4384),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SUNLINE",
@@ -3240,7 +3282,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 113,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1722),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4386),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SWISSTEX DIRECT",
@@ -3250,7 +3292,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 114,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1724),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4388),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "SYNIGENCE TRADING",
@@ -3260,7 +3302,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 115,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1725),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4390),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "TEXHONG ",
@@ -3270,7 +3312,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 116,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1728),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4392),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "UNITED TEXTILES OF AMERICA S. DE R.L. DE C.V.",
@@ -3280,7 +3322,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 117,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1730),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4393),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "UTEXA",
@@ -3290,7 +3332,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 118,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1732),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4395),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "WHA IL VINA",
@@ -3300,7 +3342,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 119,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1734),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4397),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "WILSON GARMENT",
@@ -3310,7 +3352,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 120,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1736),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4398),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "ZABIN INDUSTRIES",
@@ -3320,7 +3362,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 121,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1737),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4400),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "ZHAOQING SHIRFERLY",
@@ -3330,7 +3372,7 @@ namespace SAESoft.Migrations
                         {
                             IdShipper = 122,
                             Aereo = false,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1739),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4402),
                             IdUsuarioCreacion = 1,
                             Maritimo = true,
                             Nombre = "ZHEJIANG JIAYE",
@@ -3377,7 +3419,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdTerminal = 1,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1910),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4579),
                             IdUsuarioCreacion = 1,
                             Nombre = "TCQ",
                             Via = "M"
@@ -3385,7 +3427,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdTerminal = 2,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1914),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4583),
                             IdUsuarioCreacion = 1,
                             Nombre = "TPQ",
                             Via = "M"
@@ -3393,7 +3435,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdTerminal = 3,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1916),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4584),
                             IdUsuarioCreacion = 1,
                             Nombre = "STC",
                             Via = "M"
@@ -3401,7 +3443,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdTerminal = 4,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1917),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4586),
                             IdUsuarioCreacion = 1,
                             Nombre = "PB",
                             Via = "M"
@@ -3409,7 +3451,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdTerminal = 5,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1919),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4587),
                             IdUsuarioCreacion = 1,
                             Nombre = "TEA",
                             Via = "A"
@@ -3417,7 +3459,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdTerminal = 6,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1921),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4590),
                             IdUsuarioCreacion = 1,
                             Nombre = "TCU",
                             Via = "A"
@@ -3425,7 +3467,7 @@ namespace SAESoft.Migrations
                         new
                         {
                             IdTerminal = 7,
-                            FechaCreacion = new DateTime(2023, 2, 1, 15, 53, 36, 460, DateTimeKind.Local).AddTicks(1923),
+                            FechaCreacion = new DateTime(2023, 2, 3, 15, 16, 28, 282, DateTimeKind.Local).AddTicks(4591),
                             IdUsuarioCreacion = 1,
                             Nombre = "TDL",
                             Via = "A"

@@ -49,8 +49,6 @@ namespace SAESoft.Models.Importaciones
         [ForeignKey("IdAlmacenadora")]
         public virtual Nombre Almacenadora { get; set; } = null!;
         public Boolean Consolidado { get; set; } = false;
-
-        public Boolean SelectivoRojo { get; set; } = false;
         public int? IdUsuario { get; set; }
         [ForeignKey("IdUsuario")]
         public virtual Usuario Usuario { get; set; } = null!;

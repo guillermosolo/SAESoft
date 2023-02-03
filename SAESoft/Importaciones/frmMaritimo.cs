@@ -130,7 +130,6 @@ namespace SAESoft.Importaciones
             habilitarFormulario(this, true);
             limpiarFormulario(this);
             dt.Rows.Clear();
-            tsSelectivo.Checked = true;
             cboShipper.Focus();
         }
 
@@ -188,7 +187,6 @@ namespace SAESoft.Importaciones
             else
                 cboForwarder.SelectedIndex = 0;
             dtpETA.Value = rs[CurrentIndex].ETA;
-            tsSelectivo.Checked = !rs[CurrentIndex].SelectivoRojo;
             cboTerminal.SelectedValue = rs[CurrentIndex].IdTerminal;
             cboAduana.SelectedValue = rs[CurrentIndex].IdAduana;
             lsbBL.DataSource = rs[CurrentIndex].BL.ToList();
@@ -303,7 +301,6 @@ namespace SAESoft.Importaciones
                                     ETA = dtpETA.Value,
                                     IdTerminal = Convert.ToInt32(cboTerminal.SelectedValue),
                                     IdAduana = Convert.ToInt32(cboAduana.SelectedValue),
-                                    SelectivoRojo = !tsSelectivo.Checked,
                                     Consolidado = tsConsolidado.Checked,
                                     IdImportStatus = db.ImportStatus.FirstOrDefault(i => i.Via == 'M' && i.orden == 1).IdImportStatus,
                                     FechaCreacion = DatosServer.FechaServer(),
@@ -390,7 +387,6 @@ namespace SAESoft.Importaciones
                                     rs[CurrentIndex].IdDestino = Convert.ToInt32(cboDestino.SelectedValue);
                                 else if (rs[CurrentIndex].IdDestino != null)
                                     throw new Exception("No se puede cambiar el destino.");
-                                rs[CurrentIndex].SelectivoRojo = !tsSelectivo.Checked;
                                 rs[CurrentIndex].ETA = dtpETA.Value;
                                 rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
                                 rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
@@ -779,7 +775,6 @@ namespace SAESoft.Importaciones
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             dtpETA.Enabled = true;
             cboDestino.Enabled = true;
-            tsSelectivo.Enabled = true;
             if (clbRevisiones.CheckedItems.Count == 0)
                 clbRevisiones.Enabled = true;
             dtpETA.Focus();
