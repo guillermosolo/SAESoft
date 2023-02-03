@@ -99,7 +99,7 @@ namespace SAESoft.AdministracionSistema
                             rs.Add(modulo);
                             CurrentIndex = rs.Count - 1;
                             despliegaDatos();
-                            MessageBox.Show("Usuario Grabado Exitosamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Módulo Grabado Exitosamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         catch (DbUpdateException ex)
                         {

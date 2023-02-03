@@ -23,7 +23,7 @@ namespace SAESoft.Models.Importaciones
         public int IdNaviera { get; set; }
         [ForeignKey("IdNaviera")]
         public virtual Nombre Naviera { get; set; } = null!;
-        public int IdForwarder { get; set; }
+        public int? IdForwarder { get; set; }
         [ForeignKey("IdForwarder")]
         public virtual Nombre Forwarder { get; set; } = null!;
         public virtual ICollection<Contenedor> Contenedores { get; set; } = null!;
@@ -31,7 +31,7 @@ namespace SAESoft.Models.Importaciones
         [ForeignKey("IdDestino")]
         public virtual Nombre Destino { get; set; } = null!;
         public DateTime ETA { get; set; }
-        public int IdTerminal { get; set; }
+        public int? IdTerminal { get; set; }
         [ForeignKey("IdTerminal")]
         public virtual Nombre Terminal { get; set; } = null!;
         public virtual ICollection<Revision> Revisiones { get; set; } = null!;

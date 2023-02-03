@@ -1,6 +1,7 @@
 ﻿using FontAwesome.Sharp;
 using SAESoft.Models;
 using static SAESoft.Cache.UserData;
+using SAESoft.Models.Importaciones;
 
 namespace SAESoft.Utilitarios
 {
@@ -89,7 +90,7 @@ namespace SAESoft.Utilitarios
         {
             foreach (Control c in cont.Controls)
             {
-                if (c is TextBox || c is ComboBox || c is CheckBox || c is NumericUpDown || c is DateTimePicker || c is toggleSwitch || c is DataGridView || c is CheckedListBox)
+                if (c is TextBox || c is ComboBox || c is CheckBox || c is NumericUpDown || c is DateTimePicker || c is toggleSwitch || c is DataGridView || c is CheckedListBox || c is RadioButton)
                 {
                     if (c.Name != "txtId")
                     {
@@ -190,13 +191,26 @@ namespace SAESoft.Utilitarios
                 ((IconButton)sender).IconColor = Color.DarkGray;
         }
 
-        public static void llenarNombres(ComboBox c,string g)
+        public static void llenarNombres(ComboBox c,string g,Boolean ninguno = false)
         {
-            using (SAESoftContext db = new SAESoftContext())
+            if (ninguno)
             {
-                c.DataSource = db.Nombres.Where(n=>n.Grupo.Nombre ==g).OrderBy(n=>n.Descripcion).ToList();
-                c.DisplayMember = "Descripcion";
-                c.ValueMember = "IdNombre";
+                using (SAESoftContext db = new SAESoftContext())
+                {
+                    var listado = db.Nombres.Where(n => n.Grupo.Nombre == g).OrderBy(n => n.Descripcion).ToList();
+                    listado.Insert(0, new Nombre { IdNombre = 0, Descripcion = "(NINGUNO)" });
+                    c.DataSource = listado;
+                    c.DisplayMember = "Descripcion";
+                    c.ValueMember = "IdNombre";
+                }
+            } else
+            {
+                using (SAESoftContext db = new SAESoftContext())
+                {
+                    c.DataSource = db.Nombres.Where(n => n.Grupo.Nombre == g).OrderBy(n => n.Descripcion).ToList();
+                    c.DisplayMember = "Descripcion";
+                    c.ValueMember = "IdNombre";
+                }
             }
         }
     }

@@ -71,7 +71,7 @@ namespace SAESoft.AdministracionSistema
                             rs.Add(permiso);
                             CurrentIndex = rs.Count - 1;
                             despliegaDatos();
-                            MessageBox.Show("Usuario Grabado Exitosamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Permiso Grabado Exitosamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         catch (DbUpdateException ex)
                         {

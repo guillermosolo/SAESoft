@@ -18,6 +18,12 @@ namespace SAESoft.Utilitarios
             return new Regex(pattern, RegexOptions.IgnoreCase);
         }
 
+        public static Regex plate_validation()
+        {
+            string pattern = @"^[PACUM][-][0-9]{3}[a-z]{3}$";
+            return new Regex(pattern, RegexOptions.IgnoreCase);
+        }
+
         public static Boolean decimales(Object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&

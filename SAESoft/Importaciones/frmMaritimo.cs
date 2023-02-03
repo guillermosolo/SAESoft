@@ -116,9 +116,8 @@ namespace SAESoft.Importaciones
                 clbRevisiones.ValueMember = "IdRevision";
             }
             llenarNombres(cboNaviera, "EMPRESA");
-            llenarNombres(cboForwarder, "FORWARDER");
-            llenarNombres(cboDestino, "DESTINO");
-            cboDestino.SelectedIndex = -1;
+            llenarNombres(cboForwarder, "FORWARDER",true);
+            llenarNombres(cboDestino, "DESTINO",true);
         }
 
 
@@ -131,7 +130,6 @@ namespace SAESoft.Importaciones
             habilitarFormulario(this, true);
             limpiarFormulario(this);
             dt.Rows.Clear();
-            cboDestino.SelectedIndex = -1;
             tsSelectivo.Checked = true;
             cboShipper.Focus();
         }
@@ -163,7 +161,6 @@ namespace SAESoft.Importaciones
                 CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "MARITIMO");
                 limpiarFormulario(this);
                 dt.Rows.Clear();
-                cboDestino.SelectedIndex = -1;
             }
             habilitarFormulario(this, false);
         }
@@ -182,11 +179,14 @@ namespace SAESoft.Importaciones
             tsConsolidado.Checked = rs[CurrentIndex].Consolidado;
             cboShipper.SelectedValue = rs[CurrentIndex].IdShipper;
             cboNaviera.SelectedValue = rs[CurrentIndex].IdNaviera;
-            cboForwarder.SelectedValue = rs[CurrentIndex].IdForwarder;
             if (rs[CurrentIndex].IdDestino != null)
                 cboDestino.SelectedValue = rs[CurrentIndex].IdDestino;
             else
-                cboDestino.SelectedIndex = -1;
+                cboDestino.SelectedIndex = 0;
+            if (rs[CurrentIndex].IdForwarder != null)
+                cboForwarder.SelectedValue = rs[CurrentIndex].IdForwarder;
+            else
+                cboForwarder.SelectedIndex = 0;
             dtpETA.Value = rs[CurrentIndex].ETA;
             tsSelectivo.Checked = !rs[CurrentIndex].SelectivoRojo;
             cboTerminal.SelectedValue = rs[CurrentIndex].IdTerminal;
@@ -300,7 +300,6 @@ namespace SAESoft.Importaciones
                                     IdShipper = Convert.ToInt32(cboShipper.SelectedValue),
                                     Via = 'M',
                                     IdNaviera = Convert.ToInt32(cboNaviera.SelectedValue),
-                                    IdForwarder = Convert.ToInt32(cboForwarder.SelectedValue),
                                     ETA = dtpETA.Value,
                                     IdTerminal = Convert.ToInt32(cboTerminal.SelectedValue),
                                     IdAduana = Convert.ToInt32(cboAduana.SelectedValue),
@@ -310,8 +309,10 @@ namespace SAESoft.Importaciones
                                     FechaCreacion = DatosServer.FechaServer(),
                                     IdUsuarioCreacion = usuarioLogged.IdUsuario,
                                 };
-                                if (cboDestino.SelectedIndex != -1)
+                                if (cboDestino.SelectedIndex != 0)
                                     im.IdDestino = Convert.ToInt32(cboDestino.SelectedValue);
+                                if (cboForwarder.SelectedIndex != 0)
+                                    im.IdForwarder = Convert.ToInt32(cboForwarder.SelectedValue);
                                 db.Importaciones.Add(im);
                                 db.SaveChanges();
                                 rs.Add(im);
@@ -332,7 +333,6 @@ namespace SAESoft.Importaciones
                                 foreach (var item in lsbEquipos.Items)
                                 {
                                     _con.Add(new Contenedor { Numero = item.ToString(), IdImportacion = im.IdImport, FechaCreacion = im.FechaCreacion, IdUsuarioCreacion = im.IdUsuarioCreacion });
-
                                 }
                                 db.BL.AddRange(_bl);
                                 db.Contenedores.AddRange(_con);
@@ -374,19 +374,19 @@ namespace SAESoft.Importaciones
                                 ImportHistorial ih = null;
                                 if (rs[CurrentIndex].ETA != dtpETA.Value)
                                 {
-                                    var status = db.ImportStatus.Where(s => s.IdImportStatus == CambioETAMaritimo).OrderBy(s => s.orden).FirstOrDefault();
+                                    var status = db.ImportStatus.Where(s => s.IdImportStatus == CambioETA).OrderBy(s => s.orden).FirstOrDefault();
                                     ih = new ImportHistorial { IdImport = temp.IdImport, IdImportStatus = status.IdImportStatus, FechaCreacion = DatosServer.FechaServer(), IdUsuarioCreacion = usuarioLogged.IdUsuario };
                                     db.ImportHistorial.Add(ih);
                                     db.SaveChanges();
                                 }
                                 if (rs[CurrentIndex].IdDestino != Convert.ToInt32(cboDestino.SelectedValue) && rs[CurrentIndex].IdDestino != null)
                                 {
-                                    var status = db.ImportStatus.Where(s => s.IdImportStatus == CambioDestinoMaritimo).OrderBy(s => s.orden).FirstOrDefault();
+                                    var status = db.ImportStatus.Where(s => s.IdImportStatus == CambioDestino).OrderBy(s => s.orden).FirstOrDefault();
                                     ih = new ImportHistorial { IdImport = temp.IdImport, IdImportStatus = status.IdImportStatus, FechaCreacion = DatosServer.FechaServer(), IdUsuarioCreacion = usuarioLogged.IdUsuario };
                                     db.ImportHistorial.Add(ih);
                                     db.SaveChanges();
                                 }
-                                if (cboDestino.SelectedIndex != -1)
+                                if (cboDestino.SelectedIndex != 0)
                                     rs[CurrentIndex].IdDestino = Convert.ToInt32(cboDestino.SelectedValue);
                                 else if (rs[CurrentIndex].IdDestino != null)
                                     throw new Exception("No se puede cambiar el destino.");
@@ -456,12 +456,6 @@ namespace SAESoft.Importaciones
             {
                 errorProvider1.SetError(cboNaviera, "No puede estar vacío.");
                 cboNaviera.Focus();
-                return false;
-            }
-            if (cboForwarder.SelectedIndex == -1)
-            {
-                errorProvider1.SetError(cboForwarder, "No puede estar vacío.");
-                cboForwarder.Focus();
                 return false;
             }
             if (cboTerminal.SelectedIndex == -1)
@@ -541,7 +535,7 @@ namespace SAESoft.Importaciones
                                                     .Include(r => r.ImportStatus)
                                                     .Include(r => r.ImportHistorial)
                                                     .ThenInclude(rh => rh.ImportStatus)
-                                                    .Where(b => 1 == 1);
+                                                    .Where(b => b.Via == 'M');
                     if (hasRole(DigitadorImportaciones))
                         queryable = queryable.Where(r => r.IdUsuario == usuarioLogged.IdUsuario);
                     if (!buscar.todos)
@@ -567,7 +561,6 @@ namespace SAESoft.Importaciones
                         MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         limpiarFormulario(this);
                         dt.Rows.Clear();
-                        cboDestino.SelectedIndex = -1;
                         BotonesIniciales(toolStrip1);
                         CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "MARITIMO");
                     }
@@ -595,7 +588,7 @@ namespace SAESoft.Importaciones
         {
             if (e.ClickedItem.Image == null)
             {
-                switch (rs[CurrentIndex].ImportStatus.IdImportStatus)
+                switch (rs[CurrentIndex].IdImportStatus)
                 {
                     case EntregaDigitadorMaritimo - 1:
                         {
@@ -717,6 +710,7 @@ namespace SAESoft.Importaciones
                 }
             }
         }
+
         private void llenarMenu()
         {
             using (SAESoftContext db = new SAESoftContext())

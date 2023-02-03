@@ -421,7 +421,7 @@ namespace SAESoft.AdministracionSistema
                             rs.Add(rol);
                             CurrentIndex = rs.Count - 1;
                             despliegaDatos();
-                            MessageBox.Show("Usuario Grabado Exitosamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Rol Grabado Exitosamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         catch (DbUpdateException ex)
                         {
