@@ -863,7 +863,7 @@ namespace SAESoft.Importaciones
                                 dt.Rows.Clear();
                                 cboDestino.SelectedIndex = -1;
                                 BotonesIniciales(toolStrip1);
-                                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "USUARIOS");
+                                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "AEREO");
                             }
                         }
                         catch (Exception ex)
