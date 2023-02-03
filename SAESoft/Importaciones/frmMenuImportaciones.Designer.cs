@@ -36,12 +36,14 @@
             this.ibtnSalir = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
             this.panelFormularios = new System.Windows.Forms.Panel();
+            this.icbExterno = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.panelMenu.Controls.Add(this.icbExterno);
             this.panelMenu.Controls.Add(this.ibtnAereo);
             this.panelMenu.Controls.Add(this.ibtnMaritimo);
             this.panelMenu.Controls.Add(this.ibtnDashboard);
@@ -166,13 +168,31 @@
             // 
             // panelFormularios
             // 
-            this.panelFormularios.BackgroundImage = global::SAESoft.Properties.Resources.logo_blue;
             this.panelFormularios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panelFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFormularios.Location = new System.Drawing.Point(200, 0);
             this.panelFormularios.Name = "panelFormularios";
             this.panelFormularios.Size = new System.Drawing.Size(600, 450);
             this.panelFormularios.TabIndex = 2;
+            // 
+            // icbExterno
+            // 
+            this.icbExterno.FlatAppearance.BorderSize = 0;
+            this.icbExterno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icbExterno.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.icbExterno.ForeColor = System.Drawing.Color.White;
+            this.icbExterno.IconChar = FontAwesome.Sharp.IconChar.ExternalLink;
+            this.icbExterno.IconColor = System.Drawing.Color.White;
+            this.icbExterno.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.icbExterno.IconSize = 32;
+            this.icbExterno.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icbExterno.Location = new System.Drawing.Point(2, 197);
+            this.icbExterno.Name = "icbExterno";
+            this.icbExterno.Size = new System.Drawing.Size(197, 56);
+            this.icbExterno.TabIndex = 10;
+            this.icbExterno.Text = "Agente Externo";
+            this.icbExterno.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icbExterno.UseVisualStyleBackColor = true;
             // 
             // frmMenuImportaciones
             // 
@@ -199,5 +219,6 @@
         private FontAwesome.Sharp.IconButton ibtnDashboard;
         private FontAwesome.Sharp.IconButton ibtnAereo;
         private FontAwesome.Sharp.IconButton ibtnMaritimo;
+        private FontAwesome.Sharp.IconButton icbExterno;
     }
 }
