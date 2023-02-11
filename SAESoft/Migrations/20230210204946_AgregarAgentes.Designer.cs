@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SAESoft.Models;
 
@@ -11,9 +12,11 @@ using SAESoft.Models;
 namespace SAESoft.Migrations
 {
     [DbContext(typeof(SAESoftContext))]
-    partial class SAESoftContextModelSnapshot : ModelSnapshot
+    [Migration("20230210204946_AgregarAgentes")]
+    partial class AgregarAgentes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -10,7 +10,7 @@ namespace SAESoft.Models
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-           List<Rol> roles = new List<Rol>()
+            List<Rol> roles = new List<Rol>()
             {
                new Rol {IdRol = 1,Nombre = "Super Admin",FechaCreacion = DateTime.Now,IdUsuarioCreacion = 1 },
                new Rol {IdRol = 2,Nombre = "Digitador Importaciones",FechaCreacion=DateTime.Now,IdUsuarioCreacion=1}
@@ -77,7 +77,7 @@ namespace SAESoft.Models
             };
             modelBuilder.Entity<Permiso>().HasData(permisos);
 
-            Rol rol = roles.FirstOrDefault(r => r.IdRol ==1);
+            Rol rol = roles.FirstOrDefault(r => r.IdRol == 1);
             foreach (Permiso p in permisos)
             {
                 modelBuilder.Entity<Rol>()
@@ -177,7 +177,7 @@ namespace SAESoft.Models
                 new Revision{IdRevision = 4, Descripcion = "RAYOS X",FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Revision{IdRevision = 5, Descripcion = "SELECTIVO ROJO",FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
             };
-            modelBuilder.Entity<Revision>().HasData(revisiones);   
+            modelBuilder.Entity<Revision>().HasData(revisiones);
 
             List<Shipper> shippers = new List<Shipper>
             {
@@ -358,31 +358,52 @@ namespace SAESoft.Models
                 new ImportStatus{IdImportStatus = 2,Descripcion="Entrega de Datos a Digitador",orden=2,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus = 3,Descripcion="Elaborar Póliza",orden=3,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus = 4,Descripcion="Enviar Póliza a Puerto",orden=4,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus = 5,Descripcion="ATC y Aduana",orden=5,Via='M',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus = 6,Descripcion ="Documentos a Transportista",orden=6,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus = 7,Descripcion="Llegada a Fábrica",orden=7,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus = 8,Descripcion="Salida de Fábrica",orden=8,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus = 9,Descripcion="Finalizado",orden=9,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 5,Descripcion="Salida de Puerto",orden=5,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 6,Descripcion="ATC y Aduana",orden=6,Via='M',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 7,Descripcion ="Documentos a Transportista",orden=7,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 8,Descripcion="Llegada a Fábrica",orden=8,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 9,Descripcion="Salida de Fábrica",orden=9,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 10,Descripcion="Finalizado",orden=10,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
 
-                new ImportStatus{IdImportStatus =10,Descripcion="Ingreso Inicial",orden=1,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus = 11,Descripcion="Entrega de Datos a Digitador",orden=2,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus =12,Descripcion="Elaborar Póliza",orden=3,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus =13,Descripcion="Enviar Póliza Aeropuerto",orden=4,Via='A',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus =14,Descripcion="Llegada a Fabrica",orden=5,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus =15,Descripcion="Finalizado",orden=6,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =11,Descripcion="Ingreso Inicial",orden=1,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 12,Descripcion="Entrega de Datos a Digitador",orden=2,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =13,Descripcion="Elaborar Póliza",orden=3,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =14,Descripcion="Enviar Póliza Aeropuerto",orden=4,Via='A',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =15,Descripcion="Llegada a Fabrica",orden=5,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =16,Descripcion="Finalizado",orden=6,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
 
-                new ImportStatus{IdImportStatus =16,Descripcion="Ingreso Inicial",orden=1,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus = 17,Descripcion="Entrega de Datos a Digitador",orden=2,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus =18,Descripcion="Elaborar Póliza",orden=3,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus =19,Descripcion="Enviar Póliza",orden=4,Via='T',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus =20,Descripcion="Llegada a Almacenadora",orden=5,Via='T',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus =21,Descripcion="Llegada a Fabrica",orden=6,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus =22,Descripcion="Finalizado",orden=7,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =17,Descripcion="Ingreso Inicial",orden=1,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 18,Descripcion="Entrega de Datos a Digitador",orden=2,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =19,Descripcion="Elaborar Póliza",orden=3,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =20,Descripcion="Enviar Póliza",orden=4,Via='T',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =21,Descripcion="Llegada a Almacenadora",orden=5,Via='T',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =22,Descripcion="Llegada a Fabrica",orden=6,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =23,Descripcion="Finalizado",orden=7,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
 
-                new ImportStatus{IdImportStatus = 23,Descripcion="Cambio ETA",orden = 0,Via = 'O', FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus = 24,Descripcion="Cambio Destino",orden = 0,Via = 'O', FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 24,Descripcion="Cambio ETA",orden = 0,Via = 'O', FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 25,Descripcion="Cambio Destino",orden = 0,Via = 'O', FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
             };
             modelBuilder.Entity<ImportStatus>().HasData(importStatuses);
+
+            List<Agente> agentes = new List<Agente>
+            {
+                new Agente{IdAgente=172,Apellidos="FERNANDEZ RENTERIA",Nombres="CESAR",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+                new Agente{IdAgente=251,Apellidos="TOLEDO CANCINO",Nombres="MARCO AURELIO",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+                new Agente{IdAgente=272,Apellidos="PAZ MORÁN",Nombres="JORGE LUIS",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+                new Agente{IdAgente=264,Apellidos="ARDÓN ALARCÓN",Nombres="DANIEL ABILIO",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+                new Agente{IdAgente=282,Apellidos="JUAREZ ORTIZ",Nombres="JORGE LUIS",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+                new Agente{IdAgente=296,Apellidos="VILLEDA AGUILAR",Nombres="WALTER VINICIO",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+                new Agente{IdAgente=312,Apellidos="VIELMANN GIRON",Nombres="OSCAR ALFONSO",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+                new Agente{IdAgente=322,Apellidos="VELASQUEZ VISQUERRA",Nombres="SERGIO RODOLFO",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+                new Agente{IdAgente=340,Apellidos="DUARTE",Nombres="YADIRA",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+                new Agente{IdAgente=346,Apellidos="VIELMANN ALDANA",Nombres="JOANNA NAYARITH",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+                new Agente{IdAgente=349,Apellidos="MARROQUIN VELIZ",Nombres="ELVIA LETICIA",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+                new Agente{IdAgente=372,Apellidos="DEL ÁGUILA CHIGUICHON",Nombres="ELMER ARNOLDO",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+                new Agente{IdAgente=375,Apellidos="DERAS ORTEGA",Nombres="RODRIGO",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+                new Agente{IdAgente=379,Apellidos="MATA CABRERA",Nombres="ALEJANDRA ISABEL",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
+            };
+            modelBuilder.Entity<Agente>().HasData(agentes);
+
         }
     }
 }

@@ -5,8 +5,8 @@ namespace SAESoft.Importaciones
 {
     public partial class frmMontos : Form
     {
-        public decimal monto=0.00m;
-        public decimal mora=0.00m;
+        public decimal montoA=0.00m;
+        public decimal montoD=0.00m;
         public frmMontos()
         {
             InitializeComponent();
@@ -26,8 +26,8 @@ namespace SAESoft.Importaciones
         {
             if (ValidarFormulario())
             {
-                monto = Convert.ToDecimal(textBox1.Text);
-                mora = Convert.ToDecimal(textBox2.Text);
+                montoA = Convert.ToDecimal(textBox1.Text);
+                montoD = Convert.ToDecimal(textBox2.Text);
                 this.DialogResult= DialogResult.OK;
             } 
         }
@@ -44,6 +44,11 @@ namespace SAESoft.Importaciones
             if (textBox2.Text == "")
                 textBox2.Text = "0.00";
             return true;
+        }
+
+        private void frmMontos_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

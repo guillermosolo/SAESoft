@@ -11,6 +11,7 @@ namespace SAESoft.Importaciones
     public partial class frmPoliza : Form
     {
         public Importacion rs;
+        public List<Contenedor> contenedores;
         DataTable dt = new DataTable();
 
         public frmPoliza(Importacion item)
@@ -25,6 +26,7 @@ namespace SAESoft.Importaciones
             cboBL.ValueMember = "IdBL";
             cboBL.DisplayMember = "Numero";
             llenarNombres(cboModalidad, "MODALIDAD");
+            txtContenedores.Text = string.Join(",",contenedores.Select(x=>x.Numero));
         }
 
         private void estructuraGrid()

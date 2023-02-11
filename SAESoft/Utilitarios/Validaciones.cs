@@ -39,5 +39,14 @@ namespace SAESoft.Utilitarios
             }
             return false;
         }
+
+        public static Boolean enteros (Object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

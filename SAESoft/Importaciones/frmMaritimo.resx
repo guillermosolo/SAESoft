@@ -69,18 +69,429 @@
   <data name="&gt;&gt;toolStripContainer1.BottomToolStripPanel.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cboAgente.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="dgvHistorial.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 492</value>
+  <data name="cboAgente.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="cboAgente.IntegralHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboAgente.Location" type="System.Drawing.Point, System.Drawing">
+    <value>191, 321</value>
+  </data>
+  <data name="cboAgente.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 25</value>
+  </data>
+  <data name="cboAgente.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
+  </data>
+  <data name="&gt;&gt;cboAgente.Name" xml:space="preserve">
+    <value>cboAgente</value>
+  </data>
+  <data name="&gt;&gt;cboAgente.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboAgente.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;cboAgente.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label13.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label13.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 324</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 19</value>
+  </data>
+  <data name="label13.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Agente Autorizado</value>
+  </data>
+  <data name="&gt;&gt;label13.Name" xml:space="preserve">
+    <value>label13</value>
+  </data>
+  <data name="&gt;&gt;label13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label13.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txtValorExtra2.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtValorExtra2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="txtValorExtra2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>401, 222</value>
+  </data>
+  <data name="txtValorExtra2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 24</value>
+  </data>
+  <data name="txtValorExtra2.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="txtValorExtra2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;txtValorExtra2.Name" xml:space="preserve">
+    <value>txtValorExtra2</value>
+  </data>
+  <data name="&gt;&gt;txtValorExtra2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtValorExtra2.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;txtValorExtra2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label12.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label12.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="label12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>239, 225</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 19</value>
+  </data>
+  <data name="label12.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Valor x Día Extra (Q)</value>
+  </data>
+  <data name="&gt;&gt;label12.Name" xml:space="preserve">
+    <value>label12</value>
+  </data>
+  <data name="&gt;&gt;label12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label12.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="chkDocOriginales.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="chkDocOriginales.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkDocOriginales.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="chkDocOriginales.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="chkDocOriginales.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="chkDocOriginales.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkDocOriginales.Location" type="System.Drawing.Point, System.Drawing">
+    <value>492, 201</value>
+  </data>
+  <data name="chkDocOriginales.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 29</value>
+  </data>
+  <data name="chkDocOriginales.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="chkDocOriginales.Text" xml:space="preserve">
+    <value>  Documentos Originales</value>
+  </data>
+  <data name="chkDocOriginales.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="chkDocOriginales.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="&gt;&gt;chkDocOriginales.Name" xml:space="preserve">
+    <value>chkDocOriginales</value>
+  </data>
+  <data name="&gt;&gt;chkDocOriginales.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkDocOriginales.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;chkDocOriginales.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="txtValorExtra.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtValorExtra.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="txtValorExtra.Location" type="System.Drawing.Point, System.Drawing">
+    <value>401, 192</value>
+  </data>
+  <data name="txtValorExtra.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 24</value>
+  </data>
+  <data name="txtValorExtra.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="txtValorExtra.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;txtValorExtra.Name" xml:space="preserve">
+    <value>txtValorExtra</value>
+  </data>
+  <data name="&gt;&gt;txtValorExtra.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtValorExtra.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;txtValorExtra.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label11.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>238, 195</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 19</value>
+  </data>
+  <data name="label11.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Valor x Día Extra (Q)</value>
+  </data>
+  <data name="&gt;&gt;label11.Name" xml:space="preserve">
+    <value>label11</value>
+  </data>
+  <data name="&gt;&gt;label11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="txtDemora.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtDemora.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="txtDemora.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 222</value>
+  </data>
+  <data name="txtDemora.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 24</value>
+  </data>
+  <data name="txtDemora.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="txtDemora.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;txtDemora.Name" xml:space="preserve">
+    <value>txtDemora</value>
+  </data>
+  <data name="&gt;&gt;txtDemora.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDemora.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;txtDemora.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label10.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 225</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 19</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Demora</value>
+  </data>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="txtTiempoLibre.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtTiempoLibre.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="txtTiempoLibre.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 192</value>
+  </data>
+  <data name="txtTiempoLibre.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 24</value>
+  </data>
+  <data name="txtTiempoLibre.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="txtTiempoLibre.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;txtTiempoLibre.Name" xml:space="preserve">
+    <value>txtTiempoLibre</value>
+  </data>
+  <data name="&gt;&gt;txtTiempoLibre.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtTiempoLibre.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;txtTiempoLibre.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 195</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 19</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Tiempo Libre</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="chkConsolidado.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="chkConsolidado.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkConsolidado.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="chkConsolidado.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="chkConsolidado.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="chkConsolidado.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkConsolidado.Location" type="System.Drawing.Point, System.Drawing">
+    <value>329, 3</value>
+  </data>
+  <data name="chkConsolidado.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 29</value>
+  </data>
+  <data name="chkConsolidado.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="chkConsolidado.Text" xml:space="preserve">
+    <value>  Consolidado</value>
+  </data>
+  <data name="chkConsolidado.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="chkConsolidado.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="&gt;&gt;chkConsolidado.Name" xml:space="preserve">
+    <value>chkConsolidado</value>
+  </data>
+  <data name="&gt;&gt;chkConsolidado.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkConsolidado.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;chkConsolidado.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="dgvHistorial.Location" type="System.Drawing.Point, System.Drawing">
+    <value>43, 518</value>
+  </data>
   <data name="dgvHistorial.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
     <value>Vertical</value>
   </data>
   <data name="dgvHistorial.Size" type="System.Drawing.Size, System.Drawing">
     <value>723, 179</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="dgvHistorial.TabIndex" type="System.Int32, mscorlib">
     <value>44</value>
   </data>
@@ -94,6 +505,774 @@
     <value>toolStripContainer1.ContentPanel</value>
   </data>
   <data name="&gt;&gt;dgvHistorial.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;lsbEquipos.Name" xml:space="preserve">
+    <value>lsbEquipos</value>
+  </data>
+  <data name="&gt;&gt;lsbEquipos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lsbEquipos.Parent" xml:space="preserve">
+    <value>grpEquipos</value>
+  </data>
+  <data name="&gt;&gt;lsbEquipos.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtEquipos.Name" xml:space="preserve">
+    <value>txtEquipos</value>
+  </data>
+  <data name="&gt;&gt;txtEquipos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtEquipos.Parent" xml:space="preserve">
+    <value>grpEquipos</value>
+  </data>
+  <data name="&gt;&gt;txtEquipos.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="grpEquipos.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="grpEquipos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>267, 357</value>
+  </data>
+  <data name="grpEquipos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 155</value>
+  </data>
+  <data name="grpEquipos.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="grpEquipos.Text" xml:space="preserve">
+    <value>Equipos</value>
+  </data>
+  <data name="&gt;&gt;grpEquipos.Name" xml:space="preserve">
+    <value>grpEquipos</value>
+  </data>
+  <data name="&gt;&gt;grpEquipos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpEquipos.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;grpEquipos.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;lsbBL.Name" xml:space="preserve">
+    <value>lsbBL</value>
+  </data>
+  <data name="&gt;&gt;lsbBL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lsbBL.Parent" xml:space="preserve">
+    <value>grpBL</value>
+  </data>
+  <data name="&gt;&gt;lsbBL.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtBL.Name" xml:space="preserve">
+    <value>txtBL</value>
+  </data>
+  <data name="&gt;&gt;txtBL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtBL.Parent" xml:space="preserve">
+    <value>grpBL</value>
+  </data>
+  <data name="&gt;&gt;txtBL.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="grpBL.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="grpBL.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 357</value>
+  </data>
+  <data name="grpBL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 155</value>
+  </data>
+  <data name="grpBL.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="grpBL.Text" xml:space="preserve">
+    <value>B.L.</value>
+  </data>
+  <data name="&gt;&gt;grpBL.Name" xml:space="preserve">
+    <value>grpBL</value>
+  </data>
+  <data name="&gt;&gt;grpBL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpBL.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;grpBL.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="cboTerminal.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboTerminal.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="cboTerminal.IntegralHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboTerminal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 260</value>
+  </data>
+  <data name="cboTerminal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 25</value>
+  </data>
+  <data name="cboTerminal.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="&gt;&gt;cboTerminal.Name" xml:space="preserve">
+    <value>cboTerminal</value>
+  </data>
+  <data name="&gt;&gt;cboTerminal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboTerminal.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;cboTerminal.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="cboShipper.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboShipper.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="cboShipper.IntegralHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboShipper.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 40</value>
+  </data>
+  <data name="cboShipper.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 25</value>
+  </data>
+  <data name="cboShipper.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="&gt;&gt;cboShipper.Name" xml:space="preserve">
+    <value>cboShipper</value>
+  </data>
+  <data name="&gt;&gt;cboShipper.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboShipper.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;cboShipper.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;listView1.Name" xml:space="preserve">
+    <value>listView1</value>
+  </data>
+  <data name="&gt;&gt;listView1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listView1.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;listView1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>492, 229</value>
+  </data>
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 283</value>
+  </data>
+  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Archivos de Soporte</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="cboNaviera.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboNaviera.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="cboNaviera.IntegralHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboNaviera.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 71</value>
+  </data>
+  <data name="cboNaviera.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 25</value>
+  </data>
+  <data name="cboNaviera.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="&gt;&gt;cboNaviera.Name" xml:space="preserve">
+    <value>cboNaviera</value>
+  </data>
+  <data name="&gt;&gt;cboNaviera.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboNaviera.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;cboNaviera.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 74</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 19</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Naviera</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;clbRevisiones.Name" xml:space="preserve">
+    <value>clbRevisiones</value>
+  </data>
+  <data name="&gt;&gt;clbRevisiones.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clbRevisiones.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;clbRevisiones.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>492, 14</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 184</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Revisiones</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="cboAduana.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboAduana.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="cboAduana.IntegralHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboAduana.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 290</value>
+  </data>
+  <data name="cboAduana.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 25</value>
+  </data>
+  <data name="cboAduana.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;cboAduana.Name" xml:space="preserve">
+    <value>cboAduana</value>
+  </data>
+  <data name="&gt;&gt;cboAduana.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboAduana.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;cboAduana.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 293</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 19</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Aduana</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 263</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 19</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Terminal</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="dtpETA.CalendarFont" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 12pt</value>
+  </data>
+  <data name="dtpETA.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="dtpETA.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="dtpETA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 161</value>
+  </data>
+  <data name="dtpETA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 24</value>
+  </data>
+  <data name="dtpETA.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="&gt;&gt;dtpETA.Name" xml:space="preserve">
+    <value>dtpETA</value>
+  </data>
+  <data name="&gt;&gt;dtpETA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpETA.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;dtpETA.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 166</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 19</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>ETA</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="cboDestino.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboDestino.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="cboDestino.IntegralHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboDestino.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 131</value>
+  </data>
+  <data name="cboDestino.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 25</value>
+  </data>
+  <data name="cboDestino.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;cboDestino.Name" xml:space="preserve">
+    <value>cboDestino</value>
+  </data>
+  <data name="&gt;&gt;cboDestino.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboDestino.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;cboDestino.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 134</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 19</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Destino</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="cboForwarder.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboForwarder.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="cboForwarder.IntegralHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cboForwarder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 102</value>
+  </data>
+  <data name="cboForwarder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 25</value>
+  </data>
+  <data name="cboForwarder.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;cboForwarder.Name" xml:space="preserve">
+    <value>cboForwarder</value>
+  </data>
+  <data name="&gt;&gt;cboForwarder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboForwarder.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;cboForwarder.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 109</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 19</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Forwarder</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 43</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 19</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Shipper</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="txtId.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtId.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="txtId.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 11</value>
+  </data>
+  <data name="txtId.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 24</value>
+  </data>
+  <data name="txtId.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;txtId.Name" xml:space="preserve">
+    <value>txtId</value>
+  </data>
+  <data name="&gt;&gt;txtId.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtId.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;txtId.ZOrder" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 14</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>22, 19</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>32</value>
+  </data>
+  <data name="toolStripContainer1.ContentPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="toolStripContainer1.ContentPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>804, 720</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.ContentPanel.Name" xml:space="preserve">
+    <value>toolStripContainer1.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.ContentPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripContentPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.ContentPanel.Parent" xml:space="preserve">
+    <value>toolStripContainer1</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.ContentPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="toolStripContainer1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.LeftToolStripPanel.Name" xml:space="preserve">
+    <value>toolStripContainer1.LeftToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.LeftToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.LeftToolStripPanel.Parent" xml:space="preserve">
+    <value>toolStripContainer1</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.LeftToolStripPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="toolStripContainer1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.RightToolStripPanel.Name" xml:space="preserve">
+    <value>toolStripContainer1.RightToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.RightToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.RightToolStripPanel.Parent" xml:space="preserve">
+    <value>toolStripContainer1</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.RightToolStripPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="toolStripContainer1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>804, 759</value>
+  </data>
+  <data name="toolStripContainer1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="toolStripContainer1.Text" xml:space="preserve">
+    <value>toolStripContainer1</value>
+  </data>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="toolStrip1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>315, 39</value>
+  </data>
+  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="toolStrip1.Text" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
+    <value>toolStripContainer1.TopToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.Name" xml:space="preserve">
+    <value>toolStripContainer1.TopToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.Parent" xml:space="preserve">
+    <value>toolStripContainer1</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.Name" xml:space="preserve">
+    <value>toolStripContainer1</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripContainer, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="lsbEquipos.Font" type="System.Drawing.Font, System.Drawing">
@@ -130,7 +1309,7 @@
     <value>6, 26</value>
   </data>
   <data name="txtEquipos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 27</value>
+    <value>161, 24</value>
   </data>
   <data name="txtEquipos.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -145,33 +1324,6 @@
     <value>grpEquipos</value>
   </data>
   <data name="&gt;&gt;txtEquipos.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="grpEquipos.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="grpEquipos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 318</value>
-  </data>
-  <data name="grpEquipos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 155</value>
-  </data>
-  <data name="grpEquipos.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="grpEquipos.Text" xml:space="preserve">
-    <value>Equipos</value>
-  </data>
-  <data name="&gt;&gt;grpEquipos.Name" xml:space="preserve">
-    <value>grpEquipos</value>
-  </data>
-  <data name="&gt;&gt;grpEquipos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpEquipos.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;grpEquipos.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="lsbBL.Font" type="System.Drawing.Font, System.Drawing">
@@ -208,7 +1360,7 @@
     <value>6, 26</value>
   </data>
   <data name="txtBL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 27</value>
+    <value>161, 24</value>
   </data>
   <data name="txtBL.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -224,93 +1376,6 @@
   </data>
   <data name="&gt;&gt;txtBL.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="grpBL.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="grpBL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 318</value>
-  </data>
-  <data name="grpBL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 155</value>
-  </data>
-  <data name="grpBL.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="grpBL.Text" xml:space="preserve">
-    <value>B.L.</value>
-  </data>
-  <data name="&gt;&gt;grpBL.Name" xml:space="preserve">
-    <value>grpBL</value>
-  </data>
-  <data name="&gt;&gt;grpBL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpBL.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;grpBL.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="cboTerminal.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cboTerminal.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="cboTerminal.IntegralHeight" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cboTerminal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 240</value>
-  </data>
-  <data name="cboTerminal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 29</value>
-  </data>
-  <data name="cboTerminal.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="&gt;&gt;cboTerminal.Name" xml:space="preserve">
-    <value>cboTerminal</value>
-  </data>
-  <data name="&gt;&gt;cboTerminal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboTerminal.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;cboTerminal.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="cboShipper.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cboShipper.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="cboShipper.IntegralHeight" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cboShipper.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 51</value>
-  </data>
-  <data name="cboShipper.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 29</value>
-  </data>
-  <data name="cboShipper.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="&gt;&gt;cboShipper.Name" xml:space="preserve">
-    <value>cboShipper</value>
-  </data>
-  <data name="&gt;&gt;cboShipper.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboShipper.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;cboShipper.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="listView1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -370,6 +1435,12 @@
     <value>tsbEliminar</value>
   </data>
   <data name="&gt;&gt;tsbEliminar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbPago.Name" xml:space="preserve">
+    <value>tsbPago</value>
+  </data>
+  <data name="&gt;&gt;tsbPago.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsbUpload.Name" xml:space="preserve">
@@ -460,10 +1531,10 @@
     <value>16, 16</value>
   </data>
   <data name="listView1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 23</value>
+    <value>3, 20</value>
   </data>
   <data name="listView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 246</value>
+    <value>271, 260</value>
   </data>
   <data name="listView1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -480,93 +1551,6 @@
   <data name="&gt;&gt;listView1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="groupBox4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>492, 204</value>
-  </data>
-  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 272</value>
-  </data>
-  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Archivos de Soporte</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="cboNaviera.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cboNaviera.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="cboNaviera.IntegralHeight" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cboNaviera.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 86</value>
-  </data>
-  <data name="cboNaviera.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 29</value>
-  </data>
-  <data name="cboNaviera.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
-  </data>
-  <data name="&gt;&gt;cboNaviera.Name" xml:space="preserve">
-    <value>cboNaviera</value>
-  </data>
-  <data name="&gt;&gt;cboNaviera.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboNaviera.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;cboNaviera.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 89</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 21</value>
-  </data>
-  <data name="label9.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Naviera</value>
-  </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
-  </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="clbRevisiones.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -574,10 +1558,10 @@
     <value>False</value>
   </data>
   <data name="clbRevisiones.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 23</value>
+    <value>3, 20</value>
   </data>
   <data name="clbRevisiones.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 158</value>
+    <value>268, 161</value>
   </data>
   <data name="clbRevisiones.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -593,516 +1577,6 @@
   </data>
   <data name="&gt;&gt;clbRevisiones.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="groupBox2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>492, 14</value>
-  </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 184</value>
-  </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Revisiones</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>354, 9</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 21</value>
-  </data>
-  <data name="label8.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Consolidado</value>
-  </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
-  </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="tsConsolidado.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="tsConsolidado.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="tsConsolidado.Location" type="System.Drawing.Point, System.Drawing">
-    <value>308, 8</value>
-  </data>
-  <data name="tsConsolidado.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>45, 22</value>
-  </data>
-  <data name="tsConsolidado.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 25</value>
-  </data>
-  <data name="tsConsolidado.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="tsConsolidado.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <data name="&gt;&gt;tsConsolidado.Name" xml:space="preserve">
-    <value>tsConsolidado</value>
-  </data>
-  <data name="&gt;&gt;tsConsolidado.Type" xml:space="preserve">
-    <value>SAESoft.Utilitarios.toggleSwitch, SAESoft, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;tsConsolidado.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;tsConsolidado.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="cboAduana.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cboAduana.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="cboAduana.IntegralHeight" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cboAduana.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 274</value>
-  </data>
-  <data name="cboAduana.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 29</value>
-  </data>
-  <data name="cboAduana.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="&gt;&gt;cboAduana.Name" xml:space="preserve">
-    <value>cboAduana</value>
-  </data>
-  <data name="&gt;&gt;cboAduana.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboAduana.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;cboAduana.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 277</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 21</value>
-  </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Aduana</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 243</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 21</value>
-  </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Terminal</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="dtpETA.CalendarFont" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="dtpETA.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="dtpETA.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="dtpETA.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 199</value>
-  </data>
-  <data name="dtpETA.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 27</value>
-  </data>
-  <data name="dtpETA.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="&gt;&gt;dtpETA.Name" xml:space="preserve">
-    <value>dtpETA</value>
-  </data>
-  <data name="&gt;&gt;dtpETA.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dtpETA.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;dtpETA.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 204</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 21</value>
-  </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>ETA</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="cboDestino.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cboDestino.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="cboDestino.IntegralHeight" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cboDestino.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 162</value>
-  </data>
-  <data name="cboDestino.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 29</value>
-  </data>
-  <data name="cboDestino.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="&gt;&gt;cboDestino.Name" xml:space="preserve">
-    <value>cboDestino</value>
-  </data>
-  <data name="&gt;&gt;cboDestino.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboDestino.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;cboDestino.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 165</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 21</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Destino</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="cboForwarder.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cboForwarder.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="cboForwarder.IntegralHeight" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cboForwarder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 125</value>
-  </data>
-  <data name="cboForwarder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 29</value>
-  </data>
-  <data name="cboForwarder.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;cboForwarder.Name" xml:space="preserve">
-    <value>cboForwarder</value>
-  </data>
-  <data name="&gt;&gt;cboForwarder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboForwarder.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;cboForwarder.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 132</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 21</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Forwarder</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 54</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 21</value>
-  </data>
-  <data name="label7.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Shipper</value>
-  </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
-  </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="txtId.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="txtId.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="txtId.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 11</value>
-  </data>
-  <data name="txtId.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 27</value>
-  </data>
-  <data name="txtId.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;txtId.Name" xml:space="preserve">
-    <value>txtId</value>
-  </data>
-  <data name="&gt;&gt;txtId.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtId.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;txtId.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 14</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 21</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Id</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="toolStripContainer1.ContentPanel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 12pt</value>
-  </data>
-  <data name="toolStripContainer1.ContentPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>804, 720</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.ContentPanel.Name" xml:space="preserve">
-    <value>toolStripContainer1.ContentPanel</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.ContentPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripContentPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.ContentPanel.Parent" xml:space="preserve">
-    <value>toolStripContainer1</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.ContentPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="toolStripContainer1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.LeftToolStripPanel.Name" xml:space="preserve">
-    <value>toolStripContainer1.LeftToolStripPanel</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.LeftToolStripPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.LeftToolStripPanel.Parent" xml:space="preserve">
-    <value>toolStripContainer1</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.LeftToolStripPanel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="toolStripContainer1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.RightToolStripPanel.Name" xml:space="preserve">
-    <value>toolStripContainer1.RightToolStripPanel</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.RightToolStripPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.RightToolStripPanel.Parent" xml:space="preserve">
-    <value>toolStripContainer1</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.RightToolStripPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="toolStripContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>804, 759</value>
-  </data>
-  <data name="toolStripContainer1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="toolStripContainer1.Text" xml:space="preserve">
-    <value>toolStripContainer1</value>
-  </data>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="toolStrip1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>None</value>
   </data>
   <data name="tsbNuevo.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1163,6 +1637,41 @@
   </data>
   <data name="tsbEliminar.Text" xml:space="preserve">
     <value>Eliminar</value>
+  </data>
+  <data name="tsbPago.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="tsbPago.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPVSURBVFhH7ZdpSFRRGIaPSxpBCxEUVFAg/Sii6EdUmjN3
+        NEtbzHLU1CQ0UrQi7EcblYFUUFRGQUoRbaZmWmNkiy2kIVGmptI4d6KxxWZGTSmtyXK+zrkd9C5nplki
+        +tELD5c5nvu+n+d8584dNKhiSxAqNeeh0vc9qNQKLnH7nRF1N2iogxcC8EFXrEZmiDMq3/aj7sZe1NW0
+        gDp5qKvmRcyA33HvHeACCD2YOdTNA5Va9yrMXWGoAEAdjR2o8/l06uimrlhymAG/Q1zAL9pRT3MQdXVD
+        nhagMwPqkhRAMOGemEydXZSnBRCajPICAG/FK2RpnkDdXZA3BRButQN68nqImtYBVNNWRd1dkLcFsCiy
+        mqi7C/pfwL9XgAX8d5SD/+bzTPz23hTNdYA3BfhcbIMAbS4ERm1nEpB0CFDxB2mgnL+9BVN0LRB7Vwf7
+        H+fBjbpsqKjL7rMbNFvsBtUkmuJErAKK3oPPpTdOQUXtMKq8Dc482Qd2nmNia+HsPwxctd0YOpOmMSTf
+        ggsmCFRvguHz0pwSkbUBTC2xksABAwenC6KhX6+RjNv44F47r46niTIxVsD3+FPwO/jQIdNOlEGvfrEk
+        hFBWuEwo7mjeSsXfBAzqNJoqkps94ItPSXVDhsI8a6dWCJ8auU64RqUlQm+LbCVauY+gV42jyVSKAizg
+        t9PxMdxcfkRiSqivWiKEXji7QvhcWxkJo0JSofDccsXcAZ47TZOp5D1w0QQBMTkQGLGVSdX9RIVpzoFV
+        MDlinWQsfVscZGyPk4wRcGN+BdD60XQsN7bAB69Ot36pwrQgP1pYgWd3lgyOfX2pge7GMMm8QQwa0duT
+        GwVMq2hkGpK9nrUqRVj2+I0JcOLkSvjU5CCcYOASaTqWGwUEV1azDTHkv92VuxpCk5OF1ZgRneJ4BXjV
+        epqOVdKRzgpjMfG6nmH2C/HZJ005MjhV6A3xnCE0orfoko+jUaG1jxUoh/SA+aXyjJ8pWAGrM9dIxsgx
+        1GYlSMYINl71DZq1ATSdqsSSiQM+yANZkOe93LTqWpSw7I8qIoXP7U/DYWxoKuSfilbM/cGrH9FUmfJh
+        GP6FFIlKrAnOCLt9P/Nzc/gXsen3Vg64lCQYMT9NuI5ZmCr0QGd9uCTcxnP90KqaTRM9F+lisTGBfA8c
+        PhYjrET2nljhGMrn4Pt2UwvvhZ/re8i3nTigqz4M5savBVPtImkwBhd4GR6o/Ontf0Z2oybmmz7ELAuS
+        BNv4kE58jaO3/HmRjsYvHskDvFr3nQ/V2/SqPvwO8AI/88/i47bR/koznk6VCaGfBwtrNAN3x20AAAAA
+        SUVORK5CYII=
+</value>
+  </data>
+  <data name="tsbPago.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tsbPago.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 36</value>
+  </data>
+  <data name="tsbPago.Text" xml:space="preserve">
+    <value>Registrar Pagos</value>
   </data>
   <data name="tsbUpload.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1256,54 +1765,6 @@
   </data>
   <data name="tsbSalir.Text" xml:space="preserve">
     <value>Salir</value>
-  </data>
-  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
-  </data>
-  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 39</value>
-  </data>
-  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="toolStrip1.Text" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
-    <value>toolStripContainer1.TopToolStripPanel</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.Name" xml:space="preserve">
-    <value>toolStripContainer1.TopToolStripPanel</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.Parent" xml:space="preserve">
-    <value>toolStripContainer1</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.Name" xml:space="preserve">
-    <value>toolStripContainer1</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripContainer, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <metadata name="fileSystemWatcher1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>399, 17</value>

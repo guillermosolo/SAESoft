@@ -44,16 +44,16 @@
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(2, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 21);
+            this.label1.Size = new System.Drawing.Size(140, 21);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Monto (Q.)";
+            this.label1.Text = "Almacenaje (Q.)";
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(104, 19);
+            this.textBox1.Location = new System.Drawing.Point(148, 19);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(140, 27);
+            this.textBox1.Size = new System.Drawing.Size(127, 27);
             this.textBox1.TabIndex = 1;
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -63,16 +63,16 @@
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(2, 63);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 21);
+            this.label2.Size = new System.Drawing.Size(107, 21);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Mora (Q.)";
+            this.label2.Text = "Demora (Q.)";
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(104, 60);
+            this.textBox2.Location = new System.Drawing.Point(148, 60);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(140, 27);
+            this.textBox2.Size = new System.Drawing.Size(127, 27);
             this.textBox2.TabIndex = 3;
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
@@ -111,6 +111,7 @@
             this.MinimizeBox = false;
             this.Name = "frmMontos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Load += new System.EventHandler(this.frmMontos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

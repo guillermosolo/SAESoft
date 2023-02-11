@@ -29,9 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMaritimo));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.cboAgente = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtValorExtra2 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.chkDocOriginales = new System.Windows.Forms.CheckBox();
+            this.txtValorExtra = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtDemora = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtTiempoLibre = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.chkConsolidado = new System.Windows.Forms.CheckBox();
             this.dgvHistorial = new System.Windows.Forms.DataGridView();
             this.grpEquipos = new System.Windows.Forms.GroupBox();
             this.lsbEquipos = new System.Windows.Forms.ListBox();
@@ -48,8 +60,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.clbRevisiones = new System.Windows.Forms.CheckedListBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tsConsolidado = new SAESoft.Utilitarios.toggleSwitch();
             this.cboAduana = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -68,6 +78,7 @@
             this.tsbListarXXX = new System.Windows.Forms.ToolStripButton();
             this.tsbModificar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
+            this.tsbPago = new System.Windows.Forms.ToolStripButton();
             this.tsbUpload = new System.Windows.Forms.ToolStripButton();
             this.tsddbProceso = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -98,6 +109,18 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.cboAgente);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.label13);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.txtValorExtra2);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.label12);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.chkDocOriginales);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.txtValorExtra);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.label11);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.txtDemora);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.label10);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.txtTiempoLibre);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.label8);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.chkConsolidado);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.dgvHistorial);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.grpEquipos);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.grpBL);
@@ -107,8 +130,6 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.cboNaviera);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label9);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.groupBox2);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.label8);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.tsConsolidado);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.cboAduana);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label6);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label5);
@@ -129,18 +150,96 @@
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             // 
+            // cboAgente
+            // 
+            this.cboAgente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.cboAgente, "cboAgente");
+            this.cboAgente.FormattingEnabled = true;
+            this.cboAgente.Name = "cboAgente";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // txtValorExtra2
+            // 
+            resources.ApplyResources(this.txtValorExtra2, "txtValorExtra2");
+            this.txtValorExtra2.Name = "txtValorExtra2";
+            this.txtValorExtra2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValorExtra2_KeyPress);
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // chkDocOriginales
+            // 
+            resources.ApplyResources(this.chkDocOriginales, "chkDocOriginales");
+            this.chkDocOriginales.FlatAppearance.BorderSize = 0;
+            this.chkDocOriginales.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.chkDocOriginales.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.chkDocOriginales.Image = global::SAESoft.Properties.Resources.Nunchecked;
+            this.chkDocOriginales.Name = "chkDocOriginales";
+            this.chkDocOriginales.UseVisualStyleBackColor = true;
+            this.chkDocOriginales.CheckedChanged += new System.EventHandler(this.chkCheckedChange);
+            // 
+            // txtValorExtra
+            // 
+            resources.ApplyResources(this.txtValorExtra, "txtValorExtra");
+            this.txtValorExtra.Name = "txtValorExtra";
+            this.txtValorExtra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValorExtra_KeyPress);
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // txtDemora
+            // 
+            resources.ApplyResources(this.txtDemora, "txtDemora");
+            this.txtDemora.Name = "txtDemora";
+            this.txtDemora.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDemora_KeyPress);
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // txtTiempoLibre
+            // 
+            resources.ApplyResources(this.txtTiempoLibre, "txtTiempoLibre");
+            this.txtTiempoLibre.Name = "txtTiempoLibre";
+            this.txtTiempoLibre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTiempoLibre_KeyPress);
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // chkConsolidado
+            // 
+            resources.ApplyResources(this.chkConsolidado, "chkConsolidado");
+            this.chkConsolidado.FlatAppearance.BorderSize = 0;
+            this.chkConsolidado.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.chkConsolidado.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.chkConsolidado.Image = global::SAESoft.Properties.Resources.Nunchecked;
+            this.chkConsolidado.Name = "chkConsolidado";
+            this.chkConsolidado.UseVisualStyleBackColor = true;
+            this.chkConsolidado.CheckedChanged += new System.EventHandler(this.chkCheckedChange);
+            // 
             // dgvHistorial
             // 
             this.dgvHistorial.AllowUserToAddRows = false;
             this.dgvHistorial.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             resources.ApplyResources(this.dgvHistorial, "dgvHistorial");
             this.dgvHistorial.Name = "dgvHistorial";
@@ -260,24 +359,6 @@
             this.clbRevisiones.FormattingEnabled = true;
             this.clbRevisiones.Name = "clbRevisiones";
             // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            // 
-            // tsConsolidado
-            // 
-            resources.ApplyResources(this.tsConsolidado, "tsConsolidado");
-            this.tsConsolidado.Name = "tsConsolidado";
-            this.tsConsolidado.OffBackColor = System.Drawing.Color.Firebrick;
-            this.tsConsolidado.OffDisabledColor = System.Drawing.Color.Gray;
-            this.tsConsolidado.OffTogglecolor = System.Drawing.Color.Firebrick;
-            this.tsConsolidado.OnBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
-            this.tsConsolidado.OnDisabledcolor = System.Drawing.Color.Gray;
-            this.tsConsolidado.OnTogglecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
-            this.tsConsolidado.SolidStyle = false;
-            this.tsConsolidado.UseVisualStyleBackColor = true;
-            // 
             // cboAduana
             // 
             this.cboAduana.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -355,6 +436,7 @@
             this.tsbListarXXX,
             this.tsbModificar,
             this.tsbEliminar,
+            this.tsbPago,
             this.tsbUpload,
             this.tsddbProceso,
             this.toolStripSeparator1,
@@ -404,6 +486,13 @@
             this.tsbEliminar.Image = global::SAESoft.Properties.Resources.delete;
             this.tsbEliminar.Name = "tsbEliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
+            // 
+            // tsbPago
+            // 
+            this.tsbPago.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbPago, "tsbPago");
+            this.tsbPago.Name = "tsbPago";
+            this.tsbPago.Click += new System.EventHandler(this.tsbPago_Click);
             // 
             // tsbUpload
             // 
@@ -549,8 +638,6 @@
         private Label label9;
         private GroupBox groupBox2;
         private CheckedListBox clbRevisiones;
-        private Label label8;
-        private Utilitarios.toggleSwitch tsConsolidado;
         private GroupBox groupBox4;
         private ListView listView1;
         private ImageList imageList1;
@@ -567,5 +654,18 @@
         private ListBox lsbEquipos;
         private TextBox txtEquipos;
         private DataGridView dgvHistorial;
+        private TextBox txtValorExtra;
+        private Label label11;
+        private TextBox txtDemora;
+        private Label label10;
+        private TextBox txtTiempoLibre;
+        private Label label8;
+        private CheckBox chkConsolidado;
+        private CheckBox chkDocOriginales;
+        private TextBox txtValorExtra2;
+        private Label label12;
+        private ToolStripButton tsbPago;
+        private ComboBox cboAgente;
+        private Label label13;
     }
 }

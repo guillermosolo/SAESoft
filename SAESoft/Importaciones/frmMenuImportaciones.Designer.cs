@@ -186,7 +186,7 @@
             this.icbExterno.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icbExterno.IconSize = 32;
             this.icbExterno.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icbExterno.Location = new System.Drawing.Point(2, 197);
+            this.icbExterno.Location = new System.Drawing.Point(2, 199);
             this.icbExterno.Name = "icbExterno";
             this.icbExterno.Size = new System.Drawing.Size(197, 56);
             this.icbExterno.TabIndex = 10;

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.cboBL = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,6 +41,9 @@
             this.icbFinalizar = new FontAwesome.Sharp.IconButton();
             this.label4 = new System.Windows.Forms.Label();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
+            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtContenedores = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPoliza)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,24 +107,24 @@
             // dgvPoliza
             // 
             this.dgvPoliza.AllowUserToAddRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPoliza.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPoliza.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPoliza.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPoliza.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvPoliza.Location = new System.Drawing.Point(6, 123);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPoliza.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvPoliza.Location = new System.Drawing.Point(12, 163);
             this.dgvPoliza.Name = "dgvPoliza";
             this.dgvPoliza.ReadOnly = true;
             this.dgvPoliza.RowTemplate.Height = 25;
@@ -137,7 +140,7 @@
             this.icbAgregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icbAgregar.IconSize = 24;
             this.icbAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icbAgregar.Location = new System.Drawing.Point(397, 81);
+            this.icbAgregar.Location = new System.Drawing.Point(552, 79);
             this.icbAgregar.Name = "icbAgregar";
             this.icbAgregar.Size = new System.Drawing.Size(124, 36);
             this.icbAgregar.TabIndex = 7;
@@ -155,7 +158,7 @@
             this.icbFinalizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icbFinalizar.IconSize = 24;
             this.icbFinalizar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icbFinalizar.Location = new System.Drawing.Point(545, 81);
+            this.icbFinalizar.Location = new System.Drawing.Point(552, 121);
             this.icbFinalizar.Name = "icbFinalizar";
             this.icbFinalizar.Size = new System.Drawing.Size(124, 36);
             this.icbFinalizar.TabIndex = 8;
@@ -168,7 +171,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(6, 49);
+            this.label4.Location = new System.Drawing.Point(10, 49);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(126, 21);
             this.label4.TabIndex = 9;
@@ -183,11 +186,42 @@
             this.txtObservaciones.Size = new System.Drawing.Size(523, 27);
             this.txtObservaciones.TabIndex = 10;
             // 
+            // hScrollBar1
+            // 
+            this.hScrollBar1.Location = new System.Drawing.Point(93, 95);
+            this.hScrollBar1.Name = "hScrollBar1";
+            this.hScrollBar1.Size = new System.Drawing.Size(8, 8);
+            this.hScrollBar1.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(10, 87);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(122, 21);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Contenedores";
+            // 
+            // txtContenedores
+            // 
+            this.txtContenedores.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtContenedores.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtContenedores.Location = new System.Drawing.Point(153, 84);
+            this.txtContenedores.Multiline = true;
+            this.txtContenedores.Name = "txtContenedores";
+            this.txtContenedores.ReadOnly = true;
+            this.txtContenedores.Size = new System.Drawing.Size(375, 73);
+            this.txtContenedores.TabIndex = 13;
+            // 
             // frmPoliza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(682, 285);
+            this.ClientSize = new System.Drawing.Size(682, 324);
+            this.Controls.Add(this.txtContenedores);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.hScrollBar1);
             this.Controls.Add(this.txtObservaciones);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.icbFinalizar);
@@ -226,5 +260,8 @@
         private FontAwesome.Sharp.IconButton icbFinalizar;
         private Label label4;
         private TextBox txtObservaciones;
+        private HScrollBar hScrollBar1;
+        private Label label5;
+        private TextBox txtContenedores;
     }
 }

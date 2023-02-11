@@ -31,6 +31,14 @@ namespace SAESoft.Models.Importaciones
         [ForeignKey("IdDestino")]
         public virtual Nombre Destino { get; set; } = null!;
         public DateTime ETA { get; set; }
+        public int TiempoLibre { get; set; } = 0;
+        public int Demora { get; set; } = 0;
+
+        [Column(TypeName = "money")]
+        public decimal ValorDiaExtraTL { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal ValorDiaExtraD { get; set; }
         public int? IdTerminal { get; set; }
         [ForeignKey("IdTerminal")]
         public virtual Nombre Terminal { get; set; } = null!;
@@ -39,12 +47,6 @@ namespace SAESoft.Models.Importaciones
         public int IdAduana { get; set; }
         [ForeignKey("IdAduana")]
         public virtual Aduana Aduana { get; set; } = null!;
-
-        [Precision(14, 2)]
-        public decimal monto;
-
-        [Precision(14, 2)]
-        public decimal mora;
         public int? IdAlmacenadora { get; set; }
         [ForeignKey("IdAlmacenadora")]
         public virtual Nombre Almacenadora { get; set; } = null!;
@@ -52,16 +54,19 @@ namespace SAESoft.Models.Importaciones
         public int? IdUsuario { get; set; }
         [ForeignKey("IdUsuario")]
         public virtual Usuario Usuario { get; set; } = null!;
-
         public int IdImportStatus { get; set; }
         [ForeignKey("IdImportStatus")]
         public virtual ImportStatus ImportStatus { get; set; } = null!; 
         public virtual ICollection<ImportHistorial> ImportHistorial { get; set; } = null!;
 
         [Column(TypeName = "money")]
-        public decimal? Monto { get; set; }
+        public decimal MontoAlmacenaje { get; set; } = decimal.Zero;
 
         [Column(TypeName = "money")]
-        public decimal? Mora { get; set; }
+        public decimal MontoDemora { get; set; } = decimal.Zero;
+        public Boolean DocOriginales { get; set; }
+        public int? IdAgente { get; set; }
+        [ForeignKey("IdAgente")]
+        public virtual Agente Agente { get;set; } = null!;
     }
 }

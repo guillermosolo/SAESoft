@@ -9,16 +9,13 @@ using static SAESoft.Cache.UserData;
 using static SAESoft.Cache.Constantes;
 using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Utilitarios.DatosServer;
-
+using static SAESoft.Utilitarios.Validaciones;
+using System.Globalization;
 
 namespace SAESoft.Importaciones
 {
     public partial class frmMaritimo : Form
     {
-        public frmMaritimo()
-        {
-            InitializeComponent();
-        }
         private Boolean esNuevo = false;
         private List<Importacion>? rs = new List<Importacion>();
         private int CurrentIndex = 0;
@@ -26,6 +23,10 @@ namespace SAESoft.Importaciones
 
         List<string> listFiles = new List<string>();
         string path = PATH_Import;
+        public frmMaritimo()
+        {
+            InitializeComponent();
+        }
 
         private void cargarArchivos(string opcion)
         {
@@ -55,6 +56,7 @@ namespace SAESoft.Importaciones
             dgvHistorial.Columns[0].Width = 250;
             dgvHistorial.Columns[1].Width = 274;
             dgvHistorial.Columns[2].Width = 150;
+            dgvHistorial.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvHistorial.ClearSelection();
         }
         private void listView1_ItemActivate(object sender, EventArgs e)
@@ -114,10 +116,13 @@ namespace SAESoft.Importaciones
                 clbRevisiones.DataSource = db.Revisiones.OrderBy(r => r.Descripcion).ToList();
                 clbRevisiones.DisplayMember = "Descripcion";
                 clbRevisiones.ValueMember = "IdRevision";
+                cboAgente.DataSource = db.Agentes.Where(a => a.Activo).ToList();
+                cboAgente.DisplayMember = "NombreCompleto";
+                cboAgente.ValueMember = "IdAgente";
             }
             llenarNombres(cboNaviera, "EMPRESA");
-            llenarNombres(cboForwarder, "FORWARDER",true);
-            llenarNombres(cboDestino, "DESTINO",true);
+            llenarNombres(cboForwarder, "FORWARDER", true);
+            llenarNombres(cboDestino, "DESTINO", true);
         }
 
 
@@ -146,18 +151,18 @@ namespace SAESoft.Importaciones
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "MARITIMO");
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, true, toolStrip1, "MARITIMO");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "MARITIMO");
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, true, toolStrip1, "MARITIMO");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, false, toolStrip1, "MARITIMO");
                 limpiarFormulario(this);
                 dt.Rows.Clear();
             }
@@ -175,7 +180,7 @@ namespace SAESoft.Importaciones
                 clbRevisiones.SetItemChecked(i, resp);
             }
             txtId.Text = rs?[CurrentIndex].IdImport.ToString();
-            tsConsolidado.Checked = rs[CurrentIndex].Consolidado;
+            chkConsolidado.Checked = rs[CurrentIndex].Consolidado;
             cboShipper.SelectedValue = rs[CurrentIndex].IdShipper;
             cboNaviera.SelectedValue = rs[CurrentIndex].IdNaviera;
             if (rs[CurrentIndex].IdDestino != null)
@@ -189,6 +194,11 @@ namespace SAESoft.Importaciones
             dtpETA.Value = rs[CurrentIndex].ETA;
             cboTerminal.SelectedValue = rs[CurrentIndex].IdTerminal;
             cboAduana.SelectedValue = rs[CurrentIndex].IdAduana;
+            txtTiempoLibre.Text = rs[CurrentIndex].TiempoLibre.ToString();
+            txtValorExtra.Text = rs[CurrentIndex].ValorDiaExtraTL.ToString("F", CultureInfo.CreateSpecificCulture("es-GT"));
+            txtDemora.Text = rs[CurrentIndex].Demora.ToString();
+            txtValorExtra2.Text = rs[CurrentIndex].ValorDiaExtraD.ToString("F", CultureInfo.CreateSpecificCulture("es-GT"));
+            chkDocOriginales.Checked = rs[CurrentIndex].DocOriginales;
             lsbBL.DataSource = rs[CurrentIndex].BL.ToList();
             lsbBL.ValueMember = "IdBL";
             lsbBL.DisplayMember = "Numero";
@@ -207,7 +217,7 @@ namespace SAESoft.Importaciones
                 row = dt.NewRow();
                 row[0] = h.ImportStatus.Descripcion;
                 row[1] = NombreUsuario(h.IdUsuarioCreacion);
-                row[2] = h.FechaCreacion;
+                row[2] = h.FechaCreacion.Date;
                 dt.Rows.Add(row);
             }
             if (rs[CurrentIndex].IdImportStatus == StatusFinalMaritimo)
@@ -261,18 +271,30 @@ namespace SAESoft.Importaciones
         {
             if (e.KeyCode == Keys.Delete && hasPermission("ELIMINAR.MARITIMO"))
             {
-                string selectedFile = listFiles[listView1.SelectedIndices[0]];
-                try
+                var resp = MessageBox.Show("¿Desea eliminar este archivo?", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resp == DialogResult.Yes)
                 {
-                    File.Delete(selectedFile);
+                    string selectedFile = listFiles[listView1.SelectedIndices[0]];
+                    try
+                    {
+                        File.Delete(selectedFile);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("No es posible borrar el archivo,\r\n" +
+                            "asegurese que nadie lo tenga en uso.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                catch (Exception)
-                {
-                    MessageBox.Show("No es posible borrar el archivo,\r\n" +
-                        "asegurese que nadie lo tenga en uso.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
             }
+        }
+
+        private void chkCheckedChange(object sender, EventArgs e)
+        {
+            CheckBox chk = sender as CheckBox;
+            if (chk.Checked)
+                chk.Image = Properties.Resources.Nchecked;
+            else
+                chk.Image = Properties.Resources.Nunchecked;
         }
 
         private void fileSystemWatcher1_Deleted(object sender, FileSystemEventArgs e)
@@ -301,7 +323,12 @@ namespace SAESoft.Importaciones
                                     ETA = dtpETA.Value,
                                     IdTerminal = Convert.ToInt32(cboTerminal.SelectedValue),
                                     IdAduana = Convert.ToInt32(cboAduana.SelectedValue),
-                                    Consolidado = tsConsolidado.Checked,
+                                    Consolidado = chkConsolidado.Checked,
+                                    DocOriginales = chkDocOriginales.Checked,
+                                    TiempoLibre = Convert.ToInt32(txtTiempoLibre.Text),
+                                    Demora = Convert.ToInt32(txtDemora.Text),
+                                    ValorDiaExtraTL = Convert.ToDecimal(txtValorExtra.Text),
+                                    ValorDiaExtraD = Convert.ToDecimal(txtValorExtra2.Text),
                                     IdImportStatus = db.ImportStatus.FirstOrDefault(i => i.Via == 'M' && i.orden == 1).IdImportStatus,
                                     FechaCreacion = DatosServer.FechaServer(),
                                     IdUsuarioCreacion = usuarioLogged.IdUsuario,
@@ -427,7 +454,7 @@ namespace SAESoft.Importaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload" }, true, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, true, toolStrip1, "MARITIMO");
                 habilitarFormulario(this, false);
             }
         }
@@ -476,6 +503,30 @@ namespace SAESoft.Importaciones
             {
                 errorProvider1.SetError(grpEquipos, "No puede estar vacío.");
                 txtEquipos.Focus();
+                return false;
+            }
+            if (txtTiempoLibre.Text == "")
+            {
+                errorProvider1.SetError(txtTiempoLibre, "No puede estar vacío.");
+                txtTiempoLibre.Focus();
+                return false;
+            }
+            if (txtValorExtra.Text == "")
+            {
+                errorProvider1.SetError(txtValorExtra, "No puede estar vacío.");
+                txtValorExtra.Focus();
+                return false;
+            }
+            if (txtDemora.Text == "")
+            {
+                errorProvider1.SetError(txtDemora, "No puede estar vacío.");
+                txtDemora.Focus();
+                return false;
+            }
+            if (txtValorExtra2.Text == "")
+            {
+                errorProvider1.SetError(txtValorExtra2, "No puede estar vacío.");
+                txtValorExtra2.Focus();
                 return false;
             }
             return true;
@@ -540,7 +591,6 @@ namespace SAESoft.Importaciones
                     buscar.Dispose();
                     if (rs.Count > 0)
                     {
-                        CambiarEstadoBotones(new[] { "tsddbProceso", "tsbUpload" }, true, toolStrip1, "MARITIMO");
                         if (rs.Count > 1)
                         {
                             BotonesInicialesNavegacion(toolStrip1);
@@ -549,7 +599,7 @@ namespace SAESoft.Importaciones
                         {
                             BotonesIniciales(toolStrip1);
                         }
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "MARITIMO");
+                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, true, toolStrip1, "MARITIMO");
                         despliegaDatos();
                     }
                     else
@@ -558,7 +608,7 @@ namespace SAESoft.Importaciones
                         limpiarFormulario(this);
                         dt.Rows.Clear();
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "MARITIMO");
+                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, false, toolStrip1, "MARITIMO");
                     }
                 }
             }
@@ -594,7 +644,7 @@ namespace SAESoft.Importaciones
                         {
                             asignarPoliza();
                             break;
-                        }
+                        };
                     case ElaborarPolizaMaritimo:
                         {
                             if (listFiles.Count > 0)
@@ -602,20 +652,69 @@ namespace SAESoft.Importaciones
                             else
                                 MessageBox.Show("No puede pasar a la siguiente fase\r\nsin antes haber subido documentos de respaldo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             break;
-                        }
-                    case StatusFinalMaritimo - 1:
+                        };
+                    case SalidaPuertoMaritimo - 1:
                         {
-                            llenarMontos();
+                            asignarFecha();
                             break;
-                        }
+                        };
+                    case LlegadaFabricaMaritimo - 1:
+                        {
+                            asignarFecha();
+                            break;
+                        };
+                    case SalidaFabricaMaritimo - 1:
+                        {
+                            asignarFecha();
+                            break;
+                        };
                     default:
                         {
                             cambiarFase();
                             break;
-                        }
+                        };
                 }
 
             }
+        }
+
+        private void asignarFecha()
+        {
+            frmFecha FrmFecha = new frmFecha();
+            FrmFecha.fechaMin = rs[CurrentIndex].ImportHistorial.LastOrDefault().FechaCreacion;
+            var resp = FrmFecha.ShowDialog();
+            if (resp == DialogResult.OK)
+            {
+                using (SAESoftContext db = new SAESoftContext())
+                {
+                    using (var transaction = db.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
+                            var status = db.ImportStatus.Where(s => s.Via == 'M' && s.orden > rs[CurrentIndex].ImportStatus.orden).OrderBy(s => s.orden).FirstOrDefault();
+                            rs[CurrentIndex].IdImportStatus = status.IdImportStatus;
+                            db.SaveChanges();
+                            ImportHistorial ih = new ImportHistorial { IdImport = rs[CurrentIndex].IdImport, IdImportStatus = status.IdImportStatus, FechaCreacion = FrmFecha.fecha, IdUsuarioCreacion = usuarioLogged.IdUsuario };
+                            db.ImportHistorial.Add(ih);
+                            rs[CurrentIndex].ImportHistorial.Add(ih);
+                            db.SaveChanges();
+                            transaction.Commit();
+                            despliegaDatos();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            if (ex.InnerException != null)
+                                MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            else
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                }
+            }
+            FrmFecha.Dispose();
         }
 
         private void llenarMontos()
@@ -633,8 +732,8 @@ namespace SAESoft.Importaciones
                             db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
                             var status = db.ImportStatus.Where(s => s.Via == 'M' && s.orden > rs[CurrentIndex].ImportStatus.orden).OrderBy(s => s.orden).FirstOrDefault();
                             rs[CurrentIndex].IdImportStatus = status.IdImportStatus;
-                            rs[CurrentIndex].Monto = montos.monto;
-                            rs[CurrentIndex].Mora = montos.mora;
+                            rs[CurrentIndex].MontoAlmacenaje = montos.montoA;
+                            rs[CurrentIndex].MontoDemora = montos.montoD;
                             db.SaveChanges();
                             ImportHistorial ih = new ImportHistorial { IdImport = rs[CurrentIndex].IdImport, IdImportStatus = status.IdImportStatus, FechaCreacion = DatosServer.FechaServer(), IdUsuarioCreacion = usuarioLogged.IdUsuario };
                             db.ImportHistorial.Add(ih);
@@ -652,17 +751,15 @@ namespace SAESoft.Importaciones
                                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-                        finally
-                        {
-                            montos.Dispose();
-                        }
                     }
                 }
             }
+            montos.Dispose();
         }
         private void asignarPoliza()
         {
             frmPoliza FrmPoliza = new frmPoliza(rs[CurrentIndex]);
+            FrmPoliza.contenedores = rs[CurrentIndex].Contenedores.ToList();
             var resp = FrmPoliza.ShowDialog();
             if (resp == DialogResult.OK)
             {
@@ -828,7 +925,7 @@ namespace SAESoft.Importaciones
                                 dt.Rows.Clear();
                                 cboDestino.SelectedIndex = -1;
                                 BotonesIniciales(toolStrip1);
-                                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "MARITIMO");
+                                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, false, toolStrip1, "MARITIMO");
                             }
                         }
                         catch (Exception ex)
@@ -842,6 +939,34 @@ namespace SAESoft.Importaciones
                     }
                 }
             }
+        }
+
+        private void txtValorExtra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = decimales(sender, e);
+        }
+
+        private void txtTiempoLibre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = enteros(sender, e);
+        }
+
+        private void txtDemora_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = enteros(sender, e);
+        }
+
+        private void txtValorExtra2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = decimales(sender, e);
+        }
+
+        private void tsbPago_Click(object sender, EventArgs e)
+        {
+            if (rs[CurrentIndex].MontoAlmacenaje == 0 && rs[CurrentIndex].MontoDemora == 0)
+                llenarMontos();
+            else
+                MessageBox.Show("Ya se han ingresado los montos", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
