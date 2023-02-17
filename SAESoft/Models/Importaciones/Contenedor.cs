@@ -14,5 +14,8 @@ namespace SAESoft.Models.Importaciones
         public virtual Importacion Importacion { get; set; } = null!;
         public string? Cabezal { get; set; }
         public string? Furgon { get; set; }
+        [ForeignKey("IdPago")]
+        public int? IdPago { get; set; }
+        public virtual Pago Pago { get; set; }
     }
 }

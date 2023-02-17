@@ -42,7 +42,7 @@ namespace SAESoft.Importaciones
         {
             using(SAESoftContext db = new SAESoftContext())
             {
-                return db.BL.Where(b=>b.Numero == txtNumero.Text).Select(b=>b.IdImportacion).ToList();
+                return db.BL.Where(b=>b.Numero.Contains(txtNumero.Text)).Select(b=>b.IdImportacion).ToList();
             }
         }
 
@@ -50,7 +50,7 @@ namespace SAESoft.Importaciones
         {
             using (SAESoftContext db = new SAESoftContext())
             {
-                return db.Contenedores.Where(c=>c.Numero == txtNumero.Text).Select(c=>c.IdImportacion).ToList();
+                return db.Contenedores.Where(c=>c.Numero.Contains(txtNumero.Text)).Select(c=>c.IdImportacion).ToList();
             }
         }
 
@@ -58,7 +58,7 @@ namespace SAESoft.Importaciones
         {
             using (SAESoftContext db = new SAESoftContext())
             {
-                return db.Polizas.Include(p => p.BL).Where(p => p.Numero == txtNumero.Text).Select(p => p.BL.IdImportacion).ToList();
+                return db.Polizas.Include(p => p.BL).Where(p => p.Numero.Contains(txtNumero.Text)).Select(p => p.BL.IdImportacion).ToList();
             }
         }
     }

@@ -58,12 +58,6 @@ namespace SAESoft.Models.Importaciones
         [ForeignKey("IdImportStatus")]
         public virtual ImportStatus ImportStatus { get; set; } = null!; 
         public virtual ICollection<ImportHistorial> ImportHistorial { get; set; } = null!;
-
-        [Column(TypeName = "money")]
-        public decimal MontoAlmacenaje { get; set; } = decimal.Zero;
-
-        [Column(TypeName = "money")]
-        public decimal MontoDemora { get; set; } = decimal.Zero;
         public Boolean DocOriginales { get; set; }
         public int? IdAgente { get; set; }
         [ForeignKey("IdAgente")]

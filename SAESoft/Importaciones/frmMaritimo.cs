@@ -11,6 +11,7 @@ using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Utilitarios.DatosServer;
 using static SAESoft.Utilitarios.Validaciones;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace SAESoft.Importaciones
 {
@@ -151,18 +152,18 @@ namespace SAESoft.Importaciones
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, true, toolStrip1, "MARITIMO");
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago", "tsbSwitchUser" }, true, toolStrip1, "MARITIMO");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, true, toolStrip1, "MARITIMO");
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago", "tsbSwitchUser" }, true, toolStrip1, "MARITIMO");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, false, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago","tsbSwitchUser" }, false, toolStrip1, "MARITIMO");
                 limpiarFormulario(this);
                 dt.Rows.Clear();
             }
@@ -415,6 +416,7 @@ namespace SAESoft.Importaciones
                                 else if (rs[CurrentIndex].IdDestino != null)
                                     throw new Exception("No se puede cambiar el destino.");
                                 rs[CurrentIndex].ETA = dtpETA.Value;
+                                rs[CurrentIndex].DocOriginales = chkDocOriginales.Checked;
                                 rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
                                 rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
                                 db.Importaciones.Update(rs[CurrentIndex]);
@@ -454,7 +456,7 @@ namespace SAESoft.Importaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, true, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago","tsbSwitchUser" }, true, toolStrip1, "MARITIMO");
                 habilitarFormulario(this, false);
             }
         }
@@ -579,6 +581,7 @@ namespace SAESoft.Importaciones
                     var queryable = db.Importaciones.Include(r => r.Revisiones)
                                                     .Include(r => r.BL)
                                                     .Include(r => r.Contenedores)
+                                                    .ThenInclude(c => c.Pago)
                                                     .Include(r => r.ImportStatus)
                                                     .Include(r => r.ImportHistorial)
                                                     .ThenInclude(rh => rh.ImportStatus)
@@ -591,6 +594,7 @@ namespace SAESoft.Importaciones
                     buscar.Dispose();
                     if (rs.Count > 0)
                     {
+                        CurrentIndex = 0;
                         if (rs.Count > 1)
                         {
                             BotonesInicialesNavegacion(toolStrip1);
@@ -599,7 +603,7 @@ namespace SAESoft.Importaciones
                         {
                             BotonesIniciales(toolStrip1);
                         }
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, true, toolStrip1, "MARITIMO");
+                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago","tsbSwitchUser" }, true, toolStrip1, "MARITIMO");
                         despliegaDatos();
                     }
                     else
@@ -608,7 +612,7 @@ namespace SAESoft.Importaciones
                         limpiarFormulario(this);
                         dt.Rows.Clear();
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, false, toolStrip1, "MARITIMO");
+                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago","tsbSwitchUser" }, false, toolStrip1, "MARITIMO");
                     }
                 }
             }
@@ -720,6 +724,7 @@ namespace SAESoft.Importaciones
         private void llenarMontos()
         {
             frmMontos montos = new frmMontos();
+            montos.contenedores = rs[CurrentIndex].Contenedores.ToList();
             var resp = montos.ShowDialog();
             if (resp == DialogResult.OK)
             {
@@ -732,8 +737,6 @@ namespace SAESoft.Importaciones
                             db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
                             var status = db.ImportStatus.Where(s => s.Via == 'M' && s.orden > rs[CurrentIndex].ImportStatus.orden).OrderBy(s => s.orden).FirstOrDefault();
                             rs[CurrentIndex].IdImportStatus = status.IdImportStatus;
-                            rs[CurrentIndex].MontoAlmacenaje = montos.montoA;
-                            rs[CurrentIndex].MontoDemora = montos.montoD;
                             db.SaveChanges();
                             ImportHistorial ih = new ImportHistorial { IdImport = rs[CurrentIndex].IdImport, IdImportStatus = status.IdImportStatus, FechaCreacion = DatosServer.FechaServer(), IdUsuarioCreacion = usuarioLogged.IdUsuario };
                             db.ImportHistorial.Add(ih);
@@ -872,6 +875,7 @@ namespace SAESoft.Importaciones
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             dtpETA.Enabled = true;
             cboDestino.Enabled = true;
+            chkDocOriginales.Enabled = true;
             if (clbRevisiones.CheckedItems.Count == 0)
                 clbRevisiones.Enabled = true;
             dtpETA.Focus();
@@ -925,7 +929,7 @@ namespace SAESoft.Importaciones
                                 dt.Rows.Clear();
                                 cboDestino.SelectedIndex = -1;
                                 BotonesIniciales(toolStrip1);
-                                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, false, toolStrip1, "MARITIMO");
+                                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago","tsbSwitchUser" }, false, toolStrip1, "MARITIMO");
                             }
                         }
                         catch (Exception ex)
@@ -963,7 +967,15 @@ namespace SAESoft.Importaciones
 
         private void tsbPago_Click(object sender, EventArgs e)
         {
-            if (rs[CurrentIndex].MontoAlmacenaje == 0 && rs[CurrentIndex].MontoDemora == 0)
+            int c = 0;
+            foreach(var cont in rs[CurrentIndex].Contenedores)
+            {
+                if (cont.IdPago != null)
+                {
+                    c++;
+                }
+            }
+            if (c == 0 )
                 llenarMontos();
             else
                 MessageBox.Show("Ya se han ingresado los montos", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);

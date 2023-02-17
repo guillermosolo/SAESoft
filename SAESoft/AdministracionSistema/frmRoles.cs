@@ -181,6 +181,7 @@ namespace SAESoft.AdministracionSistema
                     buscar.Dispose();
                     if (rs.Count > 0)
                     {
+                        CurrentIndex = 0;
                         despliegaDatos();
                         if (rs.Count > 1)
                         {

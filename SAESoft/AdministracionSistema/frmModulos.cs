@@ -177,6 +177,7 @@ namespace SAESoft.AdministracionSistema
                     rs = queryable.ToList();
                     if (rs.Count > 0)
                     {
+                        CurrentIndex= 0;
                         despliegaDatos();
                         if (rs.Count > 1)
                         {

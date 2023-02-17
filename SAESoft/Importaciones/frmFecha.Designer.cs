@@ -85,6 +85,7 @@
             this.Name = "frmFecha";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmFecha";
+            this.Load += new System.EventHandler(this.frmFecha_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

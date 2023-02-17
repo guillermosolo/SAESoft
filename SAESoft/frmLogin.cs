@@ -24,6 +24,8 @@ namespace SAESoft
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
         //********* FIN CODIGO ARRASTRAR FORMULARIO***********************
         #endregion
+
+        public Boolean logged = false;
         private void iconButton1_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -88,11 +90,12 @@ namespace SAESoft
                 }
             }
             var path = @"\\192.168.50.37\SAESoft";
-            if (DatosServer.ConectarFileServer(path))
+            if (DatosServer.ConectarFileServer(path) || logged)
             {
                 frmPrincipal mainMenu = new frmPrincipal();
                 mainMenu.Show();
                 mainMenu.FormClosed += Logout;
+                logged = true;
                 this.Hide();
             } else
             {

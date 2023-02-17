@@ -129,6 +129,7 @@ namespace SAESoft.Importaciones
                     rs = queryable.ToList();
                     if (rs.Count > 0)
                     {
+                        CurrentIndex = 0;
                         CambiarEstadoBotones(new[] { "tsddbProceso", "tsbUpload" }, true, toolStrip1, "AEREO");
                         if (rs.Count > 1)
                         {
@@ -653,8 +654,6 @@ namespace SAESoft.Importaciones
                             db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
                             var status = db.ImportStatus.Where(s => s.Via == Via && s.orden > rs[CurrentIndex].ImportStatus.orden).OrderBy(s => s.orden).FirstOrDefault();
                             rs[CurrentIndex].IdImportStatus = status.IdImportStatus;
-                            rs[CurrentIndex].MontoAlmacenaje = montos.montoA;
-                            rs[CurrentIndex].MontoDemora = montos.montoD;
                             db.SaveChanges();
                             ImportHistorial ih = new ImportHistorial { IdImport = rs[CurrentIndex].IdImport, IdImportStatus = status.IdImportStatus, FechaCreacion = DatosServer.FechaServer(), IdUsuarioCreacion = usuarioLogged.IdUsuario };
                             db.ImportHistorial.Add(ih);

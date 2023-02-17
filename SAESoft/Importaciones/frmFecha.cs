@@ -17,13 +17,17 @@ namespace SAESoft.Importaciones
         public frmFecha()
         {
             InitializeComponent();
-            dtpFecha.MinDate = fecha;
-            dtpFecha.MaxDate = fecha;
         }
 
         private void icbFinalizar_Click(object sender, EventArgs e)
         {
             fecha = dtpFecha.Value;
+        }
+
+        private void frmFecha_Load(object sender, EventArgs e)
+        {
+            dtpFecha.MinDate = fechaMin;
+            dtpFecha.MaxDate = fecha;
         }
     }
 }

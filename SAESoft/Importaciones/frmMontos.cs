@@ -1,12 +1,12 @@
-﻿using System.Windows.Forms.DataVisualization.Charting;
+﻿using SAESoft.Models.Importaciones;
+using System.Windows.Forms.DataVisualization.Charting;
 using static SAESoft.Utilitarios.Validaciones;
 
 namespace SAESoft.Importaciones
 {
     public partial class frmMontos : Form
     {
-        public decimal montoA=0.00m;
-        public decimal montoD=0.00m;
+        public List<Contenedor> contenedores;
         public frmMontos()
         {
             InitializeComponent();
@@ -24,12 +24,7 @@ namespace SAESoft.Importaciones
 
         private void icbGuardar_Click(object sender, EventArgs e)
         {
-            if (ValidarFormulario())
-            {
-                montoA = Convert.ToDecimal(textBox1.Text);
-                montoD = Convert.ToDecimal(textBox2.Text);
-                this.DialogResult= DialogResult.OK;
-            } 
+           
         }
 
         private Boolean ValidarFormulario()
@@ -48,7 +43,17 @@ namespace SAESoft.Importaciones
 
         private void frmMontos_Load(object sender, EventArgs e)
         {
+            cboContenedores.DataSource = contenedores;
+            cboContenedores.DisplayMember= "Numero";
+            cboContenedores.ValueMember= "idContenedor";
+        }
 
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            if (ValidarFormulario())
+            {
+                this.DialogResult = DialogResult.OK;
+            }
         }
     }
 }

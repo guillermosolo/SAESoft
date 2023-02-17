@@ -31,6 +31,7 @@ namespace SAESoft.Models
         public DbSet<ImportStatus> ImportStatus { get; set; }
         public DbSet<ImportHistorial> ImportHistorial { get; set; }
         public DbSet<Agente> Agentes { get; set; }
+        public DbSet<Pago> Pagos { get; set; }  
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
