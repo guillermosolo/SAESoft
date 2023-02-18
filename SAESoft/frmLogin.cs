@@ -1,6 +1,5 @@
 using SAESoft.Models;
 using System.Runtime.InteropServices;
-using System.Security.Principal;
 using static SAESoft.Cache.UserData;
 using static SAESoft.Utilitarios.Password;
 using static SAESoft.Utilitarios.ControlFormularios;
