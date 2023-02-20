@@ -33,6 +33,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.chkDocOriginales = new System.Windows.Forms.CheckBox();
+            this.cboAgente = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.dgvContenedores = new System.Windows.Forms.DataGridView();
             this.txtBL = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -97,6 +100,9 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.chkDocOriginales);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.cboAgente);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.label13);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.dgvContenedores);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.txtBL);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label10);
@@ -137,6 +143,51 @@
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             // 
+            // chkDocOriginales
+            // 
+            this.chkDocOriginales.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkDocOriginales.AutoSize = true;
+            this.chkDocOriginales.Enabled = false;
+            this.chkDocOriginales.FlatAppearance.BorderSize = 0;
+            this.chkDocOriginales.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.chkDocOriginales.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.chkDocOriginales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkDocOriginales.Image = global::SAESoft.Properties.Resources.Nunchecked;
+            this.chkDocOriginales.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.chkDocOriginales.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.chkDocOriginales.Location = new System.Drawing.Point(517, 207);
+            this.chkDocOriginales.Name = "chkDocOriginales";
+            this.chkDocOriginales.Size = new System.Drawing.Size(224, 31);
+            this.chkDocOriginales.TabIndex = 68;
+            this.chkDocOriginales.Text = "  Documentos Originales";
+            this.chkDocOriginales.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.chkDocOriginales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.chkDocOriginales.UseVisualStyleBackColor = true;
+            this.chkDocOriginales.CheckedChanged += new System.EventHandler(this.chkCheckedChange);
+            // 
+            // cboAgente
+            // 
+            this.cboAgente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboAgente.Enabled = false;
+            this.cboAgente.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cboAgente.FormattingEnabled = true;
+            this.cboAgente.IntegralHeight = false;
+            this.cboAgente.Location = new System.Drawing.Point(221, 355);
+            this.cboAgente.Name = "cboAgente";
+            this.cboAgente.Size = new System.Drawing.Size(248, 25);
+            this.cboAgente.TabIndex = 67;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label13.Location = new System.Drawing.Point(53, 358);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(162, 21);
+            this.label13.TabIndex = 66;
+            this.label13.Text = "Agente Autorizado";
+            // 
             // dgvContenedores
             // 
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -157,7 +208,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvContenedores.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvContenedores.Enabled = false;
-            this.dgvContenedores.Location = new System.Drawing.Point(53, 367);
+            this.dgvContenedores.Location = new System.Drawing.Point(53, 398);
             this.dgvContenedores.Name = "dgvContenedores";
             this.dgvContenedores.RowTemplate.Height = 25;
             this.dgvContenedores.Size = new System.Drawing.Size(418, 107);
@@ -219,7 +270,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHistorial.Location = new System.Drawing.Point(56, 483);
+            this.dgvHistorial.Location = new System.Drawing.Point(56, 512);
             this.dgvHistorial.Name = "dgvHistorial";
             this.dgvHistorial.ReadOnly = true;
             this.dgvHistorial.RowHeadersVisible = false;
@@ -233,7 +284,7 @@
             // 
             this.groupBox4.Controls.Add(this.listView1);
             this.groupBox4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox4.Location = new System.Drawing.Point(508, 210);
+            this.groupBox4.Location = new System.Drawing.Point(508, 238);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(277, 267);
             this.groupBox4.TabIndex = 58;
@@ -760,5 +811,8 @@
         private TextBox txtBL;
         private Label label10;
         private DataGridView dgvContenedores;
+        private ComboBox cboAgente;
+        private Label label13;
+        private CheckBox chkDocOriginales;
     }
 }

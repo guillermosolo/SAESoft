@@ -14,6 +14,7 @@ namespace SAESoft.Importaciones
     {
         public DateTime fechaMin;
         public DateTime fecha = DateTime.Now;
+        public string Obs;
         public frmFecha()
         {
             InitializeComponent();
@@ -22,6 +23,7 @@ namespace SAESoft.Importaciones
         private void icbFinalizar_Click(object sender, EventArgs e)
         {
             fecha = dtpFecha.Value;
+            Obs = txtObs.Text;
         }
 
         private void frmFecha_Load(object sender, EventArgs e)

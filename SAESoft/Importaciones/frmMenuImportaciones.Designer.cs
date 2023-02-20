@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.ibtnReporte = new FontAwesome.Sharp.IconButton();
+            this.ibtnExterno = new FontAwesome.Sharp.IconButton();
             this.ibtnAereo = new FontAwesome.Sharp.IconButton();
             this.ibtnMaritimo = new FontAwesome.Sharp.IconButton();
             this.ibtnDashboard = new FontAwesome.Sharp.IconButton();
@@ -36,14 +38,14 @@
             this.ibtnSalir = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
             this.panelFormularios = new System.Windows.Forms.Panel();
-            this.icbExterno = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.panelMenu.Controls.Add(this.icbExterno);
+            this.panelMenu.Controls.Add(this.ibtnReporte);
+            this.panelMenu.Controls.Add(this.ibtnExterno);
             this.panelMenu.Controls.Add(this.ibtnAereo);
             this.panelMenu.Controls.Add(this.ibtnMaritimo);
             this.panelMenu.Controls.Add(this.ibtnDashboard);
@@ -55,6 +57,44 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(200, 450);
             this.panelMenu.TabIndex = 1;
+            // 
+            // ibtnReporte
+            // 
+            this.ibtnReporte.FlatAppearance.BorderSize = 0;
+            this.ibtnReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnReporte.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ibtnReporte.ForeColor = System.Drawing.Color.White;
+            this.ibtnReporte.IconChar = FontAwesome.Sharp.IconChar.Print;
+            this.ibtnReporte.IconColor = System.Drawing.Color.White;
+            this.ibtnReporte.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnReporte.IconSize = 32;
+            this.ibtnReporte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ibtnReporte.Location = new System.Drawing.Point(3, 252);
+            this.ibtnReporte.Name = "ibtnReporte";
+            this.ibtnReporte.Size = new System.Drawing.Size(197, 43);
+            this.ibtnReporte.TabIndex = 11;
+            this.ibtnReporte.Text = "Reportes";
+            this.ibtnReporte.UseVisualStyleBackColor = true;
+            this.ibtnReporte.Click += new System.EventHandler(this.icbReporte_Click);
+            // 
+            // ibtnExterno
+            // 
+            this.ibtnExterno.FlatAppearance.BorderSize = 0;
+            this.ibtnExterno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnExterno.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ibtnExterno.ForeColor = System.Drawing.Color.White;
+            this.ibtnExterno.IconChar = FontAwesome.Sharp.IconChar.ExternalLink;
+            this.ibtnExterno.IconColor = System.Drawing.Color.White;
+            this.ibtnExterno.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnExterno.IconSize = 32;
+            this.ibtnExterno.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ibtnExterno.Location = new System.Drawing.Point(2, 199);
+            this.ibtnExterno.Name = "ibtnExterno";
+            this.ibtnExterno.Size = new System.Drawing.Size(197, 56);
+            this.ibtnExterno.TabIndex = 10;
+            this.ibtnExterno.Text = "Agente Externo";
+            this.ibtnExterno.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ibtnExterno.UseVisualStyleBackColor = true;
             // 
             // ibtnAereo
             // 
@@ -175,25 +215,6 @@
             this.panelFormularios.Size = new System.Drawing.Size(600, 450);
             this.panelFormularios.TabIndex = 2;
             // 
-            // icbExterno
-            // 
-            this.icbExterno.FlatAppearance.BorderSize = 0;
-            this.icbExterno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icbExterno.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.icbExterno.ForeColor = System.Drawing.Color.White;
-            this.icbExterno.IconChar = FontAwesome.Sharp.IconChar.ExternalLink;
-            this.icbExterno.IconColor = System.Drawing.Color.White;
-            this.icbExterno.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.icbExterno.IconSize = 32;
-            this.icbExterno.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icbExterno.Location = new System.Drawing.Point(2, 199);
-            this.icbExterno.Name = "icbExterno";
-            this.icbExterno.Size = new System.Drawing.Size(197, 56);
-            this.icbExterno.TabIndex = 10;
-            this.icbExterno.Text = "Agente Externo";
-            this.icbExterno.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.icbExterno.UseVisualStyleBackColor = true;
-            // 
             // frmMenuImportaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -219,6 +240,7 @@
         private FontAwesome.Sharp.IconButton ibtnDashboard;
         private FontAwesome.Sharp.IconButton ibtnAereo;
         private FontAwesome.Sharp.IconButton ibtnMaritimo;
-        private FontAwesome.Sharp.IconButton icbExterno;
+        private FontAwesome.Sharp.IconButton ibtnExterno;
+        private FontAwesome.Sharp.IconButton ibtnReporte;
     }
 }

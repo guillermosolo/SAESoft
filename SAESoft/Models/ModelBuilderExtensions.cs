@@ -363,14 +363,14 @@ namespace SAESoft.Models
                 new ImportStatus{IdImportStatus = 7,Descripcion ="Documentos a Transportista",orden=7,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus = 8,Descripcion="Llegada a Fábrica",orden=8,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus = 9,Descripcion="Salida de Fábrica",orden=9,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus = 10,Descripcion="Finalizado",orden=10,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 10,Descripcion="Finalizado",orden=10,Via='M',ultimo = true,FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
 
                 new ImportStatus{IdImportStatus =11,Descripcion="Ingreso Inicial",orden=1,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus = 12,Descripcion="Entrega de Datos a Digitador",orden=2,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus =13,Descripcion="Elaborar Póliza",orden=3,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus =14,Descripcion="Enviar Póliza Aeropuerto",orden=4,Via='A',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus =15,Descripcion="Llegada a Fabrica",orden=5,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus =16,Descripcion="Finalizado",orden=6,Via='A',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =16,Descripcion="Finalizado",orden=6,Via='A', ultimo = true, FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
 
                 new ImportStatus{IdImportStatus =17,Descripcion="Ingreso Inicial",orden=1,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus = 18,Descripcion="Entrega de Datos a Digitador",orden=2,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
@@ -378,10 +378,11 @@ namespace SAESoft.Models
                 new ImportStatus{IdImportStatus =20,Descripcion="Enviar Póliza",orden=4,Via='T',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus =21,Descripcion="Llegada a Almacenadora",orden=5,Via='T',FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus =22,Descripcion="Llegada a Fabrica",orden=6,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
-                new ImportStatus{IdImportStatus =23,Descripcion="Finalizado",orden=7,Via='T',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus =23,Descripcion="Finalizado",orden=7,Via='T',ultimo = true,FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
 
                 new ImportStatus{IdImportStatus = 24,Descripcion="Cambio ETA",orden = 0,Via = 'O', FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus = 25,Descripcion="Cambio Destino",orden = 0,Via = 'O', FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 26,Descripcion="Ingreso de Montos Gastados",orden = 0,Via = 'O', FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
             };
             modelBuilder.Entity<ImportStatus>().HasData(importStatuses);
 

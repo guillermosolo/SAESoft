@@ -20,5 +20,6 @@ namespace SAESoft.Models.Importaciones
         public int IdImportacion { get; set; }
         [ForeignKey("IdImportacion")]
         public virtual Importacion Importacion { get; set; } = null!;
+        public virtual ICollection<Poliza> Polizas { get; set; } = null!;
     }
 }

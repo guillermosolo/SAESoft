@@ -61,6 +61,12 @@ namespace SAESoft.Importaciones
                 txtPoliza.Focus();
                 return;
             }
+            if (!txtPoliza.Text.StartsWith(rs.IdAgente.ToString()))
+            {
+                MessageBox.Show("El número de póliza no coincide con el Agente Autorizado", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtPoliza.Focus();
+                return;
+            }
             DataRow row = dt.NewRow();
             row[0] = cboBL.Text;
             row[1] = txtPoliza.Text;

@@ -80,6 +80,7 @@
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.tsbPago = new System.Windows.Forms.ToolStripButton();
             this.tsbUpload = new System.Windows.Forms.ToolStripButton();
+            this.tsddbSwitchUser = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsddbProceso = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbAceptar = new System.Windows.Forms.ToolStripButton();
@@ -91,7 +92,6 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.tsbSwitchUser = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -439,7 +439,7 @@
             this.tsbEliminar,
             this.tsbPago,
             this.tsbUpload,
-            this.tsbSwitchUser,
+            this.tsddbSwitchUser,
             this.tsddbProceso,
             this.toolStripSeparator1,
             this.tsbAceptar,
@@ -503,6 +503,13 @@
             this.tsbUpload.Image = global::SAESoft.Properties.Resources.upload;
             this.tsbUpload.Name = "tsbUpload";
             this.tsbUpload.Click += new System.EventHandler(this.tsbUpload_Click);
+            // 
+            // tsddbSwitchUser
+            // 
+            this.tsddbSwitchUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsddbSwitchUser, "tsddbSwitchUser");
+            this.tsddbSwitchUser.Image = global::SAESoft.Properties.Resources.exchangeUser;
+            this.tsddbSwitchUser.Name = "tsddbSwitchUser";
             // 
             // tsddbProceso
             // 
@@ -577,13 +584,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
-            // 
-            // tsbSwitchUser
-            // 
-            this.tsbSwitchUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbSwitchUser, "tsbSwitchUser");
-            this.tsbSwitchUser.Image = global::SAESoft.Properties.Resources.exchangeUser;
-            this.tsbSwitchUser.Name = "tsbSwitchUser";
             // 
             // frmMaritimo
             // 
@@ -676,6 +676,6 @@
         private ToolStripButton tsbPago;
         private ComboBox cboAgente;
         private Label label13;
-        private ToolStripButton tsbSwitchUser;
+        private ToolStripDropDownButton tsddbSwitchUser;
     }
 }

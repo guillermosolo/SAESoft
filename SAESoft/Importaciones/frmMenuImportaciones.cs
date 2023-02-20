@@ -70,5 +70,11 @@ namespace SAESoft.Importaciones
             Abrir<frmAereo>(panelFormularios);
             menuActivo(ibtnAereo, panelMenu);
         }
+
+        private void icbReporte_Click(object sender, EventArgs e)
+        {
+            Abrir<frmReportes>(panelFormularios);
+            menuActivo(ibtnReporte, panelMenu);
+        }
     }
 }

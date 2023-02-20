@@ -28,70 +28,94 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.dgvDashboard = new System.Windows.Forms.DataGridView();
+            this.icbRefresh = new FontAwesome.Sharp.IconButton();
+            this.chkFinalizado = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDashboard)).BeginInit();
             this.SuspendLayout();
             // 
-            // chart1
+            // dgvDashboard
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(12, 12);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(776, 300);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.dgvDashboard.AllowUserToAddRows = false;
+            this.dgvDashboard.AllowUserToDeleteRows = false;
+            this.dgvDashboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDashboard.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvDashboard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDashboard.Location = new System.Drawing.Point(12, 36);
+            this.dgvDashboard.Name = "dgvDashboard";
+            this.dgvDashboard.ReadOnly = true;
+            this.dgvDashboard.RowTemplate.Height = 25;
+            this.dgvDashboard.Size = new System.Drawing.Size(780, 297);
+            this.dgvDashboard.TabIndex = 0;
             // 
-            // chart2
+            // icbRefresh
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(324, 410);
-            this.chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(370, 265);
-            this.chart2.TabIndex = 1;
-            this.chart2.Text = "chart2";
+            this.icbRefresh.IconChar = FontAwesome.Sharp.IconChar.ArrowsSpin;
+            this.icbRefresh.IconColor = System.Drawing.Color.Green;
+            this.icbRefresh.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.icbRefresh.IconSize = 16;
+            this.icbRefresh.Location = new System.Drawing.Point(703, 2);
+            this.icbRefresh.Name = "icbRefresh";
+            this.icbRefresh.Size = new System.Drawing.Size(85, 28);
+            this.icbRefresh.TabIndex = 1;
+            this.icbRefresh.Text = "Actualizar";
+            this.icbRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icbRefresh.UseVisualStyleBackColor = true;
+            this.icbRefresh.Click += new System.EventHandler(this.icbRefresh_Click);
+            // 
+            // chkFinalizado
+            // 
+            this.chkFinalizado.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkFinalizado.AutoSize = true;
+            this.chkFinalizado.Checked = true;
+            this.chkFinalizado.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFinalizado.FlatAppearance.BorderSize = 0;
+            this.chkFinalizado.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.chkFinalizado.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.chkFinalizado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkFinalizado.Image = global::SAESoft.Properties.Resources.Nchecked;
+            this.chkFinalizado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.chkFinalizado.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.chkFinalizado.Location = new System.Drawing.Point(580, 4);
+            this.chkFinalizado.Name = "chkFinalizado";
+            this.chkFinalizado.Size = new System.Drawing.Size(116, 25);
+            this.chkFinalizado.TabIndex = 46;
+            this.chkFinalizado.Text = "  Ver Finalizados";
+            this.chkFinalizado.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.chkFinalizado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.chkFinalizado.UseVisualStyleBackColor = true;
+            this.chkFinalizado.CheckedChanged += new System.EventHandler(this.chkCheckedChange);
             // 
             // frmDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 715);
-            this.Controls.Add(this.chart2);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.chkFinalizado);
+            this.Controls.Add(this.icbRefresh);
+            this.Controls.Add(this.dgvDashboard);
             this.Name = "frmDashboard";
             this.Text = "frmDashboard";
             this.Shown += new System.EventHandler(this.frmDashboard_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDashboard)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private DataGridView dgvDashboard;
+        private FontAwesome.Sharp.IconButton icbRefresh;
+        private CheckBox chkFinalizado;
     }
 }

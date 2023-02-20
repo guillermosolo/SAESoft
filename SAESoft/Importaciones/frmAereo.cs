@@ -53,6 +53,9 @@ namespace SAESoft.Importaciones
                 clbRevisiones.DataSource = db.Revisiones.OrderBy(r => r.Descripcion).ToList();
                 clbRevisiones.DisplayMember = "Descripcion";
                 clbRevisiones.ValueMember = "IdRevision";
+                cboAgente.DataSource = db.Agentes.Where(a => a.Activo).ToList();
+                cboAgente.DisplayMember = "NombreCompleto";
+                cboAgente.ValueMember = "IdAgente";
             }
             llenarNombres(cboNaviera, "EMPRESA");
             llenarNombres(cboForwarder, "FORWARDER", true);
@@ -237,6 +240,8 @@ namespace SAESoft.Importaciones
             txtId.Text = rs?[CurrentIndex].IdImport.ToString();
             cboShipper.SelectedValue = rs[CurrentIndex].IdShipper;
             cboNaviera.SelectedValue = rs[CurrentIndex].IdNaviera;
+            cboAgente.SelectedValue = rs[CurrentIndex].IdAgente;
+            chkDocOriginales.Checked = rs[CurrentIndex].DocOriginales;
             if (rs[CurrentIndex].IdDestino != null)
                 cboDestino.SelectedValue = rs[CurrentIndex].IdDestino;
             else
@@ -401,6 +406,8 @@ namespace SAESoft.Importaciones
                                     ETA = dtpETA.Value,
                                     IdAduana = Convert.ToInt32(cboAduana.SelectedValue),
                                     Consolidado = false,
+                                    DocOriginales = chkDocOriginales.Checked,
+                                    IdAgente = Convert.ToInt32(cboAgente.SelectedValue),
                                     IdImportStatus = db.ImportStatus.FirstOrDefault(i => i.Via == Via && i.orden == 1).IdImportStatus,
                                     FechaCreacion = DatosServer.FechaServer(),
                                     IdUsuarioCreacion = usuarioLogged.IdUsuario,
@@ -730,6 +737,14 @@ namespace SAESoft.Importaciones
             return true;
         }
 
+        private void chkCheckedChange(object sender, EventArgs e)
+        {
+            CheckBox chk = sender as CheckBox;
+            if (chk.Checked)
+                chk.Image = Properties.Resources.Nchecked;
+            else
+                chk.Image = Properties.Resources.Nunchecked;
+        }
         private void tsbAnterior_Click(object sender, EventArgs e)
         {
             if (CurrentIndex <= 0)

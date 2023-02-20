@@ -16,6 +16,8 @@ namespace SAESoft.Models.Importaciones
         public string Descripcion { get; set;}
         public uint orden { get; set; }
         public char Via { get; set; }
+
+        public Boolean ultimo { get; set; } = false;
         public ICollection<Importacion> Importaciones { get; set;}
     }
 }
