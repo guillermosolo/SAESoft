@@ -469,7 +469,7 @@ namespace SAESoft.Importaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago"}, true, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago" }, true, toolStrip1, "MARITIMO");
                 habilitarFormulario(this, false);
             }
         }
@@ -1012,6 +1012,11 @@ namespace SAESoft.Importaciones
                 llenarMontos();
             else
                 MessageBox.Show("Ya se han ingresado los montos", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void tsddbSwitchUser_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

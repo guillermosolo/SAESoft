@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SAESoft.Models;
-using SAESoft.Models.Importaciones;
 using SpreadsheetLight;
 using System.Data;
 using System.Diagnostics;
@@ -16,7 +15,7 @@ namespace SAESoft.Importaciones
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            string pathFile = Path.Combine(Path.GetTempPath(), "ImporttoERP.xlsx");
+            string pathFile = Path.Combine(Path.GetTempPath(), "BLyPolizaParaERP.xlsx");
             SLDocument excel = new SLDocument();
             DataTable dt = new DataTable();
             dt.Columns.Add("BL", typeof(string));

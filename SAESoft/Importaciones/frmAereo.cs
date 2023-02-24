@@ -28,7 +28,7 @@ namespace SAESoft.Importaciones
         {
             InitializeComponent();
         }
-        
+
         private void tsbSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -126,7 +126,7 @@ namespace SAESoft.Importaciones
                                                     .Include(r => r.ImportStatus)
                                                     .Include(r => r.ImportHistorial)
                                                     .ThenInclude(rh => rh.ImportStatus)
-                                                    .Where(b => b.Via == 'A' || b.Via =='T');
+                                                    .Where(b => b.Via == 'A' || b.Via == 'T');
                     if (hasRole(DigitadorImportaciones))
                         queryable = queryable.Where(r => r.IdUsuario == usuarioLogged.IdUsuario);
                     rs = queryable.ToList();
@@ -179,7 +179,8 @@ namespace SAESoft.Importaciones
                         var items = db.Usuarios.Include(u => u.Rol).Where(u => u.Rol.IdRol == DigitadorImportaciones);
                         foreach (var item2 in items)
                         {
-                            ((ToolStripMenuItem)tsddbProceso.DropDownItems[i - 1]).DropDownItems.Add(item2.Nombres + " " + item2.Apellidos, null, (s, e) => seleccionaDigitador(item2.IdUsuario));
+                            ((ToolStripMenuItem)tsddbProceso.DropDownItems[i - 1]).DropDownItems.Add(item2.Nombres + " " + item2.Apellidos, null, (s, e) => seleccionaDigitador(item2.IdUsuario,true));
+                            tsddbSwitchUser.DropDownItems.Add(item2.Nombres + " " + item2.Apellidos, null, (s, e) => seleccionaDigitador(item2.IdUsuario, false));
                         }
                     }
                     i++;
@@ -187,7 +188,7 @@ namespace SAESoft.Importaciones
             }
         }
 
-        private void seleccionaDigitador(int codigo)
+        private void seleccionaDigitador(int codigo,Boolean PrimeraVez)
         {
             using (SAESoftContext db = new SAESoftContext())
             {
@@ -202,8 +203,11 @@ namespace SAESoft.Importaciones
                             db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
                             rs[CurrentIndex].IdUsuario = codigo;
                             var status = db.ImportStatus.Where(s => s.Via == Via && s.orden > rs[CurrentIndex].ImportStatus.orden).OrderBy(s => s.orden).FirstOrDefault();
-                            rs[CurrentIndex].IdImportStatus = status.IdImportStatus;
-                            db.SaveChanges();
+                            if (PrimeraVez)
+                            {
+                                rs[CurrentIndex].IdImportStatus = status.IdImportStatus;
+                                db.SaveChanges();
+                            }
                             ImportHistorial ih = new ImportHistorial { IdImport = rs[CurrentIndex].IdImport, IdImportStatus = status.IdImportStatus, FechaCreacion = DatosServer.FechaServer(), IdUsuarioCreacion = usuarioLogged.IdUsuario };
                             db.ImportHistorial.Add(ih);
                             rs[CurrentIndex].ImportHistorial.Add(ih);
@@ -289,6 +293,9 @@ namespace SAESoft.Importaciones
                 CambiarEstadoBotones(new[] { "tsbModificar" }, false, toolStrip1, "AEREO");
             else
                 CambiarEstadoBotones(new[] { "tsbModificar" }, true, toolStrip1, "AEREO");
+
+            if (rs[CurrentIndex].Via == 'A')
+                CambiarEstadoBotones(new[] { "tsbPago" }, false, toolStrip1, "AEREO");
         }
 
         private void cargarArchivos(string opcion)
@@ -570,7 +577,8 @@ namespace SAESoft.Importaciones
                                 break;
                             }
                     }
-                } else
+                }
+                else
                 {
                     switch (rs[CurrentIndex].IdImportStatus)
                     {
@@ -581,11 +589,6 @@ namespace SAESoft.Importaciones
                         case ElaborarPolizaTerrestre - 1:
                             {
                                 asignarPoliza();
-                                break;
-                            }
-                        case StatusFinalTerrestre - 1:
-                            {
-                                llenarMontos();
                                 break;
                             }
                         default:
@@ -892,6 +895,22 @@ namespace SAESoft.Importaciones
                     }
                 }
             }
+        }
+
+        private void tsbPago_Click(object sender, EventArgs e)
+        {
+            int c = 0;
+            foreach (var cont in rs[CurrentIndex].Contenedores)
+            {
+                if (cont.IdPago != null)
+                {
+                    c++;
+                }
+            }
+            if (c == 0 && rs[CurrentIndex].Via == 'T')
+                llenarMontos();
+            else
+                MessageBox.Show("Ya se han ingresado los montos", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
