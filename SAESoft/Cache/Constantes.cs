@@ -27,8 +27,11 @@ namespace SAESoft.Cache
         public const int CambioETA = 24;
         public const int CambioDestino = 25;
         public const int IngresoMontos = 26;
+        public const int Comentario = 27;
 
         public const string PATH_Import = @"\\192.168.50.37\SAESoft\Import\Soporte";
+
+        public const int SelectivoRojo = 5;
 
         //FIN CONSTANTES MODULO DE IMPORTACIONES
     }

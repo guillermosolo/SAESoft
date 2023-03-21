@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAereo));
             toolStripContainer1 = new ToolStripContainer();
             chkDocOriginales = new CheckBox();
@@ -74,6 +74,8 @@
             tsbEliminar = new ToolStripButton();
             tsbPago = new ToolStripButton();
             tsbUpload = new ToolStripButton();
+            tsbComentarios = new ToolStripButton();
+            tsddbSwitchUser = new ToolStripDropDownButton();
             tsddbProceso = new ToolStripDropDownButton();
             toolStripSeparator1 = new ToolStripSeparator();
             tsbAceptar = new ToolStripButton();
@@ -85,7 +87,6 @@
             errorProvider1 = new ErrorProvider(components);
             fileSystemWatcher1 = new FileSystemWatcher();
             openFileDialog1 = new OpenFileDialog();
-            tsddbSwitchUser = new ToolStripDropDownButton();
             toolStripContainer1.ContentPanel.SuspendLayout();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
             toolStripContainer1.SuspendLayout();
@@ -193,23 +194,23 @@
             // 
             // dgvContenedores
             // 
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvContenedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvContenedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvContenedores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvContenedores.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvContenedores.DefaultCellStyle = dataGridViewCellStyle2;
             dgvContenedores.Enabled = false;
             dgvContenedores.Location = new Point(53, 398);
             dgvContenedores.Name = "dgvContenedores";
@@ -264,14 +265,14 @@
             // 
             dgvHistorial.AllowUserToAddRows = false;
             dgvHistorial.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvHistorial.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvHistorial.Location = new Point(56, 512);
             dgvHistorial.Name = "dgvHistorial";
@@ -555,10 +556,10 @@
             // 
             toolStrip1.Dock = DockStyle.None;
             toolStrip1.ImageScalingSize = new Size(32, 32);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListarXXX, tsbModificar, tsbEliminar, tsbPago, tsbUpload, tsddbSwitchUser, tsddbProceso, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListarXXX, tsbModificar, tsbEliminar, tsbPago, tsbUpload, tsbComentarios, tsddbSwitchUser, tsddbProceso, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(655, 39);
+            toolStrip1.Size = new Size(691, 39);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -637,6 +638,29 @@
             tsbUpload.Size = new Size(36, 36);
             tsbUpload.Text = "Subir Archivo";
             tsbUpload.Click += tsbUpload_Click;
+            // 
+            // tsbComentarios
+            // 
+            tsbComentarios.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbComentarios.Enabled = false;
+            tsbComentarios.Image = Properties.Resources.comments;
+            tsbComentarios.ImageTransparentColor = Color.Magenta;
+            tsbComentarios.Name = "tsbComentarios";
+            tsbComentarios.Size = new Size(36, 36);
+            tsbComentarios.Text = "Comentarios";
+            tsbComentarios.Click += tsbComentarios_Click;
+            // 
+            // tsddbSwitchUser
+            // 
+            tsddbSwitchUser.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsddbSwitchUser.Enabled = false;
+            tsddbSwitchUser.Image = Properties.Resources.chgUser;
+            tsddbSwitchUser.ImageTransparentColor = Color.Magenta;
+            tsddbSwitchUser.Name = "tsddbSwitchUser";
+            tsddbSwitchUser.Size = new Size(45, 36);
+            tsddbSwitchUser.Text = "Cambiar Digitador";
+            tsddbSwitchUser.ToolTipText = "Cambiar Digitador";
+            tsddbSwitchUser.Visible = false;
             // 
             // tsddbProceso
             // 
@@ -731,18 +755,6 @@
             openFileDialog1.FileName = "openFileDialog1";
             openFileDialog1.Filter = "Pdf Files|*.pdf";
             // 
-            // tsddbSwitchUser
-            // 
-            tsddbSwitchUser.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            tsddbSwitchUser.Enabled = false;
-            tsddbSwitchUser.Image = Properties.Resources.exchangeUser;
-            tsddbSwitchUser.ImageTransparentColor = Color.Magenta;
-            tsddbSwitchUser.Name = "tsddbSwitchUser";
-            tsddbSwitchUser.Size = new Size(45, 36);
-            tsddbSwitchUser.Text = "Cambiar Digitador";
-            tsddbSwitchUser.ToolTipText = "Cambiar Digitador";
-            tsddbSwitchUser.Visible = false;
-            // 
             // frmAereo
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
@@ -754,7 +766,6 @@
             Name = "frmAereo";
             Text = "frmAereo";
             Load += frmAereo_Load;
-            Shown += frmAereo_Shown;
             toolStripContainer1.ContentPanel.ResumeLayout(false);
             toolStripContainer1.ContentPanel.PerformLayout();
             toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -827,5 +838,6 @@
         private CheckBox chkDocOriginales;
         private ToolStripButton tsbPago;
         private ToolStripDropDownButton tsddbSwitchUser;
+        private ToolStripButton tsbComentarios;
     }
 }

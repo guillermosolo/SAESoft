@@ -16,6 +16,7 @@ namespace SAESoft.Importaciones
     public partial class frmAereo : Form
     {
         private Boolean esNuevo = false;
+        public int individual = 0;
         private List<Importacion>? rs = new List<Importacion>();
         private int CurrentIndex = 0;
         private char Via = 'A';
@@ -31,10 +32,14 @@ namespace SAESoft.Importaciones
 
         private void tsbSalir_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (individual != 0)
+                this.Dispose();
+            else
+                this.Close();
         }
 
-        private void llenarCombos()
+
+        private void llenarCombosVariables()
         {
             using (SAESoftContext db = new SAESoftContext())
             {
@@ -50,17 +55,27 @@ namespace SAESoft.Importaciones
                 cboTerminal.DataSource = db.Terminales.Where(t => t.Via == Via).OrderBy(t => t.Nombre).ToList();
                 cboTerminal.DisplayMember = "Nombre";
                 cboTerminal.ValueMember = "IdTerminal";
+            }
+        }
+
+        private void llenarCombos()
+        {
+            using (SAESoftContext db = new SAESoftContext())
+            {
+                llenarCombosVariables();
                 clbRevisiones.DataSource = db.Revisiones.OrderBy(r => r.Descripcion).ToList();
                 clbRevisiones.DisplayMember = "Descripcion";
                 clbRevisiones.ValueMember = "IdRevision";
-                cboAgente.DataSource = db.Agentes.Where(a => a.Activo).ToList();
+                var agente = db.Agentes.Where(a => a.Activo).ToList();
+                agente.Insert(0, new Agente { IdAgente = 0, Nombres = "(NINGUNO)", Apellidos = "" });
+                cboAgente.DataSource = agente;
                 cboAgente.DisplayMember = "NombreCompleto";
                 cboAgente.ValueMember = "IdAgente";
             }
             llenarNombres(cboNaviera, "EMPRESA");
             llenarNombres(cboForwarder, "FORWARDER", true);
             llenarNombres(cboDestino, "DESTINO", true);
-            llenarNombres(cboAlmacenadora, "ALMACENADORA");
+            llenarNombres(cboAlmacenadora, "ALMACENADORA", true);
         }
 
         private void estructuraGrid()
@@ -105,17 +120,20 @@ namespace SAESoft.Importaciones
             llenarCombos();
         }
 
-        private void frmAereo_Shown(object sender, EventArgs e)
-        {
-            llenarCombos();
-            estructuraGrid();
-        }
-
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
             frmBuscarImport buscar = new frmBuscarImport();
-            var resp = buscar.ShowDialog();
+            DialogResult resp;
+            if (individual == 0)
+            {
+                resp = buscar.ShowDialog();
+            }
+            else
+            {
+                buscar.todos = true;
+                resp = DialogResult.OK;
+            }
             if (resp == DialogResult.OK)
             {
                 using (SAESoftContext db = new SAESoftContext())
@@ -129,6 +147,10 @@ namespace SAESoft.Importaciones
                                                     .Where(b => b.Via == 'A' || b.Via == 'T');
                     if (hasRole(DigitadorImportaciones))
                         queryable = queryable.Where(r => r.IdUsuario == usuarioLogged.IdUsuario);
+                    if (!buscar.todos)
+                        queryable = queryable.Where(r => buscar.ids.Contains(r.IdImport));
+                    if (individual != 0)
+                        queryable = queryable.Where(r => r.IdImport == individual);
                     rs = queryable.ToList();
                     if (rs.Count > 0)
                     {
@@ -161,6 +183,8 @@ namespace SAESoft.Importaciones
         {
             CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "AEREO");
             llenarMenu();
+            llenarCombos();
+            estructuraGrid();
         }
 
         private void llenarMenu()
@@ -179,7 +203,7 @@ namespace SAESoft.Importaciones
                         var items = db.Usuarios.Include(u => u.Rol).Where(u => u.Rol.IdRol == DigitadorImportaciones);
                         foreach (var item2 in items)
                         {
-                            ((ToolStripMenuItem)tsddbProceso.DropDownItems[i - 1]).DropDownItems.Add(item2.Nombres + " " + item2.Apellidos, null, (s, e) => seleccionaDigitador(item2.IdUsuario,true));
+                            ((ToolStripMenuItem)tsddbProceso.DropDownItems[i - 1]).DropDownItems.Add(item2.Nombres + " " + item2.Apellidos, null, (s, e) => seleccionaDigitador(item2.IdUsuario, true));
                             tsddbSwitchUser.DropDownItems.Add(item2.Nombres + " " + item2.Apellidos, null, (s, e) => seleccionaDigitador(item2.IdUsuario, false));
                         }
                     }
@@ -188,7 +212,7 @@ namespace SAESoft.Importaciones
             }
         }
 
-        private void seleccionaDigitador(int codigo,Boolean PrimeraVez)
+        private void seleccionaDigitador(int codigo, Boolean PrimeraVez)
         {
             using (SAESoftContext db = new SAESoftContext())
             {
@@ -241,30 +265,31 @@ namespace SAESoft.Importaciones
                 var resp = rs[CurrentIndex].Revisiones.Where(r => r.IdRevision == item.IdRevision).Count() > 0;
                 clbRevisiones.SetItemChecked(i, resp);
             }
-            txtId.Text = rs?[CurrentIndex].IdImport.ToString();
-            cboShipper.SelectedValue = rs[CurrentIndex].IdShipper;
-            cboNaviera.SelectedValue = rs[CurrentIndex].IdNaviera;
-            cboAgente.SelectedValue = rs[CurrentIndex].IdAgente;
-            chkDocOriginales.Checked = rs[CurrentIndex].DocOriginales;
-            if (rs[CurrentIndex].IdDestino != null)
-                cboDestino.SelectedValue = rs[CurrentIndex].IdDestino;
-            else
-                cboDestino.SelectedIndex = 0;
-            if (rs[CurrentIndex].IdForwarder != null)
-                cboForwarder.SelectedValue = rs[CurrentIndex].IdForwarder;
-            else
-                cboForwarder.SelectedIndex = 0;
             if (rs[CurrentIndex].Via == 'A')
             {
                 Via = 'A';
                 rbtnAereo.Checked = true;
-                cboTerminal.SelectedValue = rs[CurrentIndex].IdTerminal;
+                if (rs[CurrentIndex].IdTerminal != null)
+                {
+                    cboTerminal.SelectedValue = rs[CurrentIndex].IdTerminal;
+                }
+                else
+                {
+                    cboTerminal.SelectedIndex = -1;
+                }
             }
             else
             {
                 Via = 'T';
                 rbtnTerrestre.Checked = true;
-                cboAlmacenadora.SelectedValue = rs[CurrentIndex].IdAlmacenadora;
+                if (rs[CurrentIndex].IdAlmacenadora != null)
+                {
+                    cboAlmacenadora.SelectedValue = rs[CurrentIndex].IdAlmacenadora;
+                }
+                else
+                {
+                    cboAlmacenadora.SelectedIndex = -1;
+                }
                 foreach (var c in rs[CurrentIndex].Contenedores)
                 {
                     row = dtc.NewRow();
@@ -275,8 +300,31 @@ namespace SAESoft.Importaciones
                 }
             }
             llenarMenu();
+            llenarCombosVariables();
+            txtId.Text = rs?[CurrentIndex].IdImport.ToString();
+            cboShipper.SelectedValue = rs[CurrentIndex].IdShipper;
+            cboNaviera.SelectedValue = rs[CurrentIndex].IdNaviera;
+            if (rs[CurrentIndex].IdAgente != null)
+                cboAgente.SelectedValue = rs[CurrentIndex].IdAgente;
+            else
+                cboAgente.SelectedIndex = 0;
+            chkDocOriginales.Checked = rs[CurrentIndex].DocOriginales;
+            if (rs[CurrentIndex].IdDestino != null)
+                cboDestino.SelectedValue = rs[CurrentIndex].IdDestino;
+            else
+                cboDestino.SelectedIndex = 0;
+            if (rs[CurrentIndex].IdForwarder != null)
+                cboForwarder.SelectedValue = rs[CurrentIndex].IdForwarder;
+            else
+                cboForwarder.SelectedIndex = 0;
             dtpETA.Value = rs[CurrentIndex].ETA;
-            cboAduana.SelectedValue = rs[CurrentIndex].IdAduana;
+            if (rs[CurrentIndex].IdAduana != null)
+            {
+                cboAduana.SelectedValue = rs[CurrentIndex].IdAduana;
+            } else
+            {
+                cboAduana.SelectedIndex = -1;
+            }
             cargarArchivos(@"\" + rs[CurrentIndex].Codigo);
             tslIndice.Text = $"Registro {CurrentIndex + 1} de {rs.Count}";
             checkProceso(rs[CurrentIndex].ImportStatus.orden);
@@ -284,7 +332,7 @@ namespace SAESoft.Importaciones
             foreach (var h in rs[CurrentIndex].ImportHistorial.OrderByDescending(h => h.FechaCreacion))
             {
                 row = dt.NewRow();
-                row[0] = h.ImportStatus.Descripcion;
+                row[0] = h.Observaciones != null ? h.ImportStatus.Descripcion + ": " + h.Observaciones : h.ImportStatus.Descripcion;
                 row[1] = NombreUsuario(h.IdUsuarioCreacion);
                 row[2] = h.FechaCreacion;
                 dt.Rows.Add(row);
@@ -826,8 +874,12 @@ namespace SAESoft.Importaciones
             esNuevo = false;
             String[] botones = { "tsbAceptar", "tsbCancelar" };
             CambiarVisibilidadBotones(botones, toolStrip1, true);
+            cboAlmacenadora.Enabled = true;
+            cboAduana.Enabled = true;
             dtpETA.Enabled = true;
             cboDestino.Enabled = true;
+            if (cboAgente.SelectedIndex == 0)
+                cboAgente.Enabled = true;
             if (clbRevisiones.CheckedItems.Count == 0)
                 clbRevisiones.Enabled = true;
             dtpETA.Focus();
@@ -897,6 +949,18 @@ namespace SAESoft.Importaciones
             }
         }
 
+        public void mostrarIndividual(Panel panel)
+        {
+            this.TopLevel = false;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.Dock = DockStyle.Fill;
+            panel.Controls.Add(this);
+            panel.Tag = this;
+            this.Show();
+            this.BringToFront();
+            tsbBuscar_Click(null, null);
+        }
+
         private void tsbPago_Click(object sender, EventArgs e)
         {
             int c = 0;
@@ -911,6 +975,36 @@ namespace SAESoft.Importaciones
                 llenarMontos();
             else
                 MessageBox.Show("Ya se han ingresado los montos", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void tsbComentarios_Click(object sender, EventArgs e)
+        {
+            using (SAESoftContext db = new SAESoftContext())
+            {
+                try
+                {
+                    frmComentarios comm = new frmComentarios();
+                    var res = comm.ShowDialog();
+                    if (res == DialogResult.OK)
+                    {
+                        db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
+                        var status = db.ImportStatus.Where(s => s.IdImportStatus == Comentario).OrderBy(s => s.orden).FirstOrDefault();
+                        ImportHistorial ih = new ImportHistorial { IdImport = rs[CurrentIndex].IdImport, IdImportStatus = status.IdImportStatus, FechaCreacion = DatosServer.FechaServer(), IdUsuarioCreacion = usuarioLogged.IdUsuario, Observaciones = comm.Obs };
+                        db.ImportHistorial.Add(ih);
+                        rs[CurrentIndex].ImportHistorial.Add(ih);
+                        db.SaveChanges();
+                        despliegaDatos();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException != null)
+                        MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
         }
     }
 }

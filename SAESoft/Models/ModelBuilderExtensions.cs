@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SAESoft.Models.AdministracionSistema;
 using SAESoft.Models.Importaciones;
+using System.Linq;
 using System.Net.Http.Headers;
 using static SAESoft.Utilitarios.Password;
 
@@ -13,7 +14,9 @@ namespace SAESoft.Models
             List<Rol> roles = new List<Rol>()
             {
                new Rol {IdRol = 1,Nombre = "Super Admin",FechaCreacion = DateTime.Now,IdUsuarioCreacion = 1 },
-               new Rol {IdRol = 2,Nombre = "Digitador Importaciones",FechaCreacion=DateTime.Now,IdUsuarioCreacion=1}
+               new Rol {IdRol = 2,Nombre = "Digitador Importaciones",FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+               new Rol {IdRol = 3,Nombre = "Creador Importaciones",FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+               new Rol {IdRol = 4,Nombre = "Admin Importaciones",FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
             };
             modelBuilder.Entity<Rol>()
                 .HasData(roles);
@@ -34,6 +37,16 @@ namespace SAESoft.Models
 
             modelBuilder.Entity<Usuario>()
                 .HasData(sa);
+
+            List<Usuario> digitadores = new List<Usuario>()
+            {
+                new Usuario {IdUsuario = 2,Nombres = "Brian Aaron", Apellidos = "Tobar Soto",Email = "briansoto19@sae-a.com",UserName="btobar",Password=ComputeHash("btobar"),IdRol=3,Activo=true,FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new Usuario {IdUsuario = 3,Nombres = "Walter Antonio", Apellidos = "Ajcuc Subuyuj",Email = "walter277@sae-a.com",UserName="wajcuc",Password=ComputeHash("wajcuc"),IdRol=2,Activo=true,FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new Usuario {IdUsuario = 4,Nombres = "Sergio Esteban", Apellidos = "Espinoza Lopez",Email = "sergio.e63@sae-a.com",UserName="sespinoza",Password=ComputeHash("sespinoza"),IdRol=2,Activo=true,FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+                new Usuario {IdUsuario = 5,Nombres = "Luis Gilberto", Apellidos = "Martínez Ticun",Email = "luis@sae-a.com",UserName="lmartinez",Password=ComputeHash("lmartinez"),IdRol=4,Activo=true,FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
+            };
+
+            modelBuilder.Entity<Usuario>().HasData(digitadores);
 
             List<Modulo> modulos = new List<Modulo>()
             {
@@ -97,6 +110,28 @@ namespace SAESoft.Models
                             .UsingEntity(j => j.HasData(new { RolesIdRol = di.IdRol, PermisosIdPermiso = p.IdPermiso }));
             }
 
+            Rol crea = roles.FirstOrDefault(r => r.IdRol == 3);
+            permisosDI = permisos.Where(p => new[] { 2, 27, 28,29, 30, 32,33, 34 }.Contains(p.IdPermiso)).ToList();
+
+            foreach (Permiso p in permisosDI)
+            {
+                modelBuilder.Entity<Rol>()
+                            .HasMany(r => r.Permisos)
+                            .WithMany(r => r.Roles)
+                            .UsingEntity(j => j.HasData(new { RolesIdRol = crea.IdRol, PermisosIdPermiso = p.IdPermiso }));
+            }
+
+            Rol adm = roles.FirstOrDefault(r => r.IdRol == 4);
+            permisosDI = permisos.Where(p => p.IdModulo == 3 || p.IdPermiso == 2).ToList();
+
+            foreach (Permiso p in permisosDI)
+            {
+                modelBuilder.Entity<Rol>()
+                            .HasMany(r => r.Permisos)
+                            .WithMany(r => r.Roles)
+                            .UsingEntity(j => j.HasData(new { RolesIdRol = adm.IdRol, PermisosIdPermiso = p.IdPermiso }));
+            }
+
             List<Grupo> grupos = new List<Grupo>
             {
                 new Grupo{IdGrupo=1,Nombre="EMPRESA",IdModulo=3, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
@@ -130,7 +165,7 @@ namespace SAESoft.Models
                 new Nombre{IdNombre = 19, Descripcion = "TRANSPORTES VILLEDA", IdGrupo = 1, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Nombre{IdNombre = 20, Descripcion = "INTERNATIONAL CARGO", IdGrupo = 1, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Nombre{IdNombre = 21, Descripcion = "CROWLEY LOGISTIC", IdGrupo = 1, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Nombre{IdNombre=22,Descripcion="BLUE LOGISTC ",IdGrupo=2, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+                new Nombre{IdNombre=22,Descripcion="BLUE LOGISTIC",IdGrupo=2, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Nombre{IdNombre = 23, Descripcion = "DHL", IdGrupo = 2, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Nombre{IdNombre = 24, Descripcion = "DONGSUE", IdGrupo = 2, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Nombre{IdNombre = 25, Descripcion = "AVIANCA ", IdGrupo = 2, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
@@ -166,6 +201,8 @@ namespace SAESoft.Models
                 new Nombre{IdNombre = 55, Descripcion = "DS", IdGrupo = 4, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Nombre{IdNombre = 56, Descripcion = "ALMAGUATE", IdGrupo = 5, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Nombre{IdNombre = 57, Descripcion = "ALSERSA", IdGrupo = 5, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+                new Nombre{IdNombre = 58, Descripcion = "HAPAG-LLOYD", IdGrupo = 1, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+                new Nombre{IdNombre=59,Descripcion="EXPEDITORS",IdGrupo=2, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
             };
             modelBuilder.Entity<Nombre>().HasData(nombres);
 
@@ -181,121 +218,124 @@ namespace SAESoft.Models
 
             List<Shipper> shippers = new List<Shipper>
             {
-                new Shipper{IdShipper=1,Nombre="ANTEX KNITTING MILLS",Aereo=true,Maritimo=true,Terrestre=true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper=2,Nombre="BOHOTEX CO, LTD",Aereo=true,Maritimo=true,Terrestre=true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper=3,Nombre="BROS MACAO COMERCIAL",Aereo=true,Maritimo=false,Terrestre=false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper=4,Nombre="CHAKIM SRL",Aereo=true,Maritimo=true,Terrestre=true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper=5,Nombre="CHINA JUNYE TEXTILE",Aereo=true,Maritimo=false,Terrestre=false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper=6,Nombre="COLOR & TOUCH VINA CO.,LTD",Aereo=true,Maritimo=true,Terrestre=true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper=7,Nombre="DAP AMERICA INC",Aereo=true,Maritimo=false,Terrestre=false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper=8,Nombre="DONGGUAN TEXWINCA",Aereo=true,Maritimo=true,Terrestre=true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper=9,Nombre="HENIX FAR EAST",Aereo=true,Maritimo=true,Terrestre=true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper=10,Nombre="JUNGWOO VINA",Aereo=true,Maritimo=false,Terrestre=false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 11, Nombre = "KAN HIM PIECE", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 12, Nombre = "KEER AMERICA", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 13, Nombre = "MAINETTI EASTERN CHINA", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 14, Nombre = "MANH DAT MANUFACTURE", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 15, Nombre = "NICE DYEING FACTORY", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 16, Nombre = "OAK HNI", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 17, Nombre = "OCEAN NETWORK EXPRESS", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 18, Nombre = "PACIFIC TEXTILES", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 19, Nombre = "PARKDALE MILLS", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 20, Nombre = "PHU BAI SPINNING MILL", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 21, Nombre = "PT TOKAI TEXPRINT", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 22, Nombre = "PT. WIN TEXTILE", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 23, Nombre = "S&H GLOBAL, S.A.", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 24, Nombre = "SAE-A DOMINICANA", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 25, Nombre = "SAE-A EINS", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 26, Nombre = "SAE-A SPINNING, S.A.", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper=27,Nombre="SAE-A TRADING",Aereo=true,Maritimo=true,Terrestre=true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 28, Nombre = "SAMIL VINA", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 29, Nombre = "SEJIN SILICONE USA", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 30, Nombre = "SEWANG VINA", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 31, Nombre = "SHAOXING QIONGHUA TRADING CO.,LTD", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 32, Nombre = "SUNG BU VINA", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 33, Nombre = "SUNGPIL KANG", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 34, Nombre = "VN JUNGWOO CHINA", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 35, Nombre = "YAMATO USA", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 36, Nombre = "YANG JI INTERNATIONAL", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 37, Nombre = "YKK VIETNAM", Aereo = true, Maritimo = false, Terrestre = false, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper=38,Nombre="ACHROMA",Aereo=false,Maritimo=true,Terrestre=true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 39, Nombre = "ALVANON HK LTD", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 40, Nombre = "ALPINE", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 41, Nombre = "BRAND ID HK", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 42, Nombre = "BROS EASTERN CO", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 43, Nombre = "AVERY DENNISON", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 44, Nombre = "CENTURY INTERNATIONAL", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 45, Nombre = "BUHLER QUALITY YARNS CORP", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 46, Nombre = "COLOR SOLUTION", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 47, Nombre = "CONG TY TNHH", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 48, Nombre = "CRYSTAL TOWN LIMITED", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 49, Nombre = "CS CENTRAL AMERICA S.A. DE C.V.", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 50, Nombre = "DAEIL GAGONG", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 51, Nombre = "DAESONG LABTECH", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 52, Nombre = "DATACOLOR TECHNOLOGY", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 53, Nombre = "DESERT EMPIRE", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 54, Nombre = "DESICCA, LLCS", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 55, Nombre = "DETAILTEX", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 56, Nombre = "DICKS SPORTING", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 57, Nombre = "DONG HING LABEL", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 58, Nombre = "DURKOPP ADLER", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 59, Nombre = "DYSTAR LP DBA COLOR", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 60, Nombre = "E TEXTINT CORP", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 61, Nombre = "FAVORABLE TECHNOLOGY", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 62, Nombre = "EMBSENSE TEXTILE", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 63, Nombre = "FINE LINE TECHNO", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 64, Nombre = "EMSIG MANUFACTURING", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 65, Nombre = "FLASH GLOBAL GSC", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 66, Nombre = "FRANCIA HELENA YATE", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 67, Nombre = "FREUDENBERG", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 68, Nombre = "GAP INTERNATIONAL", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 69, Nombre = "HASBUN SILHY", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 70, Nombre = "HANSAE INTERNATIONAL", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 72, Nombre = "HHH VIETNAM CO LTD", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 73, Nombre = "INVISIN", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 74, Nombre = "JD LINK INC", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 80, Nombre = "KEUN YONG MACHINERY", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 81, Nombre = "KWIN VIET HAN CO., LTD", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 82, Nombre = "LECTRA SYSTEMES S,A", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 83, Nombre = "LONG JIA HAO", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 84, Nombre = "M TO M COMPORATION", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 85, Nombre = "MAINETTI VIETNAM", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 86, Nombre = "MARUWA CO., LTD", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 87, Nombre = "MEI SHENG ", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 88, Nombre = "NEMTEX S.A. DE C.V.", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 89, Nombre = "NEXGEN PACKAGING", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 90, Nombre = "OAK HNF", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 91, Nombre = "OCTANES", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 92, Nombre = "OPTIMER BRANDS", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 93, Nombre = "ORDELY INDUSTRIAL", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 94, Nombre = "PAXAR CHINA LIMITED", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 95, Nombre = "PETTENATI CENTRO", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 96, Nombre = "PRIDE PERFORMANCE", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 97, Nombre = "PT ANYTAPE INDO", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 98, Nombre = "R-PAC VIETNAM", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 99, Nombre = "S&S INDUSTRIES, S DE R.L", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 100, Nombre = "SAE A TECHNOTEX", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 101, Nombre = "SAE-A SPINNING, S.R.L", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 102, Nombre = "SAE-A TEXTUFIL", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 104, Nombre = "SAE-A VIETNAM", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper=105,Nombre="SHINING LABELS",Aereo=false,Maritimo=true,Terrestre=true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 106, Nombre = "SILVER PRINTING", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 107, Nombre = "SML DOMINICANA", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 108, Nombre = "SML HONG KONG ", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 109, Nombre = "SML VIETNAM", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 110, Nombre = "SOJI COLORWORKS", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 111, Nombre = "STAPROS INDUSTRIAL", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 112, Nombre = "SUNLINE", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 113, Nombre = "SWISSTEX DIRECT", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 114, Nombre = "SYNIGENCE TRADING", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 115, Nombre = "TEXHONG ", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 116, Nombre = "UNITED TEXTILES OF AMERICA S. DE R.L. DE C.V.", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 117, Nombre = "UTEXA", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 118, Nombre = "WHA IL VINA", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 119, Nombre = "WILSON GARMENT", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 120, Nombre = "ZABIN INDUSTRIES", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 121, Nombre = "ZHAOQING SHIRFERLY", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
-                new Shipper{IdShipper = 122, Nombre = "ZHEJIANG JIAYE", Aereo = false, Maritimo = true, Terrestre = true, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+               new Shipper{IdShipper=1,Nombre="ANTEX KNITTING MILLS",Aereo=true,Maritimo=true,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=2,Nombre="BOHOTEX CO, LTD",Aereo = true, Maritimo = true, Terrestre = true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=3,Nombre="BROS MACAO COMERCIAL ",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=4,Nombre="CHAKIM SRL",Aereo = true, Maritimo = true, Terrestre = true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=5,Nombre="CHINA JUNYE TEXTILE",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=6,Nombre="COLOR & TOUCH VINA CO.,LTD",Aereo = true, Maritimo = true, Terrestre = true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=7,Nombre="DAP AMERICA INC",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=8,Nombre="DONGGUAN TEXWINCA",Aereo=true,Maritimo=true,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=9,Nombre="HENIX FAR EAST",Aereo=true,Maritimo=true,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=10,Nombre="JUNGWOO VINA",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=11,Nombre="KAN HIM PIECE",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=12,Nombre="KEER AMERICA",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=13,Nombre="MAINETTI EASTERN CHINA",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=14,Nombre="MANH DAT MANUFACTURE",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=15,Nombre="NICE DYEING FACTORY",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=16,Nombre="OAK HNI",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=17,Nombre="OCEAN NETWORK EXPRESS",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=18,Nombre="PACIFIC TEXTILES",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=19,Nombre="PARKDALE MILLS",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=20,Nombre="PHU BAI SPINNING MILL",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=21,Nombre="PT TOKAI TEXPRINT",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=22,Nombre="PT. WIN TEXTILE",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=23,Nombre="S&H GLOBAL, S.A.",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=24,Nombre="SAE-A DOMINICANA",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=25,Nombre="SAE-A EINS",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=26,Nombre="SAE-A SPINNING, S.A.",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=27,Nombre="SAE-A TRADING",Aereo = true, Maritimo = true, Terrestre = true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=28,Nombre="SAMIL VINA",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=29,Nombre="SEJIN SILICONE USA",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=30,Nombre="SEWANG VINA",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=31,Nombre="SHAOXING QIONGHUA TRADING CO.,LTD",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=32,Nombre="SUNG BU VINA",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=33,Nombre="SUNGPIL KANG",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=34,Nombre="VN JUNGWOO CHINA",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=35,Nombre="YAMATO USA",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=36,Nombre="YANG JI INTERNATIONAL",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=37,Nombre="YKK VIETNAM",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=38,Nombre="DETAILTEX",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=39,Nombre="DICKS SPORTING",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=40,Nombre="DONG HING LABEL",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=41,Nombre="DURKOPP ADLER",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=42,Nombre="DYSTAR LP DBA COLOR",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=43,Nombre="E TEXTINT CORP",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=44,Nombre="FAVORABLE TECHNOLOGY",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=45,Nombre="EMBSENSE TEXTILE",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=46,Nombre="FINE LINE TECHNO",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=47,Nombre="EMSIG MANUFACTURING",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=48,Nombre="FLASH GLOBAL GSC",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=49,Nombre="FRANCIA HELENA YATE",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=50,Nombre="FREUDENBERG",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=51,Nombre="GAP INTERNATIONAL",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=52,Nombre="HASBUN SILHY",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=53,Nombre="HANSAE INTERNATIONAL",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=55,Nombre="HHH VIETNAM CO LTD",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=56,Nombre="INVISIN",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=57,Nombre="JD LINK INC",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=63,Nombre="KEUN YONG MACHINERY",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=64,Nombre="KWIN VIET HAN CO., LTD",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=65,Nombre="LECTRA SYSTEMES S,A",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=66,Nombre="LONG JIA HAO",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=67,Nombre="M TO M COMPORATION",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=68,Nombre="MAINETTI VIETNAM",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=69,Nombre="MARUWA CO., LTD",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=70,Nombre="MEI SHENG ",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=71,Nombre="NEMTEX S.A. DE C.V.",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=72,Nombre="NEXGEN PACKAGING",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=73,Nombre="OAK HNF",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=74,Nombre="OCTANES",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=75,Nombre="OPTIMER BRANDS",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=76,Nombre="ORDELY INDUSTRIAL",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=77,Nombre="PAXAR CHINA LIMITED",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=78,Nombre="PETTENATI CENTRO",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=79,Nombre="PRIDE PERFORMANCE",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=80,Nombre="PT ANYTAPE INDO",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=81,Nombre="R-PAC VIETNAM",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=82,Nombre="S&S INDUSTRIES, S DE R.L",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=83,Nombre="SAE A TECHNOTEX",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=84,Nombre="SAE-A SPINNING, S.R.L",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=85,Nombre="SAE-A TEXTUFIL",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=87,Nombre="SAE-A VIETNAM",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=88,Nombre="SHINING LABELS",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=89,Nombre="SILVER PRINTING",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=90,Nombre="SML DOMINICANA",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=91,Nombre="SML HONG KONG ",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=92,Nombre="SML VIETNAM",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=93,Nombre="SOJI COLORWORKS",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=94,Nombre="STAPROS INDUSTRIAL",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=95,Nombre="SUNLINE",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=96,Nombre="SWISSTEX DIRECT",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=97,Nombre="SYNIGENCE TRADING",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=98,Nombre="TEXHONG ",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=99,Nombre="UNITED TEXTILES OF AMERICA S. DE R.L. DE C.V.",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=100,Nombre="UTEXA",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=101,Nombre="WHA IL VINA",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=102,Nombre="WILSON GARMENT",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=103,Nombre="ZABIN INDUSTRIES",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=104,Nombre="ZHAOQING SHIRFERLY",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=105,Nombre="ZHEJIANG JIAYE",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=106,Nombre="ALVANON HK LTD",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=107,Nombre="ALPINE",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=108,Nombre="BRAND ID HK",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=109,Nombre="BROS EASTERN CO",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=110,Nombre="AVERY DENNISON",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=111,Nombre="CENTURY INTERNATIONAL",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=113,Nombre="COLOR SOLUTION",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=114,Nombre="CONG TY TNHH",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=115,Nombre="CRYSTAL TOWN LIMITED",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=116,Nombre="CS CENTRAL AMERICA S.A. DE C.V.   ",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=117,Nombre="DAEIL GAGONG",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=118,Nombre="DAESONG LABTECH",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=119,Nombre="DATACOLOR TECHNOLOGY",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=120,Nombre="DESERT EMPIRE",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=121,Nombre="DESICCA, LLCS",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=122,Nombre="SUZHOU SHENGHONG FIBER CO., LTD",Aereo=false,Maritimo=true,Terrestre=false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=123,Nombre="BUHLER QUALITY YARNS CORP",Aereo=true,Maritimo=true,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=124,Nombre="SAMIL VINA CO., LTD",Aereo = false, Maritimo = true, Terrestre = false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=125,Nombre="SHAOXING KEQIAO",Aereo = false, Maritimo = true, Terrestre = false,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
+new Shipper{IdShipper=126,Nombre="ACHROMA",Aereo=true,Maritimo=false,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
             };
             modelBuilder.Entity<Shipper>().HasData(shippers);
 
@@ -383,6 +423,7 @@ namespace SAESoft.Models
                 new ImportStatus{IdImportStatus = 24,Descripcion="Cambio ETA",orden = 0,Via = 'O', FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus = 25,Descripcion="Cambio Destino",orden = 0,Via = 'O', FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus = 26,Descripcion="Ingreso de Montos Gastados",orden = 0,Via = 'O', FechaCreacion= DateTime.Now,IdUsuarioCreacion=1},
+                new ImportStatus{IdImportStatus = 27,Descripcion="Comentario",orden = 0,Via = 'O',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
             };
             modelBuilder.Entity<ImportStatus>().HasData(importStatuses);
 

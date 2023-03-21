@@ -44,7 +44,7 @@ namespace SAESoft.Models.Importaciones
         public virtual Nombre Terminal { get; set; } = null!;
         public virtual ICollection<Revision> Revisiones { get; set; } = null!;
         public virtual ICollection<BL> BL { get; set; } = null!;
-        public int IdAduana { get; set; }
+        public int? IdAduana { get; set; }
         [ForeignKey("IdAduana")]
         public virtual Aduana Aduana { get; set; } = null!;
         public int? IdAlmacenadora { get; set; }

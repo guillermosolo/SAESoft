@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMaritimo));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             toolStripContainer1 = new ToolStripContainer();
             cboAgente = new ComboBox();
             label13 = new Label();
@@ -80,6 +80,7 @@
             tsbEliminar = new ToolStripButton();
             tsbPago = new ToolStripButton();
             tsbUpload = new ToolStripButton();
+            tsbComentarios = new ToolStripButton();
             tsddbSwitchUser = new ToolStripDropDownButton();
             tsddbProceso = new ToolStripDropDownButton();
             toolStripSeparator1 = new ToolStripSeparator();
@@ -233,14 +234,14 @@
             // 
             dgvHistorial.AllowUserToAddRows = false;
             dgvHistorial.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvHistorial.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             resources.ApplyResources(dgvHistorial, "dgvHistorial");
             dgvHistorial.Name = "dgvHistorial";
@@ -431,7 +432,7 @@
             // 
             resources.ApplyResources(toolStrip1, "toolStrip1");
             toolStrip1.ImageScalingSize = new Size(32, 32);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListarXXX, tsbModificar, tsbEliminar, tsbPago, tsbUpload, tsddbSwitchUser, tsddbProceso, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListarXXX, tsbModificar, tsbEliminar, tsbPago, tsbUpload, tsbComentarios, tsddbSwitchUser, tsddbProceso, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
             toolStrip1.Name = "toolStrip1";
             // 
             // tsbNuevo
@@ -488,11 +489,19 @@
             tsbUpload.Name = "tsbUpload";
             tsbUpload.Click += tsbUpload_Click;
             // 
+            // tsbComentarios
+            // 
+            tsbComentarios.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(tsbComentarios, "tsbComentarios");
+            tsbComentarios.Image = Properties.Resources.comments;
+            tsbComentarios.Name = "tsbComentarios";
+            tsbComentarios.Click += tsbComments_Click;
+            // 
             // tsddbSwitchUser
             // 
             tsddbSwitchUser.DisplayStyle = ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(tsddbSwitchUser, "tsddbSwitchUser");
-            tsddbSwitchUser.Image = Properties.Resources.exchangeUser;
+            tsddbSwitchUser.Image = Properties.Resources.chgUser;
             tsddbSwitchUser.Name = "tsddbSwitchUser";
             tsddbSwitchUser.Click += tsddbSwitchUser_Click;
             // 
@@ -577,7 +586,6 @@
             Controls.Add(toolStripContainer1);
             Name = "frmMaritimo";
             Load += frmMaritimo_Load;
-            Shown += frmMaritimo_Shown;
             toolStripContainer1.ContentPanel.ResumeLayout(false);
             toolStripContainer1.ContentPanel.PerformLayout();
             toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -661,5 +669,6 @@
         private ComboBox cboAgente;
         private Label label13;
         private ToolStripDropDownButton tsddbSwitchUser;
+        private ToolStripButton tsbComentarios;
     }
 }

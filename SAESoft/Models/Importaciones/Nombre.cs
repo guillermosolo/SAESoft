@@ -11,7 +11,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace SAESoft.Models.Importaciones
 {
-    [Index(nameof(Descripcion), IsUnique = true)]
+    [Index(nameof(Descripcion), nameof(IdGrupo), IsUnique = true)]
     public class Nombre:Audit
     {
         [Key]

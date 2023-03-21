@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DocumentFormat.OpenXml.InkML;
+using Microsoft.EntityFrameworkCore;
 using SAESoft.Models;
+using SAESoft.Models.Importaciones;
 using SpreadsheetLight;
 using System.Data;
 using System.Diagnostics;
@@ -25,22 +27,16 @@ namespace SAESoft.Importaciones
             {
                 DateTime Inicio = dtpInicio.Value.Date;
                 DateTime fin = dtpFinal.Value.Date;
-                var rs = db.Importaciones.Include(i=>i.BL)
-                                         .ThenInclude(p=>p.Polizas)
-                                         .Where(i=>i.FechaCreacion>Inicio && i.FechaCreacion<= fin.AddDays(1).AddTicks(-1))
-                                         .ToList();
-                foreach (var item in rs)
+                var result = db.Importaciones
+                .SelectMany(i => i.BL, (i, bl) => new { BL = bl, i })
+                .SelectMany(t => t.BL.Polizas.DefaultIfEmpty(), (t, pol) => new { BLNumero = t.BL.Numero, Poliza = pol.Numero ?? "" })
+                .ToList();
+                foreach (var item in result)
                 {
-                    foreach (var item2 in item.BL)
-                    {
-                        foreach (var poliza in item2.Polizas)
-                        {
-                            DataRow row = dt.NewRow();
-                            row["BL"] = item2.Numero;
-                            row["Poliza"] = poliza.Numero;
-                            dt.Rows.Add(row);
-                        }
-                    }
+                    DataRow row = dt.NewRow();
+                    row["BL"] = item.BLNumero;
+                    row["Poliza"] = item.Poliza;
+                    dt.Rows.Add(row);
                 }
             }
             excel.ImportDataTable(1, 1, dt, true);
