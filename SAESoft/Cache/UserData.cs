@@ -11,6 +11,7 @@ namespace SAESoft.Cache
     public static class UserData
     {
         public static Usuario? usuarioLogged { get; set; }
+        public static string AppVersion { get; set; }
 
         public static Boolean hasPermission(string permiso)
         {

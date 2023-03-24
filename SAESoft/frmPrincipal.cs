@@ -1,5 +1,6 @@
 ﻿using SAESoft.AdministracionSistema;
 using SAESoft.Importaciones;
+using SAESoft.Properties;
 using System.Runtime.InteropServices;
 using static SAESoft.Cache.UserData;
 using static SAESoft.Utilitarios.ControlFormularios;
@@ -13,6 +14,7 @@ namespace SAESoft
             InitializeComponent();
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             this.DoubleBuffered = true;
+            this.Icon = new Icon("logo-blue.ico");
         }
         #region Funcionalidades del Formulario
         // **********CODIGO PARA HACER QUE SE PUEDA ARRASTAR EL FORMULARIO************
@@ -111,6 +113,7 @@ namespace SAESoft
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             tsslUsuario.Text = usuarioLogged?.UserName;
+            tsslVersion.Text = "Versión: " + AppVersion;
             btnConfiguracion.Enabled = hasPermission("VER.ADMINISTRACION SISTEMA");
             btnImportaciones.Enabled = hasPermission("VER.IMPORTACIONES");
 

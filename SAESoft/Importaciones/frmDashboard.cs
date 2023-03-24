@@ -5,6 +5,7 @@ using static SAESoft.Cache.UserData;
 using static SAESoft.Cache.Constantes;
 using System.Windows.Forms;
 using SAESoft.Models.Importaciones;
+using System.Net.Http.Headers;
 
 namespace SAESoft.Importaciones
 {
@@ -85,6 +86,7 @@ namespace SAESoft.Importaciones
                                                     {
                                                         IdContenedor = c.IdContenedor,
                                                         Numero = c.Numero,
+                                                        Furgon = c.Furgon
                                                     }),
                                                     ImportHistorial = i.ImportHistorial.Select(ih => new
                                                     {
@@ -107,7 +109,7 @@ namespace SAESoft.Importaciones
                         {
                             DataRow row = dt.NewRow();
                             row["IdContenedor"] = cont.IdContenedor;
-                            row["Contenedor"] = cont.Numero;
+                            row["Contenedor"] = cont.Furgon ?? cont.Numero;
                             row["ETA"] = item.ETA.Date;
                             row["Via"] = item.Via;
                             if (item.IdDestino != null)

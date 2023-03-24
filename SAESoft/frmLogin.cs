@@ -5,6 +5,7 @@ using static SAESoft.Utilitarios.Password;
 using static SAESoft.Utilitarios.ControlFormularios;
 using Microsoft.EntityFrameworkCore;
 using SAESoft.Utilitarios;
+using System.Xml;
 
 namespace SAESoft
 {
@@ -13,6 +14,7 @@ namespace SAESoft
         public frmLogin()
         {
             InitializeComponent();
+            this.Icon = new Icon("logo-blue.ico");
         }
         #region Funcionalidades del formulario
         // **********CODIGO PARA HACER QUE SE PUEDA ARRASTAR EL FORMULARIO************
@@ -79,7 +81,8 @@ namespace SAESoft
                         txtUser.Focus();
                         return;
                     }
-                } catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     if (ex.InnerException != null)
                         MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -91,17 +94,18 @@ namespace SAESoft
             var path = @"\\192.168.50.37\SAESoft";
             if (DatosServer.ConectarFileServer(path) || logged)
             {
-                frmPrincipal mainMenu = new frmPrincipal();
-                mainMenu.Show();
-                mainMenu.FormClosed += Logout;
-                logged = true;
-                this.Hide();
-            } else
+                logged = true; 
+            }
+            else
             {
                 MessageBox.Show("Error al conectarse al servidor de Archivos Compartidos,\r\n" +
                                 "Intente de nuevo, si el problema persiste \r\n" +
                                 "comuníquese con el Administrador del Sistema", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            frmPrincipal mainMenu = new frmPrincipal();
+            mainMenu.Show();
+            mainMenu.FormClosed += Logout;
+            this.Hide();
         }
 
         private void txtPass_KeyDown(object sender, KeyEventArgs e)
@@ -119,6 +123,20 @@ namespace SAESoft
             lblError.Visible = false;
             this.Show();
             txtUser.Focus();
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            string appManifestFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName + ".exe.manifest");
+            if (System.IO.File.Exists(appManifestFilePath))
+            {
+                var xml = new XmlDocument();
+                xml.Load(appManifestFilePath);
+                XmlNamespaceManager nsManager = new XmlNamespaceManager(xml.NameTable);
+                nsManager.AddNamespace("asmv1", "urn:schemas-microsoft-com:asm.v1");
+                AppVersion = xml.SelectSingleNode("//asmv1:assemblyIdentity", nsManager).Attributes["version"].Value.ToString();
+                label2.Text = "Versión " + AppVersion;
+            }
         }
     }
 }

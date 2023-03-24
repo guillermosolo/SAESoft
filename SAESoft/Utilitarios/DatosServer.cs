@@ -30,7 +30,6 @@ namespace SAESoft.Utilitarios
             {
                 if (!unc.NetUseWithCredentials(path, "saesoft", "", "$@3$oft2023"))
                 {
-                    unc.NetUseDelete();
                     return false;
                 } else
                 {

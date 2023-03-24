@@ -11,6 +11,7 @@ using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Utilitarios.DatosServer;
 using static SAESoft.Utilitarios.Validaciones;
 using System.Globalization;
+using System;
 
 namespace SAESoft.Importaciones
 {
@@ -458,6 +459,10 @@ namespace SAESoft.Importaciones
                                 else if (rs[CurrentIndex].IdAgente != null)
                                     throw new Exception("No se puede cambiar el agente.");
                                 rs[CurrentIndex].ETA = dtpETA.Value;
+                                rs[CurrentIndex].TiempoLibre = Convert.ToInt32(txtTiempoLibre.Text);
+                                rs[CurrentIndex].Demora = Convert.ToInt32(txtDemora.Text);
+                                rs[CurrentIndex].ValorDiaExtraTL = Convert.ToDecimal(txtValorExtra.Text);
+                                rs[CurrentIndex].ValorDiaExtraD = Convert.ToDecimal(txtValorExtra2.Text);
                                 rs[CurrentIndex].DocOriginales = chkDocOriginales.Checked;
                                 rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
                                 rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
@@ -551,27 +556,19 @@ namespace SAESoft.Importaciones
             }
             if (txtTiempoLibre.Text == "")
             {
-                errorProvider1.SetError(txtTiempoLibre, "No puede estar vacío.");
-                txtTiempoLibre.Focus();
-                return false;
+                txtTiempoLibre.Text = "0";
             }
             if (txtValorExtra.Text == "")
             {
-                errorProvider1.SetError(txtValorExtra, "No puede estar vacío.");
-                txtValorExtra.Focus();
-                return false;
+                txtValorExtra.Text = "0.00";
             }
             if (txtDemora.Text == "")
             {
-                errorProvider1.SetError(txtDemora, "No puede estar vacío.");
-                txtDemora.Focus();
-                return false;
+               txtDemora.Text = "0";
             }
             if (txtValorExtra2.Text == "")
             {
-                errorProvider1.SetError(txtValorExtra2, "No puede estar vacío.");
-                txtValorExtra2.Focus();
-                return false;
+                txtValorExtra2.Text = "0.00";
             }
             return true;
         }
@@ -644,6 +641,7 @@ namespace SAESoft.Importaciones
                     if (individual != 0)
                         queryable = queryable.Where(r => r.IdImport == individual);
                     rs = queryable.ToList();
+                    individual = 0;
                     if (rs.Count > 0)
                     {
                         CurrentIndex = 0;
@@ -951,6 +949,10 @@ namespace SAESoft.Importaciones
             if (cboAgente.SelectedIndex == 0)
                 cboAgente.Enabled = true;
             dtpETA.Enabled = true;
+            txtDemora.Enabled = true;
+            txtTiempoLibre.Enabled = true;
+            txtValorExtra.Enabled = true;
+            txtValorExtra2.Enabled = true;
             cboDestino.Enabled = true;
             chkDocOriginales.Enabled = true;
             if (clbRevisiones.CheckedItems.Count == 0)

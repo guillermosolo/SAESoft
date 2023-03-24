@@ -152,6 +152,7 @@ namespace SAESoft.Importaciones
                     if (individual != 0)
                         queryable = queryable.Where(r => r.IdImport == individual);
                     rs = queryable.ToList();
+                    individual = 0;
                     if (rs.Count > 0)
                     {
                         CurrentIndex = 0;
@@ -462,7 +463,6 @@ namespace SAESoft.Importaciones
                                     IdAduana = Convert.ToInt32(cboAduana.SelectedValue),
                                     Consolidado = false,
                                     DocOriginales = chkDocOriginales.Checked,
-                                    IdAgente = Convert.ToInt32(cboAgente.SelectedValue),
                                     IdImportStatus = db.ImportStatus.FirstOrDefault(i => i.Via == Via && i.orden == 1).IdImportStatus,
                                     FechaCreacion = DatosServer.FechaServer(),
                                     IdUsuarioCreacion = usuarioLogged.IdUsuario,
@@ -471,10 +471,13 @@ namespace SAESoft.Importaciones
                                     im.IdDestino = Convert.ToInt32(cboDestino.SelectedValue);
                                 if (cboForwarder.SelectedIndex != 0)
                                     im.IdForwarder = Convert.ToInt32(cboForwarder.SelectedIndex);
+                                if (cboAgente.SelectedIndex != 0)
+                                    im.IdAgente = Convert.ToInt32(cboAgente.SelectedValue);
                                 if (Via == 'A')
                                     im.IdTerminal = Convert.ToInt32(cboTerminal.SelectedValue);
                                 else
-                                    im.IdAlmacenadora = Convert.ToInt32(cboAlmacenadora.SelectedValue);
+                                    if(cboAlmacenadora.SelectedIndex != 0)
+                                        im.IdAlmacenadora = Convert.ToInt32(cboAlmacenadora.SelectedValue);
                                 db.Importaciones.Add(im);
                                 db.SaveChanges();
                                 rs.Add(im);

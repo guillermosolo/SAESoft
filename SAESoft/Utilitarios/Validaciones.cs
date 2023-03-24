@@ -20,7 +20,7 @@ namespace SAESoft.Utilitarios
 
         public static Regex plate_validation()
         {
-            string pattern = @"^[PACUM][-][0-9]{3}[a-z]{3}$";
+            string pattern = @"^[PACUM]|[T][C]-[0-9]{3}[a-zA-Z]{3}$";
             return new Regex(pattern, RegexOptions.IgnoreCase);
         }
 
