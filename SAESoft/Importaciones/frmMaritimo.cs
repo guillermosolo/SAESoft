@@ -87,7 +87,12 @@ namespace SAESoft.Importaciones
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
                     fileSystemWatcher1.Path = path;
-                    File.Copy(openFileDialog1.FileName, path + @"\" + openFileDialog1.SafeFileName);
+                    for (int i = 0; i < openFileDialog1.FileNames.Length; i++)
+                    {
+                        string fileName = openFileDialog1.FileNames[i];
+                        string safeFileName = openFileDialog1.SafeFileNames[i];
+                        File.Copy(fileName, path + @"\" + safeFileName);
+                    }
                 }
                 catch (IOException ex)
                 {
@@ -564,7 +569,7 @@ namespace SAESoft.Importaciones
             }
             if (txtDemora.Text == "")
             {
-               txtDemora.Text = "0";
+                txtDemora.Text = "0";
             }
             if (txtValorExtra2.Text == "")
             {
@@ -886,6 +891,8 @@ namespace SAESoft.Importaciones
                     tsddbProceso.DropDownItems[i].ImageScaling = ToolStripItemImageScaling.None;
                     if (i == 2)
                     {
+                        tsddbSwitchUser.DropDownItems.Clear();
+                        ((ToolStripMenuItem)tsddbProceso.DropDownItems[i - 1]).DropDownItems.Clear();
                         var items = db.Usuarios.Include(u => u.Rol).Where(u => u.Rol.IdRol == DigitadorImportaciones);
                         foreach (var item2 in items)
                         {

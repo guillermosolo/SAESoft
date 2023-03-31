@@ -507,6 +507,21 @@
   <data name="&gt;&gt;dgvHistorial.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
+  <data name="lsbEquipos.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="lsbEquipos.ItemHeight" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="lsbEquipos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 59</value>
+  </data>
+  <data name="lsbEquipos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 89</value>
+  </data>
+  <data name="lsbEquipos.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;lsbEquipos.Name" xml:space="preserve">
     <value>lsbEquipos</value>
   </data>
@@ -517,6 +532,18 @@
     <value>grpEquipos</value>
   </data>
   <data name="&gt;&gt;lsbEquipos.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtEquipos.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtEquipos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 26</value>
+  </data>
+  <data name="txtEquipos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 24</value>
+  </data>
+  <data name="txtEquipos.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="&gt;&gt;txtEquipos.Name" xml:space="preserve">
@@ -558,6 +585,21 @@
   <data name="&gt;&gt;grpEquipos.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
+  <data name="lsbBL.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <data name="lsbBL.ItemHeight" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="lsbBL.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 59</value>
+  </data>
+  <data name="lsbBL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 89</value>
+  </data>
+  <data name="lsbBL.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;lsbBL.Name" xml:space="preserve">
     <value>lsbBL</value>
   </data>
@@ -568,6 +610,18 @@
     <value>grpBL</value>
   </data>
   <data name="&gt;&gt;lsbBL.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtBL.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtBL.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 26</value>
+  </data>
+  <data name="txtBL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 24</value>
+  </data>
+  <data name="txtBL.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="&gt;&gt;txtBL.Name" xml:space="preserve">
@@ -669,6 +723,177 @@
   <data name="&gt;&gt;cboShipper.ZOrder" xml:space="preserve">
     <value>16</value>
   </data>
+  <data name="listView1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="listView1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 10pt</value>
+  </data>
+  <metadata name="errorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>132, 15</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>74</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 15</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>804, 759</value>
+  </data>
+  <data name="&gt;&gt;imageList1.Name" xml:space="preserve">
+    <value>imageList1</value>
+  </data>
+  <data name="&gt;&gt;imageList1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbNuevo.Name" xml:space="preserve">
+    <value>tsbNuevo</value>
+  </data>
+  <data name="&gt;&gt;tsbNuevo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbBuscar.Name" xml:space="preserve">
+    <value>tsbBuscar</value>
+  </data>
+  <data name="&gt;&gt;tsbBuscar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbListarXXX.Name" xml:space="preserve">
+    <value>tsbListarXXX</value>
+  </data>
+  <data name="&gt;&gt;tsbListarXXX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbModificar.Name" xml:space="preserve">
+    <value>tsbModificar</value>
+  </data>
+  <data name="&gt;&gt;tsbModificar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbEliminar.Name" xml:space="preserve">
+    <value>tsbEliminar</value>
+  </data>
+  <data name="&gt;&gt;tsbEliminar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbPago.Name" xml:space="preserve">
+    <value>tsbPago</value>
+  </data>
+  <data name="&gt;&gt;tsbPago.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbUpload.Name" xml:space="preserve">
+    <value>tsbUpload</value>
+  </data>
+  <data name="&gt;&gt;tsbUpload.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbComentarios.Name" xml:space="preserve">
+    <value>tsbComentarios</value>
+  </data>
+  <data name="&gt;&gt;tsbComentarios.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsddbSwitchUser.Name" xml:space="preserve">
+    <value>tsddbSwitchUser</value>
+  </data>
+  <data name="&gt;&gt;tsddbSwitchUser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsddbProceso.Name" xml:space="preserve">
+    <value>tsddbProceso</value>
+  </data>
+  <data name="&gt;&gt;tsddbProceso.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
+    <value>toolStripSeparator1</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbAceptar.Name" xml:space="preserve">
+    <value>tsbAceptar</value>
+  </data>
+  <data name="&gt;&gt;tsbAceptar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbCancelar.Name" xml:space="preserve">
+    <value>tsbCancelar</value>
+  </data>
+  <data name="&gt;&gt;tsbCancelar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbAnterior.Name" xml:space="preserve">
+    <value>tsbAnterior</value>
+  </data>
+  <data name="&gt;&gt;tsbAnterior.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tslIndice.Name" xml:space="preserve">
+    <value>tslIndice</value>
+  </data>
+  <data name="&gt;&gt;tslIndice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbSiguiente.Name" xml:space="preserve">
+    <value>tsbSiguiente</value>
+  </data>
+  <data name="&gt;&gt;tsbSiguiente.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbSalir.Name" xml:space="preserve">
+    <value>tsbSalir</value>
+  </data>
+  <data name="&gt;&gt;tsbSalir.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;errorProvider1.Name" xml:space="preserve">
+    <value>errorProvider1</value>
+  </data>
+  <data name="&gt;&gt;errorProvider1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fileSystemWatcher1.Name" xml:space="preserve">
+    <value>fileSystemWatcher1</value>
+  </data>
+  <data name="&gt;&gt;fileSystemWatcher1.Type" xml:space="preserve">
+    <value>System.IO.FileSystemWatcher, System.IO.FileSystem.Watcher, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="&gt;&gt;openFileDialog1.Name" xml:space="preserve">
+    <value>openFileDialog1</value>
+  </data>
+  <data name="&gt;&gt;openFileDialog1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>frmMaritimo</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="listView1.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleLeft</value>
+  </data>
+  <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>289, 17</value>
+  </metadata>
+  <data name="imageList1.ImageSize" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="listView1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 20</value>
+  </data>
+  <data name="listView1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 260</value>
+  </data>
+  <data name="listView1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;listView1.Name" xml:space="preserve">
     <value>listView1</value>
   </data>
@@ -767,6 +992,21 @@
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
     <value>19</value>
+  </data>
+  <data name="clbRevisiones.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="clbRevisiones.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="clbRevisiones.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 20</value>
+  </data>
+  <data name="clbRevisiones.Size" type="System.Drawing.Size, System.Drawing">
+    <value>268, 161</value>
+  </data>
+  <data name="clbRevisiones.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;clbRevisiones.Name" xml:space="preserve">
     <value>clbRevisiones</value>
@@ -1227,369 +1467,6 @@
   <data name="toolStrip1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
-  </data>
-  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>691, 39</value>
-  </data>
-  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="toolStrip1.Text" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
-    <value>toolStripContainer1.TopToolStripPanel</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.Name" xml:space="preserve">
-    <value>toolStripContainer1.TopToolStripPanel</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.Parent" xml:space="preserve">
-    <value>toolStripContainer1</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.Name" xml:space="preserve">
-    <value>toolStripContainer1</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripContainer, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;toolStripContainer1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lsbEquipos.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 10pt</value>
-  </data>
-  <data name="lsbEquipos.ItemHeight" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="lsbEquipos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 59</value>
-  </data>
-  <data name="lsbEquipos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 89</value>
-  </data>
-  <data name="lsbEquipos.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lsbEquipos.Name" xml:space="preserve">
-    <value>lsbEquipos</value>
-  </data>
-  <data name="&gt;&gt;lsbEquipos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lsbEquipos.Parent" xml:space="preserve">
-    <value>grpEquipos</value>
-  </data>
-  <data name="&gt;&gt;lsbEquipos.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="txtEquipos.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="txtEquipos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 26</value>
-  </data>
-  <data name="txtEquipos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 24</value>
-  </data>
-  <data name="txtEquipos.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;txtEquipos.Name" xml:space="preserve">
-    <value>txtEquipos</value>
-  </data>
-  <data name="&gt;&gt;txtEquipos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtEquipos.Parent" xml:space="preserve">
-    <value>grpEquipos</value>
-  </data>
-  <data name="&gt;&gt;txtEquipos.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="lsbBL.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 10pt</value>
-  </data>
-  <data name="lsbBL.ItemHeight" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="lsbBL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 59</value>
-  </data>
-  <data name="lsbBL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 89</value>
-  </data>
-  <data name="lsbBL.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lsbBL.Name" xml:space="preserve">
-    <value>lsbBL</value>
-  </data>
-  <data name="&gt;&gt;lsbBL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lsbBL.Parent" xml:space="preserve">
-    <value>grpBL</value>
-  </data>
-  <data name="&gt;&gt;lsbBL.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="txtBL.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="txtBL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 26</value>
-  </data>
-  <data name="txtBL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 24</value>
-  </data>
-  <data name="txtBL.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;txtBL.Name" xml:space="preserve">
-    <value>txtBL</value>
-  </data>
-  <data name="&gt;&gt;txtBL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtBL.Parent" xml:space="preserve">
-    <value>grpBL</value>
-  </data>
-  <data name="&gt;&gt;txtBL.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="listView1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="listView1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 10pt</value>
-  </data>
-  <metadata name="errorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>132, 15</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>74</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 15</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>804, 759</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>frmMaritimo</value>
-  </data>
-  <data name="&gt;&gt;imageList1.Name" xml:space="preserve">
-    <value>imageList1</value>
-  </data>
-  <data name="&gt;&gt;imageList1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbNuevo.Name" xml:space="preserve">
-    <value>tsbNuevo</value>
-  </data>
-  <data name="&gt;&gt;tsbNuevo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbBuscar.Name" xml:space="preserve">
-    <value>tsbBuscar</value>
-  </data>
-  <data name="&gt;&gt;tsbBuscar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbListarXXX.Name" xml:space="preserve">
-    <value>tsbListarXXX</value>
-  </data>
-  <data name="&gt;&gt;tsbListarXXX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbModificar.Name" xml:space="preserve">
-    <value>tsbModificar</value>
-  </data>
-  <data name="&gt;&gt;tsbModificar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbEliminar.Name" xml:space="preserve">
-    <value>tsbEliminar</value>
-  </data>
-  <data name="&gt;&gt;tsbEliminar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbPago.Name" xml:space="preserve">
-    <value>tsbPago</value>
-  </data>
-  <data name="&gt;&gt;tsbPago.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbUpload.Name" xml:space="preserve">
-    <value>tsbUpload</value>
-  </data>
-  <data name="&gt;&gt;tsbUpload.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbComentarios.Name" xml:space="preserve">
-    <value>tsbComentarios</value>
-  </data>
-  <data name="&gt;&gt;tsbComentarios.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsddbSwitchUser.Name" xml:space="preserve">
-    <value>tsddbSwitchUser</value>
-  </data>
-  <data name="&gt;&gt;tsddbSwitchUser.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsddbProceso.Name" xml:space="preserve">
-    <value>tsddbProceso</value>
-  </data>
-  <data name="&gt;&gt;tsddbProceso.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
-    <value>toolStripSeparator1</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbAceptar.Name" xml:space="preserve">
-    <value>tsbAceptar</value>
-  </data>
-  <data name="&gt;&gt;tsbAceptar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbCancelar.Name" xml:space="preserve">
-    <value>tsbCancelar</value>
-  </data>
-  <data name="&gt;&gt;tsbCancelar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbAnterior.Name" xml:space="preserve">
-    <value>tsbAnterior</value>
-  </data>
-  <data name="&gt;&gt;tsbAnterior.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tslIndice.Name" xml:space="preserve">
-    <value>tslIndice</value>
-  </data>
-  <data name="&gt;&gt;tslIndice.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbSiguiente.Name" xml:space="preserve">
-    <value>tsbSiguiente</value>
-  </data>
-  <data name="&gt;&gt;tsbSiguiente.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbSalir.Name" xml:space="preserve">
-    <value>tsbSalir</value>
-  </data>
-  <data name="&gt;&gt;tsbSalir.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;errorProvider1.Name" xml:space="preserve">
-    <value>errorProvider1</value>
-  </data>
-  <data name="&gt;&gt;errorProvider1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fileSystemWatcher1.Name" xml:space="preserve">
-    <value>fileSystemWatcher1</value>
-  </data>
-  <data name="&gt;&gt;fileSystemWatcher1.Type" xml:space="preserve">
-    <value>System.IO.FileSystemWatcher, System.IO.FileSystem.Watcher, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="&gt;&gt;openFileDialog1.Name" xml:space="preserve">
-    <value>openFileDialog1</value>
-  </data>
-  <data name="&gt;&gt;openFileDialog1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>frmMaritimo</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="listView1.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>MiddleLeft</value>
-  </data>
-  <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>289, 17</value>
-  </metadata>
-  <data name="imageList1.ImageSize" type="System.Drawing.Size, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="listView1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 20</value>
-  </data>
-  <data name="listView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 260</value>
-  </data>
-  <data name="listView1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;listView1.Name" xml:space="preserve">
-    <value>listView1</value>
-  </data>
-  <data name="&gt;&gt;listView1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listView1.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;listView1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="clbRevisiones.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="clbRevisiones.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="clbRevisiones.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 20</value>
-  </data>
-  <data name="clbRevisiones.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 161</value>
-  </data>
-  <data name="clbRevisiones.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;clbRevisiones.Name" xml:space="preserve">
-    <value>clbRevisiones</value>
-  </data>
-  <data name="&gt;&gt;clbRevisiones.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;clbRevisiones.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;clbRevisiones.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="tsbNuevo.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -1656,24 +1533,24 @@
   <data name="tsbPago.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPXSURBVFhH7ZdpSFRRGIaPSxpBCxEUVFAQ/Sii6Ee0mDN3
-        NEsrtxw1MwmNCq0I+5EVlUFUUFSGQUohLZaaZY3RagtZRJTZpNI4d6KxRWdGzaE0y3K+zrkd9C5nxlkk
-        +tELD5c5nvu+n+d8584d1KdS6xRUbslD5Z/sqNwGbnH7owl1vNJQBx8E4Icu2UzMEFfoPvSgDn0naq+b
-        T5281GXLImbAQNz7CLgAgh0zm7p5oXLbHoW5O/QXAKhV34raXk6jjh7qkjWXGTAQ4gL+0Izs9VOoqwfy
-        tgCdBVC7pACCGffEROrsprwtgFBnkhcAeCveImv9OOruhnwpgHCrGdCzd/080Peix01V1N0N+VoAixKb
-        mbq7of8F/HsFWCFwewUEbj7LJGDPDdFcJ/hSgN/5JgjS7oPgqBwmQasOASptkQbK+dtbMEnXAAl3dbD/
-        SR5cr8mGyprsLodRs8VhVE2gKS7EKqDkE/gVv3cJKmmGERVNcPrZXnDwHBN7Def4ZeSqHabQGTSNIfkW
-        nDNDsHoTDJ2b4ZKIrHVgbkiQBPYaOThVGAM9Bo1k/Cs/r9PBq5NookyMFfA//hwCDj50ytT8K9BpWCwJ
-        IVy5sEwo7mherOJvAkZ1Bk0VycMe8MenpPrVBoV51g6tED45co1wjcpIgc4G6Up0N3KfwaAaQ5OpFAVY
-        IWCH82O4ueKIxJRQW7VECD1XFC18fnozEkaEpMOFM8sVc3t57hRNppL3wHkzBMXlQnDEViZV91MUprkH
-        4mFixBrJ2PptibAhJ1EyRrDXct0A2gCajuXBFvjh1ekwLFWYFhbECCvw4s6SvrHuNxro0IdJ5vVh1Ije
-        njwoYGqlnmlI9npmfJqw7EkbkyH/RCx8qXMSTjByKTQdy4MCFtysZhtiyH+7c98KCE1NFVZjekya8xXg
-        VWtpOlZZ63pWGIvx1wwMsz+Izz5pyuEL0oXeEM/pRyN6iy77PBIV27pYgXJID1jeKM/46cJoWJG5UjJG
-        jqE2K1kyRrDzqh9Qrw2i6VRl1kwc0CIPZEGe93LTqqtRwrI/qowUPjc/D4fRoelQcDJGMfcXr35EU2Uq
-        gCH4F1IkKrMluyLs9v1Me334N7Hpz0YOuLRVMGxehnAdtTBd6IG22nBJuJ3neqBRNYsmei/SxWJjAvke
-        OHwsTliJ7N0JwjGUz8H37aIWvgs/13eTbztxQHttGMxJWg3mp4ukwRhc4EV4oAqktw+OHCZN3A9DiEUW
-        JAn+zoe04WsivWXwRToav3ik9vJq3U8+1PDFoOrC7wCv8TO/CB+3jY63mrF0qkwI/QbEi2rS389zgwAA
-        AABJRU5ErkJggg==
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPWSURBVFhH7Zd7SFNRHMePaRpBDyIoqKAg/KOIoj+ih7nd
+        aebsYZZTM5PQqNCKsD8qozKICorKKEgporeZZc3oaQ+yCFHTpdLcXTQrdZvapDTLcr/OuR70Ps7WHhH9
+        0Rc+XHY89/v9ec7v3N2hfl21TUZF1lxU1NSBiuzgEfc/mpGjRkMd/BBAALpmNzND3KH/0IMchk7UXjuX
+        Ovmo69YFzIDf8egj4AIIHZiZ1M0HFdn3KMw9YaAAQK2GVtT2agp19FLXbDnMgN8hLqCPZtRRN5m6eiFf
+        C9BbAbVLCiBYcE9MoM4eytcCCLVmeQGAt+ItstWNpe4eyJ8CCPeaAZW/G+BJTS963lhK3T2QvwWwKLBb
+        qLsH+l/Av1eADYJ2FEPQ5vNMAvfcEc11gT8FBFxshGDdPgiJ2c4keNUhQFdbpIFy/vYWTNTXQ/xDPex/
+        kQu3q7KgpCqry2nSbHGaVONpihuxCihogoBL792CCppheHEjnCnfC06eY+Ko5Jw/TVyZ0xw+jaYxJN+C
+        CxYIUW+CIbPT3RKVuQ4s9fGSwF4TB6fzY6HHqJGMf+HndDp5dSJNlImxAoOOV0DgwacuCT1xAzqNCyUh
+        hBuXFwvFHc1dpvibgEmdTlNF8rIHBuFTUlazQWGema0Twidp1wjXmPRk6KyXrkR3A/cJjKrRNJlKUYAN
+        ArNdH8PNxUckpoTq0mgh9MLZpcLnl3e1MDwsDS6fW6KY28tzp2kylbwHLlogOC4HQqK2Mil9nKwwzTmw
+        HCZErZGMrd+WABu2J0jGCI5qrhtAF0jTsbzYggC8Og7jIoVpfl6ssAKVD6L7x7rfaMBhiJDM68ekEb09
+        eVFAaImBaUj2evryVGHZEzcmwYmTy+BzrYtwgolLpulYXhQw724Z2xBD/tud+1ZAeEqKsBpTY1NdrwCv
+        WkvTsQpb17PCWIy7ZWSY9SE++6Qph81LE3pDPGcAjegtuvDTCHTJ3sUKlEN6wPpGecbP5C+FFRkrJWPk
+        GOoykyRjBAev+g51umCaTlVoy8ABLfJAFuR5LzctvRkjLPuzEq3wubkiEkaFp0HeqVjF3J+8+hlNlSkP
+        BuNfSFpUaE9yR8T9xxkddZFfxaY/GjjgUlfB0DnpwnXk/DShB9qqIyXhDp7rgQbVDJrou0gXi40J5Hvg
+        8LE4YSWydscLx1A+B9+3i1r4L/xc302+7cQB7dURMCtxNVheLpAGY3CBV+CJKoje/mfkNGvivhvDrLIg
+        SfA3PqwNXxPoLX9epKPxi0dKL6/W/+DDjZ+Nqi78DvAaP/PP4uO20flWM4ZOlQmhX5qqasr0NNgeAAAA
+        AElFTkSuQmCC
 </value>
   </data>
   <data name="tsbPago.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -1807,6 +1684,54 @@
   </data>
   <data name="tsbSalir.Text" xml:space="preserve">
     <value>Salir</value>
+  </data>
+  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>351, 39</value>
+  </data>
+  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="toolStrip1.Text" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
+    <value>toolStripContainer1.TopToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.Name" xml:space="preserve">
+    <value>toolStripContainer1.TopToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.Parent" xml:space="preserve">
+    <value>toolStripContainer1</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.TopToolStripPanel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.Name" xml:space="preserve">
+    <value>toolStripContainer1</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripContainer, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainer1.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="fileSystemWatcher1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>399, 17</value>

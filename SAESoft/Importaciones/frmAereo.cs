@@ -156,7 +156,7 @@ namespace SAESoft.Importaciones
                     if (rs.Count > 0)
                     {
                         CurrentIndex = 0;
-                        CambiarEstadoBotones(new[] { "tsddbProceso", "tsbUpload" }, true, toolStrip1, "AEREO");
+                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios" }, true, toolStrip1, "AEREO");
                         if (rs.Count > 1)
                         {
                             BotonesInicialesNavegacion(toolStrip1);
@@ -165,7 +165,6 @@ namespace SAESoft.Importaciones
                         {
                             BotonesIniciales(toolStrip1);
                         }
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "AEREO");
                         despliegaDatos();
                     }
                     else
@@ -174,7 +173,7 @@ namespace SAESoft.Importaciones
                         limpiarFormulario(this);
                         dt.Rows.Clear();
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "AEREO");
+                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios" }, false, toolStrip1, "AEREO");
                     }
                 }
             }
@@ -197,10 +196,12 @@ namespace SAESoft.Importaciones
                 int i = 0;
                 foreach (var item in im)
                 {
-                    tsddbProceso.DropDownItems.Add(item.Descripcion);
-                    tsddbProceso.DropDownItems[i].ImageScaling = ToolStripItemImageScaling.None;
+                    tsddbProceso.DropDownItems.Add(item.Descripcion);      
+                   tsddbProceso.DropDownItems[i].ImageScaling = ToolStripItemImageScaling.None;
                     if (i == 2)
                     {
+                        tsddbSwitchUser.DropDownItems.Clear();
+                        ((ToolStripMenuItem)tsddbProceso.DropDownItems[i - 1]).DropDownItems.Clear();
                         var items = db.Usuarios.Include(u => u.Rol).Where(u => u.Rol.IdRol == DigitadorImportaciones);
                         foreach (var item2 in items)
                         {
@@ -269,6 +270,7 @@ namespace SAESoft.Importaciones
             if (rs[CurrentIndex].Via == 'A')
             {
                 Via = 'A';
+                llenarCombosVariables();
                 rbtnAereo.Checked = true;
                 if (rs[CurrentIndex].IdTerminal != null)
                 {
@@ -282,6 +284,7 @@ namespace SAESoft.Importaciones
             else
             {
                 Via = 'T';
+                llenarCombosVariables();
                 rbtnTerrestre.Checked = true;
                 if (rs[CurrentIndex].IdAlmacenadora != null)
                 {
@@ -301,8 +304,8 @@ namespace SAESoft.Importaciones
                 }
             }
             llenarMenu();
-            llenarCombosVariables();
             txtId.Text = rs?[CurrentIndex].IdImport.ToString();
+            txtBL.Text = rs?[CurrentIndex].BL.FirstOrDefault()?.Numero.ToString();
             cboShipper.SelectedValue = rs[CurrentIndex].IdShipper;
             cboNaviera.SelectedValue = rs[CurrentIndex].IdNaviera;
             if (rs[CurrentIndex].IdAgente != null)
@@ -322,7 +325,8 @@ namespace SAESoft.Importaciones
             if (rs[CurrentIndex].IdAduana != null)
             {
                 cboAduana.SelectedValue = rs[CurrentIndex].IdAduana;
-            } else
+            }
+            else
             {
                 cboAduana.SelectedIndex = -1;
             }
@@ -345,6 +349,11 @@ namespace SAESoft.Importaciones
 
             if (rs[CurrentIndex].Via == 'A')
                 CambiarEstadoBotones(new[] { "tsbPago" }, false, toolStrip1, "AEREO");
+
+            if (rs[CurrentIndex].IdImportStatus < EntregaDigitadorAereo || hasRole(2))
+                CambiarEstadoBotones(new[] { "tsddbSwitchUser" }, false, toolStrip1, "AEREO");
+            else
+                CambiarEstadoBotones(new[] { "tsddbSwitchUser" }, true, toolStrip1, "AEREO");
         }
 
         private void cargarArchivos(string opcion)
@@ -423,18 +432,18 @@ namespace SAESoft.Importaciones
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "AEREO");
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios" }, true, toolStrip1, "AEREO");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "AEREO");
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios" }, true, toolStrip1, "AEREO");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "AEREO");
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios" }, false, toolStrip1, "AEREO");
                 limpiarFormulario(this);
                 dt.Rows.Clear();
             }
@@ -476,8 +485,8 @@ namespace SAESoft.Importaciones
                                 if (Via == 'A')
                                     im.IdTerminal = Convert.ToInt32(cboTerminal.SelectedValue);
                                 else
-                                    if(cboAlmacenadora.SelectedIndex != 0)
-                                        im.IdAlmacenadora = Convert.ToInt32(cboAlmacenadora.SelectedValue);
+                                    if (cboAlmacenadora.SelectedIndex != 0)
+                                    im.IdAlmacenadora = Convert.ToInt32(cboAlmacenadora.SelectedValue);
                                 db.Importaciones.Add(im);
                                 db.SaveChanges();
                                 rs.Add(im);
@@ -556,6 +565,7 @@ namespace SAESoft.Importaciones
                                 else if (rs[CurrentIndex].IdDestino != null)
                                     throw new Exception("No se puede cambiar el destino.");
                                 rs[CurrentIndex].ETA = dtpETA.Value;
+                                rs[CurrentIndex].DocOriginales = chkDocOriginales.Checked;
                                 rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
                                 rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
                                 db.Importaciones.Update(rs[CurrentIndex]);
@@ -595,7 +605,7 @@ namespace SAESoft.Importaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload" }, true, toolStrip1, "AEREO");
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios" }, true, toolStrip1, "AEREO");
                 habilitarFormulario(this, false);
             }
         }
@@ -656,6 +666,7 @@ namespace SAESoft.Importaciones
         private void asignarPoliza()
         {
             frmPoliza FrmPoliza = new frmPoliza(rs[CurrentIndex]);
+            FrmPoliza.contenedores = rs[CurrentIndex].Contenedores.ToList();
             var resp = FrmPoliza.ShowDialog();
             if (resp == DialogResult.OK)
             {
@@ -752,7 +763,7 @@ namespace SAESoft.Importaciones
         {
             Regex ValidarPlacas = plate_validation();
             errorProvider1.Clear();
-            if (txtBL.Text == "")
+            if (txtBL.Text.Trim() == "")
             {
                 errorProvider1.SetError(txtBL, "No puede estar vacío.");
                 txtBL.Focus();
@@ -845,7 +856,12 @@ namespace SAESoft.Importaciones
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
                     fileSystemWatcher1.Path = path;
-                    File.Copy(openFileDialog1.FileName, path + @"\" + openFileDialog1.SafeFileName);
+                    for (int i = 0; i < openFileDialog1.FileNames.Length;i++)
+                    {
+                        string fileName = openFileDialog1.FileNames[i];
+                        string safeFileName = openFileDialog1.SafeFileNames[i];
+                        File.Copy(fileName, path + @"\" + safeFileName);
+                    }
                 }
                 catch (IOException ex)
                 {
@@ -881,6 +897,7 @@ namespace SAESoft.Importaciones
             cboAduana.Enabled = true;
             dtpETA.Enabled = true;
             cboDestino.Enabled = true;
+            chkDocOriginales.Enabled = true;
             if (cboAgente.SelectedIndex == 0)
                 cboAgente.Enabled = true;
             if (clbRevisiones.CheckedItems.Count == 0)

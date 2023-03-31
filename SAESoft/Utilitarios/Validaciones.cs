@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
+
 
 namespace SAESoft.Utilitarios
 {
@@ -20,7 +16,7 @@ namespace SAESoft.Utilitarios
 
         public static Regex plate_validation()
         {
-            string pattern = @"^[PACUM]|[T][C]-[0-9]{3}[a-zA-Z]{3}$";
+            string pattern = @"^(C|M|P|RE|TC|TCA|TCI|TRB|TRA)-\d{3}[A-Z]{0,3}|\bTC-\d{2}[A-Z]{3}\b$";
             return new Regex(pattern, RegexOptions.IgnoreCase);
         }
 

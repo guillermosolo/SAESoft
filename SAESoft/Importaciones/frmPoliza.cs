@@ -26,7 +26,7 @@ namespace SAESoft.Importaciones
             cboBL.ValueMember = "IdBL";
             cboBL.DisplayMember = "Numero";
             llenarNombres(cboModalidad, "MODALIDAD");
-            txtContenedores.Text = string.Join(",",contenedores.Select(x=>x.Numero));
+            txtContenedores.Text = string.Join(",",contenedores.Select(x=>x.Furgon != null ? x.Furgon:x.Numero));
         }
 
         private void estructuraGrid()

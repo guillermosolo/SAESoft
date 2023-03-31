@@ -685,7 +685,7 @@
             tsbAceptar.ImageTransparentColor = Color.Magenta;
             tsbAceptar.Name = "tsbAceptar";
             tsbAceptar.Size = new Size(36, 36);
-            tsbAceptar.Text = "Guardar";
+            tsbAceptar.Text = "s";
             tsbAceptar.Visible = false;
             tsbAceptar.Click += tsbAceptar_Click;
             // 
@@ -754,6 +754,7 @@
             // 
             openFileDialog1.FileName = "openFileDialog1";
             openFileDialog1.Filter = "Pdf Files|*.pdf";
+            openFileDialog1.Multiselect = true;
             // 
             // frmAereo
             // 
