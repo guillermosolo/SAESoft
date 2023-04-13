@@ -1,4 +1,4 @@
-﻿namespace SAESoft.AdministracionSistema
+﻿namespace SAESoft.AdministracionSistema.Seguridad
 {
     partial class frmBuscarUsuarios
     {

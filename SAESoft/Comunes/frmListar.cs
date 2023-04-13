@@ -7,7 +7,8 @@ namespace SAESoft.Comunes
         {
             InitializeComponent();
         }
-        public BindingSource ds = new BindingSource();
+        public BindingSource ds = new();
+        public Boolean ajustar = false;
         public int Id = 0;
 
         private void frmListar_Load(object sender, EventArgs e)
@@ -15,6 +16,8 @@ namespace SAESoft.Comunes
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = ds;
             dataGridView1.Columns[0].Visible = false;
+            if (ajustar)
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

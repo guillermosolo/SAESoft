@@ -28,206 +28,205 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelMenu = new System.Windows.Forms.Panel();
-            this.ibtnReporte = new FontAwesome.Sharp.IconButton();
-            this.ibtnExterno = new FontAwesome.Sharp.IconButton();
-            this.ibtnAereo = new FontAwesome.Sharp.IconButton();
-            this.ibtnMaritimo = new FontAwesome.Sharp.IconButton();
-            this.ibtnDashboard = new FontAwesome.Sharp.IconButton();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.ibtnSalir = new FontAwesome.Sharp.IconButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panelFormularios = new System.Windows.Forms.Panel();
-            this.panelMenu.SuspendLayout();
-            this.SuspendLayout();
+            panelMenu = new Panel();
+            ibtnReporte = new FontAwesome.Sharp.IconButton();
+            ibtnExterno = new FontAwesome.Sharp.IconButton();
+            ibtnAereo = new FontAwesome.Sharp.IconButton();
+            ibtnMaritimo = new FontAwesome.Sharp.IconButton();
+            ibtnDashboard = new FontAwesome.Sharp.IconButton();
+            iconButton1 = new FontAwesome.Sharp.IconButton();
+            ibtnSalir = new FontAwesome.Sharp.IconButton();
+            label1 = new Label();
+            panelFormularios = new Panel();
+            panelMenu.SuspendLayout();
+            SuspendLayout();
             // 
             // panelMenu
             // 
-            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.panelMenu.Controls.Add(this.ibtnReporte);
-            this.panelMenu.Controls.Add(this.ibtnExterno);
-            this.panelMenu.Controls.Add(this.ibtnAereo);
-            this.panelMenu.Controls.Add(this.ibtnMaritimo);
-            this.panelMenu.Controls.Add(this.ibtnDashboard);
-            this.panelMenu.Controls.Add(this.iconButton1);
-            this.panelMenu.Controls.Add(this.ibtnSalir);
-            this.panelMenu.Controls.Add(this.label1);
-            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(200, 450);
-            this.panelMenu.TabIndex = 1;
+            panelMenu.BackColor = Color.FromArgb(0, 122, 204);
+            panelMenu.Controls.Add(ibtnReporte);
+            panelMenu.Controls.Add(ibtnExterno);
+            panelMenu.Controls.Add(ibtnAereo);
+            panelMenu.Controls.Add(ibtnMaritimo);
+            panelMenu.Controls.Add(ibtnDashboard);
+            panelMenu.Controls.Add(iconButton1);
+            panelMenu.Controls.Add(ibtnSalir);
+            panelMenu.Controls.Add(label1);
+            panelMenu.Dock = DockStyle.Left;
+            panelMenu.Location = new Point(0, 0);
+            panelMenu.Name = "panelMenu";
+            panelMenu.Size = new Size(200, 450);
+            panelMenu.TabIndex = 1;
             // 
             // ibtnReporte
             // 
-            this.ibtnReporte.FlatAppearance.BorderSize = 0;
-            this.ibtnReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnReporte.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ibtnReporte.ForeColor = System.Drawing.Color.White;
-            this.ibtnReporte.IconChar = FontAwesome.Sharp.IconChar.Print;
-            this.ibtnReporte.IconColor = System.Drawing.Color.White;
-            this.ibtnReporte.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnReporte.IconSize = 32;
-            this.ibtnReporte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnReporte.Location = new System.Drawing.Point(3, 252);
-            this.ibtnReporte.Name = "ibtnReporte";
-            this.ibtnReporte.Size = new System.Drawing.Size(197, 43);
-            this.ibtnReporte.TabIndex = 11;
-            this.ibtnReporte.Text = "Reportes";
-            this.ibtnReporte.UseVisualStyleBackColor = true;
-            this.ibtnReporte.Click += new System.EventHandler(this.icbReporte_Click);
+            ibtnReporte.FlatAppearance.BorderSize = 0;
+            ibtnReporte.FlatStyle = FlatStyle.Flat;
+            ibtnReporte.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnReporte.ForeColor = Color.White;
+            ibtnReporte.IconChar = FontAwesome.Sharp.IconChar.Print;
+            ibtnReporte.IconColor = Color.White;
+            ibtnReporte.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ibtnReporte.IconSize = 24;
+            ibtnReporte.ImageAlign = ContentAlignment.MiddleLeft;
+            ibtnReporte.Location = new Point(3, 223);
+            ibtnReporte.Name = "ibtnReporte";
+            ibtnReporte.Size = new Size(197, 43);
+            ibtnReporte.TabIndex = 11;
+            ibtnReporte.Text = "Reportes";
+            ibtnReporte.UseVisualStyleBackColor = true;
+            ibtnReporte.Click += icbReporte_Click;
             // 
             // ibtnExterno
             // 
-            this.ibtnExterno.FlatAppearance.BorderSize = 0;
-            this.ibtnExterno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnExterno.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ibtnExterno.ForeColor = System.Drawing.Color.White;
-            this.ibtnExterno.IconChar = FontAwesome.Sharp.IconChar.ExternalLink;
-            this.ibtnExterno.IconColor = System.Drawing.Color.White;
-            this.ibtnExterno.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnExterno.IconSize = 32;
-            this.ibtnExterno.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnExterno.Location = new System.Drawing.Point(2, 199);
-            this.ibtnExterno.Name = "ibtnExterno";
-            this.ibtnExterno.Size = new System.Drawing.Size(197, 56);
-            this.ibtnExterno.TabIndex = 10;
-            this.ibtnExterno.Text = "Agente Externo";
-            this.ibtnExterno.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ibtnExterno.UseVisualStyleBackColor = true;
+            ibtnExterno.FlatAppearance.BorderSize = 0;
+            ibtnExterno.FlatStyle = FlatStyle.Flat;
+            ibtnExterno.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnExterno.ForeColor = Color.White;
+            ibtnExterno.IconChar = FontAwesome.Sharp.IconChar.ExternalLink;
+            ibtnExterno.IconColor = Color.White;
+            ibtnExterno.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ibtnExterno.IconSize = 24;
+            ibtnExterno.ImageAlign = ContentAlignment.MiddleLeft;
+            ibtnExterno.Location = new Point(2, 178);
+            ibtnExterno.Name = "ibtnExterno";
+            ibtnExterno.Size = new Size(197, 56);
+            ibtnExterno.TabIndex = 10;
+            ibtnExterno.Text = "     Agente Externo";
+            ibtnExterno.TextImageRelation = TextImageRelation.ImageBeforeText;
+            ibtnExterno.UseVisualStyleBackColor = true;
             // 
             // ibtnAereo
             // 
-            this.ibtnAereo.FlatAppearance.BorderSize = 0;
-            this.ibtnAereo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnAereo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ibtnAereo.ForeColor = System.Drawing.Color.White;
-            this.ibtnAereo.IconChar = FontAwesome.Sharp.IconChar.Plane;
-            this.ibtnAereo.IconColor = System.Drawing.Color.White;
-            this.ibtnAereo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnAereo.IconSize = 32;
-            this.ibtnAereo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnAereo.Location = new System.Drawing.Point(0, 148);
-            this.ibtnAereo.Name = "ibtnAereo";
-            this.ibtnAereo.Size = new System.Drawing.Size(197, 56);
-            this.ibtnAereo.TabIndex = 9;
-            this.ibtnAereo.Text = "Aéreo  y\r\nTerrestre";
-            this.ibtnAereo.UseVisualStyleBackColor = true;
-            this.ibtnAereo.EnabledChanged += new System.EventHandler(this.ibtnAereo_EnabledChanged);
-            this.ibtnAereo.Click += new System.EventHandler(this.ibtnAereo_Click);
+            ibtnAereo.FlatAppearance.BorderSize = 0;
+            ibtnAereo.FlatStyle = FlatStyle.Flat;
+            ibtnAereo.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnAereo.ForeColor = Color.White;
+            ibtnAereo.IconChar = FontAwesome.Sharp.IconChar.Plane;
+            ibtnAereo.IconColor = Color.White;
+            ibtnAereo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ibtnAereo.IconSize = 24;
+            ibtnAereo.ImageAlign = ContentAlignment.MiddleLeft;
+            ibtnAereo.Location = new Point(0, 128);
+            ibtnAereo.Name = "ibtnAereo";
+            ibtnAereo.Size = new Size(197, 56);
+            ibtnAereo.TabIndex = 9;
+            ibtnAereo.Text = "Aéreo  y\r\nTerrestre";
+            ibtnAereo.UseVisualStyleBackColor = true;
+            ibtnAereo.EnabledChanged += ibtnAereo_EnabledChanged;
+            ibtnAereo.Click += ibtnAereo_Click;
             // 
             // ibtnMaritimo
             // 
-            this.ibtnMaritimo.FlatAppearance.BorderSize = 0;
-            this.ibtnMaritimo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnMaritimo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ibtnMaritimo.ForeColor = System.Drawing.Color.White;
-            this.ibtnMaritimo.IconChar = FontAwesome.Sharp.IconChar.Ship;
-            this.ibtnMaritimo.IconColor = System.Drawing.Color.White;
-            this.ibtnMaritimo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnMaritimo.IconSize = 32;
-            this.ibtnMaritimo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnMaritimo.Location = new System.Drawing.Point(3, 102);
-            this.ibtnMaritimo.Name = "ibtnMaritimo";
-            this.ibtnMaritimo.Size = new System.Drawing.Size(197, 43);
-            this.ibtnMaritimo.TabIndex = 8;
-            this.ibtnMaritimo.Text = "Marítimo";
-            this.ibtnMaritimo.UseVisualStyleBackColor = true;
-            this.ibtnMaritimo.EnabledChanged += new System.EventHandler(this.ibtnMaritimo_EnabledChanged);
-            this.ibtnMaritimo.Click += new System.EventHandler(this.ibtnMaritimo_Click);
+            ibtnMaritimo.FlatAppearance.BorderSize = 0;
+            ibtnMaritimo.FlatStyle = FlatStyle.Flat;
+            ibtnMaritimo.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnMaritimo.ForeColor = Color.White;
+            ibtnMaritimo.IconChar = FontAwesome.Sharp.IconChar.Ship;
+            ibtnMaritimo.IconColor = Color.White;
+            ibtnMaritimo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ibtnMaritimo.IconSize = 24;
+            ibtnMaritimo.ImageAlign = ContentAlignment.MiddleLeft;
+            ibtnMaritimo.Location = new Point(3, 91);
+            ibtnMaritimo.Name = "ibtnMaritimo";
+            ibtnMaritimo.Size = new Size(197, 43);
+            ibtnMaritimo.TabIndex = 8;
+            ibtnMaritimo.Text = "Marítimo";
+            ibtnMaritimo.UseVisualStyleBackColor = true;
+            ibtnMaritimo.EnabledChanged += ibtnMaritimo_EnabledChanged;
+            ibtnMaritimo.Click += ibtnMaritimo_Click;
             // 
             // ibtnDashboard
             // 
-            this.ibtnDashboard.FlatAppearance.BorderSize = 0;
-            this.ibtnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnDashboard.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ibtnDashboard.ForeColor = System.Drawing.Color.White;
-            this.ibtnDashboard.IconChar = FontAwesome.Sharp.IconChar.ChartColumn;
-            this.ibtnDashboard.IconColor = System.Drawing.Color.White;
-            this.ibtnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnDashboard.IconSize = 32;
-            this.ibtnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnDashboard.Location = new System.Drawing.Point(3, 53);
-            this.ibtnDashboard.Name = "ibtnDashboard";
-            this.ibtnDashboard.Size = new System.Drawing.Size(197, 43);
-            this.ibtnDashboard.TabIndex = 7;
-            this.ibtnDashboard.Text = "Dashboard";
-            this.ibtnDashboard.UseVisualStyleBackColor = true;
-            this.ibtnDashboard.EnabledChanged += new System.EventHandler(this.ibtnDashboard_EnabledChanged);
-            this.ibtnDashboard.Click += new System.EventHandler(this.ibtnDashboard_Click);
+            ibtnDashboard.FlatAppearance.BorderSize = 0;
+            ibtnDashboard.FlatStyle = FlatStyle.Flat;
+            ibtnDashboard.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnDashboard.ForeColor = Color.White;
+            ibtnDashboard.IconChar = FontAwesome.Sharp.IconChar.ChartColumn;
+            ibtnDashboard.IconColor = Color.White;
+            ibtnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ibtnDashboard.IconSize = 24;
+            ibtnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            ibtnDashboard.Location = new Point(3, 53);
+            ibtnDashboard.Name = "ibtnDashboard";
+            ibtnDashboard.Size = new Size(197, 43);
+            ibtnDashboard.TabIndex = 7;
+            ibtnDashboard.Text = "Dashboard";
+            ibtnDashboard.UseVisualStyleBackColor = true;
+            ibtnDashboard.EnabledChanged += ibtnDashboard_EnabledChanged;
+            ibtnDashboard.Click += ibtnDashboard_Click;
             // 
             // iconButton1
             // 
-            this.iconButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.iconButton1.ForeColor = System.Drawing.Color.White;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
-            this.iconButton1.IconColor = System.Drawing.Color.White;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 32;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(3, 395);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(197, 29);
-            this.iconButton1.TabIndex = 6;
-            this.iconButton1.Text = "Salir";
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            iconButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            iconButton1.FlatAppearance.BorderSize = 0;
+            iconButton1.FlatStyle = FlatStyle.Flat;
+            iconButton1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            iconButton1.ForeColor = Color.White;
+            iconButton1.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
+            iconButton1.IconColor = Color.White;
+            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButton1.IconSize = 24;
+            iconButton1.ImageAlign = ContentAlignment.MiddleLeft;
+            iconButton1.Location = new Point(3, 395);
+            iconButton1.Name = "iconButton1";
+            iconButton1.Size = new Size(197, 29);
+            iconButton1.TabIndex = 6;
+            iconButton1.Text = "Salir";
+            iconButton1.UseVisualStyleBackColor = true;
+            iconButton1.Click += iconButton1_Click;
             // 
             // ibtnSalir
             // 
-            this.ibtnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ibtnSalir.FlatAppearance.BorderSize = 0;
-            this.ibtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnSalir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ibtnSalir.ForeColor = System.Drawing.Color.White;
-            this.ibtnSalir.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
-            this.ibtnSalir.IconColor = System.Drawing.Color.White;
-            this.ibtnSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnSalir.IconSize = 32;
-            this.ibtnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnSalir.Location = new System.Drawing.Point(3, 727);
-            this.ibtnSalir.Name = "ibtnSalir";
-            this.ibtnSalir.Size = new System.Drawing.Size(197, 43);
-            this.ibtnSalir.TabIndex = 3;
-            this.ibtnSalir.Text = "Salir";
-            this.ibtnSalir.UseVisualStyleBackColor = true;
+            ibtnSalir.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            ibtnSalir.FlatAppearance.BorderSize = 0;
+            ibtnSalir.FlatStyle = FlatStyle.Flat;
+            ibtnSalir.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnSalir.ForeColor = Color.White;
+            ibtnSalir.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
+            ibtnSalir.IconColor = Color.White;
+            ibtnSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ibtnSalir.IconSize = 32;
+            ibtnSalir.ImageAlign = ContentAlignment.MiddleLeft;
+            ibtnSalir.Location = new Point(3, 727);
+            ibtnSalir.Name = "ibtnSalir";
+            ibtnSalir.Size = new Size(197, 43);
+            ibtnSalir.TabIndex = 3;
+            ibtnSalir.Text = "Salir";
+            ibtnSalir.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(-3, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 43);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Importaciones";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label1.Font = new Font("Century Gothic", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(-3, 11);
+            label1.Name = "label1";
+            label1.Size = new Size(200, 43);
+            label1.TabIndex = 2;
+            label1.Text = "Importaciones";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panelFormularios
             // 
-            this.panelFormularios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panelFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelFormularios.Location = new System.Drawing.Point(200, 0);
-            this.panelFormularios.Name = "panelFormularios";
-            this.panelFormularios.Size = new System.Drawing.Size(600, 450);
-            this.panelFormularios.TabIndex = 2;
+            panelFormularios.BackgroundImageLayout = ImageLayout.Zoom;
+            panelFormularios.Dock = DockStyle.Fill;
+            panelFormularios.Location = new Point(200, 0);
+            panelFormularios.Name = "panelFormularios";
+            panelFormularios.Size = new Size(600, 450);
+            panelFormularios.TabIndex = 2;
             // 
             // frmMenuImportaciones
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panelFormularios);
-            this.Controls.Add(this.panelMenu);
-            this.Name = "frmMenuImportaciones";
-            this.Text = "frmMenuImportaciones";
-            this.Load += new System.EventHandler(this.frmMenuImportaciones_Load);
-            this.panelMenu.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(panelFormularios);
+            Controls.Add(panelMenu);
+            Name = "frmMenuImportaciones";
+            Text = "frmMenuImportaciones";
+            Load += frmMenuImportaciones_Load;
+            panelMenu.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion

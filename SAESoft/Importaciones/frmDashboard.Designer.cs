@@ -81,6 +81,7 @@
             chkFinalizado.Appearance = Appearance.Button;
             chkFinalizado.AutoSize = true;
             chkFinalizado.FlatAppearance.BorderSize = 0;
+            chkFinalizado.FlatAppearance.CheckedBackColor = Color.Transparent;
             chkFinalizado.FlatAppearance.MouseDownBackColor = Color.Transparent;
             chkFinalizado.FlatAppearance.MouseOverBackColor = Color.Transparent;
             chkFinalizado.FlatStyle = FlatStyle.Flat;

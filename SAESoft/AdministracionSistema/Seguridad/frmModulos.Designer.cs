@@ -1,6 +1,6 @@
-﻿namespace SAESoft.AdministracionSistema
+﻿namespace SAESoft.AdministracionSistema.Seguridad
 {
-    partial class frmPermisos
+    partial class frmModulos
     {
         /// <summary>
         /// Required designer variable.
@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.cboModulos = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblActivo = new System.Windows.Forms.Label();
+            this.tsActivo = new SAESoft.Utilitarios.toggleSwitch();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
@@ -62,8 +62,8 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.cboModulos);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.label7);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.lblActivo);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.tsActivo);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.txtNombre);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label2);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.txtId);
@@ -80,53 +80,59 @@
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             // 
-            // cboModulos
+            // lblActivo
             // 
-            this.cboModulos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboModulos.Enabled = false;
-            this.cboModulos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cboModulos.FormattingEnabled = true;
-            this.cboModulos.IntegralHeight = false;
-            this.cboModulos.Location = new System.Drawing.Point(213, 126);
-            this.cboModulos.Name = "cboModulos";
-            this.cboModulos.Size = new System.Drawing.Size(296, 29);
-            this.cboModulos.TabIndex = 16;
+            this.lblActivo.AutoSize = true;
+            this.lblActivo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblActivo.Location = new System.Drawing.Point(92, 119);
+            this.lblActivo.Name = "lblActivo";
+            this.lblActivo.Size = new System.Drawing.Size(105, 21);
+            this.lblActivo.TabIndex = 19;
+            this.lblActivo.Text = "Inhabilitado";
             // 
-            // label7
+            // tsActivo
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(93, 134);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 21);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Módulo";
+            this.tsActivo.Enabled = false;
+            this.tsActivo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tsActivo.Location = new System.Drawing.Point(212, 118);
+            this.tsActivo.MinimumSize = new System.Drawing.Size(45, 22);
+            this.tsActivo.Name = "tsActivo";
+            this.tsActivo.OffBackColor = System.Drawing.Color.Firebrick;
+            this.tsActivo.OffTogglecolor = System.Drawing.Color.Firebrick;
+            this.tsActivo.OnBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
+            this.tsActivo.OnTogglecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
+            this.tsActivo.Size = new System.Drawing.Size(45, 25);
+            this.tsActivo.SolidStyle = false;
+            this.tsActivo.TabIndex = 17;
+            this.tsActivo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.tsActivo.UseVisualStyleBackColor = true;
+            this.tsActivo.CheckedChanged += new System.EventHandler(this.tsActivo_CheckedChanged);
             // 
             // txtNombre
             // 
             this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombre.Enabled = false;
             this.txtNombre.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtNombre.Location = new System.Drawing.Point(213, 79);
+            this.txtNombre.Location = new System.Drawing.Point(212, 75);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(296, 27);
+            this.txtNombre.Size = new System.Drawing.Size(382, 27);
             this.txtNombre.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(93, 82);
+            this.label2.Location = new System.Drawing.Point(92, 78);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 21);
+            this.label2.Size = new System.Drawing.Size(73, 21);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Nombres";
+            this.label2.Text = "Nombre";
             // 
             // txtId
             // 
             this.txtId.Enabled = false;
             this.txtId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtId.Location = new System.Drawing.Point(213, 36);
+            this.txtId.Location = new System.Drawing.Point(212, 32);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(100, 27);
             this.txtId.TabIndex = 5;
@@ -135,7 +141,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(93, 39);
+            this.label1.Location = new System.Drawing.Point(92, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 21);
             this.label1.TabIndex = 4;
@@ -160,8 +166,8 @@
             this.tsbSalir});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(234, 39);
-            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Size = new System.Drawing.Size(493, 39);
+            this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // tsbNuevo
@@ -288,15 +294,15 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // frmPermisos
+            // frmModulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.toolStripContainer1);
-            this.Name = "frmPermisos";
-            this.Text = "frmPermisos";
-            this.Load += new System.EventHandler(this.frmPermisos_Load);
+            this.Name = "frmModulos";
+            this.Text = "frmModulos";
+            this.Load += new System.EventHandler(this.frmModulos_Load);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.ContentPanel.PerformLayout();
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -313,7 +319,6 @@
         #endregion
 
         private ToolStripContainer toolStripContainer1;
-        private ErrorProvider errorProvider1;
         private ToolStrip toolStrip1;
         private ToolStripButton tsbNuevo;
         private ToolStripButton tsbBuscar;
@@ -330,8 +335,9 @@
         private Label label2;
         private TextBox txtId;
         private Label label1;
-        private ComboBox cboModulos;
-        private Label label7;
+        private Label lblActivo;
+        private Utilitarios.toggleSwitch tsActivo;
+        private ErrorProvider errorProvider1;
         private ToolStripLabel tslIndice;
     }
 }

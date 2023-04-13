@@ -19,14 +19,18 @@ namespace SAESoft
         #region Funcionalidades del Formulario
         // **********CODIGO PARA HACER QUE SE PUEDA ARRASTAR EL FORMULARIO************
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+#pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
         private extern static void ReleaseCapture();
+#pragma warning restore SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
 
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+#pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
-        //********* FIN CODIGO ARRASTRAR FORMULARIO***********************
+#pragma warning restore SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
+                                  //********* FIN CODIGO ARRASTRAR FORMULARIO***********************
 
         //RESIZE METODO PARA REDIMENCIONAR/CAMBIAR TAMAÑO A FORMULARIO EN TIEMPO DE EJECUCION ----------------------------------------------------------
-        private int tolerance = 12;
+        private readonly int tolerance = 12;
         private const int WM_NCHITTEST = 132;
         private const int HTBOTTOMRIGHT = 17;
         private Rectangle sizeGripRectangle;
@@ -58,7 +62,7 @@ namespace SAESoft
         //----------------COLOR Y GRIP DE RECTANGULO INFERIOR
         protected override void OnPaint(PaintEventArgs e)
         {
-            SolidBrush blueBrush = new SolidBrush(Color.FromArgb(244, 244, 244));
+            SolidBrush blueBrush = new(Color.FromArgb(244, 244, 244));
             e.Graphics.FillRectangle(blueBrush, sizeGripRectangle);
             base.OnPaint(e);
             ControlPaint.DrawSizeGrip(e.Graphics, Color.Transparent, sizeGripRectangle);

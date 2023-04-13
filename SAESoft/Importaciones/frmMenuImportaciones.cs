@@ -18,7 +18,7 @@ namespace SAESoft.Importaciones
         private void frmMenuImportaciones_Load(object sender, EventArgs e)
         {
             habilitarMenu();
-            panelFormularios.ControlRemoved += new ControlEventHandler(CloseForms); 
+            panelFormularios.ControlRemoved += new ControlEventHandler(CloseForms);
         }
 
         private void ibtnDashboard_Click(object sender, EventArgs e)

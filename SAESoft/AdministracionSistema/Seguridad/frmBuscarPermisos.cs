@@ -2,7 +2,7 @@
 using SAESoft.Models;
 using SAESoft.Models.AdministracionSistema;
 
-namespace SAESoft.AdministracionSistema
+namespace SAESoft.AdministracionSistema.Seguridad
 {
     public partial class frmBuscarPermisos : Form
     {
@@ -19,13 +19,11 @@ namespace SAESoft.AdministracionSistema
         }
         private void llenarCombos()
         {
-            using (SAESoftContext db = new SAESoftContext())
-            {
-                cboModulos.DataSource = db.Modulos.ToList();
-                cboModulos.DisplayMember = "Nombre";
-                cboModulos.ValueMember = "IdModulo";
-                cboModulos.SelectedIndex = -1;
-            }
+            using SAESoftContext db = new();
+            cboModulos.DataSource = db.Modulos.ToList();
+            cboModulos.DisplayMember = "Nombre";
+            cboModulos.ValueMember = "IdModulo";
+            cboModulos.SelectedIndex = -1;
         }
 
         private void icbBuscar_Click(object sender, EventArgs e)

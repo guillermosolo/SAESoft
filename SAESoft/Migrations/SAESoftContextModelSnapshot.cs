@@ -34,7 +34,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("RevisionesIdRevision");
 
-                    b.ToTable("ImportacionRevision");
+                    b.ToTable("ImportacionRevision", (string)null);
                 });
 
             modelBuilder.Entity("PermisoRol", b =>
@@ -49,7 +49,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("RolesIdRol");
 
-                    b.ToTable("PermisoRol");
+                    b.ToTable("PermisoRol", (string)null);
 
                     b.HasData(
                         new
@@ -341,7 +341,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Modulos");
+                    b.ToTable("Modulos", (string)null);
 
                     b.HasData(
                         new
@@ -404,7 +404,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Permisos");
+                    b.ToTable("Permisos", (string)null);
 
                     b.HasData(
                         new
@@ -657,7 +657,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
 
                     b.HasData(
                         new
@@ -750,7 +750,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Usuarios", (string)null);
 
                     b.HasData(
                         new
@@ -861,7 +861,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Aduanas");
+                    b.ToTable("Aduanas", (string)null);
 
                     b.HasData(
                         new
@@ -1232,7 +1232,7 @@ namespace SAESoft.Migrations
 
                     b.HasKey("IdAgente");
 
-                    b.ToTable("Agentes");
+                    b.ToTable("Agentes", (string)null);
 
                     b.HasData(
                         new
@@ -1397,7 +1397,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Numero")
                         .IsUnique();
 
-                    b.ToTable("BL");
+                    b.ToTable("BL", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Contenedor", b =>
@@ -1440,7 +1440,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdImportacion");
 
-                    b.ToTable("Contenedores");
+                    b.ToTable("Contenedores", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Grupo", b =>
@@ -1477,7 +1477,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Grupos");
+                    b.ToTable("Grupos", (string)null);
 
                     b.HasData(
                         new
@@ -1557,7 +1557,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdImportStatus");
 
-                    b.ToTable("ImportHistorial");
+                    b.ToTable("ImportHistorial", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.ImportStatus", b =>
@@ -1596,7 +1596,7 @@ namespace SAESoft.Migrations
 
                     b.HasKey("IdImportStatus");
 
-                    b.ToTable("ImportStatus");
+                    b.ToTable("ImportStatus", (string)null);
 
                     b.HasData(
                         new
@@ -1971,7 +1971,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdUsuario");
 
-                    b.ToTable("Importaciones");
+                    b.ToTable("Importaciones", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Nombre", b =>
@@ -2008,7 +2008,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Descripcion", "IdGrupo")
                         .IsUnique();
 
-                    b.ToTable("Nombres");
+                    b.ToTable("Nombres", (string)null);
 
                     b.HasData(
                         new
@@ -2519,7 +2519,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("IdContenedor")
                         .IsUnique();
 
-                    b.ToTable("Pagos");
+                    b.ToTable("Pagos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Poliza", b =>
@@ -2564,7 +2564,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Numero")
                         .IsUnique();
 
-                    b.ToTable("Polizas");
+                    b.ToTable("Polizas", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Revision", b =>
@@ -2596,7 +2596,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Descripcion")
                         .IsUnique();
 
-                    b.ToTable("Revisiones");
+                    b.ToTable("Revisiones", (string)null);
 
                     b.HasData(
                         new
@@ -2674,7 +2674,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Shippers");
+                    b.ToTable("Shippers", (string)null);
 
                     b.HasData(
                         new
@@ -3892,7 +3892,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Terminales");
+                    b.ToTable("Terminales", (string)null);
 
                     b.HasData(
                         new

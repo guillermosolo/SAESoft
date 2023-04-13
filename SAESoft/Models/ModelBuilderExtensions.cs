@@ -11,7 +11,7 @@ namespace SAESoft.Models
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-            List<Rol> roles = new List<Rol>()
+            List<Rol> roles = new()
             {
                new Rol {IdRol = 1,Nombre = "Super Admin",FechaCreacion = DateTime.Now,IdUsuarioCreacion = 1 },
                new Rol {IdRol = 2,Nombre = "Digitador Importaciones",FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
@@ -21,7 +21,7 @@ namespace SAESoft.Models
             modelBuilder.Entity<Rol>()
                 .HasData(roles);
 
-            Usuario sa = new Usuario()
+            Usuario sa = new()
             {
                 IdUsuario = 1,
                 Nombres = "Super",
@@ -38,7 +38,7 @@ namespace SAESoft.Models
             modelBuilder.Entity<Usuario>()
                 .HasData(sa);
 
-            List<Usuario> digitadores = new List<Usuario>()
+            List<Usuario> digitadores = new()
             {
                 new Usuario {IdUsuario = 2,Nombres = "Brian Aaron", Apellidos = "Tobar Soto",Email = "briansoto19@sae-a.com",UserName="btobar",Password=ComputeHash("btobar"),IdRol=3,Activo=true,FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
                 new Usuario {IdUsuario = 3,Nombres = "Walter Antonio", Apellidos = "Ajcuc Subuyuj",Email = "walter277@sae-a.com",UserName="wajcuc",Password=ComputeHash("wajcuc"),IdRol=2,Activo=true,FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
@@ -48,7 +48,7 @@ namespace SAESoft.Models
 
             modelBuilder.Entity<Usuario>().HasData(digitadores);
 
-            List<Modulo> modulos = new List<Modulo>()
+            List<Modulo> modulos = new()
             {
                 new Modulo {IdModulo = 1,Nombre="MENÚ PRINCIPAL",FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
                 new Modulo {IdModulo = 2,Nombre="ADMINISTRACIÓN DEL SISTEMA",FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
@@ -56,7 +56,7 @@ namespace SAESoft.Models
             };
             modelBuilder.Entity<Modulo>().HasData(modulos);
 
-            List<Permiso> permisos = new List<Permiso>()
+            List<Permiso> permisos = new()
             {
                 new Permiso{IdPermiso = 1, Nombre="VER.ADMINISTRACION SISTEMA",IdModulo = 1,FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
                 new Permiso{IdPermiso = 2, Nombre="VER.IMPORTACIONES",IdModulo = 1,FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
@@ -100,7 +100,7 @@ namespace SAESoft.Models
             }
 
             Rol di = roles.FirstOrDefault(r => r.IdRol == 2);
-            List<Permiso> permisosDI = new List<Permiso>();
+            List<Permiso> permisosDI = new();
             permisosDI = permisos.Where(p => new[] { 2, 27, 28, 30, 32, 34 }.Contains(p.IdPermiso)).ToList();
             foreach (Permiso p in permisosDI)
             {
@@ -132,7 +132,7 @@ namespace SAESoft.Models
                             .UsingEntity(j => j.HasData(new { RolesIdRol = adm.IdRol, PermisosIdPermiso = p.IdPermiso }));
             }
 
-            List<Grupo> grupos = new List<Grupo>
+            List<Grupo> grupos = new()
             {
                 new Grupo{IdGrupo=1,Nombre="EMPRESA",IdModulo=3, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Grupo{IdGrupo=2,Nombre="FORWARDER",IdModulo=3, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
@@ -142,7 +142,7 @@ namespace SAESoft.Models
             };
             modelBuilder.Entity<Grupo>().HasData(grupos);
 
-            List<Nombre> nombres = new List<Nombre>
+            List<Nombre> nombres = new()
             {
                 new Nombre{IdNombre=1,Descripcion="SEABOARD",IdGrupo=1, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Nombre{IdNombre = 2, Descripcion = "ONE LINE ", IdGrupo = 1, FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
@@ -206,7 +206,7 @@ namespace SAESoft.Models
             };
             modelBuilder.Entity<Nombre>().HasData(nombres);
 
-            List<Revision> revisiones = new List<Revision>
+            List<Revision> revisiones = new()
             {
                 new Revision{IdRevision = 1, Descripcion = "SGAIA", FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Revision{IdRevision = 2, Descripcion = "DIPAFRONT", FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
@@ -216,7 +216,7 @@ namespace SAESoft.Models
             };
             modelBuilder.Entity<Revision>().HasData(revisiones);
 
-            List<Shipper> shippers = new List<Shipper>
+            List<Shipper> shippers = new()
             {
                new Shipper{IdShipper=1,Nombre="ANTEX KNITTING MILLS",Aereo=true,Maritimo=true,Terrestre=true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
 new Shipper{IdShipper=2,Nombre="BOHOTEX CO, LTD",Aereo = true, Maritimo = true, Terrestre = true,FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
@@ -339,7 +339,7 @@ new Shipper{IdShipper=126,Nombre="ACHROMA",Aereo=true,Maritimo=false,Terrestre=t
             };
             modelBuilder.Entity<Shipper>().HasData(shippers);
 
-            List<Aduana> aduanas = new List<Aduana>
+            List<Aduana> aduanas = new()
             {
                 new Aduana{IdAduana=1,Nombre="ADUANA SANTO TOMAS DE CASTILLA",Abreviatura="ST",Via='M',FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Aduana{IdAduana=2,Nombre="ADUANA PUERTO QUETZAL",Abreviatura="PQ",Via='M',FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
@@ -381,7 +381,8 @@ new Shipper{IdShipper=126,Nombre="ACHROMA",Aereo=true,Maritimo=false,Terrestre=t
             };
             modelBuilder.Entity<Aduana>().HasData(aduanas);
 
-            List<Terminal> terminales = new List<Terminal>{
+            List<Terminal> terminales = new()
+            {
                 new Terminal{IdTerminal = 1, Nombre = "TCQ", Via = 'M', FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Terminal{IdTerminal = 2, Nombre = "TPQ", Via = 'M', FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
                 new Terminal{IdTerminal = 3, Nombre = "STC", Via = 'M', FechaCreacion = DateTime.Now, IdUsuarioCreacion = 1},
@@ -392,7 +393,7 @@ new Shipper{IdShipper=126,Nombre="ACHROMA",Aereo=true,Maritimo=false,Terrestre=t
             };
             modelBuilder.Entity<Terminal>().HasData(terminales);
 
-            List<ImportStatus> importStatuses = new List<ImportStatus>
+            List<ImportStatus> importStatuses = new()
             {
                 new ImportStatus{IdImportStatus = 1,Descripcion="Ingreso Inicial",orden=1,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
                 new ImportStatus{IdImportStatus = 2,Descripcion="Entrega de Datos a Digitador",orden=2,Via='M',FechaCreacion=DateTime.Now,IdUsuarioCreacion=1},
@@ -427,7 +428,7 @@ new Shipper{IdShipper=126,Nombre="ACHROMA",Aereo=true,Maritimo=false,Terrestre=t
             };
             modelBuilder.Entity<ImportStatus>().HasData(importStatuses);
 
-            List<Agente> agentes = new List<Agente>
+            List<Agente> agentes = new()
             {
                 new Agente{IdAgente=172,Apellidos="FERNANDEZ RENTERIA",Nombres="CESAR",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},
                 new Agente{IdAgente=251,Apellidos="TOLEDO CANCINO",Nombres="MARCO AURELIO",Activo=true,FechaCreacion = DateTime.Now,IdUsuarioCreacion=1},

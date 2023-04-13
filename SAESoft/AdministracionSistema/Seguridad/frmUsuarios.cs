@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using System.Data;
 using SAESoft.Utilitarios;
 
-namespace SAESoft.AdministracionSistema
+namespace SAESoft.AdministracionSistema.Seguridad
 {
     public partial class frmUsuarios : Form
     {
@@ -19,7 +19,7 @@ namespace SAESoft.AdministracionSistema
             InitializeComponent();
         }
         private Boolean esNuevo = false;
-        private List<Usuario>? rs = new List<Usuario>();
+        private List<Usuario>? rs = new();
         private int CurrentIndex = 0;
 
         private void tsbNuevo_Click(object sender, EventArgs e)
@@ -64,69 +64,65 @@ namespace SAESoft.AdministracionSistema
             {
                 if (esNuevo)
                 {
-                    using (SAESoftContext db = new SAESoftContext())
+                    using SAESoftContext db = new();
+                    try
                     {
-                        try
+                        Usuario usuario = new()
                         {
-                            Usuario usuario = new Usuario()
-                            {
-                                Nombres = txtNombres.Text,
-                                Apellidos = txtApellidos.Text,
-                                Email = txtEmail.Text,
-                                UserName = txtUsuario.Text,
-                                Password = ComputeHash(txtPassword.Text),
-                                IdRol = Convert.ToInt32(cboRoles.SelectedValue),
-                                Activo = tsActivo.Checked,
-                                FechaCreacion = DatosServer.FechaServer(),
-                                IdUsuarioCreacion = usuarioLogged.IdUsuario
-                            };
-                            db.Usuarios.Add(usuario);
-                            db.SaveChanges();
-                            rs.Add(usuario);
-                            CurrentIndex = rs.Count - 1;
-                            despliegaDatos();
-                            MessageBox.Show("Usuario Grabado Exitosamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        catch (DbUpdateException ex)
-                        {
-                            if (ex.InnerException != null)
-                                MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            else
-                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
+                            Nombres = txtNombres.Text,
+                            Apellidos = txtApellidos.Text,
+                            Email = txtEmail.Text,
+                            UserName = txtUsuario.Text,
+                            Password = ComputeHash(txtPassword.Text),
+                            IdRol = Convert.ToInt32(cboRoles.SelectedValue),
+                            Activo = tsActivo.Checked,
+                            FechaCreacion = DatosServer.FechaServer(),
+                            IdUsuarioCreacion = usuarioLogged.IdUsuario
+                        };
+                        db.Usuarios.Add(usuario);
+                        db.SaveChanges();
+                        rs.Add(usuario);
+                        CurrentIndex = rs.Count - 1;
+                        despliegaDatos();
+                        MessageBox.Show("Usuario Grabado Exitosamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        if (ex.InnerException != null)
+                            MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
                 else
                 {
                     Usuario temp = rs[CurrentIndex];
-                    using (SAESoftContext db = new SAESoftContext())
+                    using SAESoftContext db = new();
+                    try
                     {
-                        try
-                        {
-                            db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
-                            rs[CurrentIndex].Nombres = txtNombres.Text;
-                            rs[CurrentIndex].Apellidos = txtApellidos.Text;
-                            rs[CurrentIndex].Email = txtEmail.Text;
-                            rs[CurrentIndex].UserName = txtUsuario.Text;
-                            rs[CurrentIndex].Activo = tsActivo.Checked;
-                            if (txtPassword.Text != "xxxxxxxxxxxxx")
-                                rs[CurrentIndex].Password = ComputeHash(txtPassword.Text);
-                            rs[CurrentIndex].IdRol = Convert.ToInt32(cboRoles.SelectedValue);
-                            rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
-                            rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
-                            db.Usuarios.Update(rs[CurrentIndex]);
-                            db.SaveChanges();
-                        }
-                        catch (DbUpdateException ex)
-                        {
-                            if (ex.InnerException != null)
-                                MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            else
-                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            rs[CurrentIndex] = temp;
-                            return;
-                        }
+                        db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
+                        rs[CurrentIndex].Nombres = txtNombres.Text;
+                        rs[CurrentIndex].Apellidos = txtApellidos.Text;
+                        rs[CurrentIndex].Email = txtEmail.Text;
+                        rs[CurrentIndex].UserName = txtUsuario.Text;
+                        rs[CurrentIndex].Activo = tsActivo.Checked;
+                        if (txtPassword.Text != "xxxxxxxxxxxxx")
+                            rs[CurrentIndex].Password = ComputeHash(txtPassword.Text);
+                        rs[CurrentIndex].IdRol = Convert.ToInt32(cboRoles.SelectedValue);
+                        rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
+                        rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
+                        db.Usuarios.Update(rs[CurrentIndex]);
+                        db.SaveChanges();
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        if (ex.InnerException != null)
+                            MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        rs[CurrentIndex] = temp;
+                        return;
                     }
                 }
                 if (rs.Count > 1)
@@ -186,12 +182,10 @@ namespace SAESoft.AdministracionSistema
         }
         private void llenarCombos()
         {
-            using (SAESoftContext db = new SAESoftContext())
-            {
-                cboRoles.DataSource = db.Roles.ToList();
-                cboRoles.DisplayMember = "Nombre";
-                cboRoles.ValueMember = "IdRol";
-            }
+            using SAESoftContext db = new();
+            cboRoles.DataSource = db.Roles.ToList();
+            cboRoles.DisplayMember = "Nombre";
+            cboRoles.ValueMember = "IdRol";
         }
 
         private void frmUsuarios_Shown(object sender, EventArgs e)
@@ -215,45 +209,42 @@ namespace SAESoft.AdministracionSistema
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarUsuarios buscar = new frmBuscarUsuarios();
+            frmBuscarUsuarios buscar = new();
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
-                using (SAESoftContext db = new SAESoftContext())
+                using SAESoftContext db = new();
+                var queryable = db.Usuarios.Where(b => 1 == 1);
+                if (buscar.nombre != null)
+                    queryable = queryable.Where(b => b.Nombres.Contains(buscar.nombre));
+                if (buscar.apellido != null)
+                    queryable = queryable.Where(b => b.Apellidos.Contains(buscar.apellido));
+                if (buscar.usuario != null)
+                    queryable = queryable.Where(b => b.UserName.Contains(buscar.usuario));
+                if (buscar.rol != -1)
+                    queryable = queryable.Where(b => b.IdRol == buscar.rol);
+                rs = queryable.ToList();
+                buscar.Dispose();
+                if (rs.Count > 0)
                 {
-                    var queryable = db.Usuarios.Where(b => 1 == 1);
-                    if (buscar.nombre != null)
-                        queryable = queryable.Where(b => b.Nombres.Contains(buscar.nombre));
-                    if (buscar.apellido != null)
-                        queryable = queryable.Where(b => b.Apellidos.Contains(buscar.apellido));
-                    if (buscar.usuario != null)
-                        queryable = queryable.Where(b => b.UserName.Contains(buscar.usuario));
-                    if (buscar.rol != -1)
-                        queryable = queryable.Where(b => b.IdRol == buscar.rol);
-                    rs = queryable.ToList();
-                    buscar.Dispose();
-                    if (rs.Count > 0)
+                    CurrentIndex = 0;
+                    despliegaDatos();
+                    if (rs.Count > 1)
                     {
-                        CurrentIndex = 0;
-                        despliegaDatos();
-                        if (rs.Count > 1)
-                        {
-                            BotonesInicialesNavegacion(toolStrip1);
-                        }
-                        else
-                        {
-                            BotonesIniciales(toolStrip1);
-                        }
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "USUARIOS");
+                        BotonesInicialesNavegacion(toolStrip1);
                     }
                     else
                     {
-                        MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        limpiarFormulario(this);
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "USUARIOS");
                     }
-
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "USUARIOS");
+                }
+                else
+                {
+                    MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    limpiarFormulario(this);
+                    BotonesIniciales(toolStrip1);
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "USUARIOS");
                 }
             }
         }
@@ -298,42 +289,40 @@ namespace SAESoft.AdministracionSistema
                 DialogResult resp = MessageBox.Show("¿En realidad desea borrar este registro?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resp == DialogResult.Yes)
                 {
-                    using (SAESoftContext db = new SAESoftContext())
+                    using SAESoftContext db = new();
+                    try
                     {
-                        try
+                        db.Usuarios.Remove(rs[CurrentIndex]);
+                        db.SaveChanges();
+                        rs.Remove(rs[CurrentIndex]);
+                        if (rs.Count > 0)
                         {
-                            db.Usuarios.Remove(rs[CurrentIndex]);
-                            db.SaveChanges();
-                            rs.Remove(rs[CurrentIndex]);
-                            if (rs.Count > 0)
+                            if (rs.Count > 1)
                             {
-                                if (rs.Count > 1)
-                                {
-                                    if (CurrentIndex != 0)
-                                        CurrentIndex--;
-                                    BotonesInicialesNavegacion(toolStrip1);
-                                }
-                                else
-                                {
-                                    CurrentIndex = 0;
-                                    BotonesIniciales(toolStrip1);
-                                }
-                                despliegaDatos();
+                                if (CurrentIndex != 0)
+                                    CurrentIndex--;
+                                BotonesInicialesNavegacion(toolStrip1);
                             }
                             else
                             {
-                                limpiarFormulario(this);
+                                CurrentIndex = 0;
                                 BotonesIniciales(toolStrip1);
-                                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "USUARIOS");
                             }
+                            despliegaDatos();
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            if (ex.InnerException != null)
-                                MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            else
-                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            limpiarFormulario(this);
+                            BotonesIniciales(toolStrip1);
+                            CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "USUARIOS");
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.InnerException != null)
+                            MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -341,8 +330,8 @@ namespace SAESoft.AdministracionSistema
 
         private void tsbListar_Click(object sender, EventArgs e)
         {
-            frmListar formListar = new frmListar();
-            using (SAESoftContext db = new SAESoftContext())
+            frmListar formListar = new();
+            using (SAESoftContext db = new())
             {
                 var lista = db.Usuarios.Include(p => p.Rol).Select(p => new {p.IdUsuario,p.Nombres, p.Apellidos,Usuario= p.UserName, p.Activo,Rol= p.Rol.Nombre }).ToList();
                 formListar.ds.DataSource = lista;
@@ -350,14 +339,12 @@ namespace SAESoft.AdministracionSistema
             DialogResult resp = formListar.ShowDialog();
             if (resp == DialogResult.OK)
             {
-                using (SAESoftContext db = new SAESoftContext())
-                {
-                    rs = db.Usuarios.Where(p => p.IdUsuario == formListar.Id).ToList();
-                    CurrentIndex = 0;
-                    despliegaDatos();
-                    BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "USUARIOS");
-                }
+                using SAESoftContext db = new();
+                rs = db.Usuarios.Where(p => p.IdUsuario == formListar.Id).ToList();
+                CurrentIndex = 0;
+                despliegaDatos();
+                BotonesIniciales(toolStrip1);
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "USUARIOS");
             }
             formListar.Dispose();
         }

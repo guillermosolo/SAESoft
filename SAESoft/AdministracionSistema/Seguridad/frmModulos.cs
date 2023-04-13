@@ -6,7 +6,7 @@ using static SAESoft.Cache.UserData;
 using SAESoft.Comunes;
 using SAESoft.Utilitarios;
 
-namespace SAESoft.AdministracionSistema
+namespace SAESoft.AdministracionSistema.Seguridad
 {
     public partial class frmModulos : Form
     {
@@ -15,7 +15,7 @@ namespace SAESoft.AdministracionSistema
             InitializeComponent();
         }
         private Boolean esNuevo = true;
-        private List<Modulo>? rs = new List<Modulo>();
+        private List<Modulo>? rs = new();
         private int CurrentIndex = 0;
         private void tsActivo_CheckedChanged(object sender, EventArgs e)
         {
@@ -83,58 +83,54 @@ namespace SAESoft.AdministracionSistema
             {
                 if (esNuevo)
                 {
-                    using (SAESoftContext db = new SAESoftContext())
+                    using SAESoftContext db = new();
+                    try
                     {
-                        try
+                        Modulo modulo = new()
                         {
-                            Modulo modulo = new Modulo()
-                            {
-                                Nombre = txtNombre.Text,
-                                Habilitado = tsActivo.Checked,
-                                FechaCreacion = DatosServer.FechaServer(),
-                                IdUsuarioCreacion = usuarioLogged.IdUsuario
-                            };
-                            db.Modulos.Add(modulo);
-                            db.SaveChanges();
-                            rs.Add(modulo);
-                            CurrentIndex = rs.Count - 1;
-                            despliegaDatos();
-                            MessageBox.Show("Módulo Grabado Exitosamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        catch (DbUpdateException ex)
-                        {
-                            if (ex.InnerException != null)
-                                MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            else
-                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
+                            Nombre = txtNombre.Text,
+                            Habilitado = tsActivo.Checked,
+                            FechaCreacion = DatosServer.FechaServer(),
+                            IdUsuarioCreacion = usuarioLogged.IdUsuario
+                        };
+                        db.Modulos.Add(modulo);
+                        db.SaveChanges();
+                        rs.Add(modulo);
+                        CurrentIndex = rs.Count - 1;
+                        despliegaDatos();
+                        MessageBox.Show("Módulo Grabado Exitosamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        if (ex.InnerException != null)
+                            MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
                 else
                 {
                     Modulo temp = rs[CurrentIndex];
-                    using (SAESoftContext db = new SAESoftContext())
+                    using SAESoftContext db = new();
+                    try
                     {
-                        try
-                        {
-                            db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
-                            rs[CurrentIndex].Nombre = txtNombre.Text;
-                            rs[CurrentIndex].Habilitado = tsActivo.Checked;
-                            rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
-                            rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
-                            db.Modulos.Update(rs[CurrentIndex]);
-                            db.SaveChanges();
-                        }
-                        catch (DbUpdateException ex)
-                        {
-                            if (ex.InnerException != null)
-                                MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            else
-                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            rs[CurrentIndex] = temp;
-                            return;
-                        }
+                        db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
+                        rs[CurrentIndex].Nombre = txtNombre.Text;
+                        rs[CurrentIndex].Habilitado = tsActivo.Checked;
+                        rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
+                        rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
+                        db.Modulos.Update(rs[CurrentIndex]);
+                        db.SaveChanges();
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        if (ex.InnerException != null)
+                            MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        rs[CurrentIndex] = temp;
+                        return;
                     }
                 }
                 if (rs.Count > 1)
@@ -164,38 +160,36 @@ namespace SAESoft.AdministracionSistema
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarModulos buscar = new frmBuscarModulos();
+            frmBuscarModulos buscar = new();
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
-                using (SAESoftContext db = new SAESoftContext())
+                using SAESoftContext db = new();
+                var queryable = db.Modulos.Where(b => 1 == 1);
+                if (buscar.nombre != null)
+                    queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
+                buscar.Dispose();
+                rs = queryable.ToList();
+                if (rs.Count > 0)
                 {
-                    var queryable = db.Modulos.Where(b => 1 == 1);
-                    if (buscar.nombre != null)
-                        queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
-                    buscar.Dispose();
-                    rs = queryable.ToList();
-                    if (rs.Count > 0)
+                    CurrentIndex = 0;
+                    despliegaDatos();
+                    if (rs.Count > 1)
                     {
-                        CurrentIndex= 0;
-                        despliegaDatos();
-                        if (rs.Count > 1)
-                        {
-                            BotonesInicialesNavegacion(toolStrip1);
-                        }
-                        else
-                        {
-                            BotonesIniciales(toolStrip1);
-                        }
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "MODULOS");
+                        BotonesInicialesNavegacion(toolStrip1);
                     }
                     else
                     {
-                        MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        limpiarFormulario(this);
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "MODULOS");
                     }
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "MODULOS");
+                }
+                else
+                {
+                    MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    limpiarFormulario(this);
+                    BotonesIniciales(toolStrip1);
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "MODULOS");
                 }
             }
         }
@@ -214,42 +208,40 @@ namespace SAESoft.AdministracionSistema
             DialogResult resp = MessageBox.Show("¿En realidad desea borrar este registro?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resp == DialogResult.Yes)
             {
-                using (SAESoftContext db = new SAESoftContext())
+                using SAESoftContext db = new();
+                try
                 {
-                    try
+                    db.Modulos.Remove(rs[CurrentIndex]);
+                    db.SaveChanges();
+                    rs.Remove(rs[CurrentIndex]);
+                    if (rs.Count > 0)
                     {
-                        db.Modulos.Remove(rs[CurrentIndex]);
-                        db.SaveChanges();
-                        rs.Remove(rs[CurrentIndex]);
-                        if (rs.Count > 0)
+                        if (rs.Count > 1)
                         {
-                            if (rs.Count > 1)
-                            {
-                                if (CurrentIndex != 0)
-                                    CurrentIndex--;
-                                BotonesInicialesNavegacion(toolStrip1);
-                            }
-                            else
-                            {
-                                CurrentIndex = 0;
-                                BotonesIniciales(toolStrip1);
-                            }
-                            despliegaDatos();
+                            if (CurrentIndex != 0)
+                                CurrentIndex--;
+                            BotonesInicialesNavegacion(toolStrip1);
                         }
                         else
                         {
-                            limpiarFormulario(this);
+                            CurrentIndex = 0;
                             BotonesIniciales(toolStrip1);
-                            CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1,"MODULOS");
                         }
+                        despliegaDatos();
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        if (ex.InnerException != null)
-                            MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        else
-                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        limpiarFormulario(this);
+                        BotonesIniciales(toolStrip1);
+                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "MODULOS");
                     }
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException != null)
+                        MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -272,8 +264,8 @@ namespace SAESoft.AdministracionSistema
 
         private void tsbListar_Click(object sender, EventArgs e)
         {
-            frmListar formListar = new frmListar();
-            using (SAESoftContext db = new SAESoftContext())
+            frmListar formListar = new();
+            using (SAESoftContext db = new())
             {
                 var lista = db.Modulos.Select(p => new {p.IdModulo, p.Nombre,p.Habilitado }).ToList();
                 formListar.ds.DataSource = lista;
@@ -281,14 +273,12 @@ namespace SAESoft.AdministracionSistema
             DialogResult resp = formListar.ShowDialog();
             if (resp == DialogResult.OK)
             {
-                using (SAESoftContext db = new SAESoftContext())
-                {
-                    rs = db.Modulos.Where(p => p.IdModulo == formListar.Id).ToList();
-                    CurrentIndex = 0;
-                    despliegaDatos();
-                    BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1,"MODULOS");
-                }
+                using SAESoftContext db = new();
+                rs = db.Modulos.Where(p => p.IdModulo == formListar.Id).ToList();
+                CurrentIndex = 0;
+                despliegaDatos();
+                BotonesIniciales(toolStrip1);
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "MODULOS");
             }
             formListar.Dispose();
         }

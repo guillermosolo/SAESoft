@@ -11,7 +11,7 @@ namespace SAESoft.Importaciones
 {
     public partial class frmDashboard : Form
     {
-        DataTable dt = new DataTable();
+        readonly DataTable dt = new();
         public frmDashboard()
         {
             InitializeComponent();
@@ -55,106 +55,60 @@ namespace SAESoft.Importaciones
         private void llenarTabla()
         {
             dt.Rows.Clear();
-            using (SAESoftContext db = new SAESoftContext())
-            {
-                var queryable = db.Importaciones.Include(r => r.Revisiones)
-                                                .Include(r => r.BL)
-                                                .Include(r => r.Destino)
-                                                .Include(r => r.Contenedores)
-                                                .ThenInclude(c => c.Pago)
-                                                .Include(r => r.ImportStatus)
-                                                .Include(r => r.ImportHistorial)
-                                                .ThenInclude(rh => rh.ImportStatus)
-                                                .Select(i => new
+            using SAESoftContext db = new();
+            var queryable = db.Importaciones.Include(r => r.Revisiones)
+                                            .Include(r => r.BL)
+                                            .Include(r => r.Destino)
+                                            .Include(r => r.Contenedores)
+                                            .ThenInclude(c => c.Pago)
+                                            .Include(r => r.ImportStatus)
+                                            .Include(r => r.ImportHistorial)
+                                            .ThenInclude(rh => rh.ImportStatus)
+                                            .Select(i => new
+                                            {
+                                                i.IdImport,
+                                                i.IdDestino,
+                                                i.ETA,
+                                                i.Destino,
+                                                i.ImportStatus,
+                                                i.DocOriginales,
+                                                i.IdUsuario,
+                                                i.FechaCreacion,
+                                                i.Via,
+                                                i.BL,
+                                                Revisiones = i.Revisiones.Select(r => new
                                                 {
-                                                    IdImport = i.IdImport,
-                                                    IdDestino = i.IdDestino,
-                                                    ETA = i.ETA,
-                                                    Destino = i.Destino,
-                                                    ImportStatus = i.ImportStatus,
-                                                    DocOriginales = i.DocOriginales,
-                                                    IdUsuario = i.IdUsuario,
-                                                    FechaCreacion = i.FechaCreacion,
-                                                    Via = i.Via,
-                                                    BL = i.BL,
-                                                    Revisiones = i.Revisiones.Select(r => new
-                                                    {
-                                                        IdRevision = r.IdRevision,
-                                                        Descripcion = r.Descripcion
-                                                    }),
-                                                    Contenedores = i.Contenedores.Select(c => new
-                                                    {
-                                                        IdContenedor = c.IdContenedor,
-                                                        Numero = c.Numero,
-                                                        Furgon = c.Furgon
-                                                    }),
-                                                    ImportHistorial = i.ImportHistorial.Select(ih => new
-                                                    {
-                                                        IdImportStatus = ih.IdImportStatus,
-                                                        ImportStatus = ih.ImportStatus,
-                                                        FechaCreacion = ih.FechaCreacion,
-                                                        Observaciones = ih.Observaciones
-                                                    })
-                                                }).Where(r => 1 == 1);
-                if (hasRole(DigitadorImportaciones))
-                    queryable = queryable.Where(r => r.IdUsuario == usuarioLogged.IdUsuario);
-                if (!chkFinalizado.Checked)
-                    queryable = queryable.Where(r => !r.ImportStatus.ultimo);
-                queryable = queryable.OrderByDescending(r => r.FechaCreacion);
-                foreach (var item in queryable)
+                                                    r.IdRevision,
+                                                    r.Descripcion
+                                                }),
+                                                Contenedores = i.Contenedores.Select(c => new
+                                                {
+                                                    c.IdContenedor,
+                                                    c.Numero,
+                                                    c.Furgon
+                                                }),
+                                                ImportHistorial = i.ImportHistorial.Select(ih => new
+                                                {
+                                                    ih.IdImportStatus,
+                                                    ih.ImportStatus,
+                                                    ih.FechaCreacion,
+                                                    ih.Observaciones
+                                                })
+                                            }).Where(r => 1 == 1);
+            if (hasRole(DigitadorImportaciones))
+                queryable = queryable.Where(r => r.IdUsuario == usuarioLogged.IdUsuario);
+            if (!chkFinalizado.Checked)
+                queryable = queryable.Where(r => !r.ImportStatus.ultimo);
+            queryable = queryable.OrderByDescending(r => r.FechaCreacion);
+            foreach (var item in queryable)
+            {
+                if (item.Contenedores.Any())
                 {
-                    if (item.Contenedores.Count() > 0)
-                    {
-                        foreach (var cont in item.Contenedores)
-                        {
-                            DataRow row = dt.NewRow();
-                            row["IdContenedor"] = cont.IdContenedor;
-                            row["Contenedor"] = cont.Furgon ?? cont.Numero;
-                            row["ETA"] = item.ETA.Date;
-                            row["Via"] = item.Via;
-                            if (item.IdDestino != null)
-                                row["Destino"] = item.Destino.Descripcion;
-                            foreach (var hist in item.ImportHistorial)
-                            {
-                                if (hist.ImportStatus.Descripcion.Contains("Elaborar Póliza"))
-                                {
-                                    row["Elaborar Póliza"] = hist.FechaCreacion.Date;
-                                }
-                                if (hist.ImportStatus.Descripcion.Contains("Enviar Póliza"))
-                                {
-                                    row["Póliza Puerto"] = hist.FechaCreacion.Date;
-                                }
-                                if (hist.ImportStatus.Descripcion.Contains("ATC"))
-                                {
-                                    row["ATC y Aduana"] = hist.FechaCreacion.Date;
-                                }
-                                if (hist.ImportStatus.Descripcion.Contains("Llegada"))
-                                {
-                                    row["Llegada Fábrica"] = hist.FechaCreacion.Date;
-                                }
-                                if (hist.ImportStatus.Descripcion.Contains("Salida"))
-                                {
-                                    row["Salida Fábrica"] = hist.FechaCreacion.Date;
-                                }
-                            }
-                            row["IdImportacion"] = item.IdImport;
-                            row["Originales"] = item.DocOriginales;
-                            row["Revisiones"] = string.Join(",", item.Revisiones.Where(r => r.IdRevision != SelectivoRojo).Select(r => r.Descripcion));
-                            if (item.Revisiones.Where(r => r.IdRevision == SelectivoRojo).Count() > 0)
-                                row["Selectivo Rojo"] = true;
-                            else
-                                row["Selectivo Rojo"] = false;
-                            var ultimo = item.ImportHistorial.LastOrDefault();
-                            row["Comentarios"] = ultimo.IdImportStatus == Comentario ? ultimo.FechaCreacion.ToShortDateString() + ": " + ultimo.Observaciones : "";
-                            dt.Rows.Add(row);
-                        }
-                    }
-                    // ESTA OPCION ES PARA AEREO Y ESTÁ ASÍ PORQUE AQUI NO EXISTEN CONTENEDORES... AUNQUE PAREZCAN LO MISMO SON DOS PROCESOS DISTINTOS.
-                    else
+                    foreach (var cont in item.Contenedores)
                     {
                         DataRow row = dt.NewRow();
-                        row["IdContenedor"] = item.BL.First().IdBL.ToString();
-                        row["Contenedor"] = item.BL.First().Numero;
+                        row["IdContenedor"] = cont.IdContenedor;
+                        row["Contenedor"] = cont.Furgon ?? cont.Numero;
                         row["ETA"] = item.ETA.Date;
                         row["Via"] = item.Via;
                         if (item.IdDestino != null)
@@ -185,7 +139,7 @@ namespace SAESoft.Importaciones
                         row["IdImportacion"] = item.IdImport;
                         row["Originales"] = item.DocOriginales;
                         row["Revisiones"] = string.Join(",", item.Revisiones.Where(r => r.IdRevision != SelectivoRojo).Select(r => r.Descripcion));
-                        if (item.Revisiones.Where(r => r.IdRevision == SelectivoRojo).Count() > 0)
+                        if (item.Revisiones.Any(r => r.IdRevision == SelectivoRojo))
                             row["Selectivo Rojo"] = true;
                         else
                             row["Selectivo Rojo"] = false;
@@ -193,6 +147,50 @@ namespace SAESoft.Importaciones
                         row["Comentarios"] = ultimo.IdImportStatus == Comentario ? ultimo.FechaCreacion.ToShortDateString() + ": " + ultimo.Observaciones : "";
                         dt.Rows.Add(row);
                     }
+                }
+                // ESTA OPCION ES PARA AEREO Y ESTÁ ASÍ PORQUE AQUI NO EXISTEN CONTENEDORES... AUNQUE PAREZCAN LO MISMO SON DOS PROCESOS DISTINTOS.
+                else
+                {
+                    DataRow row = dt.NewRow();
+                    row["IdContenedor"] = item.BL.First().IdBL.ToString();
+                    row["Contenedor"] = item.BL.First().Numero;
+                    row["ETA"] = item.ETA.Date;
+                    row["Via"] = item.Via;
+                    if (item.IdDestino != null)
+                        row["Destino"] = item.Destino.Descripcion;
+                    foreach (var hist in item.ImportHistorial)
+                    {
+                        if (hist.ImportStatus.Descripcion.Contains("Elaborar Póliza"))
+                        {
+                            row["Elaborar Póliza"] = hist.FechaCreacion.Date;
+                        }
+                        if (hist.ImportStatus.Descripcion.Contains("Enviar Póliza"))
+                        {
+                            row["Póliza Puerto"] = hist.FechaCreacion.Date;
+                        }
+                        if (hist.ImportStatus.Descripcion.Contains("ATC"))
+                        {
+                            row["ATC y Aduana"] = hist.FechaCreacion.Date;
+                        }
+                        if (hist.ImportStatus.Descripcion.Contains("Llegada"))
+                        {
+                            row["Llegada Fábrica"] = hist.FechaCreacion.Date;
+                        }
+                        if (hist.ImportStatus.Descripcion.Contains("Salida"))
+                        {
+                            row["Salida Fábrica"] = hist.FechaCreacion.Date;
+                        }
+                    }
+                    row["IdImportacion"] = item.IdImport;
+                    row["Originales"] = item.DocOriginales;
+                    row["Revisiones"] = string.Join(",", item.Revisiones.Where(r => r.IdRevision != SelectivoRojo).Select(r => r.Descripcion));
+                    if (item.Revisiones.Any(r => r.IdRevision == SelectivoRojo))
+                        row["Selectivo Rojo"] = true;
+                    else
+                        row["Selectivo Rojo"] = false;
+                    var ultimo = item.ImportHistorial.LastOrDefault();
+                    row["Comentarios"] = ultimo.IdImportStatus == Comentario ? ultimo.FechaCreacion.ToShortDateString() + ": " + ultimo.Observaciones : "";
+                    dt.Rows.Add(row);
                 }
             }
 
@@ -238,7 +236,7 @@ namespace SAESoft.Importaciones
             int rowNumber = (e.RowIndex + 1);
 
             // Crear un rectángulo para el encabezado de fila
-            Rectangle headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, dgvDashboard.RowHeadersWidth, e.RowBounds.Height);
+            Rectangle headerBounds = new(e.RowBounds.Left, e.RowBounds.Top, dgvDashboard.RowHeadersWidth, e.RowBounds.Height);
 
             // Dibujar el número de fila en el encabezado de fila
             TextRenderer.DrawText(e.Graphics, rowNumber.ToString(), this.Font, headerBounds, this.ForeColor, TextFormatFlags.VerticalCenter | TextFormatFlags.Right);
@@ -250,14 +248,18 @@ namespace SAESoft.Importaciones
             int imp = (int)dgvDashboard.Rows[e.RowIndex].Cells["IdImportacion"].Value;
             if (v == "M")
             {
-                frmMaritimo mar = new frmMaritimo();
-                mar.individual = imp;
+                frmMaritimo mar = new()
+                {
+                    individual = imp
+                };
                 mar.mostrarIndividual((Panel)this.Parent);
             }
             else
             {
-                frmAereo aire = new frmAereo();
-                aire.individual = imp;
+                frmAereo aire = new()
+                {
+                    individual = imp
+                };
                 aire.mostrarIndividual((Panel)this.Parent);
             }
         }
