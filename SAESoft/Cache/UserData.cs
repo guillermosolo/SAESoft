@@ -15,18 +15,14 @@ namespace SAESoft.Cache
 
         public static Boolean hasPermission(string permiso)
         {
-            using (SAESoftContext db = new SAESoftContext())
-            {
-                return usuarioLogged.Rol.Permisos.FirstOrDefault(p => p.Nombre == permiso) != null;
-            }
+            using SAESoftContext db = new();
+            return usuarioLogged.Rol.Permisos.FirstOrDefault(p => p.Nombre == permiso) != null;
         }
 
         public static Boolean hasRole(int idRol)
         {
-            using (SAESoftContext db = new SAESoftContext())
-            {
-                return usuarioLogged.Rol.IdRol == idRol;
-            }
+            using SAESoftContext db = new();
+            return usuarioLogged.Rol.IdRol == idRol;
         }
     }
 }

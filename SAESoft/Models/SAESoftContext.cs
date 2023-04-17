@@ -39,7 +39,7 @@ namespace SAESoft.Models
 
             modelBuilder.ApplyConventions();
 
-            modelBuilder.Seed();
+            //modelBuilder.Seed();
         }
 
     }

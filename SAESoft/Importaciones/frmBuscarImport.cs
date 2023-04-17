@@ -6,7 +6,7 @@ namespace SAESoft.Importaciones
 {
     public partial class frmBuscarImport : Form
     {
-        public List<int> ids = new List<int>();
+        public List<int> ids = new();
         public Boolean todos = false;
         public frmBuscarImport()
         {
@@ -40,26 +40,20 @@ namespace SAESoft.Importaciones
 
         private List<int> buscarBL()
         {
-            using(SAESoftContext db = new SAESoftContext())
-            {
-                return db.BL.Where(b=>b.Numero.Contains(txtNumero.Text)).Select(b=>b.IdImportacion).ToList();
-            }
+            using SAESoftContext db = new();
+            return db.BL.Where(b => b.Numero.Contains(txtNumero.Text)).Select(b => b.IdImportacion).ToList();
         }
 
         private List<int> buscarContenedor()
         {
-            using (SAESoftContext db = new SAESoftContext())
-            {
-                return db.Contenedores.Where(c=>c.Numero.Contains(txtNumero.Text)).Select(c=>c.IdImportacion).ToList();
-            }
+            using SAESoftContext db = new();
+            return db.Contenedores.Where(c => c.Numero.Contains(txtNumero.Text)).Select(c => c.IdImportacion).ToList();
         }
 
         private List<int> buscarPoliza()
         {
-            using (SAESoftContext db = new SAESoftContext())
-            {
-                return db.Polizas.Include(p => p.BL).Where(p => p.Numero.Contains(txtNumero.Text)).Select(p => p.BL.IdImportacion).ToList();
-            }
+            using SAESoftContext db = new();
+            return db.Polizas.Include(p => p.BL).Where(p => p.Numero.Contains(txtNumero.Text)).Select(p => p.BL.IdImportacion).ToList();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace SAESoft.Importaciones
     {
         public Importacion rs;
         public List<Contenedor> contenedores;
-        DataTable dt = new DataTable();
+        readonly DataTable dt = new();
 
         public frmPoliza(Importacion item)
         {
@@ -26,7 +26,7 @@ namespace SAESoft.Importaciones
             cboBL.ValueMember = "IdBL";
             cboBL.DisplayMember = "Numero";
             llenarNombres(cboModalidad, "MODALIDAD");
-            txtContenedores.Text = string.Join(",",contenedores.Select(x=>x.Furgon != null ? x.Furgon:x.Numero));
+            txtContenedores.Text = string.Join(",",contenedores.Select(x=> x.Furgon ?? x.Numero));
         }
 
         private void estructuraGrid()
@@ -96,44 +96,43 @@ namespace SAESoft.Importaciones
             }
             if (i >= cboBL.Items.Count)
             {
-                using (SAESoftContext db = new SAESoftContext())
+                using (SAESoftContext db = new())
                 {
-                    using (var transaction = db.Database.BeginTransaction())
+                    using var transaction = db.Database.BeginTransaction();
+                    try
                     {
-                        try
+                        foreach (DataRow row in dt.Rows)
                         {
-                            foreach (DataRow row in dt.Rows)
+                            Poliza pol = new()
                             {
-                                Poliza pol = new Poliza() {
-                                    IdBL= Convert.ToInt32(row[3]),
-                                    Numero = Convert.ToString(row[1]),
-                                    IdModalidad = Convert.ToInt32(row[4]),
-                                    Observaciones = row[5].ToString(),
-                                    FechaCreacion = DatosServer.FechaServer(),
-                                    IdUsuarioCreacion = usuarioLogged.IdUsuario,
-                                };
-                                db.Add(pol);
-                                db.SaveChanges();
-                            }
-                            db.Entry(rs).State = EntityState.Modified;
-                            var status = db.ImportStatus.Where(s => s.Via == 'M' && s.orden > rs.ImportStatus.orden).OrderBy(s => s.orden).FirstOrDefault();
-                            rs.IdImportStatus = status.IdImportStatus;
+                                IdBL = Convert.ToInt32(row[3]),
+                                Numero = Convert.ToString(row[1]),
+                                IdModalidad = Convert.ToInt32(row[4]),
+                                Observaciones = row[5].ToString(),
+                                FechaCreacion = DatosServer.FechaServer(),
+                                IdUsuarioCreacion = usuarioLogged.IdUsuario,
+                            };
+                            db.Add(pol);
                             db.SaveChanges();
-                            ImportHistorial ih = new ImportHistorial { IdImport = rs.IdImport, IdImportStatus = status.IdImportStatus, FechaCreacion = DatosServer.FechaServer(), IdUsuarioCreacion = usuarioLogged.IdUsuario };
-                            db.ImportHistorial.Add(ih);
-                            rs.ImportHistorial.Add(ih);
-                            db.SaveChanges();
-                            transaction.Commit();
                         }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            if (ex.InnerException != null)
-                                MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            else
-                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
+                        db.Entry(rs).State = EntityState.Modified;
+                        var status = db.ImportStatus.Where(s => s.Via == 'M' && s.orden > rs.ImportStatus.orden).OrderBy(s => s.orden).FirstOrDefault();
+                        rs.IdImportStatus = status.IdImportStatus;
+                        db.SaveChanges();
+                        ImportHistorial ih = new() { IdImport = rs.IdImport, IdImportStatus = status.IdImportStatus, FechaCreacion = DatosServer.FechaServer(), IdUsuarioCreacion = usuarioLogged.IdUsuario };
+                        db.ImportHistorial.Add(ih);
+                        rs.ImportHistorial.Add(ih);
+                        db.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        if (ex.InnerException != null)
+                            MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
                 this.DialogResult = DialogResult.OK;

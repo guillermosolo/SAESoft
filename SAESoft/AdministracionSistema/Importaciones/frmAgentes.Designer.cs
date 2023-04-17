@@ -1,6 +1,6 @@
 ﻿namespace SAESoft.AdministracionSistema.Importaciones
 {
-    partial class frmShippers
+    partial class frmAgentes
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             components = new System.ComponentModel.Container();
             toolStripContainer1 = new ToolStripContainer();
+            tsActivo = new Utilitarios.toggleSwitch();
+            label4 = new Label();
+            txtApellido = new TextBox();
             label3 = new Label();
-            chkTerrestre = new CheckBox();
-            chkMaritimo = new CheckBox();
-            chkAereo = new CheckBox();
             txtNombre = new TextBox();
+            label1 = new Label();
             label2 = new Label();
             txtId = new TextBox();
-            label1 = new Label();
             toolStrip1 = new ToolStrip();
             tsbNuevo = new ToolStripButton();
             tsbBuscar = new ToolStripButton();
@@ -64,14 +64,14 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
+            toolStripContainer1.ContentPanel.Controls.Add(tsActivo);
+            toolStripContainer1.ContentPanel.Controls.Add(label4);
+            toolStripContainer1.ContentPanel.Controls.Add(txtApellido);
             toolStripContainer1.ContentPanel.Controls.Add(label3);
-            toolStripContainer1.ContentPanel.Controls.Add(chkTerrestre);
-            toolStripContainer1.ContentPanel.Controls.Add(chkMaritimo);
-            toolStripContainer1.ContentPanel.Controls.Add(chkAereo);
             toolStripContainer1.ContentPanel.Controls.Add(txtNombre);
+            toolStripContainer1.ContentPanel.Controls.Add(label1);
             toolStripContainer1.ContentPanel.Controls.Add(label2);
             toolStripContainer1.ContentPanel.Controls.Add(txtId);
-            toolStripContainer1.ContentPanel.Controls.Add(label1);
             toolStripContainer1.ContentPanel.Size = new Size(800, 411);
             toolStripContainer1.Dock = DockStyle.Fill;
             toolStripContainer1.Location = new Point(0, 0);
@@ -84,132 +84,94 @@
             // 
             toolStripContainer1.TopToolStripPanel.Controls.Add(toolStrip1);
             // 
+            // tsActivo
+            // 
+            tsActivo.Enabled = false;
+            tsActivo.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            tsActivo.Location = new Point(207, 144);
+            tsActivo.MinimumSize = new Size(45, 22);
+            tsActivo.Name = "tsActivo";
+            tsActivo.OffBackColor = Color.Firebrick;
+            tsActivo.OffDisabledColor = Color.Gray;
+            tsActivo.OffTogglecolor = Color.Firebrick;
+            tsActivo.OnBackColor = Color.FromArgb(0, 122, 172);
+            tsActivo.OnDisabledcolor = Color.Gray;
+            tsActivo.OnTogglecolor = Color.FromArgb(0, 122, 172);
+            tsActivo.Size = new Size(45, 25);
+            tsActivo.SolidStyle = false;
+            tsActivo.TabIndex = 29;
+            tsActivo.TextImageRelation = TextImageRelation.ImageBeforeText;
+            tsActivo.UseVisualStyleBackColor = true;
+            tsActivo.CheckedChanged += tsActivo_CheckedChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(87, 148);
+            label4.Name = "label4";
+            label4.Size = new Size(63, 21);
+            label4.TabIndex = 28;
+            label4.Text = "Activo";
+            // 
+            // txtApellido
+            // 
+            txtApellido.CharacterCasing = CharacterCasing.Upper;
+            txtApellido.Enabled = false;
+            txtApellido.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtApellido.Location = new Point(207, 102);
+            txtApellido.Name = "txtApellido";
+            txtApellido.Size = new Size(296, 27);
+            txtApellido.TabIndex = 27;
+            // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(90, 123);
+            label3.Location = new Point(87, 105);
             label3.Name = "label3";
-            label3.Size = new Size(35, 21);
-            label3.TabIndex = 50;
-            label3.Text = "Vía";
-            // 
-            // chkTerrestre
-            // 
-            chkTerrestre.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            chkTerrestre.Appearance = Appearance.Button;
-            chkTerrestre.AutoSize = true;
-            chkTerrestre.BackColor = Color.Transparent;
-            chkTerrestre.Enabled = false;
-            chkTerrestre.FlatAppearance.BorderSize = 0;
-            chkTerrestre.FlatAppearance.CheckedBackColor = Color.Transparent;
-            chkTerrestre.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            chkTerrestre.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            chkTerrestre.FlatStyle = FlatStyle.Flat;
-            chkTerrestre.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            chkTerrestre.Image = Properties.Resources.Nunchecked;
-            chkTerrestre.ImageAlign = ContentAlignment.MiddleLeft;
-            chkTerrestre.ImeMode = ImeMode.NoControl;
-            chkTerrestre.Location = new Point(427, 118);
-            chkTerrestre.Name = "chkTerrestre";
-            chkTerrestre.Size = new Size(110, 31);
-            chkTerrestre.TabIndex = 49;
-            chkTerrestre.Text = "  Terrestre";
-            chkTerrestre.TextAlign = ContentAlignment.BottomCenter;
-            chkTerrestre.TextImageRelation = TextImageRelation.ImageBeforeText;
-            chkTerrestre.UseVisualStyleBackColor = false;
-            chkTerrestre.CheckedChanged += chkCheckedChange;
-            // 
-            // chkMaritimo
-            // 
-            chkMaritimo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            chkMaritimo.Appearance = Appearance.Button;
-            chkMaritimo.AutoSize = true;
-            chkMaritimo.BackColor = Color.Transparent;
-            chkMaritimo.Enabled = false;
-            chkMaritimo.FlatAppearance.BorderSize = 0;
-            chkMaritimo.FlatAppearance.CheckedBackColor = Color.Transparent;
-            chkMaritimo.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            chkMaritimo.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            chkMaritimo.FlatStyle = FlatStyle.Flat;
-            chkMaritimo.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            chkMaritimo.Image = Properties.Resources.Nunchecked;
-            chkMaritimo.ImageAlign = ContentAlignment.MiddleLeft;
-            chkMaritimo.ImeMode = ImeMode.NoControl;
-            chkMaritimo.Location = new Point(308, 118);
-            chkMaritimo.Name = "chkMaritimo";
-            chkMaritimo.Size = new Size(113, 31);
-            chkMaritimo.TabIndex = 48;
-            chkMaritimo.Text = "  Marítimo";
-            chkMaritimo.TextAlign = ContentAlignment.BottomCenter;
-            chkMaritimo.TextImageRelation = TextImageRelation.ImageBeforeText;
-            chkMaritimo.UseVisualStyleBackColor = false;
-            chkMaritimo.CheckedChanged += chkCheckedChange;
-            // 
-            // chkAereo
-            // 
-            chkAereo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            chkAereo.Appearance = Appearance.Button;
-            chkAereo.AutoSize = true;
-            chkAereo.BackColor = Color.Transparent;
-            chkAereo.Enabled = false;
-            chkAereo.FlatAppearance.BorderSize = 0;
-            chkAereo.FlatAppearance.CheckedBackColor = Color.Transparent;
-            chkAereo.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            chkAereo.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            chkAereo.FlatStyle = FlatStyle.Flat;
-            chkAereo.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            chkAereo.Image = Properties.Resources.Nunchecked;
-            chkAereo.ImageAlign = ContentAlignment.MiddleLeft;
-            chkAereo.ImeMode = ImeMode.NoControl;
-            chkAereo.Location = new Point(210, 118);
-            chkAereo.Name = "chkAereo";
-            chkAereo.Size = new Size(92, 31);
-            chkAereo.TabIndex = 47;
-            chkAereo.Text = "  Aéreo";
-            chkAereo.TextAlign = ContentAlignment.BottomCenter;
-            chkAereo.TextImageRelation = TextImageRelation.ImageBeforeText;
-            chkAereo.UseVisualStyleBackColor = false;
-            chkAereo.CheckedChanged += chkCheckedChange;
+            label3.Size = new Size(80, 21);
+            label3.TabIndex = 26;
+            label3.Text = "Apellidos";
             // 
             // txtNombre
             // 
             txtNombre.CharacterCasing = CharacterCasing.Upper;
             txtNombre.Enabled = false;
             txtNombre.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNombre.Location = new Point(210, 71);
+            txtNombre.Location = new Point(207, 63);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(296, 27);
-            txtNombre.TabIndex = 15;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(90, 74);
-            label2.Name = "label2";
-            label2.Size = new Size(68, 21);
-            label2.TabIndex = 14;
-            label2.Text = "Shipper";
-            // 
-            // txtId
-            // 
-            txtId.Enabled = false;
-            txtId.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtId.Location = new Point(210, 28);
-            txtId.Name = "txtId";
-            txtId.Size = new Size(100, 27);
-            txtId.TabIndex = 13;
+            txtNombre.TabIndex = 25;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(90, 31);
+            label1.Location = new Point(87, 23);
             label1.Name = "label1";
             label1.Size = new Size(26, 21);
-            label1.TabIndex = 12;
+            label1.TabIndex = 22;
             label1.Text = "Id";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(87, 66);
+            label2.Name = "label2";
+            label2.Size = new Size(79, 21);
+            label2.TabIndex = 24;
+            label2.Text = "Nombres";
+            // 
+            // txtId
+            // 
+            txtId.Enabled = false;
+            txtId.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtId.Location = new Point(207, 20);
+            txtId.Name = "txtId";
+            txtId.Size = new Size(100, 27);
+            txtId.TabIndex = 23;
             // 
             // toolStrip1
             // 
@@ -218,8 +180,8 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListar, tsbModificar, tsbEliminar, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(234, 39);
-            toolStrip1.TabIndex = 3;
+            toolStrip1.Size = new Size(493, 39);
+            toolStrip1.TabIndex = 5;
             toolStrip1.Text = "toolStrip1";
             // 
             // tsbNuevo
@@ -346,15 +308,15 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
-            // frmShippers
+            // frmAgentes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(toolStripContainer1);
-            Name = "frmShippers";
-            Text = "frmShippers";
-            Load += frmShippers_Load;
+            Name = "frmAgentes";
+            Text = "frmAgentes";
+            Load += frmAgentes_Load;
             toolStripContainer1.ContentPanel.ResumeLayout(false);
             toolStripContainer1.ContentPanel.PerformLayout();
             toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -370,7 +332,6 @@
         #endregion
 
         private ToolStripContainer toolStripContainer1;
-        private ErrorProvider errorProvider1;
         private ToolStrip toolStrip1;
         private ToolStripButton tsbNuevo;
         private ToolStripButton tsbBuscar;
@@ -384,13 +345,14 @@
         private ToolStripLabel tslIndice;
         private ToolStripButton tsbSiguiente;
         private ToolStripButton tsbSalir;
+        private ErrorProvider errorProvider1;
+        private Label label4;
+        private TextBox txtApellido;
+        private Label label3;
         private TextBox txtNombre;
+        private Label label1;
         private Label label2;
         private TextBox txtId;
-        private Label label1;
-        private CheckBox chkTerrestre;
-        private CheckBox chkMaritimo;
-        private CheckBox chkAereo;
-        private Label label3;
+        private Utilitarios.toggleSwitch tsActivo;
     }
 }

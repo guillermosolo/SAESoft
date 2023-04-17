@@ -186,5 +186,23 @@ namespace SAESoft.AdministracionSistema
             Abrir<frmShippers>(panelFormularios);
             menuActivo(ibtnShippers, panelMenu);
         }
+
+        private void ibtnAduanas_Click(object sender, EventArgs e)
+        {
+            Abrir<frmAduanas>(panelFormularios);
+            menuActivo(ibtnAduanas, panelMenu);
+        }
+
+        private void ibtnTerminales_Click(object sender, EventArgs e)
+        {
+            Abrir<frmTerminales>(panelFormularios);
+            menuActivo(ibtnTerminales, panelMenu);
+        }
+
+        private void ibtnAgentes_Click(object sender, EventArgs e)
+        {
+            Abrir<frmAgentes>(panelFormularios);
+            menuActivo(ibtnAgentes, panelMenu);
+        }
     }
 }

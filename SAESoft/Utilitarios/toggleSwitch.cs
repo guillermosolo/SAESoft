@@ -106,10 +106,10 @@ namespace SAESoft.Utilitarios
         private GraphicsPath GetFigurePath()
         {
             int arcSize = this.Height - 1;
-            Rectangle leftArc = new Rectangle(0, 0, arcSize, arcSize);
-            Rectangle rightArc = new Rectangle(this.Width - arcSize - 2, 0, arcSize, arcSize);
+            Rectangle leftArc = new(0, 0, arcSize, arcSize);
+            Rectangle rightArc = new(this.Width - arcSize - 2, 0, arcSize, arcSize);
 
-            GraphicsPath path = new GraphicsPath();
+            GraphicsPath path = new();
             path.StartFigure();
             path.AddArc(leftArc, 90, 180);
             path.AddArc(rightArc, 270, 180);

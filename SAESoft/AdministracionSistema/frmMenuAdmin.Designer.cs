@@ -111,6 +111,7 @@
             ibtnAgentes.TabIndex = 12;
             ibtnAgentes.Text = "Agentes";
             ibtnAgentes.UseVisualStyleBackColor = true;
+            ibtnAgentes.Click += ibtnAgentes_Click;
             // 
             // ibtnTerminales
             // 
@@ -129,6 +130,7 @@
             ibtnTerminales.TabIndex = 11;
             ibtnTerminales.Text = "Terminales";
             ibtnTerminales.UseVisualStyleBackColor = true;
+            ibtnTerminales.Click += ibtnTerminales_Click;
             // 
             // ibtnAduanas
             // 
@@ -147,6 +149,7 @@
             ibtnAduanas.TabIndex = 10;
             ibtnAduanas.Text = "Aduanas";
             ibtnAduanas.UseVisualStyleBackColor = true;
+            ibtnAduanas.Click += ibtnAduanas_Click;
             // 
             // ibtnShippers
             // 

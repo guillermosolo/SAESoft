@@ -7,7 +7,7 @@ namespace SAESoft.Importaciones
     public partial class frmMontos : Form
     {
         public List<Contenedor> contenedores;
-        public DataTable dt = new DataTable();
+        public DataTable dt = new();
         public frmMontos()
         {
             InitializeComponent();

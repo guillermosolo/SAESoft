@@ -24,14 +24,18 @@ namespace ConnectUNCWithCredentials
         }
 
         [DllImport("NetApi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+#pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
         internal static extern NET_API_STATUS NetUseAdd(
+#pragma warning restore SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
             LPWSTR UncServerName,
             DWORD Level,
             ref USE_INFO_2 Buf,
             out DWORD ParmError);
 
         [DllImport("NetApi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+#pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
         internal static extern NET_API_STATUS NetUseDel(
+#pragma warning restore SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
             LPWSTR UncServerName,
             LPWSTR UseName,
             DWORD ForceCond);
@@ -91,15 +95,18 @@ namespace ConnectUNCWithCredentials
             uint returncode;
             try
             {
-                USE_INFO_2 useinfo = new USE_INFO_2();
-
-                useinfo.ui2_remote = sUNCPath;
-                useinfo.ui2_username = sUser;
-                useinfo.ui2_domainname = sDomain;
-                useinfo.ui2_password = sPassword;
-                useinfo.ui2_asg_type = 0;
-                useinfo.ui2_usecount = 1;
+                USE_INFO_2 useinfo = new()
+                {
+                    ui2_remote = sUNCPath,
+                    ui2_username = sUser,
+                    ui2_domainname = sDomain,
+                    ui2_password = sPassword,
+                    ui2_asg_type = 0,
+                    ui2_usecount = 1
+                };
+#pragma warning disable IDE0018 // Declaración de variables alineada
                 uint paramErrorIndex;
+#pragma warning restore IDE0018 // Declaración de variables alineada
                 returncode = NetUseAdd(null, 2, ref useinfo, out paramErrorIndex);
                 iLastError = (int)returncode;
                 return returncode == 0;

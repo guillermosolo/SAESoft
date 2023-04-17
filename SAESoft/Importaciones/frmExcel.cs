@@ -18,12 +18,12 @@ namespace SAESoft.Importaciones
         private void iconButton1_Click(object sender, EventArgs e)
         {
             string pathFile = Path.Combine(Path.GetTempPath(), "BLyPolizaParaERP.xlsx");
-            SLDocument excel = new SLDocument();
-            DataTable dt = new DataTable();
+            SLDocument excel = new();
+            DataTable dt = new();
             dt.Columns.Add("BL", typeof(string));
             dt.Columns.Add("Poliza",typeof(string));
 
-            using (SAESoftContext db = new SAESoftContext())
+            using (SAESoftContext db = new())
             {
                 DateTime Inicio = dtpInicio.Value.Date;
                 DateTime fin = dtpFinal.Value.Date;

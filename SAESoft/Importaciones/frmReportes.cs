@@ -19,7 +19,7 @@ namespace SAESoft.Importaciones
 
         private void icbExcel_Click(object sender, EventArgs e)
         {
-            frmExcel excel = new frmExcel();
+            frmExcel excel = new();
             excel.ShowDialog();
         }
     }
