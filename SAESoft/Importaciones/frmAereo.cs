@@ -192,13 +192,13 @@ namespace SAESoft.Importaciones
                 int i = 0;
                 foreach (var item in im)
                 {
-                    tsddbProceso.DropDownItems.Add(item.Descripcion);      
-                   tsddbProceso.DropDownItems[i].ImageScaling = ToolStripItemImageScaling.None;
+                    tsddbProceso.DropDownItems.Add(item.Descripcion);
+                    tsddbProceso.DropDownItems[i].ImageScaling = ToolStripItemImageScaling.None;
                     if (i == 2)
                     {
                         tsddbSwitchUser.DropDownItems.Clear();
                         ((ToolStripMenuItem)tsddbProceso.DropDownItems[i - 1]).DropDownItems.Clear();
-                        var items = db.Usuarios.Include(u => u.Rol).Where(u => u.Rol.IdRol == DigitadorImportaciones);
+                        var items = db.Usuarios.Include(u => u.Rol).Where(u => u.Rol.IdRol == DigitadorImportaciones && u.Activo);
                         foreach (var item2 in items)
                         {
                             ((ToolStripMenuItem)tsddbProceso.DropDownItems[i - 1]).DropDownItems.Add(item2.Nombres + " " + item2.Apellidos, null, (s, e) => seleccionaDigitador(item2.IdUsuario, true));
@@ -298,6 +298,9 @@ namespace SAESoft.Importaciones
             llenarMenu();
             txtId.Text = rs?[CurrentIndex].IdImport.ToString();
             txtBL.Text = rs?[CurrentIndex].BL.FirstOrDefault()?.Numero.ToString();
+            chkUrgente.Checked = rs[CurrentIndex].urgente;
+            if (rs[CurrentIndex].urgente)
+                txtUrgente.Text = rs[CurrentIndex].personaUrgente;
             cboShipper.SelectedValue = rs[CurrentIndex].IdShipper;
             cboNaviera.SelectedValue = rs[CurrentIndex].IdNaviera;
             if (rs[CurrentIndex].IdAgente != null)
@@ -465,7 +468,10 @@ namespace SAESoft.Importaciones
                             IdImportStatus = db.ImportStatus.FirstOrDefault(i => i.Via == Via && i.orden == 1).IdImportStatus,
                             FechaCreacion = DatosServer.FechaServer(),
                             IdUsuarioCreacion = usuarioLogged.IdUsuario,
+                            urgente = chkUrgente.Checked,
                         };
+                        if (chkUrgente.Checked)
+                            im.personaUrgente = txtUrgente.Text;
                         if (cboDestino.SelectedIndex != 0)
                             im.IdDestino = Convert.ToInt32(cboDestino.SelectedValue);
                         if (cboForwarder.SelectedIndex != 0)
@@ -554,6 +560,11 @@ namespace SAESoft.Importaciones
                         rs[CurrentIndex].DocOriginales = chkDocOriginales.Checked;
                         rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
                         rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
+                        rs[CurrentIndex].urgente = chkUrgente.Checked;
+                        if (chkUrgente.Checked)
+                            rs[CurrentIndex].personaUrgente = txtUrgente.Text;
+                        else
+                            rs[CurrentIndex].personaUrgente = null;
                         db.Importaciones.Update(rs[CurrentIndex]);
                         db.SaveChanges();
                         if (clbRevisiones.Enabled)
@@ -738,8 +749,7 @@ namespace SAESoft.Importaciones
         }
 
         private Boolean ValidarDatos()
-        {
-            Regex ValidarPlacas = plate_validation();
+        {//Regex ValidarPlacas = plate_validation();
             errorProvider1.Clear();
             if (txtBL.Text.Trim() == "")
             {
@@ -757,25 +767,33 @@ namespace SAESoft.Importaciones
                 }
                 foreach (DataRow r in dtc.Rows)
                 {
-                    if (r.ItemArray[0] == null)
-                    {
-                        errorProvider1.SetError(dgvContenedores, "No puede estar vacío.");
-                        dgvContenedores.Focus();
-                        return false;
-                    }
-                    if (!ValidarPlacas.IsMatch(r.ItemArray[1].ToString()))
-                    {
-                        errorProvider1.SetError(dgvContenedores, "La placa no parece una placa válida");
-                        dgvContenedores.Focus();
-                        return false;
-                    }
-                    if (!ValidarPlacas.IsMatch(r.ItemArray[2].ToString()))
-                    {
-                        errorProvider1.SetError(dgvContenedores, "La placa no parece una placa válida");
-                        dgvContenedores.Focus();
-                        return false;
-                    }
+                    for (int i = 0; i <= 2; i++)
+                        if (r.ItemArray[i] == null)
+                        {
+                            errorProvider1.SetError(dgvContenedores, "No puede estar vacío.");
+                            dgvContenedores.Focus();
+                            return false;
+                        }
+                    /****************************************** AQUI SE VALIDABAN PLACAS PERO SE SUSPENDIO DEBIDO A LA ENORME CANTIDAD DE TIPOS DE PLACAS
+                      if (!ValidarPlacas.IsMatch(r.ItemArray[1].ToString()))
+                      {
+                          errorProvider1.SetError(dgvContenedores, "La placa no parece una placa válida");
+                          dgvContenedores.Focus();
+                          return false;
+                      }
+                      if (!ValidarPlacas.IsMatch(r.ItemArray[2].ToString()))
+                      {
+                          errorProvider1.SetError(dgvContenedores, "La placa no parece una placa válida");
+                          dgvContenedores.Focus();
+                          return false;
+                      }*/
                 }
+            }
+            if (chkUrgente.Checked && txtUrgente.Text == "")
+            {
+                errorProvider1.SetError(txtUrgente, "No puede estar vacío.");
+                txtUrgente.Focus();
+                return false;
             }
             return true;
         }
@@ -784,9 +802,21 @@ namespace SAESoft.Importaciones
         {
             CheckBox chk = sender as CheckBox;
             if (chk.Checked)
+            {
                 chk.Image = Properties.Resources.Nchecked;
+                if (chk.Name == "chkUrgente")
+                {
+                    txtUrgente.Visible = true;
+                }
+            }
             else
+            {
                 chk.Image = Properties.Resources.Nunchecked;
+                if (chk.Name == "chkUrgente")
+                {
+                    txtUrgente.Visible = false;
+                }
+            }
         }
         private void tsbAnterior_Click(object sender, EventArgs e)
         {
@@ -834,7 +864,7 @@ namespace SAESoft.Importaciones
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
                     fileSystemWatcher1.Path = path;
-                    for (int i = 0; i < openFileDialog1.FileNames.Length;i++)
+                    for (int i = 0; i < openFileDialog1.FileNames.Length; i++)
                     {
                         string fileName = openFileDialog1.FileNames[i];
                         string safeFileName = openFileDialog1.SafeFileNames[i];
@@ -876,6 +906,8 @@ namespace SAESoft.Importaciones
             dtpETA.Enabled = true;
             cboDestino.Enabled = true;
             chkDocOriginales.Enabled = true;
+            chkUrgente.Enabled = true;
+            txtUrgente.Enabled = true;
             if (cboAgente.SelectedIndex == 0)
                 cboAgente.Enabled = true;
             if (clbRevisiones.CheckedItems.Count == 0)
@@ -997,6 +1029,11 @@ namespace SAESoft.Importaciones
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private void tsddbSwitchUser_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

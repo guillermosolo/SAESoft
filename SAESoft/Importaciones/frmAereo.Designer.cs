@@ -34,6 +34,8 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAereo));
             toolStripContainer1 = new ToolStripContainer();
+            txtUrgente = new TextBox();
+            chkUrgente = new CheckBox();
             chkDocOriginales = new CheckBox();
             cboAgente = new ComboBox();
             label13 = new Label();
@@ -104,6 +106,8 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
+            toolStripContainer1.ContentPanel.Controls.Add(txtUrgente);
+            toolStripContainer1.ContentPanel.Controls.Add(chkUrgente);
             toolStripContainer1.ContentPanel.Controls.Add(chkDocOriginales);
             toolStripContainer1.ContentPanel.Controls.Add(cboAgente);
             toolStripContainer1.ContentPanel.Controls.Add(label13);
@@ -146,6 +150,40 @@
             // toolStripContainer1.TopToolStripPanel
             // 
             toolStripContainer1.TopToolStripPanel.Controls.Add(toolStrip1);
+            // 
+            // txtUrgente
+            // 
+            txtUrgente.CharacterCasing = CharacterCasing.Upper;
+            txtUrgente.Enabled = false;
+            txtUrgente.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            txtUrgente.Location = new Point(371, 205);
+            txtUrgente.Name = "txtUrgente";
+            txtUrgente.Size = new Size(100, 24);
+            txtUrgente.TabIndex = 70;
+            txtUrgente.Visible = false;
+            // 
+            // chkUrgente
+            // 
+            chkUrgente.Appearance = Appearance.Button;
+            chkUrgente.AutoSize = true;
+            chkUrgente.Enabled = false;
+            chkUrgente.FlatAppearance.BorderSize = 0;
+            chkUrgente.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            chkUrgente.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            chkUrgente.FlatStyle = FlatStyle.Flat;
+            chkUrgente.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkUrgente.Image = Properties.Resources.Nunchecked;
+            chkUrgente.ImageAlign = ContentAlignment.MiddleLeft;
+            chkUrgente.ImeMode = ImeMode.NoControl;
+            chkUrgente.Location = new Point(283, 201);
+            chkUrgente.Name = "chkUrgente";
+            chkUrgente.Size = new Size(97, 29);
+            chkUrgente.TabIndex = 69;
+            chkUrgente.Text = "  Urgente";
+            chkUrgente.TextAlign = ContentAlignment.BottomCenter;
+            chkUrgente.TextImageRelation = TextImageRelation.ImageBeforeText;
+            chkUrgente.UseVisualStyleBackColor = true;
+            chkUrgente.CheckedChanged += chkCheckedChange;
             // 
             // chkDocOriginales
             // 
@@ -397,7 +435,7 @@
             dtpETA.Format = DateTimePickerFormat.Short;
             dtpETA.Location = new Point(173, 205);
             dtpETA.Name = "dtpETA";
-            dtpETA.Size = new Size(114, 27);
+            dtpETA.Size = new Size(107, 27);
             dtpETA.TabIndex = 50;
             // 
             // label4
@@ -559,7 +597,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListarXXX, tsbModificar, tsbEliminar, tsbPago, tsbUpload, tsbComentarios, tsddbSwitchUser, tsddbProceso, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(691, 39);
+            toolStrip1.Size = new Size(351, 39);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -661,6 +699,7 @@
             tsddbSwitchUser.Text = "Cambiar Digitador";
             tsddbSwitchUser.ToolTipText = "Cambiar Digitador";
             tsddbSwitchUser.Visible = false;
+            tsddbSwitchUser.Click += tsddbSwitchUser_Click;
             // 
             // tsddbProceso
             // 
@@ -840,5 +879,7 @@
         private ToolStripButton tsbPago;
         private ToolStripDropDownButton tsddbSwitchUser;
         private ToolStripButton tsbComentarios;
+        private TextBox txtUrgente;
+        private CheckBox chkUrgente;
     }
 }

@@ -19,11 +19,15 @@ namespace SAESoft
         #region Funcionalidades del formulario
         // **********CODIGO PARA HACER QUE SE PUEDA ARRASTAR EL FORMULARIO************
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+#pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
         private extern static void ReleaseCapture();
+#pragma warning restore SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
 
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+#pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
-        //********* FIN CODIGO ARRASTRAR FORMULARIO***********************
+#pragma warning restore SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
+                                  //********* FIN CODIGO ARRASTRAR FORMULARIO***********************
         #endregion
 
         public Boolean logged = false;
@@ -47,7 +51,7 @@ namespace SAESoft
         private void icbLogin_Click(object sender, EventArgs e)
         {
             lblError.Visible = false;
-            using (SAESoftContext db = new SAESoftContext())
+            using (SAESoftContext db = new())
             {
                 try
                 {
@@ -96,13 +100,13 @@ namespace SAESoft
             {
                 logged = true; 
             }
-            else
+           /* else
             {
                 MessageBox.Show("Error al conectarse al servidor de Archivos Compartidos,\r\n" +
                                 "Intente de nuevo, si el problema persiste \r\n" +
                                 "comuníquese con el Administrador del Sistema", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            frmPrincipal mainMenu = new frmPrincipal();
+            }*/
+            frmPrincipal mainMenu = new();
             mainMenu.Show();
             mainMenu.FormClosed += Logout;
             this.Hide();
@@ -132,7 +136,7 @@ namespace SAESoft
             {
                 var xml = new XmlDocument();
                 xml.Load(appManifestFilePath);
-                XmlNamespaceManager nsManager = new XmlNamespaceManager(xml.NameTable);
+                XmlNamespaceManager nsManager = new(xml.NameTable);
                 nsManager.AddNamespace("asmv1", "urn:schemas-microsoft-com:asm.v1");
                 AppVersion = xml.SelectSingleNode("//asmv1:assemblyIdentity", nsManager).Attributes["version"].Value.ToString();
                 label2.Text = "Versión " + AppVersion;

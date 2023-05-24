@@ -57,6 +57,7 @@
             dgvDashboard.Size = new Size(780, 667);
             dgvDashboard.TabIndex = 0;
             dgvDashboard.CellContentDoubleClick += dgvDashboard_CellContentDoubleClick;
+            dgvDashboard.ColumnHeaderMouseClick += dgvDashboard_ColumnHeaderMouseClick;
             dgvDashboard.RowPostPaint += dgvDashboard_RowPostPaint;
             // 
             // icbRefresh

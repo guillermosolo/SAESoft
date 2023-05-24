@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMaritimo));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             toolStripContainer1 = new ToolStripContainer();
+            txtUrgente = new TextBox();
+            chkUrgente = new CheckBox();
             cboAgente = new ComboBox();
             label13 = new Label();
             txtValorExtra2 = new TextBox();
@@ -111,6 +113,8 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
+            toolStripContainer1.ContentPanel.Controls.Add(txtUrgente);
+            toolStripContainer1.ContentPanel.Controls.Add(chkUrgente);
             toolStripContainer1.ContentPanel.Controls.Add(cboAgente);
             toolStripContainer1.ContentPanel.Controls.Add(label13);
             toolStripContainer1.ContentPanel.Controls.Add(txtValorExtra2);
@@ -151,6 +155,23 @@
             // toolStripContainer1.TopToolStripPanel
             // 
             toolStripContainer1.TopToolStripPanel.Controls.Add(toolStrip1);
+            // 
+            // txtUrgente
+            // 
+            txtUrgente.CharacterCasing = CharacterCasing.Upper;
+            resources.ApplyResources(txtUrgente, "txtUrgente");
+            txtUrgente.Name = "txtUrgente";
+            // 
+            // chkUrgente
+            // 
+            resources.ApplyResources(chkUrgente, "chkUrgente");
+            chkUrgente.FlatAppearance.BorderSize = 0;
+            chkUrgente.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            chkUrgente.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            chkUrgente.Image = Properties.Resources.Nunchecked;
+            chkUrgente.Name = "chkUrgente";
+            chkUrgente.UseVisualStyleBackColor = true;
+            chkUrgente.CheckedChanged += chkCheckedChange;
             // 
             // cboAgente
             // 
@@ -670,5 +691,7 @@
         private Label label13;
         private ToolStripDropDownButton tsddbSwitchUser;
         private ToolStripButton tsbComentarios;
+        private TextBox txtUrgente;
+        private CheckBox chkUrgente;
     }
 }

@@ -1,6 +1,7 @@
-﻿using SAESoft.AdministracionSistema;
+﻿using SAESoft.Administracion;
+using SAESoft.AdministracionSistema;
+using SAESoft.CambioPassword;
 using SAESoft.Importaciones;
-using SAESoft.Properties;
 using System.Runtime.InteropServices;
 using static SAESoft.Cache.UserData;
 using static SAESoft.Utilitarios.ControlFormularios;
@@ -27,7 +28,7 @@ namespace SAESoft
 #pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 #pragma warning restore SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
-                                  //********* FIN CODIGO ARRASTRAR FORMULARIO***********************
+        //********* FIN CODIGO ARRASTRAR FORMULARIO***********************
 
         //RESIZE METODO PARA REDIMENCIONAR/CAMBIAR TAMAÑO A FORMULARIO EN TIEMPO DE EJECUCION ----------------------------------------------------------
         private readonly int tolerance = 12;
@@ -80,7 +81,7 @@ namespace SAESoft
 
         private void icbMinimizar_Click(object sender, EventArgs e)
         {
-            this.WindowState= FormWindowState.Minimized;
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void panelBarraTitulo_MouseMove(object sender, MouseEventArgs e)
@@ -93,7 +94,7 @@ namespace SAESoft
         {
             icbMaximizar.Visible = false;
             icbRestaurar.Visible = true;
-            this.WindowState= FormWindowState.Maximized;
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void icbRestaurar_Click(object sender, EventArgs e)
@@ -107,7 +108,7 @@ namespace SAESoft
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
-            Abrir<frmMenuAdmin>(panelFormularios); 
+            Abrir<frmMenuAdmin>(panelFormularios);
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -120,12 +121,24 @@ namespace SAESoft
             tsslVersion.Text = "Versión: " + AppVersion;
             btnConfiguracion.Enabled = hasPermission("VER.ADMINISTRACION SISTEMA");
             btnImportaciones.Enabled = hasPermission("VER.IMPORTACIONES");
+            btnAdministracion.Enabled = hasPermission("VER.ADMINISTRACION");
 
         }
 
         private void btnImportaciones_Click(object sender, EventArgs e)
         {
             Abrir<frmMenuImportaciones>(panelFormularios);
+        }
+
+        private void btnAdministracion_Click(object sender, EventArgs e)
+        {
+            Abrir<frmMenuAdmon>(panelFormularios);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            WFCambioPwd cambio = new();
+            cambio.ShowDialog();
         }
     }
 }

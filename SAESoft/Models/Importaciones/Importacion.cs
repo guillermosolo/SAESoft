@@ -61,6 +61,8 @@ namespace SAESoft.Models.Importaciones
         public Boolean DocOriginales { get; set; }
         public int? IdAgente { get; set; }
         [ForeignKey("IdAgente")]
-        public virtual Agente Agente { get;set; } = null!;
+        public virtual Agente Agente { get; set; } = null!;
+        public Boolean urgente { get; set; } = false;
+        public string? personaUrgente { get; set; }
     }
 }

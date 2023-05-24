@@ -31,7 +31,9 @@ namespace SAESoft.Importaciones
             dt.Columns.Add("IdContenedor").DataType = Type.GetType("System.Int32");
             dt.Columns.Add("Contenedor").DataType = Type.GetType("System.String");
             dt.Columns.Add("Via").DataType = Type.GetType("System.String");
-            // dt.Columns.Add("Pólizas").DataType = Type.GetType("System.String");
+            dt.Columns.Add("Pólizas").DataType = Type.GetType("System.String");
+            dt.Columns.Add("BUrgente").DataType = Type.GetType("System.Boolean");
+            dt.Columns.Add("Urgente").DataType = Type.GetType("System.String");
             dt.Columns.Add("ETA").DataType = Type.GetType("System.DateTime");
             dt.Columns.Add("Destino").DataType = Type.GetType("System.String");
             dt.Columns.Add("Elaborar Póliza").DataType = Type.GetType("System.DateTime");
@@ -50,6 +52,7 @@ namespace SAESoft.Importaciones
             dgvDashboard.Columns["IdImportacion"].Visible = false;
             dgvDashboard.Columns["Originales"].Visible = false;
             dgvDashboard.Columns["Selectivo Rojo"].Visible = false;
+            dgvDashboard.Columns["BUrgente"].Visible = false;
         }
 
         private void llenarTabla()
@@ -58,6 +61,7 @@ namespace SAESoft.Importaciones
             using SAESoftContext db = new();
             var queryable = db.Importaciones.Include(r => r.Revisiones)
                                             .Include(r => r.BL)
+                                            .ThenInclude(p=>p.Polizas)
                                             .Include(r => r.Destino)
                                             .Include(r => r.Contenedores)
                                             .ThenInclude(c => c.Pago)
@@ -75,6 +79,8 @@ namespace SAESoft.Importaciones
                                                 i.IdUsuario,
                                                 i.FechaCreacion,
                                                 i.Via,
+                                                i.urgente,
+                                                i.personaUrgente,
                                                 i.BL,
                                                 Revisiones = i.Revisiones.Select(r => new
                                                 {
@@ -111,6 +117,17 @@ namespace SAESoft.Importaciones
                         row["Contenedor"] = cont.Furgon ?? cont.Numero;
                         row["ETA"] = item.ETA.Date;
                         row["Via"] = item.Via;
+                        row["BUrgente"] = item.urgente;
+                        row["Urgente"] = item.urgente ? item.personaUrgente : "";
+                        foreach (var _bl in item.BL)
+                        {
+                            if (!String.IsNullOrEmpty(row["Pólizas"].ToString()))
+                            {
+                                row["Pólizas"] += ", ";
+                            }
+
+                            row["Pólizas"] += string.Join(",", _bl.Polizas.Select(p=>p.Numero));
+                        }
                         if (item.IdDestino != null)
                             row["Destino"] = item.Destino.Descripcion;
                         foreach (var hist in item.ImportHistorial)
@@ -131,7 +148,7 @@ namespace SAESoft.Importaciones
                             {
                                 row["Llegada Fábrica"] = hist.FechaCreacion.Date;
                             }
-                            if (hist.ImportStatus.Descripcion.Contains("Salida"))
+                            if (hist.ImportStatus.Descripcion.Contains("Salida de Fábrica"))
                             {
                                 row["Salida Fábrica"] = hist.FechaCreacion.Date;
                             }
@@ -156,6 +173,17 @@ namespace SAESoft.Importaciones
                     row["Contenedor"] = item.BL.First().Numero;
                     row["ETA"] = item.ETA.Date;
                     row["Via"] = item.Via;
+                    row["BUrgente"] = item.urgente;
+                    row["Urgente"] = item.urgente ? item.personaUrgente : "";
+                    foreach (var _bl in item.BL)
+                    {
+                        if (!String.IsNullOrEmpty(row["Pólizas"].ToString()))
+                        {
+                            row["Pólizas"] += ", ";
+                        }
+
+                        row["Pólizas"] += string.Join(",", _bl.Polizas.Select(p => p.Numero));
+                    }
                     if (item.IdDestino != null)
                         row["Destino"] = item.Destino.Descripcion;
                     foreach (var hist in item.ImportHistorial)
@@ -207,6 +235,10 @@ namespace SAESoft.Importaciones
                 if ((Boolean)row.Cells["Selectivo Rojo"].Value)
                 {
                     row.DefaultCellStyle.ForeColor = Color.Red;
+                }
+                if ((Boolean)row.Cells["BUrgente"].Value)
+                {
+                    row.Cells["Urgente"].Style.BackColor = Color.Orange;
                 }
             }
             dgvDashboard.Columns["Revisiones"].Width = 250;
@@ -261,6 +293,14 @@ namespace SAESoft.Importaciones
                     individual = imp
                 };
                 aire.mostrarIndividual((Panel)this.Parent);
+            }
+        }
+
+        private void dgvDashboard_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex >= 0)
+            {
+                maquillarTabla();
             }
         }
     }

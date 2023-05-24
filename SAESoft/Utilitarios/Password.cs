@@ -11,36 +11,29 @@ namespace SAESoft.Utilitarios
     {
         public static string ComputeHash(string password, byte[]? salt = null)
         {
-            byte[]? saltBytes = null;
+            byte[]? saltBytes;
             if (salt != null)
             {
                 saltBytes = salt;
             }
             else
             {
-                Random r = new Random();
+                Random r = new();
                 int saltLength = r.Next(4, 16);
                 saltBytes = new byte[saltLength];
-                using (var rng = RandomNumberGenerator.Create())
-                {
-                    rng.GetNonZeroBytes(saltBytes);
-                }
+                using var rng = RandomNumberGenerator.Create();
+                rng.GetNonZeroBytes(saltBytes);
             }
             byte[] plainData = ASCIIEncoding.UTF8.GetBytes(password);
             byte[] plainDataWithSalt = new byte[plainData.Length + saltBytes.Length];
 
             Buffer.BlockCopy(plainData, 0, plainDataWithSalt, 0, plainData.Length);
             Buffer.BlockCopy(saltBytes, 0, plainDataWithSalt, plainData.Length, saltBytes.Length);
+            byte[]? hashValue = SHA512.HashData(plainDataWithSalt);
+            byte[] result = new byte[hashValue.Length + saltBytes.Length];
 
-            byte[]? hashValue = null;
-            using (var sha = SHA512.Create())
-            {
-                hashValue = sha.ComputeHash(plainDataWithSalt);
-            }
-            byte[] result = new byte[hashValue.Length+saltBytes.Length];
-
-            Buffer.BlockCopy(hashValue,0,result,0,hashValue.Length);
-            Buffer.BlockCopy(saltBytes,0,result,hashValue.Length, saltBytes.Length);
+            Buffer.BlockCopy(hashValue, 0, result, 0, hashValue.Length);
+            Buffer.BlockCopy(saltBytes, 0, result, hashValue.Length, saltBytes.Length);
 
             return Convert.ToBase64String(result);
         }

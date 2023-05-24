@@ -28,260 +28,290 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelContenedor = new System.Windows.Forms.Panel();
-            this.panelFormularios = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tsslUsuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsslVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnImportaciones = new System.Windows.Forms.Button();
-            this.btnConfiguracion = new System.Windows.Forms.Button();
-            this.panelBarraTitulo = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.icbRestaurar = new FontAwesome.Sharp.IconButton();
-            this.icbMinimizar = new FontAwesome.Sharp.IconButton();
-            this.icbMaximizar = new FontAwesome.Sharp.IconButton();
-            this.icbCerrar = new FontAwesome.Sharp.IconButton();
-            this.panelContenedor.SuspendLayout();
-            this.panelFormularios.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.panelBarraTitulo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            panelContenedor = new Panel();
+            panelFormularios = new Panel();
+            button2 = new Button();
+            btnAdministracion = new Button();
+            button1 = new Button();
+            statusStrip1 = new StatusStrip();
+            tsslUsuario = new ToolStripStatusLabel();
+            toolStripStatusLabel2 = new ToolStripStatusLabel();
+            tsslVersion = new ToolStripStatusLabel();
+            btnImportaciones = new Button();
+            btnConfiguracion = new Button();
+            panelBarraTitulo = new Panel();
+            label1 = new Label();
+            pictureBox1 = new PictureBox();
+            icbRestaurar = new FontAwesome.Sharp.IconButton();
+            icbMinimizar = new FontAwesome.Sharp.IconButton();
+            icbMaximizar = new FontAwesome.Sharp.IconButton();
+            icbCerrar = new FontAwesome.Sharp.IconButton();
+            panelContenedor.SuspendLayout();
+            panelFormularios.SuspendLayout();
+            statusStrip1.SuspendLayout();
+            panelBarraTitulo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // panelContenedor
             // 
-            this.panelContenedor.Controls.Add(this.panelFormularios);
-            this.panelContenedor.Controls.Add(this.panelBarraTitulo);
-            this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenedor.Location = new System.Drawing.Point(0, 0);
-            this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(1000, 800);
-            this.panelContenedor.TabIndex = 0;
-            this.panelContenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContenedor_Paint);
+            panelContenedor.Controls.Add(panelFormularios);
+            panelContenedor.Controls.Add(panelBarraTitulo);
+            panelContenedor.Dock = DockStyle.Fill;
+            panelContenedor.Location = new Point(0, 0);
+            panelContenedor.Name = "panelContenedor";
+            panelContenedor.Size = new Size(1000, 800);
+            panelContenedor.TabIndex = 0;
+            panelContenedor.Paint += panelContenedor_Paint;
             // 
             // panelFormularios
             // 
-            this.panelFormularios.Controls.Add(this.button1);
-            this.panelFormularios.Controls.Add(this.statusStrip1);
-            this.panelFormularios.Controls.Add(this.btnImportaciones);
-            this.panelFormularios.Controls.Add(this.btnConfiguracion);
-            this.panelFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelFormularios.Location = new System.Drawing.Point(0, 40);
-            this.panelFormularios.Name = "panelFormularios";
-            this.panelFormularios.Size = new System.Drawing.Size(1000, 760);
-            this.panelFormularios.TabIndex = 1;
+            panelFormularios.Controls.Add(button2);
+            panelFormularios.Controls.Add(btnAdministracion);
+            panelFormularios.Controls.Add(button1);
+            panelFormularios.Controls.Add(statusStrip1);
+            panelFormularios.Controls.Add(btnImportaciones);
+            panelFormularios.Controls.Add(btnConfiguracion);
+            panelFormularios.Dock = DockStyle.Fill;
+            panelFormularios.Location = new Point(0, 40);
+            panelFormularios.Name = "panelFormularios";
+            panelFormularios.Size = new Size(1000, 760);
+            panelFormularios.TabIndex = 1;
+            // 
+            // button2
+            // 
+            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.Image = Properties.Resources.password;
+            button2.ImageAlign = ContentAlignment.MiddleLeft;
+            button2.Location = new Point(3, 688);
+            button2.Name = "button2";
+            button2.Size = new Size(147, 43);
+            button2.TabIndex = 8;
+            button2.Text = "Contraseña";
+            button2.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // btnAdministracion
+            // 
+            btnAdministracion.FlatAppearance.BorderSize = 0;
+            btnAdministracion.FlatStyle = FlatStyle.Flat;
+            btnAdministracion.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAdministracion.Image = Properties.Resources.organize;
+            btnAdministracion.Location = new Point(459, 22);
+            btnAdministracion.Name = "btnAdministracion";
+            btnAdministracion.Size = new Size(186, 197);
+            btnAdministracion.TabIndex = 7;
+            btnAdministracion.Text = "Administración";
+            btnAdministracion.TextAlign = ContentAlignment.BottomCenter;
+            btnAdministracion.UseVisualStyleBackColor = true;
+            btnAdministracion.Click += btnAdministracion_Click;
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.Image = global::SAESoft.Properties.Resources.logout;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(878, 688);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 43);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Logout";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Image = Properties.Resources.logout;
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(878, 688);
+            button1.Name = "button1";
+            button1.Size = new Size(119, 43);
+            button1.TabIndex = 6;
+            button1.Text = "Logout";
+            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsslUsuario,
-            this.toolStripStatusLabel2,
-            this.tsslVersion});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 734);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1000, 26);
-            this.statusStrip1.TabIndex = 5;
-            this.statusStrip1.Text = "statusStrip1";
+            statusStrip1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { tsslUsuario, toolStripStatusLabel2, tsslVersion });
+            statusStrip1.Location = new Point(0, 734);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(1000, 26);
+            statusStrip1.TabIndex = 5;
+            statusStrip1.Text = "statusStrip1";
             // 
             // tsslUsuario
             // 
-            this.tsslUsuario.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tsslUsuario.Name = "tsslUsuario";
-            this.tsslUsuario.Size = new System.Drawing.Size(65, 21);
-            this.tsslUsuario.Text = "usuario";
+            tsslUsuario.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            tsslUsuario.Name = "tsslUsuario";
+            tsslUsuario.Size = new Size(65, 21);
+            tsslUsuario.Text = "usuario";
             // 
             // toolStripStatusLabel2
             // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(816, 21);
-            this.toolStripStatusLabel2.Spring = true;
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.RightToLeft = RightToLeft.Yes;
+            toolStripStatusLabel2.Size = new Size(816, 21);
+            toolStripStatusLabel2.Spring = true;
             // 
             // tsslVersion
             // 
-            this.tsslVersion.Name = "tsslVersion";
-            this.tsslVersion.Size = new System.Drawing.Size(104, 21);
-            this.tsslVersion.Text = "Versión 1.0.0";
+            tsslVersion.Name = "tsslVersion";
+            tsslVersion.Size = new Size(104, 21);
+            tsslVersion.Text = "Versión 1.0.0";
             // 
             // btnImportaciones
             // 
-            this.btnImportaciones.FlatAppearance.BorderSize = 0;
-            this.btnImportaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImportaciones.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnImportaciones.Image = global::SAESoft.Properties.Resources.cargo_boat;
-            this.btnImportaciones.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnImportaciones.Location = new System.Drawing.Point(259, 63);
-            this.btnImportaciones.Name = "btnImportaciones";
-            this.btnImportaciones.Size = new System.Drawing.Size(186, 197);
-            this.btnImportaciones.TabIndex = 4;
-            this.btnImportaciones.Text = "Importaciones";
-            this.btnImportaciones.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnImportaciones.UseVisualStyleBackColor = true;
-            this.btnImportaciones.Click += new System.EventHandler(this.btnImportaciones_Click);
+            btnImportaciones.FlatAppearance.BorderSize = 0;
+            btnImportaciones.FlatStyle = FlatStyle.Flat;
+            btnImportaciones.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnImportaciones.Image = Properties.Resources.cargo_boat;
+            btnImportaciones.Location = new Point(249, 22);
+            btnImportaciones.Name = "btnImportaciones";
+            btnImportaciones.Size = new Size(186, 197);
+            btnImportaciones.TabIndex = 4;
+            btnImportaciones.Text = "Importaciones";
+            btnImportaciones.TextAlign = ContentAlignment.BottomCenter;
+            btnImportaciones.UseVisualStyleBackColor = true;
+            btnImportaciones.Click += btnImportaciones_Click;
             // 
             // btnConfiguracion
             // 
-            this.btnConfiguracion.FlatAppearance.BorderSize = 0;
-            this.btnConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfiguracion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnConfiguracion.Image = global::SAESoft.Properties.Resources.settings;
-            this.btnConfiguracion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnConfiguracion.Location = new System.Drawing.Point(41, 63);
-            this.btnConfiguracion.Name = "btnConfiguracion";
-            this.btnConfiguracion.Size = new System.Drawing.Size(186, 197);
-            this.btnConfiguracion.TabIndex = 3;
-            this.btnConfiguracion.Text = "Administración del Sistema";
-            this.btnConfiguracion.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnConfiguracion.UseVisualStyleBackColor = true;
-            this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
+            btnConfiguracion.FlatAppearance.BorderSize = 0;
+            btnConfiguracion.FlatStyle = FlatStyle.Flat;
+            btnConfiguracion.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnConfiguracion.Image = Properties.Resources.settings;
+            btnConfiguracion.Location = new Point(57, 22);
+            btnConfiguracion.Name = "btnConfiguracion";
+            btnConfiguracion.Size = new Size(186, 197);
+            btnConfiguracion.TabIndex = 3;
+            btnConfiguracion.Text = "Configuración";
+            btnConfiguracion.TextAlign = ContentAlignment.BottomCenter;
+            btnConfiguracion.UseVisualStyleBackColor = true;
+            btnConfiguracion.Click += btnConfiguracion_Click;
             // 
             // panelBarraTitulo
             // 
-            this.panelBarraTitulo.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.panelBarraTitulo.Controls.Add(this.label1);
-            this.panelBarraTitulo.Controls.Add(this.pictureBox1);
-            this.panelBarraTitulo.Controls.Add(this.icbRestaurar);
-            this.panelBarraTitulo.Controls.Add(this.icbMinimizar);
-            this.panelBarraTitulo.Controls.Add(this.icbMaximizar);
-            this.panelBarraTitulo.Controls.Add(this.icbCerrar);
-            this.panelBarraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelBarraTitulo.Location = new System.Drawing.Point(0, 0);
-            this.panelBarraTitulo.Name = "panelBarraTitulo";
-            this.panelBarraTitulo.Size = new System.Drawing.Size(1000, 40);
-            this.panelBarraTitulo.TabIndex = 0;
-            this.panelBarraTitulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelBarraTitulo_MouseMove);
+            panelBarraTitulo.BackColor = SystemColors.HotTrack;
+            panelBarraTitulo.Controls.Add(label1);
+            panelBarraTitulo.Controls.Add(pictureBox1);
+            panelBarraTitulo.Controls.Add(icbRestaurar);
+            panelBarraTitulo.Controls.Add(icbMinimizar);
+            panelBarraTitulo.Controls.Add(icbMaximizar);
+            panelBarraTitulo.Controls.Add(icbCerrar);
+            panelBarraTitulo.Dock = DockStyle.Top;
+            panelBarraTitulo.Location = new Point(0, 0);
+            panelBarraTitulo.Name = "panelBarraTitulo";
+            panelBarraTitulo.Size = new Size(1000, 40);
+            panelBarraTitulo.TabIndex = 0;
+            panelBarraTitulo.MouseMove += panelBarraTitulo_MouseMove;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(41, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 37);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "S&&G, S.A.";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.White;
+            label1.ImageAlign = ContentAlignment.MiddleLeft;
+            label1.Location = new Point(41, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(136, 37);
+            label1.TabIndex = 7;
+            label1.Text = "S&&G, S.A.";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SAESoft.Properties.Resources.logo_blue;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(36, 36);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.Image = Properties.Resources.logo_blue;
+            pictureBox1.InitialImage = null;
+            pictureBox1.Location = new Point(3, 1);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(36, 36);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 7;
+            pictureBox1.TabStop = false;
             // 
             // icbRestaurar
             // 
-            this.icbRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.icbRestaurar.FlatAppearance.BorderSize = 0;
-            this.icbRestaurar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icbRestaurar.IconChar = FontAwesome.Sharp.IconChar.WindowRestore;
-            this.icbRestaurar.IconColor = System.Drawing.Color.White;
-            this.icbRestaurar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.icbRestaurar.IconSize = 36;
-            this.icbRestaurar.Location = new System.Drawing.Point(928, 0);
-            this.icbRestaurar.Name = "icbRestaurar";
-            this.icbRestaurar.Size = new System.Drawing.Size(36, 40);
-            this.icbRestaurar.TabIndex = 5;
-            this.icbRestaurar.UseVisualStyleBackColor = true;
-            this.icbRestaurar.Visible = false;
-            this.icbRestaurar.Click += new System.EventHandler(this.icbRestaurar_Click);
+            icbRestaurar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            icbRestaurar.FlatAppearance.BorderSize = 0;
+            icbRestaurar.FlatStyle = FlatStyle.Flat;
+            icbRestaurar.IconChar = FontAwesome.Sharp.IconChar.WindowRestore;
+            icbRestaurar.IconColor = Color.White;
+            icbRestaurar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icbRestaurar.IconSize = 36;
+            icbRestaurar.Location = new Point(928, 0);
+            icbRestaurar.Name = "icbRestaurar";
+            icbRestaurar.Size = new Size(36, 40);
+            icbRestaurar.TabIndex = 5;
+            icbRestaurar.UseVisualStyleBackColor = true;
+            icbRestaurar.Visible = false;
+            icbRestaurar.Click += icbRestaurar_Click;
             // 
             // icbMinimizar
             // 
-            this.icbMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.icbMinimizar.FlatAppearance.BorderSize = 0;
-            this.icbMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icbMinimizar.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
-            this.icbMinimizar.IconColor = System.Drawing.Color.White;
-            this.icbMinimizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.icbMinimizar.IconSize = 36;
-            this.icbMinimizar.Location = new System.Drawing.Point(896, 0);
-            this.icbMinimizar.Name = "icbMinimizar";
-            this.icbMinimizar.Size = new System.Drawing.Size(36, 40);
-            this.icbMinimizar.TabIndex = 4;
-            this.icbMinimizar.UseVisualStyleBackColor = true;
-            this.icbMinimizar.Click += new System.EventHandler(this.icbMinimizar_Click);
+            icbMinimizar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            icbMinimizar.FlatAppearance.BorderSize = 0;
+            icbMinimizar.FlatStyle = FlatStyle.Flat;
+            icbMinimizar.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
+            icbMinimizar.IconColor = Color.White;
+            icbMinimizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icbMinimizar.IconSize = 36;
+            icbMinimizar.Location = new Point(896, 0);
+            icbMinimizar.Name = "icbMinimizar";
+            icbMinimizar.Size = new Size(36, 40);
+            icbMinimizar.TabIndex = 4;
+            icbMinimizar.UseVisualStyleBackColor = true;
+            icbMinimizar.Click += icbMinimizar_Click;
             // 
             // icbMaximizar
             // 
-            this.icbMaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.icbMaximizar.FlatAppearance.BorderSize = 0;
-            this.icbMaximizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icbMaximizar.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
-            this.icbMaximizar.IconColor = System.Drawing.Color.White;
-            this.icbMaximizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.icbMaximizar.IconSize = 36;
-            this.icbMaximizar.Location = new System.Drawing.Point(928, 0);
-            this.icbMaximizar.Name = "icbMaximizar";
-            this.icbMaximizar.Size = new System.Drawing.Size(36, 40);
-            this.icbMaximizar.TabIndex = 3;
-            this.icbMaximizar.UseVisualStyleBackColor = true;
-            this.icbMaximizar.Click += new System.EventHandler(this.icbMaximizar_Click);
+            icbMaximizar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            icbMaximizar.FlatAppearance.BorderSize = 0;
+            icbMaximizar.FlatStyle = FlatStyle.Flat;
+            icbMaximizar.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
+            icbMaximizar.IconColor = Color.White;
+            icbMaximizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icbMaximizar.IconSize = 36;
+            icbMaximizar.Location = new Point(928, 0);
+            icbMaximizar.Name = "icbMaximizar";
+            icbMaximizar.Size = new Size(36, 40);
+            icbMaximizar.TabIndex = 3;
+            icbMaximizar.UseVisualStyleBackColor = true;
+            icbMaximizar.Click += icbMaximizar_Click;
             // 
             // icbCerrar
             // 
-            this.icbCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.icbCerrar.FlatAppearance.BorderSize = 0;
-            this.icbCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icbCerrar.IconChar = FontAwesome.Sharp.IconChar.XmarkSquare;
-            this.icbCerrar.IconColor = System.Drawing.Color.White;
-            this.icbCerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.icbCerrar.IconSize = 36;
-            this.icbCerrar.Location = new System.Drawing.Point(961, 0);
-            this.icbCerrar.Name = "icbCerrar";
-            this.icbCerrar.Size = new System.Drawing.Size(36, 40);
-            this.icbCerrar.TabIndex = 2;
-            this.icbCerrar.UseVisualStyleBackColor = true;
-            this.icbCerrar.Click += new System.EventHandler(this.icbCerrar_Click);
+            icbCerrar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            icbCerrar.FlatAppearance.BorderSize = 0;
+            icbCerrar.FlatStyle = FlatStyle.Flat;
+            icbCerrar.IconChar = FontAwesome.Sharp.IconChar.TimesSquare;
+            icbCerrar.IconColor = Color.White;
+            icbCerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icbCerrar.IconSize = 36;
+            icbCerrar.Location = new Point(961, 0);
+            icbCerrar.Name = "icbCerrar";
+            icbCerrar.Size = new Size(36, 40);
+            icbCerrar.TabIndex = 2;
+            icbCerrar.UseVisualStyleBackColor = true;
+            icbCerrar.Click += icbCerrar_Click;
             // 
             // frmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 800);
-            this.Controls.Add(this.panelContenedor);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MinimumSize = new System.Drawing.Size(650, 400);
-            this.Name = "frmPrincipal";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmPrincipal";
-            this.Load += new System.EventHandler(this.frmPrincipal_Load);
-            this.panelContenedor.ResumeLayout(false);
-            this.panelFormularios.ResumeLayout(false);
-            this.panelFormularios.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.panelBarraTitulo.ResumeLayout(false);
-            this.panelBarraTitulo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1000, 800);
+            Controls.Add(panelContenedor);
+            FormBorderStyle = FormBorderStyle.None;
+            MinimumSize = new Size(650, 400);
+            Name = "frmPrincipal";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "frmPrincipal";
+            Load += frmPrincipal_Load;
+            panelContenedor.ResumeLayout(false);
+            panelFormularios.ResumeLayout(false);
+            panelFormularios.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
+            panelBarraTitulo.ResumeLayout(false);
+            panelBarraTitulo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -302,5 +332,7 @@
         private Button button1;
         private PictureBox pictureBox1;
         private Label label1;
+        private Button btnAdministracion;
+        private Button button2;
     }
 }

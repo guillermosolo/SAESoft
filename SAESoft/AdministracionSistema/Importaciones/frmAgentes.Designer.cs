@@ -180,7 +180,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListar, tsbModificar, tsbEliminar, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(493, 39);
+            toolStrip1.Size = new Size(234, 39);
             toolStrip1.TabIndex = 5;
             toolStrip1.Text = "toolStrip1";
             // 

@@ -7,6 +7,7 @@ using SAESoft.Utilitarios;
 using System.Data;
 using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Cache.UserData;
+using System.Windows.Forms.VisualStyles;
 
 namespace SAESoft.AdministracionSistema.Importaciones
 {
@@ -128,9 +129,10 @@ namespace SAESoft.AdministracionSistema.Importaciones
             esNuevo = true;
             String[] botones = { "tsbAceptar", "tsbCancelar" };
             CambiarVisibilidadBotones(botones, toolStrip1, true);
+            txtId.Enabled = true;
             habilitarFormulario(this, true);
             limpiarFormulario(this);
-            txtNombre.Focus();
+            txtId.Focus();
         }
 
         private void tsbModificar_Click(object sender, EventArgs e)
@@ -138,6 +140,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
             esNuevo = false;
             String[] botones = { "tsbAceptar", "tsbCancelar" };
             CambiarVisibilidadBotones(botones, toolStrip1, true);
+            txtId.Enabled = false;
             habilitarFormulario(this, true);
             txtNombre.Focus();
         }
@@ -209,11 +212,18 @@ namespace SAESoft.AdministracionSistema.Importaciones
                 limpiarFormulario(this);
             }
             habilitarFormulario(this, false);
+            txtId.Enabled = false;
         }
 
         private Boolean ValidarDatos()
         {
             errorProvider1.Clear();
+            if (txtId.Text == "")
+            {
+                errorProvider1.SetError(txtId, "No puede estar vacío.");
+                txtId.Focus();
+                return false;
+            }
             if (txtNombre.Text == "")
             {
                 errorProvider1.SetError(txtNombre, "No puede estar vacío.");
@@ -240,6 +250,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
                     {
                         Agente agente = new()
                         {
+                            IdAgente = int.Parse(txtId.Text),
                             Nombres = txtNombre.Text,
                             Apellidos = txtApellido.Text,
                             Activo = tsActivo.Checked,

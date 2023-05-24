@@ -213,6 +213,9 @@ namespace SAESoft.Importaciones
                 cboAgente.SelectedValue = rs[CurrentIndex].IdAgente;
             else
                 cboAgente.SelectedIndex = 0;
+            chkUrgente.Checked = rs[CurrentIndex].urgente;
+            if (rs[CurrentIndex].urgente)
+                txtUrgente.Text = rs[CurrentIndex].personaUrgente;
             txtTiempoLibre.Text = rs[CurrentIndex].TiempoLibre.ToString();
             txtValorExtra.Text = rs[CurrentIndex].ValorDiaExtraTL.ToString("F", CultureInfo.CreateSpecificCulture("es-GT"));
             txtDemora.Text = rs[CurrentIndex].Demora.ToString();
@@ -318,9 +321,22 @@ namespace SAESoft.Importaciones
         {
             CheckBox chk = sender as CheckBox;
             if (chk.Checked)
+            {
                 chk.Image = Properties.Resources.Nchecked;
+                if (chk.Name == "chkUrgente")
+                {
+                    txtUrgente.Visible = true;
+                }
+            }
             else
+            {
                 chk.Image = Properties.Resources.Nunchecked;
+                if (chk.Name == "chkUrgente")
+                {
+                    txtUrgente.Visible = false;
+                    txtUrgente.Text = "";
+                }
+            }
         }
 
         private void fileSystemWatcher1_Deleted(object sender, FileSystemEventArgs e)
@@ -354,7 +370,10 @@ namespace SAESoft.Importaciones
                             IdImportStatus = db.ImportStatus.FirstOrDefault(i => i.Via == 'M' && i.orden == 1).IdImportStatus,
                             FechaCreacion = DatosServer.FechaServer(),
                             IdUsuarioCreacion = usuarioLogged.IdUsuario,
+                            urgente = chkUrgente.Checked
                         };
+                        if (chkUrgente.Checked)
+                            im.personaUrgente = txtUrgente.Text;
                         if (cboDestino.SelectedIndex != 0)
                             im.IdDestino = Convert.ToInt32(cboDestino.SelectedValue);
                         if (cboForwarder.SelectedIndex != 0)
@@ -458,6 +477,11 @@ namespace SAESoft.Importaciones
                         rs[CurrentIndex].DocOriginales = chkDocOriginales.Checked;
                         rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
                         rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
+                        rs[CurrentIndex].urgente = chkUrgente.Checked;
+                        if (chkUrgente.Checked)
+                            rs[CurrentIndex].personaUrgente = txtUrgente.Text;
+                        else
+                            rs[CurrentIndex].personaUrgente = null;
                         db.Importaciones.Update(rs[CurrentIndex]);
                         db.SaveChanges();
                         if (clbRevisiones.Enabled)
@@ -560,6 +584,12 @@ namespace SAESoft.Importaciones
             {
                 txtValorExtra2.Text = "0.00";
             }
+            if (txtUrgente.Visible && txtUrgente.Text == "")
+            {
+                errorProvider1.SetError(txtUrgente, "No puede estar vacío.");
+                txtUrgente.Focus();
+                return false;
+            }
             return true;
         }
 
@@ -625,10 +655,10 @@ namespace SAESoft.Importaciones
                                                 .Where(b => b.Via == 'M');
                 if (hasRole(DigitadorImportaciones))
                     queryable = queryable.Where(r => r.IdUsuario == usuarioLogged.IdUsuario);
-                if (!buscar.todos)
-                    queryable = queryable.Where(r => buscar.ids.Contains(r.IdImport));
                 if (individual != 0)
                     queryable = queryable.Where(r => r.IdImport == individual);
+                else if (!buscar.todos)
+                    queryable = queryable.Where(r => buscar.ids.Contains(r.IdImport));
                 rs = queryable.ToList();
                 individual = 0;
                 if (rs.Count > 0)
@@ -870,7 +900,7 @@ namespace SAESoft.Importaciones
                     {
                         tsddbSwitchUser.DropDownItems.Clear();
                         ((ToolStripMenuItem)tsddbProceso.DropDownItems[i - 1]).DropDownItems.Clear();
-                        var items = db.Usuarios.Include(u => u.Rol).Where(u => u.Rol.IdRol == DigitadorImportaciones);
+                        var items = db.Usuarios.Include(u => u.Rol).Where(u => u.Rol.IdRol == DigitadorImportaciones && u.Activo);
                         foreach (var item2 in items)
                         {
                             ((ToolStripMenuItem)tsddbProceso.DropDownItems[i - 1]).DropDownItems.Add(item2.Nombres + " " + item2.Apellidos, null, (s, e) => seleccionaDigitador(item2.IdUsuario, true));
@@ -935,6 +965,8 @@ namespace SAESoft.Importaciones
             txtValorExtra2.Enabled = true;
             cboDestino.Enabled = true;
             chkDocOriginales.Enabled = true;
+            chkUrgente.Enabled = true;
+            txtUrgente.Enabled = true;
             if (clbRevisiones.CheckedItems.Count == 0)
                 clbRevisiones.Enabled = true;
             dtpETA.Focus();
