@@ -10,11 +10,19 @@ namespace SAESoft.Models.Administracion
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdFamiliar { get; set; }
         public int IdEmpleado { get; set; }
-        public Empleado Empleado { get; set; }
+        [ForeignKey("IdEmpleado")]
+        public virtual Empleado Empleado { get; set; }
         public int IdParentesco { get; set; }
-        public Nombre Parentesco { get; set; }
+        [ForeignKey("IdParentesco")]
+        public virtual Nombre Parentesco { get; set; }
         public required string Nombres { get; set; }
         public required string Apellidos { get; set; }
         public DateTime FechaNac { get; set; }
+
+
+        [StringLength(1)]
+        [Column(TypeName = "char(1)")]
+        [RegularExpression("[MF]")]
+        public required string Genero { get; set; }
     }
 }

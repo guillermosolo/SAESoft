@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             panelMenu = new Panel();
+            ibtnReporte = new FontAwesome.Sharp.IconButton();
             ibtnPersonal = new FontAwesome.Sharp.IconButton();
             ibtnDashboard = new FontAwesome.Sharp.IconButton();
             iconButton1 = new FontAwesome.Sharp.IconButton();
             ibtnSalir = new FontAwesome.Sharp.IconButton();
             label1 = new Label();
-            ibtnReporte = new FontAwesome.Sharp.IconButton();
+            panelFormularios = new Panel();
             panelMenu.SuspendLayout();
             SuspendLayout();
             // 
@@ -53,6 +54,24 @@
             panelMenu.Size = new Size(200, 538);
             panelMenu.TabIndex = 2;
             // 
+            // ibtnReporte
+            // 
+            ibtnReporte.FlatAppearance.BorderSize = 0;
+            ibtnReporte.FlatStyle = FlatStyle.Flat;
+            ibtnReporte.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnReporte.ForeColor = Color.White;
+            ibtnReporte.IconChar = FontAwesome.Sharp.IconChar.Print;
+            ibtnReporte.IconColor = Color.White;
+            ibtnReporte.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ibtnReporte.IconSize = 24;
+            ibtnReporte.ImageAlign = ContentAlignment.MiddleLeft;
+            ibtnReporte.Location = new Point(2, 248);
+            ibtnReporte.Name = "ibtnReporte";
+            ibtnReporte.Size = new Size(197, 43);
+            ibtnReporte.TabIndex = 12;
+            ibtnReporte.Text = "Reportes";
+            ibtnReporte.UseVisualStyleBackColor = true;
+            // 
             // ibtnPersonal
             // 
             ibtnPersonal.FlatAppearance.BorderSize = 0;
@@ -70,6 +89,7 @@
             ibtnPersonal.TabIndex = 8;
             ibtnPersonal.Text = "Personal";
             ibtnPersonal.UseVisualStyleBackColor = true;
+            ibtnPersonal.Click += ibtnPersonal_Click;
             // 
             // ibtnDashboard
             // 
@@ -126,6 +146,7 @@
             ibtnSalir.TabIndex = 3;
             ibtnSalir.Text = "Salir";
             ibtnSalir.UseVisualStyleBackColor = true;
+            ibtnSalir.Click += ibtnSalir_Click;
             // 
             // label1
             // 
@@ -135,37 +156,29 @@
             label1.Name = "label1";
             label1.Size = new Size(200, 43);
             label1.TabIndex = 2;
-            label1.Text = "Importaciones";
+            label1.Text = "Administración";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // ibtnReporte
+            // panelFormularios
             // 
-            ibtnReporte.FlatAppearance.BorderSize = 0;
-            ibtnReporte.FlatStyle = FlatStyle.Flat;
-            ibtnReporte.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            ibtnReporte.ForeColor = Color.White;
-            ibtnReporte.IconChar = FontAwesome.Sharp.IconChar.Print;
-            ibtnReporte.IconColor = Color.White;
-            ibtnReporte.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            ibtnReporte.IconSize = 24;
-            ibtnReporte.ImageAlign = ContentAlignment.MiddleLeft;
-            ibtnReporte.Location = new Point(2, 248);
-            ibtnReporte.Name = "ibtnReporte";
-            ibtnReporte.Size = new Size(197, 43);
-            ibtnReporte.TabIndex = 12;
-            ibtnReporte.Text = "Reportes";
-            ibtnReporte.UseVisualStyleBackColor = true;
+            panelFormularios.Dock = DockStyle.Fill;
+            panelFormularios.Location = new Point(200, 0);
+            panelFormularios.Name = "panelFormularios";
+            panelFormularios.Size = new Size(630, 538);
+            panelFormularios.TabIndex = 3;
             // 
             // frmMenuAdmon
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(830, 538);
+            Controls.Add(panelFormularios);
             Controls.Add(panelMenu);
             Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "frmMenuAdmon";
             Text = "frmMenuAdmon";
+            Load += frmMenuAdmon_Load;
             panelMenu.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -179,5 +192,6 @@
         private FontAwesome.Sharp.IconButton ibtnSalir;
         private Label label1;
         private FontAwesome.Sharp.IconButton ibtnReporte;
+        private Panel panelFormularios;
     }
 }

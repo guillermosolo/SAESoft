@@ -13,15 +13,23 @@ namespace SAESoft.Models.Administracion
         public int IdEmpleado { get; set; }
         public required string Codigo { get; set; }
         public int IdDepto { get; set; }
-        public virtual Nombre Departamento { get; set; }
+        [ForeignKey("IdDepto")]
+        public virtual DepartamentoInterno Departamento { get; set; }
         public required string Nombres { get; set; }
         public required string Apellidos { get; set; }
+
+        [StringLength(1)]
+        [Column(TypeName = "char(1)")]
+        [RegularExpression("[MF]")]
+        public required string Genero { get; set; }
         public required string Alias { get; set; }
         public required string NombreCoreano { get; set; }
         public required DateTime FechaNac { get; set; } 
-        public int IdResidencia { get; set; }
+        public int? IdResidencia { get; set; }
+        [ForeignKey("IdResidencia")]
         public virtual Residencia Residencia { get; set; }
-        public int IdContrato { get; set; }
+        public int? IdContrato { get; set; }
+        [ForeignKey("IdContrato")]
         public virtual Contrato Contrato { get; set; }
         public Boolean CuotaAnual { get; set; } = false;
         public Boolean BoletoOrnato { get; set; } = false;

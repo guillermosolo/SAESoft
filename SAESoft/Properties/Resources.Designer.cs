@@ -263,6 +263,16 @@ namespace SAESoft.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap relatives {
+            get {
+                object obj = ResourceManager.GetObject("relatives", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap saea {
             get {
                 object obj = ResourceManager.GetObject("saea", resourceCulture);

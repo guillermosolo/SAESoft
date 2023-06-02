@@ -13,10 +13,12 @@ namespace SAESoft.Utilitarios
             formulario = panel.Controls.OfType<MiForm>().FirstOrDefault();
             if (formulario == null)
             {
-                formulario = new MiForm();
-                formulario.TopLevel = false;
-                formulario.FormBorderStyle = FormBorderStyle.None;
-                formulario.Dock = DockStyle.Fill;
+                formulario = new MiForm
+                {
+                    TopLevel = false,
+                    FormBorderStyle = FormBorderStyle.None,
+                    Dock = DockStyle.Fill
+                };
                 panel.Controls.Add(formulario);
                 panel.Tag = formulario;
                 formulario.Show();
@@ -30,13 +32,13 @@ namespace SAESoft.Utilitarios
 
         public static void BotonesIniciales(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsddbProceso","tsbUpload","tsbComentarios","tsbPago","tsddbSwitchUser", "tsbSalir" };
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsddbProceso","tsbUpload","tsbComentarios","tsbPago","tsddbSwitchUser", "tsbRelatives", "tsbSalir" };
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
         public static void BotonesInicialesNavegacion(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsddbProceso","tsbUpload","tsbComentarios","tsbPago","tsddbSwitchUser", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbSalir" };
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsddbProceso","tsbUpload","tsbComentarios","tsbPago","tsddbSwitchUser", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbRelatives", "tsbSalir" };
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
@@ -66,21 +68,13 @@ namespace SAESoft.Utilitarios
                 {
                     if (botones.Contains(btn.Name))
                     {
-                        switch (btn.Name)
+                        btn.Enabled = btn.Name switch
                         {
-                            case "tsbNuevo":
-                                btn.Enabled = estado && hasPermission("CREAR." + Opcion);
-                                break;
-                            case "tsbModificar":
-                                btn.Enabled = estado && hasPermission("MODIFICAR." + Opcion);
-                                break;
-                            case "tsbEliminar":
-                                btn.Enabled = estado && hasPermission("ELIMINAR." + Opcion);
-                                break;
-                            default:
-                                btn.Enabled = estado;
-                                break;
-                        }
+                            "tsbNuevo" => estado && hasPermission("CREAR." + Opcion),
+                            "tsbModificar" => estado && hasPermission("MODIFICAR." + Opcion),
+                            "tsbEliminar" => estado && hasPermission("ELIMINAR." + Opcion),
+                            _ => estado,
+                        };
                     }
                 }
             }
@@ -112,46 +106,46 @@ namespace SAESoft.Utilitarios
                 {
                     c.Text = "";
                 }
-                if (c is ComboBox)
+                if (c is ComboBox box)
                 {
-                    if (((ComboBox)c).Items.Count > 0)
+                    if (box.Items.Count > 0)
                     {
-                        ((ComboBox)c).SelectedIndex = 0;
+                        box.SelectedIndex = 0;
                     }
                 }
-                if (c is CheckBox)
+                if (c is CheckBox box1)
                 {
-                    ((CheckBox)c).Checked = false;
+                    box1.Checked = false;
                 }
-                if (c is NumericUpDown)
+                if (c is NumericUpDown down)
                 {
-                    ((NumericUpDown)c).Value = 1;
+                    down.Value = 1;
                 }
-                if (c is DateTimePicker)
+                if (c is DateTimePicker picker)
                 {
-                    ((DateTimePicker)c).Value = DateTime.Now;
+                    picker.Value = DateTime.Now;
                 }
-                if (c is toggleSwitch)
+                if (c is toggleSwitch @switch)
                 {
-                    ((toggleSwitch)c).Checked = false;
+                    @switch.Checked = false;
                 }
-                if (c is ListBox && !(c is CheckedListBox))
+                if (c is ListBox box2 && c is not CheckedListBox)
                 {
-                    ((ListBox)c).DataSource = null;
-                    ((ListBox)c).Items.Clear();
+                    box2.DataSource = null;
+                    box2.Items.Clear();
                 }
-                if (c is CheckedListBox)
+                if (c is CheckedListBox box3)
                 {
-                    for (int i = 0;i< ((CheckedListBox)c).Items.Count;i++)
+                    for (int i = 0;i< box3.Items.Count;i++)
                     {
-                        ((CheckedListBox)c).SetItemChecked(i, false);
+                        box3.SetItemChecked(i, false);
                     }
                 }
-                if (c is ListView)
+                if (c is ListView view)
                 {
-                    ((ListView)c).Items.Clear();
+                    view.Items.Clear();
                 }
-                if (c is TabControl || c is TabPage || c is GroupBox || c is Panel || c is ToolStripContainer)
+                if (c is TabControl or TabPage or GroupBox or Panel or ToolStripContainer)
                 {
                     limpiarFormulario(c);
                 }
@@ -195,22 +189,18 @@ namespace SAESoft.Utilitarios
         {
             if (ninguno)
             {
-                using (SAESoftContext db = new SAESoftContext())
-                {
-                    var listado = db.Nombres.Where(n => n.Grupo.Nombre == g).OrderBy(n => n.Descripcion).ToList();
-                    listado.Insert(0, new Nombre { IdNombre = 0, Descripcion = "(NINGUNO)" });
-                    c.DataSource = listado;
-                    c.DisplayMember = "Descripcion";
-                    c.ValueMember = "IdNombre";
-                }
+                using SAESoftContext db = new();
+                var listado = db.Nombres.Where(n => n.Grupo.Nombre == g).OrderBy(n => n.Descripcion).ToList();
+                listado.Insert(0, new Nombre { IdNombre = 0, Descripcion = "(NINGUNO)" });
+                c.DataSource = listado;
+                c.DisplayMember = "Descripcion";
+                c.ValueMember = "IdNombre";
             } else
             {
-                using (SAESoftContext db = new SAESoftContext())
-                {
-                    c.DataSource = db.Nombres.Where(n => n.Grupo.Nombre == g).OrderBy(n => n.Descripcion).ToList();
-                    c.DisplayMember = "Descripcion";
-                    c.ValueMember = "IdNombre";
-                }
+                using SAESoftContext db = new();
+                c.DataSource = db.Nombres.Where(n => n.Grupo.Nombre == g).OrderBy(n => n.Descripcion).ToList();
+                c.DisplayMember = "Descripcion";
+                c.ValueMember = "IdNombre";
             }
         }
     }

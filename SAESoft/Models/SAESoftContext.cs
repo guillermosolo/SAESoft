@@ -39,6 +39,7 @@ namespace SAESoft.Models
         // aqui inician los de Admin
         public DbSet <Residencia> Residencias { get; set; }
         public DbSet <Contrato> Contratos { get; set; }
+        public DbSet <DepartamentoInterno> DepartamentosInternos { get; set; }
         public DbSet <Empleado> Empleados { get; set; }
         public DbSet<Familiar> Familiares { get; set; }
         public DbSet<AdminStatus> AdminStatuses { get; set; }

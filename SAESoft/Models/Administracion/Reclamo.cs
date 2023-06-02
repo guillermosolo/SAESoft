@@ -15,13 +15,17 @@ namespace SAESoft.Models.Administracion
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdReclamo { get; set; }
         public int IdEmpleado { get; set; }
-        public Empleado Empleado { get; set; }
+        [ForeignKey("IdEmpleado")]
+        public virtual Empleado Empleado { get; set; }
         public int? IdPaciente {get;set;}
-        public Familiar Familiar { get; set; }
+        [ForeignKey("IdPaciente")]
+        public virtual Familiar Familiar { get; set; }
         public int IdTipo { get; set; }
-        public Nombre TipoReclamo { get; set; }
+        [ForeignKey("IdTipo")]
+        public virtual Nombre TipoReclamo { get; set; }
         public int IdStatus { get; set; }
-        public AdminStatus Status { get; set; }
+        [ForeignKey("IdStatus")]
+        public virtual AdminStatus Status { get; set; }
         [Column(TypeName = "money")]
         public decimal Monto { get; set; }
         [Column(TypeName = "money")]
