@@ -1035,5 +1035,10 @@ namespace SAESoft.Importaciones
         {
 
         }
+
+        private void tsddbProceso_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

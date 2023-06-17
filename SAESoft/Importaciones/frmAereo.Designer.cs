@@ -597,7 +597,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListarXXX, tsbModificar, tsbEliminar, tsbPago, tsbUpload, tsbComentarios, tsddbSwitchUser, tsddbProceso, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(351, 39);
+            toolStrip1.Size = new Size(691, 39);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -711,6 +711,7 @@
             tsddbProceso.Size = new Size(45, 36);
             tsddbProceso.Text = "Proceso";
             tsddbProceso.DropDownItemClicked += tsddbProceso_DropDownItemClicked;
+            tsddbProceso.Click += tsddbProceso_Click;
             // 
             // toolStripSeparator1
             // 

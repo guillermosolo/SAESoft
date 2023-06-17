@@ -19,7 +19,7 @@ namespace SAESoft.Models.Administracion
         public virtual Empleado Empleado { get; set; }
         public int IdTipo { get; set; }
         [ForeignKey("IdTipo")]
-        public virtual Nombre Tipo { get; set; }
+        public virtual TipoDocumento Tipo { get; set; }
         public string Numero { get; set; }
         public DateTime Fecha { get; set; }
         public DateTime? Vencimiento { get; set; }

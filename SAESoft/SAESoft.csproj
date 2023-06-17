@@ -37,6 +37,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Administracion\frmNombramientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Administracion\frmPermisoTrabajo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Importaciones\frmComentarios.cs">
       <SubType>Form</SubType>
     </Compile>

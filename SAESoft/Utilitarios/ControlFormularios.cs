@@ -32,13 +32,13 @@ namespace SAESoft.Utilitarios
 
         public static void BotonesIniciales(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsddbProceso","tsbUpload","tsbComentarios","tsbPago","tsddbSwitchUser", "tsbRelatives", "tsbSalir" };
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsddbProceso","tsbUpload","tsbComentarios","tsbPago","tsddbSwitchUser", "tsbRelatives", "tsddbDocumentos", "tsbSalir" };
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
         public static void BotonesInicialesNavegacion(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsddbProceso","tsbUpload","tsbComentarios","tsbPago","tsddbSwitchUser", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbRelatives", "tsbSalir" };
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsddbProceso","tsbUpload","tsbComentarios","tsbPago","tsddbSwitchUser", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbRelatives", "tsddbDocumentos", "tsbSalir" };
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
@@ -84,7 +84,7 @@ namespace SAESoft.Utilitarios
         {
             foreach (Control c in cont.Controls)
             {
-                if (c is TextBox || c is ComboBox || c is CheckBox || c is NumericUpDown || c is DateTimePicker || c is toggleSwitch || c is DataGridView || c is CheckedListBox || c is RadioButton)
+                if (c is TextBox || c is ComboBox || c is CheckBox || c is NumericUpDown || c is DateTimePicker || c is toggleSwitch ||  c is CheckedListBox || c is RadioButton)
                 {
                     if (c.Name != "txtId")
                     {
@@ -113,7 +113,7 @@ namespace SAESoft.Utilitarios
                         box.SelectedIndex = 0;
                     }
                 }
-                if (c is CheckBox box1)
+                if (c is CheckBox box1 && c is not toggleSwitch)
                 {
                     box1.Checked = false;
                 }
@@ -124,10 +124,6 @@ namespace SAESoft.Utilitarios
                 if (c is DateTimePicker picker)
                 {
                     picker.Value = DateTime.Now;
-                }
-                if (c is toggleSwitch @switch)
-                {
-                    @switch.Checked = false;
                 }
                 if (c is ListBox box2 && c is not CheckedListBox)
                 {
