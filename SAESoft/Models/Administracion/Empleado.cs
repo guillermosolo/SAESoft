@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using SAESoft.Models.Importaciones;
+using System.ComponentModel;
 
 namespace SAESoft.Models.Administracion
 {
@@ -48,9 +49,13 @@ namespace SAESoft.Models.Administracion
         public int? IdSeguroVehiculo { get; set; }
         [ForeignKey("IdSeguroVehiculo")]
         public virtual SeguroVehiculo SeguroVehiculo { get; set; }
+        public int? IdSeguroMedico { get; set; }
+        [ForeignKey("IdSeguroMedico")]
+        public virtual SeguroMedico SeguroMedico { get; set; }
         public Boolean CuotaAnual { get; set; } = false;
         public Boolean BoletoOrnato { get; set; } = false;
         public Boolean Activo { get; set; } = true;
+        public int? AñosResidencia { get; set; } = null;
         public virtual ICollection<Familiar> Familiares { get; set;}
         public virtual ICollection<Documento> Documentos { get; set;}
     }

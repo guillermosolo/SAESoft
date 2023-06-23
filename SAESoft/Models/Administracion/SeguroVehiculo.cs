@@ -23,7 +23,9 @@ namespace SAESoft.Models.Administracion
         public required string Poliza { get; set; }
         public DateTime Inicio { get; set; }
         public DateTime Vencimiento { get; set; }
+        [Column(TypeName = "decimal(10,2)")]
         public decimal Prima { get; set; }
+        [Column(TypeName = "decimal(10,2)")]
         public decimal Deducible { get; set;}
     }
 }

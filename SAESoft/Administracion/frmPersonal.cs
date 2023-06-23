@@ -8,6 +8,7 @@ using SAESoft.Models;
 using System.Data;
 using Microsoft.EntityFrameworkCore.Storage;
 using SAESoft.Models.AdministracionSistema;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 
 namespace SAESoft.Administracion
@@ -22,6 +23,7 @@ namespace SAESoft.Administracion
         readonly DataTable dtMig = new();
         readonly DataTable dtMed = new();
         private bool isLoadingcboEmpresa = false;
+        private Boolean? cuotaAnual;
 
         public frmPersonal()
         {
@@ -55,6 +57,7 @@ namespace SAESoft.Administracion
             dtMig.Columns.Add("Vencimiento Residencia").DataType = Type.GetType("System.DateTime");
             dtMig.Columns.Add("Estatus Migratorio").DataType = Type.GetType("System.String");
             dtMig.Columns.Add("Vencimiento Estatus").DataType = Type.GetType("System.DateTime");
+            dtMig.Columns.Add("Años de Residencia").DataType = Type.GetType("System.Int32");
             dtMig.Columns.Add("Cuota de Extranjería").DataType = Type.GetType("System.Boolean");
 
             dgvMigracion.DataSource = dtMig;
@@ -65,8 +68,8 @@ namespace SAESoft.Administracion
 
             dtMed.Columns.Add("Nombre").DataType = Type.GetType("System.String");
             dtMed.Columns.Add("Parentesco").DataType = Type.GetType("System.String");
-            dtMed.Columns.Add("Número").DataType = Type.GetType("System.String");
-            dtMed.Columns.Add("Vencimiento").DataType = Type.GetType("System.DateTime");
+            dtMed.Columns.Add("Certificado").DataType = Type.GetType("System.String");
+            dtMed.Columns.Add("Carnet").DataType = Type.GetType("System.String");
 
             dgvMedico.DataSource = dtMed;
             dgvMedico.Columns[0].Width = 250;
@@ -219,9 +222,29 @@ namespace SAESoft.Administracion
             llenarDatosMigracion();
             llenarDatosTrabajo();
             llenarDatosRepresentacion();
+            llenarDatosSeguroMedico();
             llenarDatosSeguroVehiculo();
         }
 
+        private void llenarDatosSeguroMedico()
+        {
+            DataRow row;
+            row = dtMed.NewRow();
+            row[0] = rs[CurrentIndex].Alias;
+            row[1] = "TITULAR";
+            row[2] = rs[CurrentIndex].SeguroMedico?.Certificado ?? "";
+            row[3] = rs[CurrentIndex].SeguroMedico?.Carnet ?? "";
+            dtMed.Rows.Add(row);
+            foreach (var familiar in rs[CurrentIndex].Familiares)
+            {
+                row = dtMed.NewRow();
+                row[0] = familiar.Nombres + " " + familiar.Apellidos;
+                row[1] = familiar.Parentesco.Descripcion;
+                row[2] = familiar.SeguroMedico?.Certificado ?? "";
+                row[3] = familiar.SeguroMedico?.Carnet ?? "";
+                dtMed.Rows.Add(row);
+            }
+        }
         private void llenarDatosSeguroVehiculo()
         {
             txtAseguradora.Text = rs[CurrentIndex].SeguroVehiculo?.Aseguradora.Descripcion;
@@ -230,8 +253,8 @@ namespace SAESoft.Administracion
             txtVencimientoSV.Text = rs[CurrentIndex].SeguroVehiculo?.Vencimiento.Date.ToString();
             txtPlacasSV.Text = rs[CurrentIndex].SeguroVehiculo?.Placa;
             txtDescSV.Text = rs[CurrentIndex].SeguroVehiculo?.Marca + " " + rs[CurrentIndex].SeguroVehiculo?.Color;
-            txtPrima.Text = rs[CurrentIndex].SeguroVehiculo?.Prima.ToString();
-            txtDeducibleSV.Text = rs[CurrentIndex].SeguroVehiculo?.Deducible.ToString();
+            txtPrima.Text = rs[CurrentIndex].SeguroVehiculo?.Prima.ToString("C");
+            txtDeducibleSV.Text = rs[CurrentIndex].SeguroVehiculo?.Deducible.ToString("C");
         }
 
         private void llenarDatosRepresentacion()
@@ -262,6 +285,7 @@ namespace SAESoft.Administracion
             DataRow row;
             string? texto, texto2;
             DateTime? fecha;
+            int? Años = null;
             row = dtMig.NewRow();
             row[0] = rs[CurrentIndex].Alias;
             row[1] = "TITULAR";
@@ -270,10 +294,14 @@ namespace SAESoft.Administracion
             if (texto != "PERMANENTE")
             {
                 fecha = rs[CurrentIndex].Residencia?.Vencimiento;
+                cuotaAnual = null;
+                Años = rs[CurrentIndex].AñosResidencia;
             }
             else
             {
                 fecha = null;
+                cuotaAnual = rs[CurrentIndex].CuotaAnual;
+                Años = null;
             }
             row[2] = texto != null ? (Object)texto : DBNull.Value;
             row[3] = texto2 != null ? (Object)texto2 : DBNull.Value;
@@ -282,15 +310,41 @@ namespace SAESoft.Administracion
             fecha = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 5)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
             row[5] = texto != null ? (Object)texto : DBNull.Value;
             row[6] = fecha != null ? (Object)fecha : DBNull.Value;
-            row[7] = rs[CurrentIndex].CuotaAnual;
+            if (Años != null)
+                row[7] = Años;
+            if (cuotaAnual != null)
+                row[8] = cuotaAnual;
             dtMig.Rows.Add(row);
             foreach (var familiar in rs[CurrentIndex].Familiares)
             {
                 row = dtMig.NewRow();
                 row[0] = familiar.Nombres + " " + familiar.Apellidos;
                 row[1] = familiar.Parentesco.Descripcion;
-
-                row[7] = false;
+                texto = familiar.Residencia?.Tipo.Descripcion;
+                texto2 = familiar.Residencia?.Resolucion;
+                if (texto != "PERMANENTE")
+                {
+                    fecha = familiar.Residencia?.Vencimiento;
+                    cuotaAnual = null;
+                    Años = familiar.AñosResidencia;
+                }
+                else
+                {
+                    fecha = null;
+                    cuotaAnual = rs[CurrentIndex].CuotaAnual;
+                    Años = null;
+                }
+                row[2] = texto != null ? (Object)texto : DBNull.Value;
+                row[3] = texto2 != null ? (Object)texto2 : DBNull.Value;
+                row[4] = fecha != null ? (Object)fecha : DBNull.Value;
+                texto = familiar.Documentos?.Where(d => d.IdTipo == 5)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
+                fecha = familiar.Documentos?.Where(d => d.IdTipo == 5)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
+                row[5] = texto != null ? (Object)texto : DBNull.Value;
+                row[6] = fecha != null ? (Object)fecha : DBNull.Value;
+                if (Años != null)
+                    row[7] = Años;
+                if (cuotaAnual != null)
+                    row[8] = cuotaAnual;
                 dtMig.Rows.Add(row);
             }
         }
@@ -325,7 +379,18 @@ namespace SAESoft.Administracion
                 row[1] = familiar.Parentesco.Descripcion;
                 row[2] = familiar.FechaNac.Date;
                 row[3] = calculaEdad(familiar.FechaNac.Date);
-                row[10] = false;
+                texto = familiar.Documentos?.Where(d => d.IdTipo == 2)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
+                fecha = familiar.Documentos?.Where(d => d.IdTipo == 2)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
+                row[4] = texto != null ? (Object)texto : DBNull.Value;
+                row[5] = fecha != null ? (Object)fecha : DBNull.Value;
+                texto = familiar.Documentos?.Where(d => d.IdTipo == 1)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
+                fecha = familiar.Documentos?.Where(d => d.IdTipo == 1)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
+                row[6] = texto != null ? (Object)texto : DBNull.Value;
+                row[7] = fecha != null ? (Object)fecha : DBNull.Value;
+                texto = familiar.Documentos?.Where(d => d.IdTipo == 8)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
+                fecha = familiar.Documentos?.Where(d => d.IdTipo == 8)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
+                row[8] = texto != null ? (Object)texto : DBNull.Value;
+                row[9] = fecha != null ? (Object)fecha : DBNull.Value;
                 dtDoc.Rows.Add(row);
             }
         }
@@ -336,49 +401,6 @@ namespace SAESoft.Administracion
             dtMig.Clear();
             dtMed.Clear();
         }
-
-
-        /*  private void despliegaDocumentos()
-          {
-              DataRow row;
-              dtd.Clear();
-              if (rs[CurrentIndex].Residencia != null)
-              {
-                  row = dtd.NewRow();
-                  row[0] = "RESIDENCIA " + rs[CurrentIndex].Residencia.Tipo.Descripcion;
-                  row[1] = rs[CurrentIndex].Residencia.Resolucion;
-                  row[2] = rs[CurrentIndex].Residencia.Vencimiento.ToString("dd/MM/yyyy");
-                  dtd.Rows.Add(row);
-              }
-
-              if (rs[CurrentIndex].Contrato != null)
-              {
-                  row = dtd.NewRow();
-                  row[0] = "CONTRATO CON " + rs[CurrentIndex].Contrato.Empresa.Descripcion;
-                  row[1] = rs[CurrentIndex].Contrato.Numero;
-                  row[2] = "N/A";
-                  dtd.Rows.Add(row);
-              }
-
-              if (rs[CurrentIndex].Documentos != null)
-              {
-                  foreach (var doc in rs[CurrentIndex].Documentos)
-                  {
-                      row = dtd.NewRow();
-                      row[0] = doc.Tipo.Descripcion;
-                      row[1] = doc.Numero;
-                      if (doc.NoVence)
-                      {
-                          row[2] = "N/A";
-                      }
-                      else
-                      {
-                          row[2] = doc.Vencimiento;
-                      }
-                      dtd.Rows.Add(row);
-                  }
-              }
-          }*/
 
         private Boolean ValidarDatos()
         {
@@ -557,12 +579,21 @@ namespace SAESoft.Administracion
                                             .ThenInclude(rt => rt.Tipo)
                                             .Include(f => f.Familiares)
                                             .ThenInclude(p => p.Parentesco)
+                                            .Include(f => f.Familiares)
+                                            .ThenInclude(df => df.Documentos)
+                                            .ThenInclude(dft => dft.Tipo)
+                                            .Include(f => f.Familiares)
+                                            .ThenInclude(rf => rf.Residencia)
+                                            .ThenInclude(rft => rft.Tipo)
+                                            .Include(f => f.Familiares)
+                                            .ThenInclude(smf => smf.SeguroMedico)
                                             .Include(c => c.Documentos)
                                             .ThenInclude(t => t.Tipo)
-                                            .Include(sv=>sv.SeguroVehiculo)
-                                            .ThenInclude(t=>t.Aseguradora)
-                                            .Include(p=>p.PermisoTrabajo)
-                                            .ThenInclude(t=>t.Tipo)
+                                            .Include(sv => sv.SeguroVehiculo)
+                                            .ThenInclude(t => t.Aseguradora)
+                                            .Include(p => p.PermisoTrabajo)
+                                            .ThenInclude(t => t.Tipo)
+                                            .Include(sm => sm.SeguroMedico)
                                             .Where(b => 1 == 1);
                 if (buscar.nombreESP != null)
                     queryable = queryable.Where(b => b.Alias.Contains(buscar.nombreESP));
@@ -987,6 +1018,40 @@ namespace SAESoft.Administracion
                 edad--;
             }
             return edad;
+        }
+
+        private void dgvDocumentos_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            // para que no salte error por defecto, no borrar.
+        }
+
+        private void dgvMigracion_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            // para que no salte error por defecto, no borrar.
+        }
+
+        private void dgvMigracion_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            if (cuotaAnual == null)
+            {
+                DataGridViewRow lastRow = dgvMigracion.Rows[^1];
+                lastRow.Cells[8] = new DataGridViewTextBoxCell
+                {
+                    Value = ""
+                };
+            }
+        }
+
+        private void dgvDocumentos_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            if (dgvDocumentos.Rows.Count > 1)
+            {
+                DataGridViewRow lastRow = dgvDocumentos.Rows[^1];
+                lastRow.Cells[10] = new DataGridViewTextBoxCell
+                {
+                    Value = ""
+                };
+            }
         }
     }
 }

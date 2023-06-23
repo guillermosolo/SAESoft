@@ -14,9 +14,13 @@ namespace SAESoft.Models.Administracion
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdDocumento { get; set; }
-        public int IdEmpleado { get; set; }
+        public int? IdEmpleado { get; set; }
         [ForeignKey("IdEmpleado")]
         public virtual Empleado Empleado { get; set; }
+
+        public int? IdFamiliar { get; set; }
+        [ForeignKey("IdFamiliar")]
+        public virtual Familiar Familiar { get; set; }
         public int IdTipo { get; set; }
         [ForeignKey("IdTipo")]
         public virtual TipoDocumento Tipo { get; set; }

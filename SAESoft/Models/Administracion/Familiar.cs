@@ -19,10 +19,17 @@ namespace SAESoft.Models.Administracion
         public required string Apellidos { get; set; }
         public DateTime FechaNac { get; set; }
 
-
         [StringLength(1)]
         [Column(TypeName = "char(1)")]
         [RegularExpression("[MF]")]
         public required string Genero { get; set; }
+        public virtual ICollection<Documento> Documentos { get; set; }
+        public int? IdResidencia { get; set; }
+        [ForeignKey("IdResidencia")]
+        public virtual Residencia Residencia { get; set; }
+        public int? AñosResidencia { get; set; } = null;
+        public int? IdSeguroMedico { get; set; }
+        [ForeignKey("IdSeguroMedico")]
+        public virtual SeguroMedico SeguroMedico { get; set; }
     }
 }

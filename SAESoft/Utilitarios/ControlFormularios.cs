@@ -32,13 +32,13 @@ namespace SAESoft.Utilitarios
 
         public static void BotonesIniciales(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsddbProceso","tsbUpload","tsbComentarios","tsbPago","tsddbSwitchUser", "tsbRelatives", "tsddbDocumentos", "tsbSalir" };
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbRelatives", "tsddbDocumentos", "tsbSalir" };
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
         public static void BotonesInicialesNavegacion(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar","tsddbProceso","tsbUpload","tsbComentarios","tsbPago","tsddbSwitchUser", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbRelatives", "tsddbDocumentos", "tsbSalir" };
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbRelatives", "tsddbDocumentos", "tsbSalir" };
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
@@ -84,11 +84,14 @@ namespace SAESoft.Utilitarios
         {
             foreach (Control c in cont.Controls)
             {
-                if (c is TextBox || c is ComboBox || c is CheckBox || c is NumericUpDown || c is DateTimePicker || c is toggleSwitch ||  c is CheckedListBox || c is RadioButton)
+                if (c is TextBox || c is ComboBox || c is CheckBox || c is NumericUpDown || c is DateTimePicker || c is toggleSwitch || c is CheckedListBox || c is RadioButton)
                 {
                     if (c.Name != "txtId")
                     {
-                        c.Enabled = opcion;
+                        if (c is TextBox txt && !txt.ReadOnly)
+                            c.Enabled = opcion;
+                        else
+                            c.Enabled = opcion;
                     }
                 }
                 if (c is TabControl || c is TabPage || c is GroupBox || c is Panel || c is ToolStripContainer)
@@ -132,7 +135,7 @@ namespace SAESoft.Utilitarios
                 }
                 if (c is CheckedListBox box3)
                 {
-                    for (int i = 0;i< box3.Items.Count;i++)
+                    for (int i = 0; i < box3.Items.Count; i++)
                     {
                         box3.SetItemChecked(i, false);
                     }
@@ -181,7 +184,7 @@ namespace SAESoft.Utilitarios
                 ((IconButton)sender).IconColor = Color.DarkGray;
         }
 
-        public static void llenarNombres(ComboBox c,string g,Boolean ninguno = false)
+        public static void llenarNombres(ComboBox c, string g, Boolean ninguno = false)
         {
             if (ninguno)
             {
@@ -191,7 +194,8 @@ namespace SAESoft.Utilitarios
                 c.DataSource = listado;
                 c.DisplayMember = "Descripcion";
                 c.ValueMember = "IdNombre";
-            } else
+            }
+            else
             {
                 using SAESoftContext db = new();
                 c.DataSource = db.Nombres.Where(n => n.Grupo.Nombre == g).OrderBy(n => n.Descripcion).ToList();

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SAESoft.Migrations
 {
     /// <inheritdoc />
-    public partial class CorreccionesAdmin : Migration
+    public partial class AgregarTablasAdministracion : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -116,10 +116,6 @@ namespace SAESoft.Migrations
                 table: "Empleados");
 
             migrationBuilder.DropIndex(
-                name: "IX_Empleados_ResidenciaIdResidencia",
-                table: "Empleados");
-
-            migrationBuilder.DropIndex(
                 name: "IX_Documentos_EmpleadoIdEmpleado",
                 table: "Documentos");
 
@@ -138,6 +134,10 @@ namespace SAESoft.Migrations
             migrationBuilder.DropColumn(
                 name: "StatusIdStatus",
                 table: "Tramites");
+
+            migrationBuilder.DropColumn(
+                name: "Nombre",
+                table: "Residencias");
 
             migrationBuilder.DropColumn(
                 name: "TipoIdNombre",
@@ -176,10 +176,6 @@ namespace SAESoft.Migrations
                 table: "Empleados");
 
             migrationBuilder.DropColumn(
-                name: "ResidenciaIdResidencia",
-                table: "Empleados");
-
-            migrationBuilder.DropColumn(
                 name: "EmpleadoIdEmpleado",
                 table: "Documentos");
 
@@ -190,6 +186,30 @@ namespace SAESoft.Migrations
             migrationBuilder.DropColumn(
                 name: "EmpresaIdNombre",
                 table: "Contratos");
+
+            migrationBuilder.RenameColumn(
+                name: "ResidenciaIdResidencia",
+                table: "Empleados",
+                newName: "IdPuesto");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_Empleados_ResidenciaIdResidencia",
+                table: "Empleados",
+                newName: "IX_Empleados_IdPuesto");
+
+            migrationBuilder.AddColumn<string>(
+                name: "Genero",
+                table: "Familiares",
+                type: "char(1)",
+                maxLength: 1,
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<int>(
+                name: "IdResidencia",
+                table: "Familiares",
+                type: "int",
+                nullable: true);
 
             migrationBuilder.AlterColumn<int>(
                 name: "IdResidencia",
@@ -206,6 +226,160 @@ namespace SAESoft.Migrations
                 nullable: true,
                 oldClrType: typeof(int),
                 oldType: "int");
+
+            migrationBuilder.AddColumn<string>(
+                name: "EstadoCivil",
+                table: "Empleados",
+                type: "char(1)",
+                maxLength: 1,
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<DateTime>(
+                name: "FechaBaja",
+                table: "Empleados",
+                type: "datetime2",
+                nullable: true);
+
+            migrationBuilder.AddColumn<DateTime>(
+                name: "FechaIngreso",
+                table: "Empleados",
+                type: "datetime2",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+
+            migrationBuilder.AddColumn<string>(
+                name: "Genero",
+                table: "Empleados",
+                type: "char(1)",
+                maxLength: 1,
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<int>(
+                name: "IdPermisoTrabajo",
+                table: "Empleados",
+                type: "int",
+                nullable: true);
+
+            migrationBuilder.AddColumn<int>(
+                name: "IdSeguroVehiculo",
+                table: "Empleados",
+                type: "int",
+                nullable: true);
+
+            migrationBuilder.AlterColumn<int>(
+                name: "IdEmpleado",
+                table: "Documentos",
+                type: "int",
+                nullable: true,
+                oldClrType: typeof(int),
+                oldType: "int");
+
+            migrationBuilder.AddColumn<int>(
+                name: "IdFamiliar",
+                table: "Documentos",
+                type: "int",
+                nullable: true);
+
+            migrationBuilder.CreateTable(
+                name: "DepartamentosInternos",
+                columns: table => new
+                {
+                    IdDepto = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdEmpresa = table.Column<int>(type: "int", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdUsuarioCreacion = table.Column<int>(type: "int", nullable: true),
+                    FechaUltimaMod = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IdUsuarioMod = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DepartamentosInternos", x => x.IdDepto);
+                    table.ForeignKey(
+                        name: "FK_DepartamentosInternos_Nombres_IdEmpresa",
+                        column: x => x.IdEmpresa,
+                        principalTable: "Nombres",
+                        principalColumn: "IdNombre",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PermisosTrabajo",
+                columns: table => new
+                {
+                    IdPermiso = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdTipo = table.Column<int>(type: "int", nullable: false),
+                    Resolucion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Inicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Vencimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdUsuarioCreacion = table.Column<int>(type: "int", nullable: true),
+                    FechaUltimaMod = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IdUsuarioMod = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PermisosTrabajo", x => x.IdPermiso);
+                    table.ForeignKey(
+                        name: "FK_PermisosTrabajo_Nombres_IdTipo",
+                        column: x => x.IdTipo,
+                        principalTable: "Nombres",
+                        principalColumn: "IdNombre",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SegurosVehiculos",
+                columns: table => new
+                {
+                    IdVehiculo = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Marca = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Placa = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdAseguradora = table.Column<int>(type: "int", nullable: false),
+                    Poliza = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Inicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Vencimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Prima = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
+                    Deducible = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdUsuarioCreacion = table.Column<int>(type: "int", nullable: true),
+                    FechaUltimaMod = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IdUsuarioMod = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SegurosVehiculos", x => x.IdVehiculo);
+                    table.ForeignKey(
+                        name: "FK_SegurosVehiculos_Nombres_IdAseguradora",
+                        column: x => x.IdAseguradora,
+                        principalTable: "Nombres",
+                        principalColumn: "IdNombre",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TiposDocumento",
+                columns: table => new
+                {
+                    IdTipoDocumento = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    activo = table.Column<bool>(type: "bit", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdUsuarioCreacion = table.Column<int>(type: "int", nullable: true),
+                    FechaUltimaMod = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IdUsuarioMod = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TiposDocumento", x => x.IdTipoDocumento);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tramites_IdEmpleado",
@@ -258,6 +432,11 @@ namespace SAESoft.Migrations
                 column: "IdParentesco");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Familiares_IdResidencia",
+                table: "Familiares",
+                column: "IdResidencia");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Empleados_IdContrato",
                 table: "Empleados",
                 column: "IdContrato");
@@ -268,14 +447,29 @@ namespace SAESoft.Migrations
                 column: "IdDepto");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Empleados_IdPermisoTrabajo",
+                table: "Empleados",
+                column: "IdPermisoTrabajo");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Empleados_IdResidencia",
                 table: "Empleados",
                 column: "IdResidencia");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Empleados_IdSeguroVehiculo",
+                table: "Empleados",
+                column: "IdSeguroVehiculo");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Documentos_IdEmpleado",
                 table: "Documentos",
                 column: "IdEmpleado");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Documentos_IdFamiliar",
+                table: "Documentos",
+                column: "IdFamiliar");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Documentos_IdTipo",
@@ -286,6 +480,21 @@ namespace SAESoft.Migrations
                 name: "IX_Contratos_IdEmpresa",
                 table: "Contratos",
                 column: "IdEmpresa");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DepartamentosInternos_IdEmpresa",
+                table: "DepartamentosInternos",
+                column: "IdEmpresa");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PermisosTrabajo_IdTipo",
+                table: "PermisosTrabajo",
+                column: "IdTipo");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SegurosVehiculos_IdAseguradora",
+                table: "SegurosVehiculos",
+                column: "IdAseguradora");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Contratos_Nombres_IdEmpresa",
@@ -300,15 +509,21 @@ namespace SAESoft.Migrations
                 table: "Documentos",
                 column: "IdEmpleado",
                 principalTable: "Empleados",
-                principalColumn: "IdEmpleado",
-                onDelete: ReferentialAction.Restrict);
+                principalColumn: "IdEmpleado");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Documentos_Nombres_IdTipo",
+                name: "FK_Documentos_Familiares_IdFamiliar",
+                table: "Documentos",
+                column: "IdFamiliar",
+                principalTable: "Familiares",
+                principalColumn: "IdFamiliar");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Documentos_TiposDocumento_IdTipo",
                 table: "Documentos",
                 column: "IdTipo",
-                principalTable: "Nombres",
-                principalColumn: "IdNombre",
+                principalTable: "TiposDocumento",
+                principalColumn: "IdTipoDocumento",
                 onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
@@ -319,12 +534,27 @@ namespace SAESoft.Migrations
                 principalColumn: "IdContrato");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Empleados_Nombres_IdDepto",
+                name: "FK_Empleados_DepartamentosInternos_IdDepto",
                 table: "Empleados",
                 column: "IdDepto",
+                principalTable: "DepartamentosInternos",
+                principalColumn: "IdDepto",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Empleados_Nombres_IdPuesto",
+                table: "Empleados",
+                column: "IdPuesto",
                 principalTable: "Nombres",
                 principalColumn: "IdNombre",
                 onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Empleados_PermisosTrabajo_IdPermisoTrabajo",
+                table: "Empleados",
+                column: "IdPermisoTrabajo",
+                principalTable: "PermisosTrabajo",
+                principalColumn: "IdPermiso");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Empleados_Residencias_IdResidencia",
@@ -332,6 +562,13 @@ namespace SAESoft.Migrations
                 column: "IdResidencia",
                 principalTable: "Residencias",
                 principalColumn: "IdResidencia");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Empleados_SegurosVehiculos_IdSeguroVehiculo",
+                table: "Empleados",
+                column: "IdSeguroVehiculo",
+                principalTable: "SegurosVehiculos",
+                principalColumn: "IdVehiculo");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Familiares_Empleados_IdEmpleado",
@@ -348,6 +585,13 @@ namespace SAESoft.Migrations
                 principalTable: "Nombres",
                 principalColumn: "IdNombre",
                 onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Familiares_Residencias_IdResidencia",
+                table: "Familiares",
+                column: "IdResidencia",
+                principalTable: "Residencias",
+                principalColumn: "IdResidencia");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Reclamos_AdminStatuses_IdStatus",
@@ -425,7 +669,11 @@ namespace SAESoft.Migrations
                 table: "Documentos");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Documentos_Nombres_IdTipo",
+                name: "FK_Documentos_Familiares_IdFamiliar",
+                table: "Documentos");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Documentos_TiposDocumento_IdTipo",
                 table: "Documentos");
 
             migrationBuilder.DropForeignKey(
@@ -433,11 +681,23 @@ namespace SAESoft.Migrations
                 table: "Empleados");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Empleados_Nombres_IdDepto",
+                name: "FK_Empleados_DepartamentosInternos_IdDepto",
+                table: "Empleados");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Empleados_Nombres_IdPuesto",
+                table: "Empleados");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Empleados_PermisosTrabajo_IdPermisoTrabajo",
                 table: "Empleados");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Empleados_Residencias_IdResidencia",
+                table: "Empleados");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Empleados_SegurosVehiculos_IdSeguroVehiculo",
                 table: "Empleados");
 
             migrationBuilder.DropForeignKey(
@@ -446,6 +706,10 @@ namespace SAESoft.Migrations
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Familiares_Nombres_IdParentesco",
+                table: "Familiares");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Familiares_Residencias_IdResidencia",
                 table: "Familiares");
 
             migrationBuilder.DropForeignKey(
@@ -479,6 +743,18 @@ namespace SAESoft.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Tramites_Nombres_IdTipo",
                 table: "Tramites");
+
+            migrationBuilder.DropTable(
+                name: "DepartamentosInternos");
+
+            migrationBuilder.DropTable(
+                name: "PermisosTrabajo");
+
+            migrationBuilder.DropTable(
+                name: "SegurosVehiculos");
+
+            migrationBuilder.DropTable(
+                name: "TiposDocumento");
 
             migrationBuilder.DropIndex(
                 name: "IX_Tramites_IdEmpleado",
@@ -521,6 +797,10 @@ namespace SAESoft.Migrations
                 table: "Familiares");
 
             migrationBuilder.DropIndex(
+                name: "IX_Familiares_IdResidencia",
+                table: "Familiares");
+
+            migrationBuilder.DropIndex(
                 name: "IX_Empleados_IdContrato",
                 table: "Empleados");
 
@@ -529,11 +809,23 @@ namespace SAESoft.Migrations
                 table: "Empleados");
 
             migrationBuilder.DropIndex(
+                name: "IX_Empleados_IdPermisoTrabajo",
+                table: "Empleados");
+
+            migrationBuilder.DropIndex(
                 name: "IX_Empleados_IdResidencia",
                 table: "Empleados");
 
             migrationBuilder.DropIndex(
+                name: "IX_Empleados_IdSeguroVehiculo",
+                table: "Empleados");
+
+            migrationBuilder.DropIndex(
                 name: "IX_Documentos_IdEmpleado",
+                table: "Documentos");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Documentos_IdFamiliar",
                 table: "Documentos");
 
             migrationBuilder.DropIndex(
@@ -543,6 +835,52 @@ namespace SAESoft.Migrations
             migrationBuilder.DropIndex(
                 name: "IX_Contratos_IdEmpresa",
                 table: "Contratos");
+
+            migrationBuilder.DropColumn(
+                name: "Genero",
+                table: "Familiares");
+
+            migrationBuilder.DropColumn(
+                name: "IdResidencia",
+                table: "Familiares");
+
+            migrationBuilder.DropColumn(
+                name: "EstadoCivil",
+                table: "Empleados");
+
+            migrationBuilder.DropColumn(
+                name: "FechaBaja",
+                table: "Empleados");
+
+            migrationBuilder.DropColumn(
+                name: "FechaIngreso",
+                table: "Empleados");
+
+            migrationBuilder.DropColumn(
+                name: "Genero",
+                table: "Empleados");
+
+            migrationBuilder.DropColumn(
+                name: "IdPermisoTrabajo",
+                table: "Empleados");
+
+            migrationBuilder.DropColumn(
+                name: "IdSeguroVehiculo",
+                table: "Empleados");
+
+            migrationBuilder.DropColumn(
+                name: "IdFamiliar",
+                table: "Documentos");
+
+            migrationBuilder.RenameColumn(
+                name: "IdPuesto",
+                table: "Empleados",
+                newName: "ResidenciaIdResidencia");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_Empleados_IdPuesto",
+                table: "Empleados",
+                newName: "IX_Empleados_ResidenciaIdResidencia");
 
             migrationBuilder.AddColumn<int>(
                 name: "EmpleadoIdEmpleado",
@@ -557,6 +895,13 @@ namespace SAESoft.Migrations
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Nombre",
+                table: "Residencias",
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "");
 
             migrationBuilder.AddColumn<int>(
                 name: "TipoIdNombre",
@@ -641,12 +986,15 @@ namespace SAESoft.Migrations
                 nullable: false,
                 defaultValue: 0);
 
-            migrationBuilder.AddColumn<int>(
-                name: "ResidenciaIdResidencia",
-                table: "Empleados",
+            migrationBuilder.AlterColumn<int>(
+                name: "IdEmpleado",
+                table: "Documentos",
                 type: "int",
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: 0,
+                oldClrType: typeof(int),
+                oldType: "int",
+                oldNullable: true);
 
             migrationBuilder.AddColumn<int>(
                 name: "EmpleadoIdEmpleado",
@@ -723,11 +1071,6 @@ namespace SAESoft.Migrations
                 name: "IX_Empleados_DepartamentoIdNombre",
                 table: "Empleados",
                 column: "DepartamentoIdNombre");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Empleados_ResidenciaIdResidencia",
-                table: "Empleados",
-                column: "ResidenciaIdResidencia");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Documentos_EmpleadoIdEmpleado",

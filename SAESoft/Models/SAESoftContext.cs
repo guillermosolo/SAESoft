@@ -40,6 +40,7 @@ namespace SAESoft.Models
         public DbSet <TipoDocumento> TiposDocumento { get; set; }
         public DbSet <PermisoTrabajo> PermisosTrabajo { get; set; }
         public DbSet <SeguroVehiculo> SegurosVehiculos { get; set; }
+        public DbSet <SeguroMedico> SegurosMedicos { get; set; }
         public DbSet <Residencia> Residencias { get; set; }
         public DbSet <Contrato> Contratos { get; set; }
         public DbSet <DepartamentoInterno> DepartamentosInternos { get; set; }

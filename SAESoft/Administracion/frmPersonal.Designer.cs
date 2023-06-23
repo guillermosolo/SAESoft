@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             toolStripContainer1 = new ToolStripContainer();
             groupBox3 = new GroupBox();
             rdbFemenino = new RadioButton();
@@ -308,7 +308,6 @@
             // txtIGSS
             // 
             txtIGSS.CharacterCasing = CharacterCasing.Upper;
-            txtIGSS.Enabled = false;
             txtIGSS.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtIGSS.Location = new Point(397, 72);
             txtIGSS.Name = "txtIGSS";
@@ -329,7 +328,6 @@
             // txtNIT
             // 
             txtNIT.CharacterCasing = CharacterCasing.Upper;
-            txtNIT.Enabled = false;
             txtNIT.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtNIT.Location = new Point(48, 72);
             txtNIT.Name = "txtNIT";
@@ -350,7 +348,6 @@
             // txtPasaporte
             // 
             txtPasaporte.CharacterCasing = CharacterCasing.Upper;
-            txtPasaporte.Enabled = false;
             txtPasaporte.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtPasaporte.Location = new Point(397, 30);
             txtPasaporte.Name = "txtPasaporte";
@@ -371,7 +368,6 @@
             // txtDPI
             // 
             txtDPI.CharacterCasing = CharacterCasing.Upper;
-            txtDPI.Enabled = false;
             txtDPI.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtDPI.Location = new Point(49, 30);
             txtDPI.Name = "txtDPI";
@@ -392,6 +388,7 @@
             // dtpBaja
             // 
             dtpBaja.CalendarFont = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpBaja.Enabled = false;
             dtpBaja.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dtpBaja.Format = DateTimePickerFormat.Short;
             dtpBaja.Location = new Point(459, 211);
@@ -414,6 +411,7 @@
             // dtpIngreso
             // 
             dtpIngreso.CalendarFont = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpIngreso.Enabled = false;
             dtpIngreso.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dtpIngreso.Format = DateTimePickerFormat.Short;
             dtpIngreso.Location = new Point(213, 211);
@@ -526,14 +524,14 @@
             // 
             dgvDocumentos.AllowUserToAddRows = false;
             dgvDocumentos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvDocumentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvDocumentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvDocumentos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDocumentos.Dock = DockStyle.Fill;
             dgvDocumentos.Location = new Point(3, 3);
@@ -543,6 +541,8 @@
             dgvDocumentos.RowTemplate.Height = 25;
             dgvDocumentos.Size = new Size(626, 216);
             dgvDocumentos.TabIndex = 0;
+            dgvDocumentos.DataError += dgvDocumentos_DataError;
+            dgvDocumentos.RowsAdded += dgvDocumentos_RowsAdded;
             // 
             // tabPage2
             // 
@@ -560,23 +560,23 @@
             dgvMigracion.AllowUserToAddRows = false;
             dgvMigracion.AllowUserToDeleteRows = false;
             dgvMigracion.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvMigracion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvMigracion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvMigracion.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.Window;
-            dataGridViewCellStyle8.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dgvMigracion.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvMigracion.DefaultCellStyle = dataGridViewCellStyle3;
             dgvMigracion.Dock = DockStyle.Fill;
             dgvMigracion.Location = new Point(3, 3);
             dgvMigracion.Name = "dgvMigracion";
@@ -585,6 +585,8 @@
             dgvMigracion.RowTemplate.Height = 25;
             dgvMigracion.Size = new Size(626, 216);
             dgvMigracion.TabIndex = 0;
+            dgvMigracion.DataError += dgvMigracion_DataError;
+            dgvMigracion.RowsAdded += dgvMigracion_RowsAdded;
             // 
             // tabPage3
             // 
@@ -781,23 +783,23 @@
             dgvMedico.AllowUserToAddRows = false;
             dgvMedico.AllowUserToDeleteRows = false;
             dgvMedico.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = SystemColors.Control;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dgvMedico.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvMedico.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvMedico.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = SystemColors.Window;
-            dataGridViewCellStyle10.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
-            dgvMedico.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvMedico.DefaultCellStyle = dataGridViewCellStyle5;
             dgvMedico.Dock = DockStyle.Fill;
             dgvMedico.Location = new Point(0, 0);
             dgvMedico.Name = "dgvMedico";
@@ -842,6 +844,7 @@
             txtDeducibleSV.ReadOnly = true;
             txtDeducibleSV.Size = new Size(177, 27);
             txtDeducibleSV.TabIndex = 70;
+            txtDeducibleSV.TextAlign = HorizontalAlignment.Right;
             // 
             // label35
             // 
@@ -863,6 +866,7 @@
             txtPrima.ReadOnly = true;
             txtPrima.Size = new Size(174, 27);
             txtPrima.TabIndex = 68;
+            txtPrima.TextAlign = HorizontalAlignment.Right;
             // 
             // label34
             // 
@@ -1095,6 +1099,7 @@
             // dtpFechaNac
             // 
             dtpFechaNac.CalendarFont = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpFechaNac.Enabled = false;
             dtpFechaNac.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dtpFechaNac.Format = DateTimePickerFormat.Short;
             dtpFechaNac.Location = new Point(471, 169);
