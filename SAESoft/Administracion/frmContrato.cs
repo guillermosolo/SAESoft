@@ -30,12 +30,13 @@ namespace SAESoft.Administracion
         {
             if (existe)
             {
-                var resp = MessageBox.Show("Ya existe un Contrato, ¿desea reemplazar?","Advertencia",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                var resp = MessageBox.Show("Ya existe un Contrato, ¿desea reemplazar?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resp == DialogResult.Yes)
                 {
                     empresa = Convert.ToInt32(cboEmpresa.SelectedValue);
                     numero = txtNumero.Text;
-                } else
+                }
+                else
                 {
                     this.DialogResult = DialogResult.Cancel;
                 }
@@ -45,7 +46,7 @@ namespace SAESoft.Administracion
                 empresa = Convert.ToInt32(cboEmpresa.SelectedValue);
                 numero = txtNumero.Text;
             }
-           
+
         }
     }
 }

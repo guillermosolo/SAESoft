@@ -12,6 +12,7 @@ namespace SAESoft.Administracion
 {
     public partial class frmBuscarEmpleados : Form
     {
+        public string codigo;
         public string nombreESP;
         public string nombreCOR;
         public frmBuscarEmpleados()
@@ -21,6 +22,10 @@ namespace SAESoft.Administracion
 
         private void icbBuscar_Click(object sender, EventArgs e)
         {
+            if (txtCodigo.Text != "")
+            {
+                codigo = txtCodigo.Text;
+            }
             if (txtNombreESP.Text != "")
             {
                 nombreESP = txtNombreESP.Text;

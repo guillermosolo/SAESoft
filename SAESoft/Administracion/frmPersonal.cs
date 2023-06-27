@@ -7,8 +7,6 @@ using static SAESoft.Cache.UserData;
 using SAESoft.Models;
 using System.Data;
 using Microsoft.EntityFrameworkCore.Storage;
-using SAESoft.Models.AdministracionSistema;
-using DocumentFormat.OpenXml.Spreadsheet;
 
 
 namespace SAESoft.Administracion
@@ -38,10 +36,13 @@ namespace SAESoft.Administracion
             dtDoc.Columns.Add("Edad").DataType = Type.GetType("System.Int32");
             dtDoc.Columns.Add("Pasaporte").DataType = Type.GetType("System.String");
             dtDoc.Columns.Add("Vencimiento Pasaporte").DataType = Type.GetType("System.DateTime");
+            dtDoc.Columns.Add("Días Vigencia Pasaporte").DataType = Type.GetType("System.Int32");
             dtDoc.Columns.Add("DPI").DataType = Type.GetType("System.String");
             dtDoc.Columns.Add("Vencimiento DPI").DataType = Type.GetType("System.DateTime");
+            dtDoc.Columns.Add("Días Vigencia DPI").DataType = Type.GetType("System.Int32");
             dtDoc.Columns.Add("Licencia").DataType = Type.GetType("System.String");
             dtDoc.Columns.Add("Vencimiento Licencia").DataType = Type.GetType("System.DateTime");
+            dtDoc.Columns.Add("Días Vigencia Licencia").DataType = Type.GetType("System.Int32");
             dtDoc.Columns.Add("Boleto de Ornato").DataType = Type.GetType("System.Boolean");
 
             dgvDocumentos.DataSource = dtDoc;
@@ -55,8 +56,10 @@ namespace SAESoft.Administracion
             dtMig.Columns.Add("Residencia").DataType = Type.GetType("System.String");
             dtMig.Columns.Add("Resolución").DataType = Type.GetType("System.String");
             dtMig.Columns.Add("Vencimiento Residencia").DataType = Type.GetType("System.DateTime");
+            dtMig.Columns.Add("Dias Vigencia Residencia").DataType = Type.GetType("System.Int32");
             dtMig.Columns.Add("Estatus Migratorio").DataType = Type.GetType("System.String");
             dtMig.Columns.Add("Vencimiento Estatus").DataType = Type.GetType("System.DateTime");
+            dtMig.Columns.Add("Dias Vigencia Estatus").DataType = Type.GetType("System.Int32");
             dtMig.Columns.Add("Años de Residencia").DataType = Type.GetType("System.Int32");
             dtMig.Columns.Add("Cuota de Extranjería").DataType = Type.GetType("System.Boolean");
 
@@ -129,6 +132,7 @@ namespace SAESoft.Administracion
             String[] botones = { "tsbAceptar", "tsbCancelar" };
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
+            ocultarCamposVariables();
             limpiarDt();
             limpiarFormulario(this);
             //  tsActivo.Checked = true;
@@ -155,6 +159,8 @@ namespace SAESoft.Administracion
             {
                 BotonesIniciales(toolStrip1);
                 CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos" }, false, toolStrip1, "PERSONAL");
+                ocultarCamposVariables();
+                limpiarDt();
                 limpiarFormulario(this);
             }
             habilitarFormulario(this, false);
@@ -239,7 +245,13 @@ namespace SAESoft.Administracion
             {
                 row = dtMed.NewRow();
                 row[0] = familiar.Nombres + " " + familiar.Apellidos;
-                row[1] = familiar.Parentesco.Descripcion;
+                if (familiar.Parentesco.Descripcion == "HIJO / HIJA")
+                    if (familiar.Genero == "M")
+                        row[1] = "HIJO";
+                    else
+                        row[1] = "HIJA";
+                else
+                    row[1] = familiar.Parentesco.Descripcion;
                 row[2] = familiar.SeguroMedico?.Certificado ?? "";
                 row[3] = familiar.SeguroMedico?.Carnet ?? "";
                 dtMed.Rows.Add(row);
@@ -247,10 +259,20 @@ namespace SAESoft.Administracion
         }
         private void llenarDatosSeguroVehiculo()
         {
+            DateTime? vencimiento = rs[CurrentIndex].SeguroVehiculo?.Vencimiento;
+            int? vigencia = vencimiento.HasValue ? calculaVigencia(vencimiento.Value) : null;
             txtAseguradora.Text = rs[CurrentIndex].SeguroVehiculo?.Aseguradora.Descripcion;
             txtPolizaSV.Text = rs[CurrentIndex].SeguroVehiculo?.Poliza;
             txtInicioSV.Text = rs[CurrentIndex].SeguroVehiculo?.Inicio.Date.ToString();
-            txtVencimientoSV.Text = rs[CurrentIndex].SeguroVehiculo?.Vencimiento.Date.ToString();
+            txtVencimientoSV.Text = vencimiento.HasValue ? vencimiento.Value.Date.ToString("dd/MM/yyyy") : "";
+            txtVigenciaSV.Text = vigencia.HasValue ? vigencia.Value.ToString("N0") : "";
+            if (vigencia.HasValue && vigencia.Value > 0)
+                txtVigenciaSV.ForeColor = SystemColors.WindowText;
+            else
+            {
+                txtVigenciaSV.BackColor = SystemColors.Control;
+                txtVigenciaSV.ForeColor = Color.Red;
+            }
             txtPlacasSV.Text = rs[CurrentIndex].SeguroVehiculo?.Placa;
             txtDescSV.Text = rs[CurrentIndex].SeguroVehiculo?.Marca + " " + rs[CurrentIndex].SeguroVehiculo?.Color;
             txtPrima.Text = rs[CurrentIndex].SeguroVehiculo?.Prima.ToString("C");
@@ -260,22 +282,44 @@ namespace SAESoft.Administracion
         private void llenarDatosRepresentacion()
         {
             Boolean? noVence;
+            DateTime? vencimiento;
             noVence = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 9)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.NoVence;
+            vencimiento = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 9)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
+            int? vigencia = vencimiento.HasValue ? calculaVigencia(vencimiento.Value) : null;
             txtCargoNomb.Text = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 9)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
             if (noVence.HasValue && noVence.Value)
             {
                 txtVenceNomb.Text = "NO VENCE";
+                txtVigenciaNomb.Text = "Indefinida";
             }
             else
             {
-                txtVenceNomb.Text = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 9)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento.ToString();
+                txtVenceNomb.Text = vencimiento.HasValue ? vencimiento.Value.ToString("dd/MM/yyyy") : "";
+                txtVigenciaNomb.Text = vigencia.HasValue ? vigencia.Value.ToString("N0") : "";
+            }
+            if (vigencia.HasValue && vigencia.Value > 0)
+                txtVigenciaNomb.ForeColor = SystemColors.WindowText;
+            else
+            {
+                txtVigenciaNomb.BackColor = SystemColors.Control;
+                txtVigenciaNomb.ForeColor = Color.Red;
             }
         }
         private void llenarDatosTrabajo()
         {
             txtTipoPermiso.Text = rs[CurrentIndex].PermisoTrabajo?.Tipo.Descripcion;
             txtResolucionPT.Text = rs[CurrentIndex].PermisoTrabajo?.Resolucion;
-            txtVencimientoPT.Text = rs[CurrentIndex].PermisoTrabajo?.Vencimiento.ToString();
+            DateTime? vencimiento = rs[CurrentIndex].PermisoTrabajo?.Vencimiento;
+            txtVencimientoPT.Text = vencimiento.HasValue ? vencimiento.Value.ToString("dd/MM/yyyy") : "";
+            int? vigencia = vencimiento.HasValue ? calculaVigencia(vencimiento.Value) : null;
+            if (vigencia.HasValue && vigencia.Value > 0)
+                txtVigenciaPT.ForeColor = SystemColors.WindowText;
+            else
+            {
+                txtVigenciaPT.BackColor = SystemColors.Control;
+                txtVigenciaPT.ForeColor = Color.Red;
+            }
+            txtVigenciaPT.Text = vigencia.HasValue ? vigencia.Value.ToString("N0") : "";
             txtContrato.Text = rs[CurrentIndex].Contrato?.Numero ?? "";
             txtEmpresa.Text = rs[CurrentIndex].Contrato?.Empresa.Descripcion ?? "";
         }
@@ -305,21 +349,29 @@ namespace SAESoft.Administracion
             }
             row[2] = texto != null ? (Object)texto : DBNull.Value;
             row[3] = texto2 != null ? (Object)texto2 : DBNull.Value;
-            row[4] = fecha != null ? (Object)fecha : DBNull.Value;
+            row[4] = fecha.HasValue ? (Object)fecha : DBNull.Value;
+            row[5] = fecha.HasValue ? (Object)calculaVigencia(fecha.Value) : DBNull.Value;
             texto = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 5)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
             fecha = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 5)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
-            row[5] = texto != null ? (Object)texto : DBNull.Value;
-            row[6] = fecha != null ? (Object)fecha : DBNull.Value;
+            row[6] = texto != null ? (Object)texto : DBNull.Value;
+            row[7] = fecha.HasValue ? (Object)fecha : DBNull.Value;
+            row[8] = fecha != null ? (Object)calculaVigencia(fecha.Value) : DBNull.Value;
             if (Años != null)
-                row[7] = Años;
+                row[9] = Años;
             if (cuotaAnual != null)
-                row[8] = cuotaAnual;
+                row[10] = cuotaAnual;
             dtMig.Rows.Add(row);
             foreach (var familiar in rs[CurrentIndex].Familiares)
             {
                 row = dtMig.NewRow();
                 row[0] = familiar.Nombres + " " + familiar.Apellidos;
-                row[1] = familiar.Parentesco.Descripcion;
+                if (familiar.Parentesco.Descripcion == "HIJO / HIJA")
+                    if (familiar.Genero == "M")
+                        row[1] = "HIJO";
+                    else
+                        row[1] = "HIJA";
+                else
+                    row[1] = familiar.Parentesco.Descripcion;
                 texto = familiar.Residencia?.Tipo.Descripcion;
                 texto2 = familiar.Residencia?.Resolucion;
                 if (texto != "PERMANENTE")
@@ -336,15 +388,17 @@ namespace SAESoft.Administracion
                 }
                 row[2] = texto != null ? (Object)texto : DBNull.Value;
                 row[3] = texto2 != null ? (Object)texto2 : DBNull.Value;
-                row[4] = fecha != null ? (Object)fecha : DBNull.Value;
+                row[4] = fecha.HasValue ? (Object)fecha : DBNull.Value;
+                row[5] = fecha.HasValue ? (Object)calculaVigencia(fecha.Value) : DBNull.Value;
                 texto = familiar.Documentos?.Where(d => d.IdTipo == 5)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
                 fecha = familiar.Documentos?.Where(d => d.IdTipo == 5)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
-                row[5] = texto != null ? (Object)texto : DBNull.Value;
-                row[6] = fecha != null ? (Object)fecha : DBNull.Value;
+                row[6] = texto != null ? (Object)texto : DBNull.Value;
+                row[7] = fecha.HasValue ? (Object)fecha : DBNull.Value;
+                row[8] = fecha.HasValue ? (Object)calculaVigencia(fecha.Value) : DBNull.Value;
                 if (Años != null)
-                    row[7] = Años;
+                    row[9] = Años;
                 if (cuotaAnual != null)
-                    row[8] = cuotaAnual;
+                    row[10] = cuotaAnual;
                 dtMig.Rows.Add(row);
             }
         }
@@ -361,38 +415,57 @@ namespace SAESoft.Administracion
             texto = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 2)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
             fecha = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 2)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
             row[4] = texto != null ? (Object)texto : DBNull.Value;
-            row[5] = fecha != null ? (Object)fecha : DBNull.Value;
+            row[5] = fecha.HasValue ? (Object)fecha : DBNull.Value;
+            row[6] = fecha.HasValue ? (Object)calculaVigencia(fecha.Value) : DBNull.Value;
             texto = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 1)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
             fecha = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 1)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
-            row[6] = texto != null ? (Object)texto : DBNull.Value;
-            row[7] = fecha != null ? (Object)fecha : DBNull.Value;
+            row[7] = texto != null ? (Object)texto : DBNull.Value;
+            row[8] = fecha.HasValue ? (Object)fecha : DBNull.Value;
+            row[9] = fecha.HasValue ? (Object)calculaVigencia(fecha.Value) : DBNull.Value;
             texto = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 8)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
             fecha = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 8)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
-            row[8] = texto != null ? (Object)texto : DBNull.Value;
-            row[9] = fecha != null ? (Object)fecha : DBNull.Value;
-            row[10] = rs[CurrentIndex].BoletoOrnato;
+            row[10] = texto != null ? (Object)texto : DBNull.Value;
+            row[11] = fecha.HasValue ? (Object)fecha : DBNull.Value;
+            row[12] = fecha.HasValue ? (Object)calculaVigencia(fecha.Value) : DBNull.Value;
+            row[13] = rs[CurrentIndex].BoletoOrnato;
             dtDoc.Rows.Add(row);
             foreach (var familiar in rs[CurrentIndex].Familiares)
             {
                 row = dtDoc.NewRow();
                 row[0] = familiar.Nombres + " " + familiar.Apellidos;
-                row[1] = familiar.Parentesco.Descripcion;
+                if (familiar.Parentesco.Descripcion == "HIJO / HIJA")
+                    if (familiar.Genero == "M")
+                        row[1] = "HIJO";
+                    else
+                        row[1] = "HIJA";
+                else
+                    row[1] = familiar.Parentesco.Descripcion;
                 row[2] = familiar.FechaNac.Date;
                 row[3] = calculaEdad(familiar.FechaNac.Date);
                 texto = familiar.Documentos?.Where(d => d.IdTipo == 2)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
                 fecha = familiar.Documentos?.Where(d => d.IdTipo == 2)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
                 row[4] = texto != null ? (Object)texto : DBNull.Value;
-                row[5] = fecha != null ? (Object)fecha : DBNull.Value;
+                row[5] = fecha.HasValue ? (Object)fecha : DBNull.Value;
+                row[6] = fecha.HasValue ? (Object)calculaVigencia(fecha.Value) : DBNull.Value;
                 texto = familiar.Documentos?.Where(d => d.IdTipo == 1)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
                 fecha = familiar.Documentos?.Where(d => d.IdTipo == 1)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
-                row[6] = texto != null ? (Object)texto : DBNull.Value;
-                row[7] = fecha != null ? (Object)fecha : DBNull.Value;
+                row[7] = texto != null ? (Object)texto : DBNull.Value;
+                row[8] = fecha.HasValue ? (Object)fecha : DBNull.Value;
+                row[9] = fecha.HasValue ? (Object)calculaVigencia(fecha.Value) : DBNull.Value;
                 texto = familiar.Documentos?.Where(d => d.IdTipo == 8)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
                 fecha = familiar.Documentos?.Where(d => d.IdTipo == 8)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
-                row[8] = texto != null ? (Object)texto : DBNull.Value;
-                row[9] = fecha != null ? (Object)fecha : DBNull.Value;
+                row[10] = texto != null ? (Object)texto : DBNull.Value;
+                row[11] = fecha.HasValue ? (Object)fecha : DBNull.Value;
+                row[12] = fecha.HasValue ? (Object)calculaVigencia(fecha.Value) : DBNull.Value;
                 dtDoc.Rows.Add(row);
             }
+        }
+
+        private void ocultarCamposVariables()
+        {
+            tsCuotaAnual.Visible = false;
+            label17.Visible = false;
+            dtpBaja.Visible = false;
         }
 
         private void limpiarDt()
@@ -595,6 +668,8 @@ namespace SAESoft.Administracion
                                             .ThenInclude(t => t.Tipo)
                                             .Include(sm => sm.SeguroMedico)
                                             .Where(b => 1 == 1);
+                if (buscar.codigo != null)
+                    queryable = queryable.Where(b => b.Codigo.Contains(buscar.codigo));
                 if (buscar.nombreESP != null)
                     queryable = queryable.Where(b => b.Alias.Contains(buscar.nombreESP));
                 if (buscar.nombreCOR != null)
@@ -618,6 +693,8 @@ namespace SAESoft.Administracion
                 else
                 {
                     MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ocultarCamposVariables();
+                    limpiarDt();
                     limpiarFormulario(this);
                     BotonesIniciales(toolStrip1);
                     CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos" }, false, toolStrip1, "PERSONAL");
@@ -709,6 +786,7 @@ namespace SAESoft.Administracion
                     }
                     else
                     {
+                        ocultarCamposVariables();
                         limpiarFormulario(this);
                         limpiarDt();
                         BotonesIniciales(toolStrip1);
@@ -1020,6 +1098,13 @@ namespace SAESoft.Administracion
             return edad;
         }
 
+        private static int calculaVigencia(DateTime fecha)
+        {
+            TimeSpan diferencia = fecha - DateTime.Today;
+            int dias = diferencia.Days;
+            return dias;
+        }
+
         private void dgvDocumentos_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             // para que no salte error por defecto, no borrar.
@@ -1051,6 +1136,58 @@ namespace SAESoft.Administracion
                 {
                     Value = ""
                 };
+            }
+        }
+
+        private void dgvDocumentos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 6 || e.ColumnIndex == 9 || e.ColumnIndex == 12)
+            {
+                if (e.Value != null && e.Value != DBNull.Value)
+                {
+                    // Obtener el valor numérico
+                    int valor = Convert.ToInt32(e.Value);
+
+                    // Aplicar formato con separador de miles
+                    string valorFormateado = valor.ToString("#,##0");
+
+                    // Configurar el color de la celda
+                    if (valor < 0)
+                    {
+                        e.CellStyle.ForeColor = Color.Red;
+                    }
+
+                    // Asignar el valor formateado a la celda
+                    e.Value = valorFormateado;
+                    e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    e.FormattingApplied = true;
+                }
+            }
+        }
+
+        private void dgvMigracion_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 5 || e.ColumnIndex == 8)
+            {
+                if (e.Value != null && e.Value != DBNull.Value)
+                {
+                    // Obtener el valor numérico
+                    int valor = Convert.ToInt32(e.Value);
+
+                    // Aplicar formato con separador de miles
+                    string valorFormateado = valor.ToString("#,##0");
+
+                    // Configurar el color de la celda
+                    if (valor < 0)
+                    {
+                        e.CellStyle.ForeColor = Color.Red;
+                    }
+
+                    // Asignar el valor formateado a la celda
+                    e.Value = valorFormateado;
+                    e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    e.FormattingApplied = true;
+                }
             }
         }
     }

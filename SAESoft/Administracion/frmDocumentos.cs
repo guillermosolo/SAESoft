@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using static SAESoft.Utilitarios.Validaciones;
 
 namespace SAESoft.Administracion
 {
@@ -53,10 +45,41 @@ namespace SAESoft.Administracion
 
         private void icbFinalizar_Click(object sender, EventArgs e)
         {
-            numero = txtNumero.Text;
-            emision = dtpEmision.Value.Date;
-            novence = !chkVence.Checked;
-            vencimiento = dtpVencimiento.Value.Date;
+            if (ValidarDatos())
+            {
+                numero = txtNumero.Text;
+                emision = dtpEmision.Value.Date;
+                novence = !chkVence.Checked;
+                vencimiento = dtpVencimiento.Value.Date;
+                errorProvider1.Clear();
+            }
+            else
+            {
+                this.DialogResult = DialogResult.Abort;
+            }
+        }
+
+        private Boolean ValidarDatos()
+        {
+            if (string.IsNullOrWhiteSpace(txtNumero.Text))
+            {
+                errorProvider1.SetError(txtNumero, "No puede estar vacío.");
+                txtNumero.Focus();
+                return false;
+            }
+            if (documento == "NUMERO DE IDENTIFICACIÓN TRIBUTARIA" && !NIT_validation(txtNumero.Text))
+            {
+                errorProvider1.SetError(txtNumero, "El número de NIT no es válido.");
+                txtNumero.Focus();
+                return false;
+            }
+            if (documento == "DOCUMENTO PERSONAL DE IDENTIFICACIÓN" && !CUI_validation(txtNumero.Text))
+            {
+                errorProvider1.SetError(txtNumero, "El número de CUI no es válido.");
+                txtNumero.Focus();
+                return false;
+            }
+            return true;
         }
 
         private void chkVence_CheckedChanged(object sender, EventArgs e)
@@ -68,6 +91,14 @@ namespace SAESoft.Administracion
             else
             {
                 dtpVencimiento.Enabled = false;
+            }
+        }
+
+        private void frmDocumentos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.DialogResult == DialogResult.Abort)
+            {
+                e.Cancel = true;
             }
         }
     }

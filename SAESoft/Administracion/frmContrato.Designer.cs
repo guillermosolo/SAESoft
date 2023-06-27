@@ -38,6 +38,7 @@
             // 
             // txtNumero
             // 
+            txtNumero.CharacterCasing = CharacterCasing.Upper;
             txtNumero.Location = new Point(113, 19);
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(247, 27);

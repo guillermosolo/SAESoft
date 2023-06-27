@@ -98,6 +98,7 @@
             // 
             // txtPlacas
             // 
+            txtPlacas.CharacterCasing = CharacterCasing.Upper;
             txtPlacas.Location = new Point(117, 108);
             txtPlacas.Margin = new Padding(4);
             txtPlacas.Name = "txtPlacas";
@@ -124,6 +125,7 @@
             // 
             // txtPoliza
             // 
+            txtPoliza.CharacterCasing = CharacterCasing.Upper;
             txtPoliza.Location = new Point(117, 193);
             txtPoliza.Margin = new Padding(4);
             txtPoliza.Name = "txtPoliza";

@@ -200,6 +200,7 @@
             Controls.Add(label2);
             Controls.Add(cboParentesco);
             Controls.Add(label3);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmFamiliares";
             StartPosition = FormStartPosition.CenterParent;

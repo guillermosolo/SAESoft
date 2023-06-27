@@ -66,6 +66,8 @@
             tabPage2 = new TabPage();
             dgvMigracion = new DataGridView();
             tabPage3 = new TabPage();
+            txtVigenciaPT = new TextBox();
+            label36 = new Label();
             txtEmpresa = new TextBox();
             label26 = new Label();
             txtContrato = new TextBox();
@@ -77,6 +79,8 @@
             txtTipoPermiso = new TextBox();
             label22 = new Label();
             tabPage4 = new TabPage();
+            txtVigenciaNomb = new TextBox();
+            label37 = new Label();
             txtVenceNomb = new TextBox();
             label28 = new Label();
             txtCargoNomb = new TextBox();
@@ -84,6 +88,8 @@
             tabPage5 = new TabPage();
             dgvMedico = new DataGridView();
             tabPage6 = new TabPage();
+            txtVigenciaSV = new TextBox();
+            label38 = new Label();
             txtDeducibleSV = new TextBox();
             label35 = new Label();
             txtPrima = new TextBox();
@@ -541,6 +547,7 @@
             dgvDocumentos.RowTemplate.Height = 25;
             dgvDocumentos.Size = new Size(626, 216);
             dgvDocumentos.TabIndex = 0;
+            dgvDocumentos.CellFormatting += dgvDocumentos_CellFormatting;
             dgvDocumentos.DataError += dgvDocumentos_DataError;
             dgvDocumentos.RowsAdded += dgvDocumentos_RowsAdded;
             // 
@@ -585,11 +592,14 @@
             dgvMigracion.RowTemplate.Height = 25;
             dgvMigracion.Size = new Size(626, 216);
             dgvMigracion.TabIndex = 0;
+            dgvMigracion.CellFormatting += dgvMigracion_CellFormatting;
             dgvMigracion.DataError += dgvMigracion_DataError;
             dgvMigracion.RowsAdded += dgvMigracion_RowsAdded;
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(txtVigenciaPT);
+            tabPage3.Controls.Add(label36);
             tabPage3.Controls.Add(txtEmpresa);
             tabPage3.Controls.Add(label26);
             tabPage3.Controls.Add(txtContrato);
@@ -608,10 +618,30 @@
             tabPage3.Text = "Trabajo";
             tabPage3.UseVisualStyleBackColor = true;
             // 
+            // txtVigenciaPT
+            // 
+            txtVigenciaPT.CharacterCasing = CharacterCasing.Upper;
+            txtVigenciaPT.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtVigenciaPT.Location = new Point(559, 54);
+            txtVigenciaPT.Name = "txtVigenciaPT";
+            txtVigenciaPT.ReadOnly = true;
+            txtVigenciaPT.Size = new Size(59, 27);
+            txtVigenciaPT.TabIndex = 63;
+            txtVigenciaPT.TextAlign = HorizontalAlignment.Right;
+            // 
+            // label36
+            // 
+            label36.AutoSize = true;
+            label36.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label36.Location = new Point(482, 57);
+            label36.Name = "label36";
+            label36.Size = new Size(79, 21);
+            label36.TabIndex = 62;
+            label36.Text = "Vigencia";
+            // 
             // txtEmpresa
             // 
             txtEmpresa.CharacterCasing = CharacterCasing.Upper;
-            txtEmpresa.Enabled = false;
             txtEmpresa.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtEmpresa.Location = new Point(102, 145);
             txtEmpresa.Name = "txtEmpresa";
@@ -623,7 +653,7 @@
             // 
             label26.AutoSize = true;
             label26.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label26.Location = new Point(19, 148);
+            label26.Location = new Point(6, 148);
             label26.Name = "label26";
             label26.Size = new Size(77, 21);
             label26.TabIndex = 60;
@@ -632,19 +662,18 @@
             // txtContrato
             // 
             txtContrato.CharacterCasing = CharacterCasing.Upper;
-            txtContrato.Enabled = false;
             txtContrato.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtContrato.Location = new Point(286, 102);
+            txtContrato.Location = new Point(272, 102);
             txtContrato.Name = "txtContrato";
             txtContrato.ReadOnly = true;
-            txtContrato.Size = new Size(313, 27);
+            txtContrato.Size = new Size(346, 27);
             txtContrato.TabIndex = 59;
             // 
             // label25
             // 
             label25.AutoSize = true;
             label25.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label25.Location = new Point(19, 105);
+            label25.Location = new Point(6, 105);
             label25.Name = "label25";
             label25.Size = new Size(262, 21);
             label25.TabIndex = 58;
@@ -653,9 +682,8 @@
             // txtVencimientoPT
             // 
             txtVencimientoPT.CharacterCasing = CharacterCasing.Upper;
-            txtVencimientoPT.Enabled = false;
             txtVencimientoPT.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtVencimientoPT.Location = new Point(501, 54);
+            txtVencimientoPT.Location = new Point(380, 54);
             txtVencimientoPT.Name = "txtVencimientoPT";
             txtVencimientoPT.ReadOnly = true;
             txtVencimientoPT.Size = new Size(96, 27);
@@ -665,28 +693,27 @@
             // 
             label24.AutoSize = true;
             label24.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label24.Location = new Point(307, 57);
+            label24.Location = new Point(272, 57);
             label24.Name = "label24";
-            label24.Size = new Size(187, 21);
+            label24.Size = new Size(109, 21);
             label24.TabIndex = 56;
-            label24.Text = "Fecha de Vencimiento";
+            label24.Text = "Vencimiento";
             // 
             // txtResolucionPT
             // 
             txtResolucionPT.CharacterCasing = CharacterCasing.Upper;
-            txtResolucionPT.Enabled = false;
             txtResolucionPT.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtResolucionPT.Location = new Point(110, 54);
             txtResolucionPT.Name = "txtResolucionPT";
             txtResolucionPT.ReadOnly = true;
-            txtResolucionPT.Size = new Size(190, 27);
+            txtResolucionPT.Size = new Size(158, 27);
             txtResolucionPT.TabIndex = 55;
             // 
             // label23
             // 
             label23.AutoSize = true;
             label23.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label23.Location = new Point(19, 57);
+            label23.Location = new Point(6, 57);
             label23.Name = "label23";
             label23.Size = new Size(92, 21);
             label23.TabIndex = 54;
@@ -695,19 +722,18 @@
             // txtTipoPermiso
             // 
             txtTipoPermiso.CharacterCasing = CharacterCasing.Upper;
-            txtTipoPermiso.Enabled = false;
             txtTipoPermiso.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtTipoPermiso.Location = new Point(245, 19);
+            txtTipoPermiso.Location = new Point(225, 19);
             txtTipoPermiso.Name = "txtTipoPermiso";
             txtTipoPermiso.ReadOnly = true;
-            txtTipoPermiso.Size = new Size(354, 27);
+            txtTipoPermiso.Size = new Size(393, 27);
             txtTipoPermiso.TabIndex = 53;
             // 
             // label22
             // 
             label22.AutoSize = true;
             label22.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label22.Location = new Point(19, 22);
+            label22.Location = new Point(6, 22);
             label22.Name = "label22";
             label22.Size = new Size(217, 21);
             label22.TabIndex = 35;
@@ -715,6 +741,8 @@
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(txtVigenciaNomb);
+            tabPage4.Controls.Add(label37);
             tabPage4.Controls.Add(txtVenceNomb);
             tabPage4.Controls.Add(label28);
             tabPage4.Controls.Add(txtCargoNomb);
@@ -725,6 +753,28 @@
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Nombramientos";
             tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // txtVigenciaNomb
+            // 
+            txtVigenciaNomb.CharacterCasing = CharacterCasing.Upper;
+            txtVigenciaNomb.Enabled = false;
+            txtVigenciaNomb.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtVigenciaNomb.Location = new Point(350, 62);
+            txtVigenciaNomb.Name = "txtVigenciaNomb";
+            txtVigenciaNomb.ReadOnly = true;
+            txtVigenciaNomb.Size = new Size(96, 27);
+            txtVigenciaNomb.TabIndex = 60;
+            txtVigenciaNomb.TextAlign = HorizontalAlignment.Right;
+            // 
+            // label37
+            // 
+            label37.AutoSize = true;
+            label37.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label37.Location = new Point(265, 65);
+            label37.Name = "label37";
+            label37.Size = new Size(79, 21);
+            label37.TabIndex = 59;
+            label37.Text = "Vigencia";
             // 
             // txtVenceNomb
             // 
@@ -811,6 +861,8 @@
             // 
             // tabPage6
             // 
+            tabPage6.Controls.Add(txtVigenciaSV);
+            tabPage6.Controls.Add(label38);
             tabPage6.Controls.Add(txtDeducibleSV);
             tabPage6.Controls.Add(label35);
             tabPage6.Controls.Add(txtPrima);
@@ -834,10 +886,30 @@
             tabPage6.Text = "Seguro de Vehículo";
             tabPage6.UseVisualStyleBackColor = true;
             // 
+            // txtVigenciaSV
+            // 
+            txtVigenciaSV.CharacterCasing = CharacterCasing.Upper;
+            txtVigenciaSV.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtVigenciaSV.Location = new Point(507, 63);
+            txtVigenciaSV.Name = "txtVigenciaSV";
+            txtVigenciaSV.ReadOnly = true;
+            txtVigenciaSV.Size = new Size(96, 27);
+            txtVigenciaSV.TabIndex = 72;
+            txtVigenciaSV.TextAlign = HorizontalAlignment.Right;
+            // 
+            // label38
+            // 
+            label38.AutoSize = true;
+            label38.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label38.Location = new Point(422, 66);
+            label38.Name = "label38";
+            label38.Size = new Size(79, 21);
+            label38.TabIndex = 71;
+            label38.Text = "Vigencia";
+            // 
             // txtDeducibleSV
             // 
             txtDeducibleSV.CharacterCasing = CharacterCasing.Upper;
-            txtDeducibleSV.Enabled = false;
             txtDeducibleSV.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtDeducibleSV.Location = new Point(426, 155);
             txtDeducibleSV.Name = "txtDeducibleSV";
@@ -859,7 +931,6 @@
             // txtPrima
             // 
             txtPrima.CharacterCasing = CharacterCasing.Upper;
-            txtPrima.Enabled = false;
             txtPrima.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtPrima.Location = new Point(124, 155);
             txtPrima.Name = "txtPrima";
@@ -881,7 +952,6 @@
             // txtVencimientoSV
             // 
             txtVencimientoSV.CharacterCasing = CharacterCasing.Upper;
-            txtVencimientoSV.Enabled = false;
             txtVencimientoSV.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtVencimientoSV.Location = new Point(309, 63);
             txtVencimientoSV.Name = "txtVencimientoSV";
@@ -902,9 +972,8 @@
             // txtPlacasSV
             // 
             txtPlacasSV.CharacterCasing = CharacterCasing.Upper;
-            txtPlacasSV.Enabled = false;
             txtPlacasSV.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPlacasSV.Location = new Point(507, 63);
+            txtPlacasSV.Location = new Point(507, 107);
             txtPlacasSV.Name = "txtPlacasSV";
             txtPlacasSV.ReadOnly = true;
             txtPlacasSV.Size = new Size(96, 27);
@@ -914,7 +983,7 @@
             // 
             label33.AutoSize = true;
             label33.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label33.Location = new Point(436, 66);
+            label33.Location = new Point(436, 110);
             label33.Name = "label33";
             label33.Size = new Size(60, 21);
             label33.TabIndex = 63;
@@ -923,12 +992,11 @@
             // txtDescSV
             // 
             txtDescSV.CharacterCasing = CharacterCasing.Upper;
-            txtDescSV.Enabled = false;
             txtDescSV.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDescSV.Location = new Point(227, 107);
+            txtDescSV.Location = new Point(124, 107);
             txtDescSV.Name = "txtDescSV";
             txtDescSV.ReadOnly = true;
-            txtDescSV.Size = new Size(376, 27);
+            txtDescSV.Size = new Size(303, 27);
             txtDescSV.TabIndex = 62;
             // 
             // label32
@@ -937,9 +1005,9 @@
             label32.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label32.Location = new Point(22, 110);
             label32.Name = "label32";
-            label32.Size = new Size(199, 21);
+            label32.Size = new Size(100, 21);
             label32.TabIndex = 61;
-            label32.Text = "Descripción del Vehículo";
+            label32.Text = "Descripción";
             // 
             // label31
             // 
@@ -954,7 +1022,6 @@
             // txtInicioSV
             // 
             txtInicioSV.CharacterCasing = CharacterCasing.Upper;
-            txtInicioSV.Enabled = false;
             txtInicioSV.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtInicioSV.Location = new Point(73, 63);
             txtInicioSV.Name = "txtInicioSV";
@@ -965,7 +1032,6 @@
             // txtPolizaSV
             // 
             txtPolizaSV.CharacterCasing = CharacterCasing.Upper;
-            txtPolizaSV.Enabled = false;
             txtPolizaSV.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtPolizaSV.Location = new Point(411, 22);
             txtPolizaSV.Name = "txtPolizaSV";
@@ -986,7 +1052,6 @@
             // txtAseguradora
             // 
             txtAseguradora.CharacterCasing = CharacterCasing.Upper;
-            txtAseguradora.Enabled = false;
             txtAseguradora.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtAseguradora.Location = new Point(144, 22);
             txtAseguradora.Name = "txtAseguradora";
@@ -1561,5 +1626,11 @@
         private Label label34;
         private TextBox txtVencimientoSV;
         private Label label10;
+        private TextBox txtVigenciaPT;
+        private Label label36;
+        private TextBox txtVigenciaNomb;
+        private Label label37;
+        private TextBox txtVigenciaSV;
+        private Label label38;
     }
 }

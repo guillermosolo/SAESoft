@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumentos));
             label1 = new Label();
             txtNumero = new TextBox();
@@ -37,6 +38,8 @@
             dtpVencimiento = new DateTimePicker();
             lblTitulo = new Label();
             icbFinalizar = new FontAwesome.Sharp.IconButton();
+            errorProvider1 = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -50,6 +53,7 @@
             // 
             // txtNumero
             // 
+            txtNumero.CharacterCasing = CharacterCasing.Upper;
             txtNumero.Location = new Point(112, 49);
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(247, 27);
@@ -121,6 +125,10 @@
             icbFinalizar.UseVisualStyleBackColor = true;
             icbFinalizar.Click += icbFinalizar_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // frmDocumentos
             // 
             AcceptButton = icbFinalizar;
@@ -143,7 +151,9 @@
             MinimizeBox = false;
             Name = "frmDocumentos";
             StartPosition = FormStartPosition.CenterParent;
+            FormClosing += frmDocumentos_FormClosing;
             Load += frmDocumentos_Load;
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -158,5 +168,6 @@
         private DateTimePicker dtpVencimiento;
         private Label lblTitulo;
         private FontAwesome.Sharp.IconButton icbFinalizar;
+        private ErrorProvider errorProvider1;
     }
 }

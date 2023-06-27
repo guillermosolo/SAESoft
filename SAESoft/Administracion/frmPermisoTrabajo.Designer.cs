@@ -68,6 +68,7 @@
             // 
             // txtResolucion
             // 
+            txtResolucion.CharacterCasing = CharacterCasing.Upper;
             txtResolucion.Location = new Point(137, 56);
             txtResolucion.Name = "txtResolucion";
             txtResolucion.Size = new Size(247, 27);
