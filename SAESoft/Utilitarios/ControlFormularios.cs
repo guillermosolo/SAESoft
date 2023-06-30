@@ -32,13 +32,13 @@ namespace SAESoft.Utilitarios
 
         public static void BotonesIniciales(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbRelatives", "tsddbDocumentos", "tsbSalir" };
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbRelatives", "tsddbDocumentos","tsbFicha", "tsbSalir" };
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
         public static void BotonesInicialesNavegacion(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbRelatives", "tsddbDocumentos", "tsbSalir" };
+            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbRelatives", "tsddbDocumentos","tsbFicha", "tsbSalir" };
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
@@ -201,6 +201,46 @@ namespace SAESoft.Utilitarios
                 c.DataSource = db.Nombres.Where(n => n.Grupo.Nombre == g).OrderBy(n => n.Descripcion).ToList();
                 c.DisplayMember = "Descripcion";
                 c.ValueMember = "IdNombre";
+            }
+        }
+
+        public static void llenarNombres(CheckedListBox c, string g, Boolean ninguno = false)
+        {
+            if (ninguno)
+            {
+                using SAESoftContext db = new();
+                var listado = db.Nombres.Where(n => n.Grupo.Nombre == g).OrderBy(n => n.Descripcion).ToList();
+                listado.Insert(0, new Nombre { IdNombre = 0, Descripcion = "(NINGUNO)" });
+                c.DataSource = listado;
+                c.DisplayMember = "Descripcion";
+                c.ValueMember = "IdNombre";
+            }
+            else
+            {
+                using SAESoftContext db = new();
+                c.DataSource = db.Nombres.Where(n => n.Grupo.Nombre == g).OrderBy(n => n.Descripcion).ToList();
+                c.DisplayMember = "Descripcion";
+                c.ValueMember = "IdNombre";
+            }
+        }
+
+        public static bool IsFileOpen (string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                // El archivo no existe
+                return false;
+            }
+            try
+            {
+                using FileStream fileStream = File.Open(filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+                // El archivo no está abierto
+                return false;
+            }
+            catch (IOException)
+            {
+                // El archivo está abierto o no se puede acceder
+                return true;
             }
         }
     }

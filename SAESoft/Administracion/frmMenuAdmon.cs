@@ -32,5 +32,11 @@ namespace SAESoft.Administracion
         {
             this.Close();
         }
+
+        private void ibtnReporte_Click(object sender, EventArgs e)
+        {
+            Abrir<frmReportes>(panelFormularios);
+            menuActivo(ibtnReporte, panelMenu);
+        }
     }
 }

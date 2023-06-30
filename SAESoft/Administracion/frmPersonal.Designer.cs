@@ -136,6 +136,7 @@
             tsbEliminar = new ToolStripButton();
             tsddbDocumentos = new ToolStripDropDownButton();
             tsbRelatives = new ToolStripButton();
+            tsbFicha = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             tsbAceptar = new ToolStripButton();
             tsbCancelar = new ToolStripButton();
@@ -1328,10 +1329,10 @@
             // 
             toolStrip1.Dock = DockStyle.None;
             toolStrip1.ImageScalingSize = new Size(32, 32);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListar, tsbModificar, tsbEliminar, tsddbDocumentos, tsbRelatives, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListar, tsbModificar, tsbEliminar, tsddbDocumentos, tsbRelatives, tsbFicha, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(315, 39);
+            toolStrip1.Size = new Size(610, 39);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -1409,6 +1410,17 @@
             tsbRelatives.Size = new Size(36, 36);
             tsbRelatives.Text = "Familiares";
             tsbRelatives.Click += tsbRelatives_Click;
+            // 
+            // tsbFicha
+            // 
+            tsbFicha.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbFicha.Enabled = false;
+            tsbFicha.Image = Properties.Resources.ficha;
+            tsbFicha.ImageTransparentColor = Color.Magenta;
+            tsbFicha.Name = "tsbFicha";
+            tsbFicha.Size = new Size(36, 36);
+            tsbFicha.Text = "Ficha de Información Personal";
+            tsbFicha.Click += tsbFicha_Click;
             // 
             // toolStripSeparator1
             // 
@@ -1632,5 +1644,6 @@
         private Label label37;
         private TextBox txtVigenciaSV;
         private Label label38;
+        private ToolStripButton tsbFicha;
     }
 }

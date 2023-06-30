@@ -58,5 +58,6 @@ namespace SAESoft.Models.Administracion
         public int? AñosResidencia { get; set; } = null;
         public virtual ICollection<Familiar> Familiares { get; set;}
         public virtual ICollection<Documento> Documentos { get; set;}
+        public virtual ICollection<Nombramiento> Nombramientos { get; set; }
     }
 }

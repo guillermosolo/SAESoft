@@ -7,6 +7,9 @@ using static SAESoft.Cache.UserData;
 using SAESoft.Models;
 using System.Data;
 using Microsoft.EntityFrameworkCore.Storage;
+using System.Diagnostics;
+
+
 
 
 namespace SAESoft.Administracion
@@ -147,18 +150,18 @@ namespace SAESoft.Administracion
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos" }, true, toolStrip1, "PERSONAL");
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, true, toolStrip1, "PERSONAL");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos" }, true, toolStrip1, "PERSONAL");
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, true, toolStrip1, "PERSONAL");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos" }, false, toolStrip1, "PERSONAL");
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, false, toolStrip1, "PERSONAL");
                 ocultarCamposVariables();
                 limpiarDt();
                 limpiarFormulario(this);
@@ -271,7 +274,7 @@ namespace SAESoft.Administracion
             else
             {
                 txtVigenciaSV.BackColor = SystemColors.Control;
-                txtVigenciaSV.ForeColor = Color.Red;
+                txtVigenciaSV.ForeColor = System.Drawing.Color.Red;
             }
             txtPlacasSV.Text = rs[CurrentIndex].SeguroVehiculo?.Placa;
             txtDescSV.Text = rs[CurrentIndex].SeguroVehiculo?.Marca + " " + rs[CurrentIndex].SeguroVehiculo?.Color;
@@ -302,7 +305,7 @@ namespace SAESoft.Administracion
             else
             {
                 txtVigenciaNomb.BackColor = SystemColors.Control;
-                txtVigenciaNomb.ForeColor = Color.Red;
+                txtVigenciaNomb.ForeColor = System.Drawing.Color.Red;
             }
         }
         private void llenarDatosTrabajo()
@@ -317,7 +320,7 @@ namespace SAESoft.Administracion
             else
             {
                 txtVigenciaPT.BackColor = SystemColors.Control;
-                txtVigenciaPT.ForeColor = Color.Red;
+                txtVigenciaPT.ForeColor = System.Drawing.Color.Red;
             }
             txtVigenciaPT.Text = vigencia.HasValue ? vigencia.Value.ToString("N0") : "";
             txtContrato.Text = rs[CurrentIndex].Contrato?.Numero ?? "";
@@ -633,7 +636,7 @@ namespace SAESoft.Administracion
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos" }, true, toolStrip1, "PERSONAL");
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, true, toolStrip1, "PERSONAL");
                 habilitarFormulario(this, false);
             }
         }
@@ -650,6 +653,7 @@ namespace SAESoft.Administracion
                                             .ThenInclude(pl => pl.Empresa)
                                             .Include(r => r.Residencia)
                                             .ThenInclude(rt => rt.Tipo)
+                                            .Include(p => p.Puesto)
                                             .Include(f => f.Familiares)
                                             .ThenInclude(p => p.Parentesco)
                                             .Include(f => f.Familiares)
@@ -688,7 +692,7 @@ namespace SAESoft.Administracion
                     {
                         BotonesIniciales(toolStrip1);
                     }
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos" }, true, toolStrip1, "PERSONAL");
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, true, toolStrip1, "PERSONAL");
                 }
                 else
                 {
@@ -697,7 +701,7 @@ namespace SAESoft.Administracion
                     limpiarDt();
                     limpiarFormulario(this);
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos" }, false, toolStrip1, "PERSONAL");
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, false, toolStrip1, "PERSONAL");
                 }
             }
         }
@@ -790,7 +794,7 @@ namespace SAESoft.Administracion
                         limpiarFormulario(this);
                         limpiarDt();
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos" }, false, toolStrip1, "PERSONAL");
+                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, false, toolStrip1, "PERSONAL");
                     }
                 }
                 catch (Exception ex)
@@ -1154,7 +1158,7 @@ namespace SAESoft.Administracion
                     // Configurar el color de la celda
                     if (valor < 0)
                     {
-                        e.CellStyle.ForeColor = Color.Red;
+                        e.CellStyle.ForeColor = System.Drawing.Color.Red;
                     }
 
                     // Asignar el valor formateado a la celda
@@ -1180,7 +1184,7 @@ namespace SAESoft.Administracion
                     // Configurar el color de la celda
                     if (valor < 0)
                     {
-                        e.CellStyle.ForeColor = Color.Red;
+                        e.CellStyle.ForeColor = System.Drawing.Color.Red;
                     }
 
                     // Asignar el valor formateado a la celda
@@ -1190,5 +1194,20 @@ namespace SAESoft.Administracion
                 }
             }
         }
+
+        private void tsbFicha_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new Process { StartInfo = new ProcessStartInfo(FichaPersonal.Imprime(rs[CurrentIndex], rs[CurrentIndex].IdEmpleado)) { UseShellExecute = true } }.Start();
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el reporte: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+       
+
+        
     }
 }

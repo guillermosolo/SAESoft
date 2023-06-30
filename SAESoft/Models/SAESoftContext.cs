@@ -50,7 +50,7 @@ namespace SAESoft.Models
         public DbSet<Reclamo> Reclamos { get; set; }
         public DbSet<Tramite> Tramites { get; set; }
         public DbSet<Documento> Documentos { get; set; }
-
+        public DbSet<Nombramiento> Nombramientos { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

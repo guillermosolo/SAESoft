@@ -27,13 +27,16 @@
 
   <ItemGroup>
     <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
+    <PackageReference Include="itext7" Version="8.0.0" />
+    <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.0" />
+    <PackageReference Include="itext7.pdfhtml" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="SpreadsheetLight" Version="3.5.0" />
-    <PackageReference Include="WinForms.DataVisualization" Version="1.7.0" />
+    <PackageReference Include="WinForms.DataVisualization" Version="1.8.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +44,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Administracion\frmPermisoTrabajo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Administracion\frmReportes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Importaciones\frmComentarios.cs">

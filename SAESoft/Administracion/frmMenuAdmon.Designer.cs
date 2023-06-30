@@ -71,6 +71,7 @@
             ibtnReporte.TabIndex = 12;
             ibtnReporte.Text = "Reportes";
             ibtnReporte.UseVisualStyleBackColor = true;
+            ibtnReporte.Click += ibtnReporte_Click;
             // 
             // ibtnPersonal
             // 

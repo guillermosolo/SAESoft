@@ -29,3 +29,6 @@ dotnet_diagnostic.CS8625.severity = none
 
 # IDE1006: Estilos de nombres
 dotnet_diagnostic.IDE1006.severity = none
+
+# IDE0030: Usar expresión coalesce
+dotnet_diagnostic.IDE0030.severity = none
