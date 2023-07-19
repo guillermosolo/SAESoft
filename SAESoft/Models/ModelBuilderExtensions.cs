@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SAESoft.Models.AdministracionSistema;
+using SAESoft.Models.Comunes;
 using SAESoft.Models.Importaciones;
 using System.Linq;
 using System.Net.Http.Headers;

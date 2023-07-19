@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SAESoft.Models;
 using SAESoft.Models.Administracion;
-using SAESoft.Models.Importaciones;
+using SAESoft.Models.Comunes;
 using SpreadsheetLight;
 using System.Data;
 using System.Diagnostics;
@@ -143,6 +143,13 @@ namespace SAESoft.Administracion
                                             .Include(n => n.Nombramientos)
                                             .ThenInclude(e => e.Empresa)
                         .Where(e => idsSeleccionados.Contains(e.Departamento.IdEmpresa));
+                    if (radioButton1.Checked)
+                    {
+                        query = query.Where(f => f.Activo);
+                    } else
+                    {
+                        query = query.Where(f => !f.Activo);
+                    }
                     List<Empleado> rs;
                     if (checkBox1.Checked)
                         rs = query.ToList();
@@ -419,8 +426,8 @@ namespace SAESoft.Administracion
                 SLStyle normal = excel.GetCellStyle("A2");
                 if (new List<int> { 1, 2, 4, 5, 6, 8, 9 }.Contains(doc))
                 {
-                    SLConditionalFormatting cf = new SLConditionalFormatting(ultimaColLetra + "2", ultimaColLetra + ultimaFila);
-                    SLConditionalFormatting cf2 = new SLConditionalFormatting(penultimaColLetra + "2", penultimaColLetra + ultimaFila);
+                    SLConditionalFormatting cf = new(ultimaColLetra + "2", ultimaColLetra + ultimaFila);
+                    SLConditionalFormatting cf2 = new(penultimaColLetra + "2", penultimaColLetra + ultimaFila);
 
 
                     cf.HighlightCellsWithFormula($"{penultimaColLetra}2:{penultimaColLetra}{ultimaFila} < 1", SLHighlightCellsStyleValues.LightRedFillWithDarkRedText);

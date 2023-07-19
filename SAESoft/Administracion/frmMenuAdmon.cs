@@ -38,5 +38,17 @@ namespace SAESoft.Administracion
             Abrir<frmReportes>(panelFormularios);
             menuActivo(ibtnReporte, panelMenu);
         }
+
+        private void ibtnDashboard_Click(object sender, EventArgs e)
+        {
+            Abrir<frmDashboard>(panelFormularios);
+            menuActivo(ibtnDashboard, panelMenu);
+        }
+
+        private void icbReclamos_Click(object sender, EventArgs e)
+        {
+            Abrir<frmDashboardClaims>(panelFormularios);
+            menuActivo(ibtnDashboard, panelMenu);
+        }
     }
 }

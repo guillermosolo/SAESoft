@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-using SAESoft.Models.Importaciones;
+using SAESoft.Models.Comunes;
 
 namespace SAESoft.Models.AdministracionSistema
 {

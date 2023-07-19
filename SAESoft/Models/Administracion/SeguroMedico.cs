@@ -17,5 +17,7 @@ namespace SAESoft.Models.Administracion
         public required string Carnet { get; set; }
         public DateTime Inicio { get; set; }
         public DateTime Vencimiento { get; set; }
+        public virtual Empleado Empleado { get; set; }
+        public virtual Familiar Familiar { get; set; }
     }
 }

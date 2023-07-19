@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelMenu = new Panel();
+            icbReclamos = new FontAwesome.Sharp.IconButton();
             ibtnReporte = new FontAwesome.Sharp.IconButton();
             ibtnPersonal = new FontAwesome.Sharp.IconButton();
             ibtnDashboard = new FontAwesome.Sharp.IconButton();
@@ -42,6 +43,7 @@
             // panelMenu
             // 
             panelMenu.BackColor = Color.FromArgb(0, 122, 204);
+            panelMenu.Controls.Add(icbReclamos);
             panelMenu.Controls.Add(ibtnReporte);
             panelMenu.Controls.Add(ibtnPersonal);
             panelMenu.Controls.Add(ibtnDashboard);
@@ -53,6 +55,25 @@
             panelMenu.Name = "panelMenu";
             panelMenu.Size = new Size(200, 538);
             panelMenu.TabIndex = 2;
+            // 
+            // icbReclamos
+            // 
+            icbReclamos.FlatAppearance.BorderSize = 0;
+            icbReclamos.FlatStyle = FlatStyle.Flat;
+            icbReclamos.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            icbReclamos.ForeColor = Color.White;
+            icbReclamos.IconChar = FontAwesome.Sharp.IconChar.Medkit;
+            icbReclamos.IconColor = Color.White;
+            icbReclamos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icbReclamos.IconSize = 24;
+            icbReclamos.ImageAlign = ContentAlignment.MiddleLeft;
+            icbReclamos.Location = new Point(3, 125);
+            icbReclamos.Name = "icbReclamos";
+            icbReclamos.Size = new Size(197, 43);
+            icbReclamos.TabIndex = 13;
+            icbReclamos.Text = "Reclamos";
+            icbReclamos.UseVisualStyleBackColor = true;
+            icbReclamos.Click += icbReclamos_Click;
             // 
             // ibtnReporte
             // 
@@ -109,6 +130,7 @@
             ibtnDashboard.TabIndex = 7;
             ibtnDashboard.Text = "Dashboard";
             ibtnDashboard.UseVisualStyleBackColor = true;
+            ibtnDashboard.Click += ibtnDashboard_Click;
             // 
             // iconButton1
             // 
@@ -194,5 +216,6 @@
         private Label label1;
         private FontAwesome.Sharp.IconButton ibtnReporte;
         private Panel panelFormularios;
+        private FontAwesome.Sharp.IconButton icbReclamos;
     }
 }

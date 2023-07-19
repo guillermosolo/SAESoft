@@ -100,7 +100,7 @@ namespace SAESoft.Importaciones
                                                     ih.FechaCreacion,
                                                     ih.Observaciones
                                                 })
-                                            }).Where(r => 1 == 1);
+                                            }).Where(r => true);
             if (hasRole(DigitadorImportaciones))
                 queryable = queryable.Where(r => r.IdUsuario == usuarioLogged.IdUsuario);
             if (!chkFinalizado.Checked)

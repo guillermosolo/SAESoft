@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SAESoft.Models.Importaciones;
+using SAESoft.Models.Comunes;
 
 namespace SAESoft.Models.Administracion
 {

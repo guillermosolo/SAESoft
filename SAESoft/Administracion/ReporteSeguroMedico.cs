@@ -1,5 +1,4 @@
 ﻿using SAESoft.Models.Administracion;
-using SAESoft.Models.Importaciones;
 using SAESoft.Models;
 using SpreadsheetLight;
 using System.Data;
@@ -7,6 +6,7 @@ using System.Diagnostics;
 using static SAESoft.Utilitarios.ControlFormularios;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.EntityFrameworkCore;
+using SAESoft.Models.Comunes;
 
 namespace SAESoft.Administracion
 {
@@ -65,6 +65,14 @@ namespace SAESoft.Administracion
                         .Include(f => f.Familiares)
                         .ThenInclude(smf => smf.SeguroMedico)
                         .Where(e => idsSeleccionados.Contains(e.Departamento.IdEmpresa));
+                    if (radioButton1.Checked)
+                    {
+                        query = query.Where(f => f.Activo);
+                    }
+                    else
+                    {
+                        query = query.Where(f => !f.Activo);
+                    }
                     List<Empleado> rs;
                     if (checkBox1.Checked)
                         rs = query.ToList();

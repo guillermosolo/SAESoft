@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SAESoft.Models.Administracion;
 using SAESoft.Models.AdministracionSistema;
+using SAESoft.Models.Comunes;
 using SAESoft.Models.Importaciones;
 using SAESoft.Utilitarios;
 using System.Configuration;
@@ -21,6 +22,7 @@ namespace SAESoft.Models
         public DbSet<Modulo> Modulos { get; set; }
         public DbSet<Grupo> Grupos { get; set; }
         public DbSet<Nombre> Nombres { get; set; }
+        public DbSet<Moneda> Monedas { get; set; }
 
         //aqui inician los de IMport
         public DbSet<Shipper> Shippers { get; set; }
@@ -51,6 +53,7 @@ namespace SAESoft.Models
         public DbSet<Tramite> Tramites { get; set; }
         public DbSet<Documento> Documentos { get; set; }
         public DbSet<Nombramiento> Nombramientos { get; set; }
+        public DbSet<HistorialReclamo> HistorialReclamos { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SAESoft.Models.Importaciones;
+using SAESoft.Models.Comunes;
 
 namespace SAESoft.Models.Administracion
 {
@@ -27,14 +27,25 @@ namespace SAESoft.Models.Administracion
         [ForeignKey("IdStatus")]
         public virtual AdminStatus Status { get; set; }
         [Column(TypeName = "money")]
-        public decimal Monto { get; set; }
+        public decimal? Monto { get; set; }
+        public int IdMoneda { get; set; }
+        [ForeignKey("IdMoneda")]
+        public virtual Moneda Moneda { get; set; }
         [Column(TypeName = "money")]
-        public decimal Deducible { get; set; }
+        public decimal? Deducible { get; set; }
         [Column(TypeName = "money")]
-        public decimal OtrosGastos { get; set; }
+        public decimal? Coaseguro { get; set; }
         [Column(TypeName = "money")]
-        public decimal MontoReal { get; set; }
+        public decimal? Timbres { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? MontosNoCubiertos { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? OtrosGastos { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? MontoCheque { get; set; }
         public string? Cheque  { get; set; }
+        public DateTime FechaRecibir { get; set; }
         public string? Observaciones { get; set; }
+        public virtual ICollection<HistorialReclamo> Historial { get; set; }
     }
 }

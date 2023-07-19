@@ -5,25 +5,21 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SAESoft.Models.Comunes;
 
 namespace SAESoft.Models.Administracion
 {
-    public class Tramite:Audit
+    public class HistorialReclamo:Audit
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdTramite { get; set; }
-        public int IdEmpleado { get; set; }
-        [ForeignKey("IdEmpleado")]
-        public virtual Empleado Empleado { get; set; }
+        public int IdHistorial { get; set; }
+        public int IdReclamo { get; set; }
+        [ForeignKey("IdReclamo")]
+        public virtual Reclamo Reclamo { get; set; }
         public int IdStatus { get; set; }
         [ForeignKey("IdStatus")]
         public virtual AdminStatus Status { get; set; }
-        public int IdTipo { get; set; }
-        [ForeignKey("IdTipo")]
-        public virtual Nombre Tipo { get; set; }    
-        public DateTime Fecha { get; set; }
-        public string? Observaciones { get; set; }
+        public DateTime fecha { get; set; }
+
     }
 }

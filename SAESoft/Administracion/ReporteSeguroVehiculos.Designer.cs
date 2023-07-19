@@ -33,6 +33,8 @@
             checkBox1 = new CheckBox();
             iconButton1 = new FontAwesome.Sharp.IconButton();
             checkBox3 = new CheckBox();
+            radioButton2 = new RadioButton();
+            radioButton1 = new RadioButton();
             SuspendLayout();
             // 
             // clbEmpresas
@@ -61,7 +63,7 @@
             iconButton1.IconColor = Color.Green;
             iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButton1.IconSize = 32;
-            iconButton1.Location = new Point(182, 61);
+            iconButton1.Location = new Point(238, 119);
             iconButton1.Name = "iconButton1";
             iconButton1.Size = new Size(102, 64);
             iconButton1.TabIndex = 9;
@@ -84,11 +86,36 @@
             checkBox3.UseVisualStyleBackColor = true;
             checkBox3.CheckedChanged += checkBox3_CheckedChanged;
             // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(153, 62);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(111, 19);
+            radioButton2.TabIndex = 26;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "Personal de Baja";
+            radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Checked = true;
+            radioButton1.Location = new Point(153, 37);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(107, 19);
+            radioButton1.TabIndex = 25;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Personal Activo";
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
             // ReporteSeguroVehiculos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(352, 195);
+            Controls.Add(radioButton2);
+            Controls.Add(radioButton1);
             Controls.Add(checkBox3);
             Controls.Add(iconButton1);
             Controls.Add(checkBox1);
@@ -110,5 +137,7 @@
         private CheckBox checkBox1;
         private FontAwesome.Sharp.IconButton iconButton1;
         private CheckBox checkBox3;
+        private RadioButton radioButton2;
+        private RadioButton radioButton1;
     }
 }

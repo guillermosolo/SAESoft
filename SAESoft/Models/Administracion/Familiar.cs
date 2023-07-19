@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using SAESoft.Models.Comunes;
 using SAESoft.Models.Importaciones;
 
 namespace SAESoft.Models.Administracion
@@ -31,5 +32,8 @@ namespace SAESoft.Models.Administracion
         public int? IdSeguroMedico { get; set; }
         [ForeignKey("IdSeguroMedico")]
         public virtual SeguroMedico SeguroMedico { get; set; }
+
+        [NotMapped]
+        public string NombreCompleto { get { return Nombres + " " + Apellidos; } set { } }
     }
 }

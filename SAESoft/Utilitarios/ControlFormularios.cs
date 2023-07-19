@@ -1,7 +1,7 @@
 ﻿using FontAwesome.Sharp;
 using SAESoft.Models;
 using static SAESoft.Cache.UserData;
-using SAESoft.Models.Importaciones;
+using SAESoft.Models.Comunes;
 
 namespace SAESoft.Utilitarios
 {

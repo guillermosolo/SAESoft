@@ -15,5 +15,6 @@ namespace SAESoft.Models.Administracion
         public int IdTipoDocumento { get; set; }
         public required string Nombre { get; set; }
         public Boolean activo { get; set; } = true;
+        public virtual ICollection<Documento> Documentos { get; set; }
     }
 }

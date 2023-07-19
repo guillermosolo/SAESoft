@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SAESoft.Models.Importaciones;
+using SAESoft.Models.Comunes;
 
 namespace SAESoft.Models.Administracion
 {
@@ -27,5 +27,6 @@ namespace SAESoft.Models.Administracion
         public decimal Prima { get; set; }
         [Column(TypeName = "decimal(10,2)")]
         public decimal Deducible { get; set;}
+        public virtual Empleado Empleado { get; set; }
     }
 }

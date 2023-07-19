@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using SAESoft.Models.Importaciones;
+using SAESoft.Models.Comunes;
 
 namespace SAESoft.Models.Administracion
 {
@@ -15,5 +15,7 @@ namespace SAESoft.Models.Administracion
         public string? Visa { get; set; }
         public required string Resolucion { get; set; }
         public required DateTime Vencimiento { get; set; }
+        public virtual Empleado Empleado { get; set; }
+        public virtual Familiar Familiar { get; set; }
     }
 }

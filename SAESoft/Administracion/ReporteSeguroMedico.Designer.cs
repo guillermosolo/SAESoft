@@ -34,6 +34,8 @@
             clbEmpresas = new CheckedListBox();
             checkBox2 = new CheckBox();
             checkBox3 = new CheckBox();
+            radioButton2 = new RadioButton();
+            radioButton1 = new RadioButton();
             SuspendLayout();
             // 
             // iconButton1
@@ -43,7 +45,7 @@
             iconButton1.IconColor = Color.Green;
             iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButton1.IconSize = 32;
-            iconButton1.Location = new Point(182, 81);
+            iconButton1.Location = new Point(222, 123);
             iconButton1.Name = "iconButton1";
             iconButton1.Size = new Size(102, 64);
             iconButton1.TabIndex = 12;
@@ -95,11 +97,36 @@
             checkBox3.UseVisualStyleBackColor = true;
             checkBox3.CheckedChanged += checkBox3_CheckedChanged;
             // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(153, 87);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(111, 19);
+            radioButton2.TabIndex = 24;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "Personal de Baja";
+            radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Checked = true;
+            radioButton1.Location = new Point(153, 62);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(107, 19);
+            radioButton1.TabIndex = 23;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Personal Activo";
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
             // ReporteSeguroMedico
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(336, 199);
+            Controls.Add(radioButton2);
+            Controls.Add(radioButton1);
             Controls.Add(checkBox3);
             Controls.Add(checkBox2);
             Controls.Add(iconButton1);
@@ -123,5 +150,7 @@
         private CheckedListBox clbEmpresas;
         private CheckBox checkBox2;
         private CheckBox checkBox3;
+        private RadioButton radioButton2;
+        private RadioButton radioButton1;
     }
 }

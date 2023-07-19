@@ -203,7 +203,7 @@ namespace SAESoft.Administracion
             }
             if (!rs[CurrentIndex].Activo)
             {
-                dtpBaja.Value = rs[CurrentIndex].FechaBaja ?? DateTime.MinValue;
+                dtpBaja.Value = rs[CurrentIndex].FechaBaja ?? DateTime.Now;
             }
             var texto = rs[CurrentIndex].Residencia?.Tipo.Descripcion;
             if (texto == "PERMANENTE")
@@ -651,6 +651,10 @@ namespace SAESoft.Administracion
                 var queryable = db.Empleados.Include(d => d.Departamento)
                                             .Include(co => co.Contrato)
                                             .ThenInclude(pl => pl.Empresa)
+                                            .Include(n => n.Nombramientos)
+                                            .ThenInclude(ne => ne.Empresa)
+                                            .Include(n => n.Nombramientos)
+                                            .ThenInclude(nt => nt.Tipo)
                                             .Include(r => r.Residencia)
                                             .ThenInclude(rt => rt.Tipo)
                                             .Include(p => p.Puesto)
@@ -1200,14 +1204,15 @@ namespace SAESoft.Administracion
             try
             {
                 new Process { StartInfo = new ProcessStartInfo(FichaPersonal.Imprime(rs[CurrentIndex], rs[CurrentIndex].IdEmpleado)) { UseShellExecute = true } }.Start();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al generar el reporte: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-       
 
-        
+
+
     }
 }
