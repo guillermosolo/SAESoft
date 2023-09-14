@@ -43,6 +43,14 @@ namespace SAESoft.Administracion
 
                 SLDocument excel = new();
 
+                SLStyle normal = new();
+                normal.Font.Bold = false;
+                normal.Font.Italic = false;
+                normal.Fill.SetPattern(PatternValues.None, System.Drawing.Color.Black, System.Drawing.Color.White);
+
+                SLStyle miles = excel.CreateStyle();
+                miles.FormatCode = "#,##0";
+
                 SLStyle fecha = excel.CreateStyle();
                 fecha.FormatCode = "dd/mm/yyyy";
 
@@ -61,6 +69,11 @@ namespace SAESoft.Administracion
                 dt.Columns.Add("Nombre Coreano", typeof(string));
                 dt.Columns.Add("Nombre", typeof(string));
                 dt.Columns.Add("Nombre Español", typeof(string));
+                dt.Columns.Add("Fecha Ingreso", typeof(DateTime));
+                if (radioButton2.Checked)
+                {
+                    dt.Columns.Add("Fecha Egreso", typeof(DateTime));
+                }
                 if (checkBox2.Checked)
                     dt.Columns.Add("Parentesco", typeof(string));
                 if (new List<int> { 1, 2, 5, 8 }.Contains(doc))
@@ -146,7 +159,8 @@ namespace SAESoft.Administracion
                     if (radioButton1.Checked)
                     {
                         query = query.Where(f => f.Activo);
-                    } else
+                    }
+                    else
                     {
                         query = query.Where(f => !f.Activo);
                     }
@@ -192,6 +206,9 @@ namespace SAESoft.Administracion
                         row["Nombre"] = item.Nombres + " " + item.Apellidos;
                         row["Nombre Español"] = item.Alias;
                         row["Nombre Coreano"] = item.NombreCoreano;
+                        row["Fecha Ingreso"] = item.FechaIngreso;
+                        if (radioButton2.Checked)
+                            row["Fecha Egreso"] = item.FechaBaja;
                         if (checkBox2.Checked)
                             row["Parentesco"] = "TITULAR";
                         if (new List<int> { 1, 2, 5, 8 }.Contains(doc))
@@ -214,9 +231,15 @@ namespace SAESoft.Administracion
                         {
                             DateTime? vencimiento = item.Residencia?.Vencimiento;
                             row["Tipo"] = item.Residencia?.Tipo.Descripcion;
-                            row["Resolución"] = item.Residencia?.Resolucion;
-                            row["Vencimiento"] = vencimiento.HasValue ? vencimiento.Value : DBNull.Value;
-                            row["Vigencia"] = vencimiento.HasValue ? calculaVigencia(vencimiento.Value) : DBNull.Value;
+                            row["Resolución"] = item.Residencia?.Resolucion; 
+                            if (item.Residencia.Tipo.Descripcion != "PERMANENTE")
+                            {
+                                row["Vencimiento"] = vencimiento.HasValue ? vencimiento.Value : DBNull.Value;
+                                row["Vigencia"] = vencimiento.HasValue ? calculaVigencia(vencimiento.Value) : DBNull.Value;
+                            } else
+                            {
+                                row["Vigencia"] = 0;
+                            }
                             row["Estatus"] = vencimiento.HasValue ? (calculaVigencia(vencimiento.Value) > 0 ? "Vigente" : "Vencido") : DBNull.Value;
                         }
                         else if (doc == 6)
@@ -250,13 +273,21 @@ namespace SAESoft.Administracion
                                     row2["Nombre"] = item.Nombres + " " + item.Apellidos;
                                     row2["Nombre Español"] = item.Alias;
                                     row2["Nombre Coreano"] = item.NombreCoreano;
+                                    row2["Fecha Ingreso"] = item.FechaIngreso;
                                 }
                                 row2["Empresa"] = nom.Empresa.Descripcion;
                                 row2["Tipo"] = nom.Tipo.Descripcion;
                                 row2["Expediente"] = nom.Expediente;
                                 row2["Vencimiento"] = nom.Vencimiento.Date;
                                 row2["Vigencia"] = calculaVigencia(nom.Vencimiento);
-                                row2["Estatus"] = calculaVigencia(nom.Vencimiento) > 0 ? "Vigente" : "Vencido";
+                                if (nom.Cancelado)
+                                {
+                                    row2["Estatus"] = "Cancelado";
+                                }
+                                else
+                                {
+                                    row2["Estatus"] = calculaVigencia(nom.Vencimiento) > 0 ? "Vigente" : "Vencido";
+                                }
                                 dt.Rows.Add(row2);
                             }
                         }
@@ -311,11 +342,19 @@ namespace SAESoft.Administracion
                 excel.SetColumnWidth(5, 20);
                 excel.SetColumnWidth(6, 30);
                 excel.SetColumnWidth(7, 20);
-                int p = 0;
+                excel.SetColumnWidth(8, 20);
+                excel.SetColumnStyle(8, fecha);
+                int p = 1;
+                if (radioButton2.Checked)
+                {
+                    excel.SetColumnWidth(8 + p, 20);
+                    excel.SetColumnStyle(8 + p, fecha);
+                    p += 1;
+                }
                 if (checkBox2.Checked)
                 {
-                    excel.SetColumnWidth(8, 15);
-                    p = 1;
+                    excel.SetColumnWidth(8 + p, 15);
+                    p += 1;
                 }
                 if (new List<int> { 1, 2, 5, 8 }.Contains(doc))
                 {
@@ -323,9 +362,11 @@ namespace SAESoft.Administracion
                     excel.SetColumnWidth(9 + p, 15);
                     excel.SetColumnWidth(10 + p, 18);
                     excel.SetColumnWidth(11 + p, 15);
+                    excel.SetColumnWidth(12 + p, 15);
 
                     excel.SetColumnStyle(9 + p, fecha);
                     excel.SetColumnStyle(10 + p, fecha);
+                    excel.SetColumnStyle(11 + p, miles);
                 }
                 else if (new List<int> { 3, 11 }.Contains(doc))
                 {
@@ -340,8 +381,10 @@ namespace SAESoft.Administracion
                     excel.SetColumnWidth(9 + p, 15);
                     excel.SetColumnWidth(10 + p, 18);
                     excel.SetColumnWidth(11 + p, 15);
+                    excel.SetColumnWidth(12 + p, 15);
 
                     excel.SetColumnStyle(10 + p, fecha);
+                    excel.SetColumnStyle(11 + p, miles);
                 }
                 else if (doc == 6)
                 {
@@ -350,9 +393,11 @@ namespace SAESoft.Administracion
                     excel.SetColumnWidth(10 + p, 15);
                     excel.SetColumnWidth(11 + p, 15);
                     excel.SetColumnWidth(12 + p, 15);
+                    excel.SetColumnWidth(13 + p, 15);
 
                     excel.SetColumnStyle(10 + p, fecha);
                     excel.SetColumnStyle(11 + p, fecha);
+                    excel.SetColumnStyle(12 + p, miles);
                 }
                 else if (doc == 7)
                 {
@@ -366,13 +411,14 @@ namespace SAESoft.Administracion
                     excel.SetColumnWidth(9 + p, 15);
                     excel.SetColumnWidth(10 + p, 15);
                     excel.SetColumnWidth(11 + p, 15);
+                    excel.SetColumnWidth(12 + p, 15);
 
                     excel.SetColumnStyle(10 + p, fecha);
+                    excel.SetColumnStyle(11 + p, miles);
                 }
 
 
                 SLWorksheetStatistics stats = excel.GetWorksheetStatistics();
-                int filaInicial = 2;
                 int filaActual;
                 int ultimaCol = stats.EndColumnIndex;
                 int penultimaCol = ultimaCol - 1;
@@ -380,18 +426,19 @@ namespace SAESoft.Administracion
                 string ultimaColLetra = SLConvert.ToColumnName(ultimaCol);
                 string penultimaColLetra = SLConvert.ToColumnName(penultimaCol);
 
-                char fin;
+                List<char> letras = new();
+
                 if (doc == 9)
                 {
-                    fin = 'G';
+                    letras = new List<char> { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
                 }
                 else
                 {
-                    fin = 'E';
+                    letras = new List<char> { 'A', 'B', 'C', 'D', 'E' };
                 }
-                for (char l = 'A'; l <= fin; l++)
+                foreach (char l in letras)
                 {
-                    filaActual = filaInicial;
+                    filaActual = 2;
                     while (filaActual <= ultimaFila)
                     {
                         string celdaActual = l + filaActual.ToString();
@@ -419,34 +466,47 @@ namespace SAESoft.Administracion
                     }
                 }
 
-
                 for (char i = 'A'; i <= ultimaColLetra[0]; i++)
                     excel.SetCellStyle(i + "1", headerStyle);
 
-                SLStyle normal = excel.GetCellStyle("A2");
                 if (new List<int> { 1, 2, 4, 5, 6, 8, 9 }.Contains(doc))
                 {
                     SLConditionalFormatting cf = new(ultimaColLetra + "2", ultimaColLetra + ultimaFila);
                     SLConditionalFormatting cf2 = new(penultimaColLetra + "2", penultimaColLetra + ultimaFila);
 
+                    String rangoP = $"{penultimaColLetra}2:{penultimaColLetra}{ultimaFila}";
+                    String rangoU = $"{ultimaColLetra}2:{ultimaColLetra}{ultimaFila}";
+                    String rangoI = $"I2:I{ultimaFila}"; //esto es para las residencias permanentes
 
-                    cf.HighlightCellsWithFormula($"{penultimaColLetra}2:{penultimaColLetra}{ultimaFila} < 1", SLHighlightCellsStyleValues.LightRedFillWithDarkRedText);
-                    excel.AddConditionalFormatting(cf);
-                    cf.HighlightCellsWithFormula($"{penultimaColLetra}2:{penultimaColLetra}{ultimaFila} > 0", SLHighlightCellsStyleValues.YellowFillWithDarkYellowText);
-                    excel.AddConditionalFormatting(cf);
-                    cf.HighlightCellsWithFormula($"{penultimaColLetra}2:{penultimaColLetra}{ultimaFila} > 50", SLHighlightCellsStyleValues.GreenFillWithDarkGreenText);
-                    excel.AddConditionalFormatting(cf);
-                    cf.HighlightCellsContainingBlanks(true, normal);
-                    excel.AddConditionalFormatting(cf);
+                    SLStyle cancelado = new();
+                    cancelado.SetFontColor(System.Drawing.Color.Black);
+                    cancelado.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Black, System.Drawing.Color.LightGray);
 
-                    cf2.HighlightCellsWithFormula($"{penultimaColLetra}2:{penultimaColLetra}{ultimaFila} < 1", SLHighlightCellsStyleValues.LightRedFillWithDarkRedText);
+                    cf2.HighlightCellsWithFormula(rangoP + "< 1", SLHighlightCellsStyleValues.LightRedFillWithDarkRedText);
                     excel.AddConditionalFormatting(cf2);
-                    cf2.HighlightCellsWithFormula($"{penultimaColLetra}2:{penultimaColLetra}{ultimaFila} > 0", SLHighlightCellsStyleValues.YellowFillWithDarkYellowText);
+                    cf2.HighlightCellsWithFormula(rangoP + "> 0", SLHighlightCellsStyleValues.YellowFillWithDarkYellowText);
                     excel.AddConditionalFormatting(cf2);
-                    cf2.HighlightCellsWithFormula($"{penultimaColLetra}2:{penultimaColLetra}{ultimaFila} > 50", SLHighlightCellsStyleValues.GreenFillWithDarkGreenText);
+                    cf2.HighlightCellsWithFormula(rangoP + "> 50", SLHighlightCellsStyleValues.GreenFillWithDarkGreenText);
+                    excel.AddConditionalFormatting(cf2);
+                    cf2.HighlightCellsWithFormula(rangoI + "=\"PERMANENTE\"", SLHighlightCellsStyleValues.GreenFillWithDarkGreenText);
+                    excel.AddConditionalFormatting(cf2);
+                    cf2.HighlightCellsWithFormula(rangoU + "= \"Cancelado\"", cancelado);
                     excel.AddConditionalFormatting(cf2);
                     cf2.HighlightCellsContainingBlanks(true, normal);
                     excel.AddConditionalFormatting(cf2);
+
+                    cf.HighlightCellsWithFormula("OR(" +rangoP + "< 1,"+rangoI + "<>\"PERMANENTE\")", SLHighlightCellsStyleValues.LightRedFillWithDarkRedText);
+                    excel.AddConditionalFormatting(cf);
+                    cf.HighlightCellsWithFormula(rangoP + "> 0", SLHighlightCellsStyleValues.YellowFillWithDarkYellowText);
+                    excel.AddConditionalFormatting(cf);
+                    cf.HighlightCellsWithFormula(rangoP + "> 50", SLHighlightCellsStyleValues.GreenFillWithDarkGreenText);
+                    excel.AddConditionalFormatting(cf);
+                    cf.HighlightCellsWithFormula(rangoI + "=\"PERMANENTE\"", SLHighlightCellsStyleValues.GreenFillWithDarkGreenText);
+                    excel.AddConditionalFormatting(cf);
+                    cf.HighlightCellsWithFormula(rangoU + "= \"Cancelado\"", cancelado);
+                    excel.AddConditionalFormatting(cf);
+                    cf.HighlightCellsContainingBlanks(true, normal);
+                    excel.AddConditionalFormatting(cf);
                 }
 
                 excel.SaveAs(pathFile);

@@ -43,6 +43,7 @@
             rdbFemenino = new RadioButton();
             rdbMasculino = new RadioButton();
             errorProvider1 = new ErrorProvider(components);
+            lblTitulo = new Label();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
@@ -52,7 +53,7 @@
             cboParentesco.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cboParentesco.FormattingEnabled = true;
             cboParentesco.ItemHeight = 21;
-            cboParentesco.Location = new Point(144, 15);
+            cboParentesco.Location = new Point(144, 63);
             cboParentesco.Name = "cboParentesco";
             cboParentesco.Size = new Size(373, 29);
             cboParentesco.TabIndex = 19;
@@ -61,7 +62,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(24, 15);
+            label3.Location = new Point(24, 63);
             label3.Name = "label3";
             label3.Size = new Size(98, 21);
             label3.TabIndex = 20;
@@ -71,7 +72,7 @@
             // 
             txtApellidos.CharacterCasing = CharacterCasing.Upper;
             txtApellidos.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtApellidos.Location = new Point(388, 60);
+            txtApellidos.Location = new Point(388, 108);
             txtApellidos.Name = "txtApellidos";
             txtApellidos.Size = new Size(129, 27);
             txtApellidos.TabIndex = 24;
@@ -80,7 +81,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(302, 63);
+            label5.Location = new Point(302, 111);
             label5.Name = "label5";
             label5.Size = new Size(80, 21);
             label5.TabIndex = 26;
@@ -90,7 +91,7 @@
             // 
             txtNombres.CharacterCasing = CharacterCasing.Upper;
             txtNombres.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNombres.Location = new Point(144, 60);
+            txtNombres.Location = new Point(144, 108);
             txtNombres.Name = "txtNombres";
             txtNombres.Size = new Size(129, 27);
             txtNombres.TabIndex = 23;
@@ -99,7 +100,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(24, 60);
+            label2.Location = new Point(24, 108);
             label2.Name = "label2";
             label2.Size = new Size(79, 21);
             label2.TabIndex = 25;
@@ -110,7 +111,7 @@
             dtpFechaNac.CalendarFont = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dtpFechaNac.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dtpFechaNac.Format = DateTimePickerFormat.Short;
-            dtpFechaNac.Location = new Point(209, 106);
+            dtpFechaNac.Location = new Point(209, 154);
             dtpFechaNac.Name = "dtpFechaNac";
             dtpFechaNac.Size = new Size(120, 27);
             dtpFechaNac.TabIndex = 29;
@@ -119,7 +120,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(24, 107);
+            label8.Location = new Point(24, 155);
             label8.Name = "label8";
             label8.Size = new Size(179, 21);
             label8.TabIndex = 30;
@@ -135,7 +136,7 @@
             icbFinalizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbFinalizar.IconSize = 24;
             icbFinalizar.ImageAlign = ContentAlignment.MiddleLeft;
-            icbFinalizar.Location = new Point(209, 154);
+            icbFinalizar.Location = new Point(209, 202);
             icbFinalizar.Name = "icbFinalizar";
             icbFinalizar.Size = new Size(124, 36);
             icbFinalizar.TabIndex = 31;
@@ -148,7 +149,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(335, 112);
+            label10.Location = new Point(335, 160);
             label10.Name = "label10";
             label10.Size = new Size(69, 21);
             label10.TabIndex = 48;
@@ -158,7 +159,7 @@
             // 
             rdbFemenino.AutoSize = true;
             rdbFemenino.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            rdbFemenino.Location = new Point(415, 125);
+            rdbFemenino.Location = new Point(415, 173);
             rdbFemenino.Name = "rdbFemenino";
             rdbFemenino.Size = new Size(104, 25);
             rdbFemenino.TabIndex = 47;
@@ -170,7 +171,7 @@
             rdbMasculino.AutoSize = true;
             rdbMasculino.Checked = true;
             rdbMasculino.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            rdbMasculino.Location = new Point(415, 98);
+            rdbMasculino.Location = new Point(415, 146);
             rdbMasculino.Name = "rdbMasculino";
             rdbMasculino.Size = new Size(106, 25);
             rdbMasculino.TabIndex = 46;
@@ -182,12 +183,22 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // lblTitulo
+            // 
+            lblTitulo.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTitulo.Location = new Point(24, 9);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(493, 40);
+            lblTitulo.TabIndex = 49;
+            lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // frmFamiliares
             // 
             AcceptButton = icbFinalizar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(534, 200);
+            ClientSize = new Size(534, 272);
+            Controls.Add(lblTitulo);
             Controls.Add(label10);
             Controls.Add(rdbFemenino);
             Controls.Add(rdbMasculino);
@@ -225,5 +236,6 @@
         private RadioButton rdbFemenino;
         private RadioButton rdbMasculino;
         private ErrorProvider errorProvider1;
+        private Label lblTitulo;
     }
 }

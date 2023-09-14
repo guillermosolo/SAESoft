@@ -9,9 +9,6 @@ using System.Data;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Diagnostics;
 
-
-
-
 namespace SAESoft.Administracion
 {
     public partial class frmPersonal : Form
@@ -23,6 +20,7 @@ namespace SAESoft.Administracion
         readonly DataTable dtDoc = new();
         readonly DataTable dtMig = new();
         readonly DataTable dtMed = new();
+        readonly DataTable dtNom = new();
         private bool isLoadingcboEmpresa = false;
         private Boolean? cuotaAnual;
 
@@ -81,6 +79,17 @@ namespace SAESoft.Administracion
             dgvMedico.Columns[0].Width = 250;
             dgvMedico.Columns[1].Width = 160;
             dgvMedico.ClearSelection();
+
+            dtNom.Columns.Add("Empresa").DataType = Type.GetType("System.String");
+            dtNom.Columns.Add("Tipo").DataType = Type.GetType("System.String");
+            dtNom.Columns.Add("Libro / Folio / Registro").DataType = Type.GetType("System.String");
+            dtNom.Columns.Add("Expediente").DataType = Type.GetType("System.String");
+            dtNom.Columns.Add("Vencimiento").DataType = Type.GetType("System.DateTime");
+            dtNom.Columns.Add("Dias de Vigencia").DataType = Type.GetType("System.Int32");
+
+            dgvNombramientos.DataSource = dtNom;
+            dgvNombramientos.Columns[1].Width = 250;
+            dgvNombramientos.ClearSelection();
 
         }
 
@@ -274,7 +283,7 @@ namespace SAESoft.Administracion
             else
             {
                 txtVigenciaSV.BackColor = SystemColors.Control;
-                txtVigenciaSV.ForeColor = System.Drawing.Color.Red;
+                txtVigenciaSV.ForeColor = Color.Red;
             }
             txtPlacasSV.Text = rs[CurrentIndex].SeguroVehiculo?.Placa;
             txtDescSV.Text = rs[CurrentIndex].SeguroVehiculo?.Marca + " " + rs[CurrentIndex].SeguroVehiculo?.Color;
@@ -284,29 +293,22 @@ namespace SAESoft.Administracion
 
         private void llenarDatosRepresentacion()
         {
-            Boolean? noVence;
-            DateTime? vencimiento;
-            noVence = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 9)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.NoVence;
-            vencimiento = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 9)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;
-            int? vigencia = vencimiento.HasValue ? calculaVigencia(vencimiento.Value) : null;
-            txtCargoNomb.Text = rs[CurrentIndex].Documentos?.Where(d => d.IdTipo == 9)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
-            if (noVence.HasValue && noVence.Value)
+            DataRow row;
+            foreach (var nombramiento in rs[CurrentIndex].Nombramientos)
             {
-                txtVenceNomb.Text = "NO VENCE";
-                txtVigenciaNomb.Text = "Indefinida";
+                if (!nombramiento.Cancelado)
+                {
+                    row = dtNom.NewRow();
+                    row[0] = nombramiento.Empresa.Descripcion;
+                    row[1] = nombramiento.Tipo.Descripcion;
+                    row[2] = nombramiento.Libro.ToString() + " / " + nombramiento.Folio.ToString() + " / " + nombramiento.Registro.ToString();
+                    row[3] = nombramiento.Expediente;
+                    row[4] = nombramiento.Vencimiento.Date;
+                    row[5] = calculaVigencia(nombramiento.Vencimiento);
+                    dtNom.Rows.Add(row);
+                }
             }
-            else
-            {
-                txtVenceNomb.Text = vencimiento.HasValue ? vencimiento.Value.ToString("dd/MM/yyyy") : "";
-                txtVigenciaNomb.Text = vigencia.HasValue ? vigencia.Value.ToString("N0") : "";
-            }
-            if (vigencia.HasValue && vigencia.Value > 0)
-                txtVigenciaNomb.ForeColor = SystemColors.WindowText;
-            else
-            {
-                txtVigenciaNomb.BackColor = SystemColors.Control;
-                txtVigenciaNomb.ForeColor = System.Drawing.Color.Red;
-            }
+
         }
         private void llenarDatosTrabajo()
         {
@@ -476,6 +478,7 @@ namespace SAESoft.Administracion
             dtDoc.Clear();
             dtMig.Clear();
             dtMed.Clear();
+            dtNom.Clear();
         }
 
         private Boolean ValidarDatos()
@@ -849,6 +852,11 @@ namespace SAESoft.Administracion
                         llenarSeguroVehiculo();
                         break;
                     }
+                case "SEGURO MÉDICO":
+                    {
+                        llenarSeguroMedico();
+                        break;
+                    }
                 default:
                     {
                         llenarDocumentos((int)e.ClickedItem.Tag);
@@ -857,221 +865,396 @@ namespace SAESoft.Administracion
             }
         }
 
+        private void llenarSeguroMedico()
+        {
+            frmSeguroMedico medico = new() { idEmpleado = rs[CurrentIndex].IdEmpleado };
+            var resp = medico.ShowDialog();
+            if (resp == DialogResult.OK)
+            {
+                using SAESoftContext db = new();
+                using var transaction = db.Database.BeginTransaction();
+                try
+                {
+                    if (medico.familiar == 0)
+                    {
+                        if (rs[CurrentIndex].SeguroMedico != null)
+                        {
+                            rs[CurrentIndex].IdSeguroMedico = null;
+                            db.Empleados.Update(rs[CurrentIndex]);
+                            db.SaveChanges();
+                            db.SegurosMedicos.Remove(rs[CurrentIndex].SeguroMedico);
+                            db.SaveChanges();
+                            rs[CurrentIndex].SeguroMedico = null;
+                        }
+
+
+                        SeguroMedico med = new()
+                        {
+                            Certificado = medico.certificado,
+                            Carnet = medico.carnet,
+                            Inicio = medico.inicio,
+                            Vencimiento = medico.fin,
+                            FechaCreacion = DatosServer.FechaServer(),
+                            IdUsuarioCreacion = usuarioLogged.IdUsuario,
+                        };
+                        db.SegurosMedicos.Add(med);
+                        db.SaveChanges();
+                        db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
+                        rs[CurrentIndex].IdSeguroMedico = med.IdMedico;
+                        db.Empleados.Update(rs[CurrentIndex]);
+                        db.SaveChanges();
+                        rs[CurrentIndex].SeguroMedico = med;
+                    }
+                    else
+                    {
+                        if (rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar).SeguroMedico != null)
+                        {
+                            rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar).IdSeguroMedico = null;
+                            db.Familiares.Update(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar));
+                            db.SaveChanges();
+                            db.SegurosMedicos.Remove(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar).SeguroMedico);
+                            db.SaveChanges();
+                            rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar).SeguroMedico = null;
+                        }
+
+                        SeguroMedico med = new()
+                        {
+                            Certificado = medico.certificado,
+                            Carnet = medico.carnet,
+                            Inicio = medico.inicio,
+                            Vencimiento = medico.fin,
+                            FechaCreacion = DatosServer.FechaServer(),
+                            IdUsuarioCreacion = usuarioLogged.IdUsuario,
+                        };
+                        db.SegurosMedicos.Add(med);
+                        db.SaveChanges();
+                        db.Entry(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar)).State = EntityState.Modified;
+                        rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar).IdResidencia = med.IdMedico;
+                        db.Familiares.Update(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar));
+                        db.SaveChanges();
+                        rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar).SeguroMedico = med;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
         private void llenarSeguroVehiculo()
         {
             frmSeguroVehiculo vehiculo = new();
-            if (rs[CurrentIndex].SeguroVehiculo != null)
-            {
-                vehiculo.existe = true;
-            }
+
             var resp = vehiculo.ShowDialog();
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                if (vehiculo.existe)
+                using var transaction = db.Database.BeginTransaction();
+                try
                 {
-                    rs[CurrentIndex].IdSeguroVehiculo = null;
+                    if (rs[CurrentIndex].SeguroVehiculo != null)
+                    {
+                        rs[CurrentIndex].IdSeguroVehiculo = null;
+                        db.Empleados.Update(rs[CurrentIndex]);
+                        db.SaveChanges();
+                        db.SegurosVehiculos.Remove(rs[CurrentIndex].SeguroVehiculo);
+                        db.SaveChanges();
+                        rs[CurrentIndex].SeguroVehiculo = null;
+                    }
+                    var aseg = db.Nombres.Where(t => t.IdNombre == vehiculo.idAseguradora).FirstOrDefault();
+                    SeguroVehiculo veh = new()
+                    {
+                        Marca = vehiculo.marca,
+                        Color = vehiculo.color,
+                        Placa = vehiculo.placas,
+                        IdAseguradora = aseg.IdNombre,
+                        Poliza = vehiculo.poliza,
+                        Inicio = vehiculo.inicio,
+                        Vencimiento = vehiculo.vencimiento,
+                        Prima = vehiculo.prima,
+                        Deducible = vehiculo.deducible,
+                        FechaCreacion = DatosServer.FechaServer(),
+                        IdUsuarioCreacion = usuarioLogged.IdUsuario,
+                    };
+                    db.SegurosVehiculos.Add(veh);
+                    db.SaveChanges();
+                    db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
+                    rs[CurrentIndex].IdSeguroVehiculo = veh.IdVehiculo;
                     db.Empleados.Update(rs[CurrentIndex]);
                     db.SaveChanges();
-                    db.SegurosVehiculos.Remove(rs[CurrentIndex].SeguroVehiculo);
-                    db.SaveChanges();
-                    rs[CurrentIndex].SeguroVehiculo = null;
+                    rs[CurrentIndex].SeguroVehiculo = veh;
+                    transaction.Commit();
+                    despliegaDatos();
                 }
-                var aseg = db.Nombres.Where(t => t.IdNombre == vehiculo.idAseguradora).FirstOrDefault();
-                SeguroVehiculo veh = new()
+                catch (Exception ex)
                 {
-                    Marca = vehiculo.marca,
-                    Color = vehiculo.color,
-                    Placa = vehiculo.placas,
-                    IdAseguradora = aseg.IdNombre,
-                    Poliza = vehiculo.poliza,
-                    Inicio = vehiculo.inicio,
-                    Vencimiento = vehiculo.vencimiento,
-                    Prima = vehiculo.prima,
-                    Deducible = vehiculo.deducible,
-                    FechaCreacion = DatosServer.FechaServer(),
-                    IdUsuarioCreacion = usuarioLogged.IdUsuario,
-                };
-                db.SegurosVehiculos.Add(veh);
-                db.SaveChanges();
-                db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
-                rs[CurrentIndex].IdSeguroVehiculo = veh.IdVehiculo;
-                db.Empleados.Update(rs[CurrentIndex]);
-                db.SaveChanges();
-                rs[CurrentIndex].SeguroVehiculo = veh;
-                despliegaDatos();
+                    transaction.Rollback();
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void llenarPermisoTrabajo()
         {
             frmPermisoTrabajo permiso = new();
-            if (rs[CurrentIndex].PermisoTrabajo != null)
-            {
-                permiso.existe = true;
-            }
             var resp = permiso.ShowDialog();
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                if (permiso.existe)
+                using var transaction = db.Database.BeginTransaction();
+                try
                 {
-                    rs[CurrentIndex].IdPermisoTrabajo = null;
+                    if (rs[CurrentIndex].PermisoTrabajo != null)
+                    {
+                        rs[CurrentIndex].IdPermisoTrabajo = null;
+                        db.Empleados.Update(rs[CurrentIndex]);
+                        db.SaveChanges();
+                        db.PermisosTrabajo.Remove(rs[CurrentIndex].PermisoTrabajo);
+                        db.SaveChanges();
+                        rs[CurrentIndex].PermisoTrabajo = null;
+                    }
+                    var tipo = db.Nombres.Where(t => t.IdNombre == permiso.tipo).FirstOrDefault();
+                    PermisoTrabajo per = new()
+                    {
+                        IdTipo = tipo.IdNombre,
+                        Resolucion = permiso.resolucion,
+                        Inicio = permiso.inicio,
+                        Vencimiento = permiso.vencimiento,
+                        FechaCreacion = DatosServer.FechaServer(),
+                        IdUsuarioCreacion = usuarioLogged.IdUsuario,
+                    };
+                    db.PermisosTrabajo.Add(per);
+                    db.SaveChanges();
+                    db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
+                    rs[CurrentIndex].IdPermisoTrabajo = per.IdPermiso;
                     db.Empleados.Update(rs[CurrentIndex]);
                     db.SaveChanges();
-                    db.PermisosTrabajo.Remove(rs[CurrentIndex].PermisoTrabajo);
-                    db.SaveChanges();
-                    rs[CurrentIndex].PermisoTrabajo = null;
+                    rs[CurrentIndex].PermisoTrabajo = per;
+                    transaction.Commit();
+                    despliegaDatos();
                 }
-                var tipo = db.Nombres.Where(t => t.IdNombre == permiso.tipo).FirstOrDefault();
-                PermisoTrabajo per = new()
+                catch (Exception ex)
                 {
-                    IdTipo = tipo.IdNombre,
-                    Resolucion = permiso.resolucion,
-                    Inicio = permiso.inicio,
-                    Vencimiento = permiso.vencimiento,
-                    FechaCreacion = DatosServer.FechaServer(),
-                    IdUsuarioCreacion = usuarioLogged.IdUsuario,
-                };
-                db.PermisosTrabajo.Add(per);
-                db.SaveChanges();
-                db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
-                rs[CurrentIndex].IdPermisoTrabajo = per.IdPermiso;
-                db.Empleados.Update(rs[CurrentIndex]);
-                db.SaveChanges();
-                rs[CurrentIndex].PermisoTrabajo = per;
-                despliegaDatos();
+                    transaction.Rollback();
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+
         }
 
         private void llenarRepresentacion()
         {
-            using SAESoftContext db = new();
-            var tipo = db.TiposDocumento.Where(p => p.IdTipoDocumento == 9).FirstOrDefault();
-            frmNombramientos nombramiento = new();
-            var resp = nombramiento.ShowDialog();
-            if (resp == DialogResult.OK)
+            frmNombramientos nombramiento = new()
             {
-                Documento docto = new()
-                {
-                    IdEmpleado = rs[CurrentIndex].IdEmpleado,
-                    IdTipo = tipo.IdTipoDocumento,
-                    Numero = nombramiento.numero,
-                    Fecha = nombramiento.emision,
-                    NoVence = nombramiento.novence,
-                    Vencimiento = nombramiento.novence ? null : nombramiento.vencimiento,
-                    FechaCreacion = DatosServer.FechaServer(),
-                    IdUsuarioCreacion = usuarioLogged.IdUsuario
-                };
+                nombramientos = rs[CurrentIndex].Nombramientos,
+                usuarioLogged = usuarioLogged,
+                IdEmpleado = rs[CurrentIndex].IdEmpleado
+            };
 
-                db.Documentos.Add(docto);
-                db.SaveChanges();
-                rs[CurrentIndex].Documentos.Add(docto);
-                despliegaDatos();
-            }
+
+            nombramiento.ShowDialog();
+            rs[CurrentIndex].Nombramientos = nombramiento.nombramientos;
+
+            despliegaDatos();
         }
         private void llenarDocumentos(int t)
         {
             using SAESoftContext db = new();
-            var tipo = db.TiposDocumento.Where(p => p.IdTipoDocumento == t).FirstOrDefault();
-            frmDocumentos documento = new() { documento = tipo.Nombre };
-            var resp = documento.ShowDialog();
-            if (resp == DialogResult.OK)
+            using var transaction = db.Database.BeginTransaction();
+            try
             {
-                Documento docto = new()
+                var tipo = db.TiposDocumento.Where(p => p.IdTipoDocumento == t).FirstOrDefault();
+                frmDocumentos documento = new() { documento = tipo.Nombre, id = tipo.IdTipoDocumento, idEmpleado = rs[CurrentIndex].IdEmpleado };
+                db.ChangeTracker.Clear();
+                var resp = documento.ShowDialog();
+                if (resp == DialogResult.OK)
                 {
-                    IdEmpleado = rs[CurrentIndex].IdEmpleado,
-                    IdTipo = tipo.IdTipoDocumento,
-                    Numero = documento.numero,
-                    Fecha = documento.emision,
-                    NoVence = documento.novence,
-                    Vencimiento = documento.novence ? null : documento.vencimiento,
-                    FechaCreacion = DatosServer.FechaServer(),
-                    IdUsuarioCreacion = usuarioLogged.IdUsuario
-                };
-
-                db.Documentos.Add(docto);
-                db.SaveChanges();
-                rs[CurrentIndex].Documentos.Add(docto);
-                despliegaDatos();
+                    Documento docto;
+                    if (documento.familiar == 0)
+                    {
+                        docto = new()
+                        {
+                            IdEmpleado = rs[CurrentIndex].IdEmpleado,
+                            IdTipo = tipo.IdTipoDocumento,
+                            Numero = documento.numero,
+                            Fecha = documento.emision,
+                            NoVence = documento.novence,
+                            Vencimiento = documento.novence ? null : documento.vencimiento,
+                            FechaCreacion = DatosServer.FechaServer(),
+                            IdUsuarioCreacion = usuarioLogged.IdUsuario
+                        };
+                        var documentoEliminar = rs[CurrentIndex].Documentos.First(d => d.IdTipo == tipo.IdTipoDocumento);
+                        if (documentoEliminar != null)
+                        {
+                            rs[CurrentIndex].Documentos.Remove(documentoEliminar);
+                            db.Empleados.Update(rs[CurrentIndex]);
+                            db.SaveChanges();
+                            db.Documentos.Remove(documentoEliminar);
+                            db.SaveChanges();
+                        }
+                        db.Documentos.Add(docto);
+                        db.SaveChanges();
+                        rs[CurrentIndex].Documentos.Add(docto);
+                    }
+                    else
+                    {
+                        docto = new()
+                        {
+                            IdFamiliar = documento.familiar,
+                            IdTipo = tipo.IdTipoDocumento,
+                            Numero = documento.numero,
+                            Fecha = documento.emision,
+                            NoVence = documento.novence,
+                            Vencimiento = documento.novence ? null : documento.vencimiento,
+                            FechaCreacion = DatosServer.FechaServer(),
+                            IdUsuarioCreacion = usuarioLogged.IdUsuario
+                        };
+                        var documentoEliminar = rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == documento.familiar).Documentos.First(fd => fd.IdTipo == documento.id);
+                        if (documentoEliminar != null)
+                        {
+                            rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == documento.familiar).Documentos.Remove(documentoEliminar);
+                            db.Familiares.Update(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == documento.familiar));
+                            db.SaveChanges();
+                            db.Documentos.Remove(documentoEliminar);
+                            db.SaveChanges();
+                        }
+                        db.Documentos.Add(docto);
+                        db.SaveChanges();
+                        rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == documento.familiar).Documentos.Add(docto);
+                    }
+                    transaction.Commit();
+                    despliegaDatos();
+                }
             }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void llenarResidencia()
         {
-            frmResidencia residencia = new();
-            if (rs[CurrentIndex].Residencia != null)
-            {
-                residencia.existe = true;
-            }
+            frmResidencia residencia = new() { idEmpleado = rs[CurrentIndex].IdEmpleado };
+
             var resp = residencia.ShowDialog();
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                if (residencia.existe)
+                using var transaction = db.Database.BeginTransaction();
+                try
                 {
-                    rs[CurrentIndex].IdResidencia = null;
-                    db.Empleados.Update(rs[CurrentIndex]);
-                    db.SaveChanges();
-                    db.Residencias.Remove(rs[CurrentIndex].Residencia);
-                    db.SaveChanges();
-                    rs[CurrentIndex].Residencia = null;
+                    if (residencia.familiar == 0)
+                    {
+                        if (rs[CurrentIndex].Residencia != null)
+                        {
+                            rs[CurrentIndex].IdResidencia = null;
+                            db.Empleados.Update(rs[CurrentIndex]);
+                            db.SaveChanges();
+                            db.Residencias.Remove(rs[CurrentIndex].Residencia);
+                            db.SaveChanges();
+                            rs[CurrentIndex].Residencia = null;
+                        }
+
+                        var tipo = db.Nombres.Where(t => t.IdNombre == residencia.tipo).FirstOrDefault();
+                        Residencia res = new()
+                        {
+                            IdTipo = tipo.IdNombre,
+                            Resolucion = residencia.resolucion,
+                            Vencimiento = residencia.vencimiento,
+                            FechaCreacion = DatosServer.FechaServer(),
+                            IdUsuarioCreacion = usuarioLogged.IdUsuario,
+                        };
+                        db.Residencias.Add(res);
+                        db.SaveChanges();
+                        db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
+                        rs[CurrentIndex].IdResidencia = res.IdResidencia;
+                        db.Empleados.Update(rs[CurrentIndex]);
+                        db.SaveChanges();
+                        rs[CurrentIndex].Residencia = res;
+                    }
+                    else
+                    {
+                        if (rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar).Residencia != null)
+                        {
+                            rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar).IdResidencia = null;
+                            db.Familiares.Update(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar));
+                            db.SaveChanges();
+                            db.Residencias.Remove(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar).Residencia);
+                            db.SaveChanges();
+                            rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar).Residencia = null;
+                        }
+                        var tipo = db.Nombres.Where(t => t.IdNombre == residencia.tipo).FirstOrDefault();
+                        Residencia res = new()
+                        {
+                            IdTipo = tipo.IdNombre,
+                            Resolucion = residencia.resolucion,
+                            Vencimiento = residencia.vencimiento,
+                            FechaCreacion = DatosServer.FechaServer(),
+                            IdUsuarioCreacion = usuarioLogged.IdUsuario,
+                        };
+                        db.Residencias.Add(res);
+                        db.SaveChanges();
+                        db.Entry(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar)).State = EntityState.Modified;
+                        rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar).IdResidencia = res.IdResidencia;
+                        db.Familiares.Update(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar));
+                        db.SaveChanges();
+                        rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar).Residencia = res;
+                    }
+                    transaction.Commit();
+                    despliegaDatos();
                 }
-                var tipo = db.Nombres.Where(t => t.IdNombre == residencia.tipo).FirstOrDefault();
-                Residencia res = new()
+                catch (Exception ex)
                 {
-                    IdTipo = tipo.IdNombre,
-                    Resolucion = residencia.resolucion,
-                    Vencimiento = residencia.vencimiento,
-                    FechaCreacion = DatosServer.FechaServer(),
-                    IdUsuarioCreacion = usuarioLogged.IdUsuario,
-                };
-                db.Residencias.Add(res);
-                db.SaveChanges();
-                db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
-                rs[CurrentIndex].IdResidencia = res.IdResidencia;
-                db.Empleados.Update(rs[CurrentIndex]);
-                db.SaveChanges();
-                rs[CurrentIndex].Residencia = res;
-                despliegaDatos();
+                    transaction.Rollback();
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void llenarContrato()
         {
             frmContrato contrato = new();
-            if (rs[CurrentIndex].Contrato != null)
-            {
-                contrato.existe = true;
-            }
             var resp = contrato.ShowDialog();
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                if (contrato.existe)
+                using var transaction = db.Database.BeginTransaction();
+                try
                 {
-                    rs[CurrentIndex].IdContrato = null;
+                    if (rs[CurrentIndex].Contrato != null)
+                    {
+                        rs[CurrentIndex].IdContrato = null;
+                        db.Empleados.Update(rs[CurrentIndex]);
+                        db.SaveChanges();
+                        db.Contratos.Remove(rs[CurrentIndex].Contrato);
+                        db.SaveChanges();
+                        rs[CurrentIndex].Contrato = null;
+                    }
+                    var empresa = db.Nombres.Where(e => e.IdNombre == contrato.empresa).FirstOrDefault();
+                    Contrato cont = new()
+                    {
+                        Numero = contrato.numero,
+                        IdEmpresa = empresa.IdNombre,
+                        FechaCreacion = DatosServer.FechaServer(),
+                        IdUsuarioCreacion = usuarioLogged.IdUsuario
+                    };
+                    db.Contratos.Add(cont);
+                    db.SaveChanges();
+                    db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
+                    rs[CurrentIndex].IdContrato = cont.IdContrato;
                     db.Empleados.Update(rs[CurrentIndex]);
                     db.SaveChanges();
-                    db.Contratos.Remove(rs[CurrentIndex].Contrato);
-                    db.SaveChanges();
-                    rs[CurrentIndex].Contrato = null;
+                    rs[CurrentIndex].Contrato = cont;
+                    transaction.Commit();
+                    despliegaDatos();
                 }
-                var empresa = db.Nombres.Where(e => e.IdNombre == contrato.empresa).FirstOrDefault();
-                Contrato cont = new()
+                catch (Exception ex)
                 {
-                    Numero = contrato.numero,
-                    IdEmpresa = empresa.IdNombre,
-                    FechaCreacion = DatosServer.FechaServer(),
-                    IdUsuarioCreacion = usuarioLogged.IdUsuario
-                };
-                db.Contratos.Add(cont);
-                db.SaveChanges();
-                db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
-                rs[CurrentIndex].IdContrato = cont.IdContrato;
-                db.Empleados.Update(rs[CurrentIndex]);
-                db.SaveChanges();
-                rs[CurrentIndex].Contrato = cont;
-                despliegaDatos();
+                    transaction.Rollback();
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -1211,8 +1394,30 @@ namespace SAESoft.Administracion
             }
         }
 
+        private void dgvNombramientos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 5)
+            {
+                if (e.Value != null && e.Value != DBNull.Value)
+                {
+                    // Obtener el valor numérico
+                    int valor = Convert.ToInt32(e.Value);
 
+                    // Aplicar formato con separador de miles
+                    string valorFormateado = valor.ToString("#,##0");
 
+                    // Configurar el color de la celda
+                    if (valor < 0)
+                    {
+                        e.CellStyle.ForeColor = System.Drawing.Color.Red;
+                    }
 
+                    // Asignar el valor formateado a la celda
+                    e.Value = valorFormateado;
+                    e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    e.FormattingApplied = true;
+                }
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAESoft.Models.Administracion;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,7 +21,28 @@ namespace SAESoft.Administracion
 
         private void frmFamiliares_Load(object sender, EventArgs e)
         {
+            lblTitulo.Text = "FAMILIARES";
+            int tamañoFuente = CalcularTamañoFuente(lblTitulo.Text);
+            lblTitulo.Font = new Font(lblTitulo.Font.FontFamily, tamañoFuente);
             llenarCombos();
+        }
+
+        private static int CalcularTamañoFuente(string texto)
+        {
+            int tamañoBase = 20; // Tamaño de fuente base
+            int longitudTexto = texto.Length;
+            int tamañoFuente = tamañoBase;
+
+            if (longitudTexto > 15)
+            {
+                tamañoFuente = tamañoBase - ((longitudTexto - 15) * 2); // Reducir el tamaño de fuente en función de la longitud del texto
+                if (tamañoFuente < 10) // Limitar el tamaño de fuente mínimo
+                {
+                    tamañoFuente = 10;
+                }
+            }
+
+            return tamañoFuente;
         }
 
         public void llenarCombos()
@@ -43,7 +65,7 @@ namespace SAESoft.Administracion
             }
             else
             {
-                return;
+                this.DialogResult = DialogResult.Abort;
             }
         }
 

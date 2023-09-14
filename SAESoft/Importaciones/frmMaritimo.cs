@@ -1034,22 +1034,22 @@ namespace SAESoft.Importaciones
 
         private void txtValorExtra_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = decimales(sender, e);
+            e.Handled = decimales(e.KeyChar, Text);
         }
 
         private void txtTiempoLibre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = enteros(sender, e);
+            e.Handled = enteros(e.KeyChar);
         }
 
         private void txtDemora_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = enteros(sender, e);
+            e.Handled = enteros(e.KeyChar);
         }
 
         private void txtValorExtra2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = decimales(sender, e);
+            e.Handled = decimales(e.KeyChar, Text);
         }
 
         private void tsbPago_Click(object sender, EventArgs e)

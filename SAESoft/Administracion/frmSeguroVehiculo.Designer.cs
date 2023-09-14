@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSeguroVehiculo));
             txtMarca = new TextBox();
             label3 = new Label();
@@ -48,11 +49,14 @@
             txtPrima = new TextBox();
             txtDeducible = new TextBox();
             icbFinalizar = new FontAwesome.Sharp.IconButton();
+            errorProvider1 = new ErrorProvider(components);
+            lblTitulo = new Label();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // txtMarca
             // 
-            txtMarca.Location = new Point(117, 29);
+            txtMarca.Location = new Point(117, 69);
             txtMarca.Margin = new Padding(4);
             txtMarca.Name = "txtMarca";
             txtMarca.Size = new Size(351, 27);
@@ -61,7 +65,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(36, 32);
+            label3.Location = new Point(36, 72);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(62, 21);
@@ -71,7 +75,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(36, 71);
+            label1.Location = new Point(36, 111);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(51, 21);
@@ -80,7 +84,7 @@
             // 
             // txtColor
             // 
-            txtColor.Location = new Point(117, 68);
+            txtColor.Location = new Point(117, 108);
             txtColor.Margin = new Padding(4);
             txtColor.Name = "txtColor";
             txtColor.Size = new Size(351, 27);
@@ -89,7 +93,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(36, 111);
+            label2.Location = new Point(36, 151);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(60, 21);
@@ -99,7 +103,7 @@
             // txtPlacas
             // 
             txtPlacas.CharacterCasing = CharacterCasing.Upper;
-            txtPlacas.Location = new Point(117, 108);
+            txtPlacas.Location = new Point(117, 148);
             txtPlacas.Margin = new Padding(4);
             txtPlacas.Name = "txtPlacas";
             txtPlacas.Size = new Size(351, 27);
@@ -108,7 +112,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(38, 151);
+            label4.Location = new Point(38, 191);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(113, 21);
@@ -118,7 +122,7 @@
             // cboAseguradora
             // 
             cboAseguradora.FormattingEnabled = true;
-            cboAseguradora.Location = new Point(158, 148);
+            cboAseguradora.Location = new Point(158, 188);
             cboAseguradora.Name = "cboAseguradora";
             cboAseguradora.Size = new Size(310, 29);
             cboAseguradora.TabIndex = 15;
@@ -126,7 +130,7 @@
             // txtPoliza
             // 
             txtPoliza.CharacterCasing = CharacterCasing.Upper;
-            txtPoliza.Location = new Point(117, 193);
+            txtPoliza.Location = new Point(117, 233);
             txtPoliza.Margin = new Padding(4);
             txtPoliza.Name = "txtPoliza";
             txtPoliza.Size = new Size(351, 27);
@@ -135,7 +139,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(36, 196);
+            label5.Location = new Point(36, 236);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(53, 21);
@@ -145,7 +149,7 @@
             // dtpVencimiento
             // 
             dtpVencimiento.Format = DateTimePickerFormat.Short;
-            dtpVencimiento.Location = new Point(358, 232);
+            dtpVencimiento.Location = new Point(358, 272);
             dtpVencimiento.Name = "dtpVencimiento";
             dtpVencimiento.Size = new Size(110, 27);
             dtpVencimiento.TabIndex = 19;
@@ -153,7 +157,7 @@
             // dtpInicio
             // 
             dtpInicio.Format = DateTimePickerFormat.Short;
-            dtpInicio.Location = new Point(117, 232);
+            dtpInicio.Location = new Point(117, 272);
             dtpInicio.Name = "dtpInicio";
             dtpInicio.Size = new Size(110, 27);
             dtpInicio.TabIndex = 18;
@@ -161,7 +165,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(36, 237);
+            label6.Location = new Point(36, 277);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(51, 21);
@@ -171,7 +175,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(242, 237);
+            label7.Location = new Point(242, 277);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(109, 21);
@@ -181,7 +185,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(38, 274);
+            label8.Location = new Point(38, 314);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
             label8.Size = new Size(53, 21);
@@ -191,7 +195,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(249, 274);
+            label9.Location = new Point(249, 314);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
             label9.Size = new Size(90, 21);
@@ -200,19 +204,21 @@
             // 
             // txtPrima
             // 
-            txtPrima.Location = new Point(117, 271);
+            txtPrima.Location = new Point(117, 311);
             txtPrima.Margin = new Padding(4);
             txtPrima.Name = "txtPrima";
             txtPrima.Size = new Size(124, 27);
             txtPrima.TabIndex = 24;
+            txtPrima.KeyPress += txtPrima_KeyPress;
             // 
             // txtDeducible
             // 
-            txtDeducible.Location = new Point(344, 271);
+            txtDeducible.Location = new Point(344, 311);
             txtDeducible.Margin = new Padding(4);
             txtDeducible.Name = "txtDeducible";
             txtDeducible.Size = new Size(124, 27);
             txtDeducible.TabIndex = 25;
+            txtDeducible.KeyPress += txtDeducible_KeyPress;
             // 
             // icbFinalizar
             // 
@@ -224,7 +230,7 @@
             icbFinalizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbFinalizar.IconSize = 24;
             icbFinalizar.ImageAlign = ContentAlignment.MiddleLeft;
-            icbFinalizar.Location = new Point(178, 323);
+            icbFinalizar.Location = new Point(178, 363);
             icbFinalizar.Name = "icbFinalizar";
             icbFinalizar.Size = new Size(124, 36);
             icbFinalizar.TabIndex = 33;
@@ -233,12 +239,26 @@
             icbFinalizar.UseVisualStyleBackColor = true;
             icbFinalizar.Click += icbFinalizar_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTitulo.Location = new Point(38, 9);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(430, 40);
+            lblTitulo.TabIndex = 35;
+            lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // frmSeguroVehiculo
             // 
             AcceptButton = icbFinalizar;
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(509, 375);
+            ClientSize = new Size(509, 441);
+            Controls.Add(lblTitulo);
             Controls.Add(icbFinalizar);
             Controls.Add(txtDeducible);
             Controls.Add(txtPrima);
@@ -267,6 +287,7 @@
             Name = "frmSeguroVehiculo";
             StartPosition = FormStartPosition.CenterParent;
             Load += frmSeguroVehiculo_Load;
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -292,5 +313,7 @@
         private TextBox txtPrima;
         private TextBox txtDeducible;
         private FontAwesome.Sharp.IconButton icbFinalizar;
+        private ErrorProvider errorProvider1;
+        private Label lblTitulo;
     }
 }

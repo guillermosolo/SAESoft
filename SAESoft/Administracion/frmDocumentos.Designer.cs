@@ -39,13 +39,15 @@
             lblTitulo = new Label();
             icbFinalizar = new FontAwesome.Sharp.IconButton();
             errorProvider1 = new ErrorProvider(components);
+            label3 = new Label();
+            cboFamiliar = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(34, 52);
+            label1.Location = new Point(34, 97);
             label1.Name = "label1";
             label1.Size = new Size(72, 21);
             label1.TabIndex = 0;
@@ -54,7 +56,7 @@
             // txtNumero
             // 
             txtNumero.CharacterCasing = CharacterCasing.Upper;
-            txtNumero.Location = new Point(112, 49);
+            txtNumero.Location = new Point(112, 94);
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(247, 27);
             txtNumero.TabIndex = 1;
@@ -62,7 +64,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(34, 90);
+            label2.Location = new Point(34, 135);
             label2.Name = "label2";
             label2.Size = new Size(144, 21);
             label2.TabIndex = 2;
@@ -71,7 +73,7 @@
             // dtpEmision
             // 
             dtpEmision.Format = DateTimePickerFormat.Short;
-            dtpEmision.Location = new Point(249, 82);
+            dtpEmision.Location = new Point(249, 127);
             dtpEmision.Name = "dtpEmision";
             dtpEmision.Size = new Size(110, 27);
             dtpEmision.TabIndex = 3;
@@ -79,7 +81,7 @@
             // chkVence
             // 
             chkVence.AutoSize = true;
-            chkVence.Location = new Point(37, 122);
+            chkVence.Location = new Point(37, 167);
             chkVence.Name = "chkVence";
             chkVence.Size = new Size(206, 25);
             chkVence.TabIndex = 4;
@@ -91,7 +93,7 @@
             // 
             dtpVencimiento.Enabled = false;
             dtpVencimiento.Format = DateTimePickerFormat.Short;
-            dtpVencimiento.Location = new Point(249, 122);
+            dtpVencimiento.Location = new Point(249, 167);
             dtpVencimiento.Name = "dtpVencimiento";
             dtpVencimiento.Size = new Size(110, 27);
             dtpVencimiento.TabIndex = 5;
@@ -116,7 +118,7 @@
             icbFinalizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbFinalizar.IconSize = 24;
             icbFinalizar.ImageAlign = ContentAlignment.MiddleLeft;
-            icbFinalizar.Location = new Point(131, 160);
+            icbFinalizar.Location = new Point(131, 205);
             icbFinalizar.Name = "icbFinalizar";
             icbFinalizar.Size = new Size(124, 36);
             icbFinalizar.TabIndex = 32;
@@ -129,12 +131,32 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(37, 61);
+            label3.Name = "label3";
+            label3.Size = new Size(69, 21);
+            label3.TabIndex = 33;
+            label3.Text = "Familiar";
+            // 
+            // cboFamiliar
+            // 
+            cboFamiliar.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboFamiliar.FormattingEnabled = true;
+            cboFamiliar.Location = new Point(112, 58);
+            cboFamiliar.Name = "cboFamiliar";
+            cboFamiliar.Size = new Size(247, 29);
+            cboFamiliar.TabIndex = 34;
+            // 
             // frmDocumentos
             // 
             AcceptButton = icbFinalizar;
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(406, 208);
+            ClientSize = new Size(406, 279);
+            Controls.Add(cboFamiliar);
+            Controls.Add(label3);
             Controls.Add(icbFinalizar);
             Controls.Add(lblTitulo);
             Controls.Add(dtpVencimiento);
@@ -169,5 +191,7 @@
         private Label lblTitulo;
         private FontAwesome.Sharp.IconButton icbFinalizar;
         private ErrorProvider errorProvider1;
+        private ComboBox cboFamiliar;
+        private Label label3;
     }
 }

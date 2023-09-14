@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿
+using SAESoft.Models.Administracion;
+using SAESoft.Utilitarios;
+using System.Text.RegularExpressions;
 using static SAESoft.Utilitarios.ControlFormularios;
+using static SAESoft.Utilitarios.Validaciones;
 
 namespace SAESoft.Administracion
 {
@@ -22,7 +18,6 @@ namespace SAESoft.Administracion
         public DateTime vencimiento;
         public decimal prima;
         public decimal deducible;
-        public Boolean existe = false;
         public frmSeguroVehiculo()
         {
             InitializeComponent();
@@ -30,32 +25,33 @@ namespace SAESoft.Administracion
 
         private void frmSeguroVehiculo_Load(object sender, EventArgs e)
         {
+            lblTitulo.Text = "SEGURO DE VEHÍCULOS";
+            int tamañoFuente = CalcularTamañoFuente(lblTitulo.Text);
+            lblTitulo.Font = new Font(lblTitulo.Font.FontFamily, tamañoFuente);
             llenarNombres(cboAseguradora, "ASEGURADORA");
+        }
+
+        private static int CalcularTamañoFuente(string texto)
+        {
+            int tamañoBase = 20; // Tamaño de fuente base
+            int longitudTexto = texto.Length;
+            int tamañoFuente = tamañoBase;
+
+            if (longitudTexto > 15)
+            {
+                tamañoFuente = tamañoBase - ((longitudTexto - 15) * 2); // Reducir el tamaño de fuente en función de la longitud del texto
+                if (tamañoFuente < 10) // Limitar el tamaño de fuente mínimo
+                {
+                    tamañoFuente = 10;
+                }
+            }
+
+            return tamañoFuente;
         }
 
         private void icbFinalizar_Click(object sender, EventArgs e)
         {
-            if (existe)
-            {
-                var resp = MessageBox.Show("Ya existe un Seguro, ¿desea reemplazar?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (resp == DialogResult.Yes)
-                {
-                    marca = txtMarca.Text;
-                    color = txtColor.Text;
-                    placas = txtPlacas.Text;
-                    idAseguradora = Convert.ToInt32(cboAseguradora.SelectedValue);
-                    poliza = txtPoliza.Text;
-                    inicio = dtpInicio.Value.Date;
-                    vencimiento = dtpVencimiento.Value.Date;
-                    prima = Convert.ToDecimal(txtPrima.Text);
-                    deducible = Convert.ToDecimal(txtDeducible.Text);
-                }
-                else
-                {
-                    this.DialogResult = DialogResult.Cancel;
-                }
-            }
-            else
+            if (ValidarDatos())
             {
                 marca = txtMarca.Text;
                 color = txtColor.Text;
@@ -67,6 +63,69 @@ namespace SAESoft.Administracion
                 prima = Convert.ToDecimal(txtPrima.Text);
                 deducible = Convert.ToDecimal(txtDeducible.Text);
             }
+            else
+            {
+                this.DialogResult = DialogResult.Abort;
+            }
+        }
+
+        private Boolean ValidarDatos()
+        {
+            errorProvider1.Clear();
+            Regex placa = Validaciones.plate_validation();
+            if (string.IsNullOrWhiteSpace(txtMarca.Text))
+            {
+                errorProvider1.SetError(txtMarca, "No puede estar vacío.");
+                txtMarca.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtColor.Text))
+            {
+                errorProvider1.SetError(txtColor, "No puede estar vacío.");
+                txtColor.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPlacas.Text))
+            {
+                errorProvider1.SetError(txtPlacas, "No puede estar vacío.");
+                txtPlacas.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPoliza.Text))
+            {
+                errorProvider1.SetError(txtPoliza, "No puede estar vacío.");
+                txtPoliza.Focus();
+                return false;
+            }
+            if (!placa.IsMatch(txtPlacas.Text))
+            {
+                errorProvider1.SetError(txtPlacas, "Número de placa incorrecto.");
+                txtPlacas.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPrima.Text))
+            {
+                errorProvider1.SetError(txtPrima, "No puede estar vacío.");
+                txtPrima.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtDeducible.Text))
+            {
+                errorProvider1.SetError(txtDeducible, "No puede estar vacío.");
+                txtDeducible.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private void txtPrima_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = decimales(e.KeyChar, Text);
+        }
+
+        private void txtDeducible_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = decimales(e.KeyChar, Text);
         }
     }
 }

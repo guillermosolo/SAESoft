@@ -34,6 +34,8 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             toolStripContainer1 = new ToolStripContainer();
             groupBox3 = new GroupBox();
             rdbFemenino = new RadioButton();
@@ -79,12 +81,7 @@
             txtTipoPermiso = new TextBox();
             label22 = new Label();
             tabPage4 = new TabPage();
-            txtVigenciaNomb = new TextBox();
-            label37 = new Label();
-            txtVenceNomb = new TextBox();
-            label28 = new Label();
-            txtCargoNomb = new TextBox();
-            label27 = new Label();
+            dgvNombramientos = new DataGridView();
             tabPage5 = new TabPage();
             dgvMedico = new DataGridView();
             tabPage6 = new TabPage();
@@ -158,6 +155,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvMigracion).BeginInit();
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvNombramientos).BeginInit();
             tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedico).BeginInit();
             tabPage6.SuspendLayout();
@@ -742,12 +740,7 @@
             // 
             // tabPage4
             // 
-            tabPage4.Controls.Add(txtVigenciaNomb);
-            tabPage4.Controls.Add(label37);
-            tabPage4.Controls.Add(txtVenceNomb);
-            tabPage4.Controls.Add(label28);
-            tabPage4.Controls.Add(txtCargoNomb);
-            tabPage4.Controls.Add(label27);
+            tabPage4.Controls.Add(dgvNombramientos);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
             tabPage4.Size = new Size(632, 222);
@@ -755,69 +748,37 @@
             tabPage4.Text = "Nombramientos";
             tabPage4.UseVisualStyleBackColor = true;
             // 
-            // txtVigenciaNomb
+            // dgvNombramientos
             // 
-            txtVigenciaNomb.CharacterCasing = CharacterCasing.Upper;
-            txtVigenciaNomb.Enabled = false;
-            txtVigenciaNomb.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtVigenciaNomb.Location = new Point(350, 62);
-            txtVigenciaNomb.Name = "txtVigenciaNomb";
-            txtVigenciaNomb.ReadOnly = true;
-            txtVigenciaNomb.Size = new Size(96, 27);
-            txtVigenciaNomb.TabIndex = 60;
-            txtVigenciaNomb.TextAlign = HorizontalAlignment.Right;
-            // 
-            // label37
-            // 
-            label37.AutoSize = true;
-            label37.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label37.Location = new Point(265, 65);
-            label37.Name = "label37";
-            label37.Size = new Size(79, 21);
-            label37.TabIndex = 59;
-            label37.Text = "Vigencia";
-            // 
-            // txtVenceNomb
-            // 
-            txtVenceNomb.CharacterCasing = CharacterCasing.Upper;
-            txtVenceNomb.Enabled = false;
-            txtVenceNomb.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtVenceNomb.Location = new Point(131, 62);
-            txtVenceNomb.Name = "txtVenceNomb";
-            txtVenceNomb.ReadOnly = true;
-            txtVenceNomb.Size = new Size(96, 27);
-            txtVenceNomb.TabIndex = 58;
-            // 
-            // label28
-            // 
-            label28.AutoSize = true;
-            label28.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label28.Location = new Point(16, 65);
-            label28.Name = "label28";
-            label28.Size = new Size(109, 21);
-            label28.TabIndex = 56;
-            label28.Text = "Vencimiento";
-            // 
-            // txtCargoNomb
-            // 
-            txtCargoNomb.CharacterCasing = CharacterCasing.Upper;
-            txtCargoNomb.Enabled = false;
-            txtCargoNomb.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtCargoNomb.Location = new Point(101, 20);
-            txtCargoNomb.Name = "txtCargoNomb";
-            txtCargoNomb.ReadOnly = true;
-            txtCargoNomb.Size = new Size(480, 27);
-            txtCargoNomb.TabIndex = 55;
-            // 
-            // label27
-            // 
-            label27.AutoSize = true;
-            label27.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label27.Location = new Point(16, 23);
-            label27.Name = "label27";
-            label27.Size = new Size(60, 21);
-            label27.TabIndex = 18;
-            label27.Text = "Cargo";
+            dgvNombramientos.AllowUserToAddRows = false;
+            dgvNombramientos.AllowUserToDeleteRows = false;
+            dgvNombramientos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvNombramientos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvNombramientos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvNombramientos.DefaultCellStyle = dataGridViewCellStyle5;
+            dgvNombramientos.Dock = DockStyle.Fill;
+            dgvNombramientos.Location = new Point(0, 0);
+            dgvNombramientos.Name = "dgvNombramientos";
+            dgvNombramientos.ReadOnly = true;
+            dgvNombramientos.RowHeadersVisible = false;
+            dgvNombramientos.RowTemplate.Height = 25;
+            dgvNombramientos.Size = new Size(632, 222);
+            dgvNombramientos.TabIndex = 1;
+            dgvNombramientos.CellFormatting += dgvNombramientos_CellFormatting;
             // 
             // tabPage5
             // 
@@ -834,23 +795,23 @@
             dgvMedico.AllowUserToAddRows = false;
             dgvMedico.AllowUserToDeleteRows = false;
             dgvMedico.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvMedico.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvMedico.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvMedico.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvMedico.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Window;
+            dataGridViewCellStyle7.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvMedico.DefaultCellStyle = dataGridViewCellStyle7;
             dgvMedico.Dock = DockStyle.Fill;
             dgvMedico.Location = new Point(0, 0);
             dgvMedico.Name = "dgvMedico";
@@ -1332,7 +1293,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListar, tsbModificar, tsbEliminar, tsddbDocumentos, tsbRelatives, tsbFicha, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(610, 39);
+            toolStrip1.Size = new Size(351, 39);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -1521,7 +1482,7 @@
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             tabPage4.ResumeLayout(false);
-            tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvNombramientos).EndInit();
             tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvMedico).EndInit();
             tabPage6.ResumeLayout(false);
@@ -1615,10 +1576,6 @@
         private Label label23;
         private TextBox txtTipoPermiso;
         private Label label22;
-        private TextBox txtVenceNomb;
-        private Label label28;
-        private TextBox txtCargoNomb;
-        private Label label27;
         private TextBox txtPlacasSV;
         private Label label33;
         private TextBox txtDescSV;
@@ -1640,10 +1597,9 @@
         private Label label10;
         private TextBox txtVigenciaPT;
         private Label label36;
-        private TextBox txtVigenciaNomb;
-        private Label label37;
         private TextBox txtVigenciaSV;
         private Label label38;
         private ToolStripButton tsbFicha;
+        private DataGridView dgvNombramientos;
     }
 }

@@ -1,14 +1,18 @@
-﻿using static SAESoft.Utilitarios.Validaciones;
+﻿using SAESoft.Models;
+using static SAESoft.Utilitarios.Validaciones;
 
 namespace SAESoft.Administracion
 {
     public partial class frmDocumentos : Form
     {
         public string documento;
+        public int id;
         public string numero;
         public DateTime emision;
         public Boolean novence;
         public DateTime vencimiento;
+        public int familiar;
+        public int idEmpleado;
         public frmDocumentos()
         {
             InitializeComponent();
@@ -17,6 +21,32 @@ namespace SAESoft.Administracion
         private void frmDocumentos_Load(object sender, EventArgs e)
         {
             lblTitulo.Text = documento;
+            if (new[] { 1, 2, 5, 11 }.Contains(id))
+            {
+                llenarCombo();
+                label3.Visible = true;
+                cboFamiliar.Visible = true;
+            }
+            else
+            {
+                cboFamiliar.Items.Clear();
+                cboFamiliar.Items.Add(new { IdFamiliar = 0, NombreCompleto = "(NINGUNO)" });
+                cboFamiliar.DisplayMember = "NombreCompleto";
+                cboFamiliar.ValueMember = "IdFamiliar";
+                cboFamiliar.SelectedIndex = 0;
+                label3.Visible = false;
+                cboFamiliar.Visible = false;
+            }
+        }
+
+        private void llenarCombo()
+        {
+            using SAESoftContext db = new();
+            var listado = db.Familiares.Where(f => f.IdEmpleado == idEmpleado).OrderBy(f => f.Nombres).Select(f => new { f.IdFamiliar, f.NombreCompleto }).ToList();
+            listado.Insert(0, new { IdFamiliar = 0, NombreCompleto = "(NINGUNO)" });
+            cboFamiliar.DataSource = listado;
+            cboFamiliar.DisplayMember = "NombreCompleto";
+            cboFamiliar.ValueMember = "IdFamiliar";
         }
 
         private static int CalcularTamañoFuente(string texto)
@@ -40,13 +70,14 @@ namespace SAESoft.Administracion
         private void lblTitulo_TextChanged(object sender, EventArgs e)
         {
             int tamañoFuente = CalcularTamañoFuente(lblTitulo.Text);
-            lblTitulo.Font = new Font(label1.Font.FontFamily, tamañoFuente);
+            lblTitulo.Font = new Font(lblTitulo.Font.FontFamily, tamañoFuente);
         }
 
         private void icbFinalizar_Click(object sender, EventArgs e)
         {
             if (ValidarDatos())
             {
+                familiar = Convert.ToInt32(cboFamiliar.SelectedValue);
                 numero = txtNumero.Text;
                 emision = dtpEmision.Value.Date;
                 novence = !chkVence.Checked;

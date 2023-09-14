@@ -15,12 +15,12 @@ namespace SAESoft.Importaciones
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = decimales(sender, e);
+            e.Handled = decimales(e.KeyChar, Text);
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = decimales(sender, e);
+            e.Handled = decimales(e.KeyChar, Text);
         }
 
         private void icbGuardar_Click(object sender, EventArgs e)

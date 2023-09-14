@@ -4,10 +4,12 @@ using SAESoft.Models.Administracion;
 using SAESoft.Utilitarios;
 using System.Data;
 using static SAESoft.Utilitarios.ControlFormularios;
+using static SAESoft.Utilitarios.Validaciones;
 using static SAESoft.Cache.UserData;
 using SAESoft.Models.Comunes;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore;
 
 namespace SAESoft.Administracion
 {
@@ -52,6 +54,7 @@ namespace SAESoft.Administracion
             if (reclamo.Status.Ultimo)
             {
                 cboStatus.Enabled = false;
+                iconButton1.Enabled = false;
             }
             txtMonto.Text = reclamo.Monto?.ToString("N2") ?? "";
             cboMonedas.SelectedValue = reclamo.IdMoneda;
@@ -78,19 +81,7 @@ namespace SAESoft.Administracion
 
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char decimalSeparator = Convert.ToChar(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-
-            // Permitir los números del 0 al 9, el punto decimal y algunas teclas de control
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != decimalSeparator)
-            {
-                e.Handled = true;
-            }
-
-            // Permitir solo un punto decimal
-            if (e.KeyChar == decimalSeparator && this.Text.IndexOf(decimalSeparator) >= 0)
-            {
-                e.Handled = true;
-            }
+            e.Handled = decimales(e.KeyChar, Text);
         }
         private void estructuraTabla()
         {
@@ -204,7 +195,46 @@ namespace SAESoft.Administracion
                 }
                 else
                 {
-                    MessageBox.Show("aqui actualizaría");
+                    using SAESoftContext db = new();
+                    using IDbContextTransaction transaction = db.Database.BeginTransaction();
+                    try
+                    {
+                        db.Entry(reclamo).State = EntityState.Modified;
+                        reclamo.Observaciones = txtObservaciones.Text;
+                        reclamo.Cheque = txtNoCheque.Text;
+                        reclamo.FechaRecibir = dtpFechaRecepcion.Value;
+                        reclamo.IdStatus = Convert.ToInt32(cboStatus.SelectedValue);
+                        reclamo.Deducible = string.IsNullOrEmpty(txtDeducible.Text) ? 0:Convert.ToDecimal(txtDeducible.Text);
+                        reclamo.MontosNoCubiertos = string.IsNullOrEmpty(txtNoCubierto.Text) ? 0 : Convert.ToDecimal(txtNoCubierto.Text);
+                        reclamo.Coaseguro = string.IsNullOrEmpty(txtCoaseguro.Text) ? 0 : Convert.ToDecimal(txtCoaseguro.Text);
+                        reclamo.OtrosGastos = string.IsNullOrEmpty(txtOtrosGastos.Text) ? 0 : Convert.ToDecimal(txtOtrosGastos.Text);
+                        reclamo.Timbres = string.IsNullOrEmpty(txtTimbres.Text) ? 0 : Convert.ToDecimal(txtTimbres.Text);
+                        reclamo.MontoCheque = string.IsNullOrEmpty(txtMontoCheque.Text) ? 0 : Convert.ToDecimal(txtMontoCheque.Text);
+                        db.Reclamos.Update(reclamo);
+                        db.SaveChanges();
+                        HistorialReclamo hist = new()
+                        {
+                            IdReclamo = reclamo.IdReclamo,
+                            IdStatus = reclamo.IdStatus,
+                            fecha = DatosServer.FechaServer(),
+                            FechaCreacion = DatosServer.FechaServer(),
+                            IdUsuarioCreacion = usuarioLogged.IdUsuario
+                        };
+                        db.Add(hist);
+                        db.SaveChanges();
+                        transaction.Commit();
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        if (ex.InnerException != null)
+                            MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
             }
         }
@@ -217,6 +247,16 @@ namespace SAESoft.Administracion
                 errorProvider1.SetError(txtMonto, "No puede estar vacío.");
                 txtMonto.Focus();
                 return false;
+            }
+            if (reclamo != null)
+            {
+                int estatusSeleccionado = Convert.ToInt32(cboStatus.SelectedValue);
+                if (estatusSeleccionado == reclamo.IdStatus)
+                {
+                    errorProvider1.SetError(cboStatus, "Debe de ser un estatus diferente.");
+                    cboStatus.Focus();
+                    return false;
+                }
             }
             return true;
         }

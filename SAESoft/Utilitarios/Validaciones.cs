@@ -54,9 +54,13 @@ namespace SAESoft.Utilitarios
             string numero = CUI[..8];
             int comprobar = int.Parse(CUI.Substring(8, 1));
 
+            //en este arreglo estan los municipios por departamento, si se creara un municipio más, hay que agregarlo aquí para validar.
             int[] munisxDepto = new int[] { 17, 8, 16, 16, 13, 14, 19, 8, 24, 21, 9, 30, 32, 21, 8, 17, 14, 5, 11, 11, 7, 17 };
 
+            //comprueba primeros digitos del departamento que sean validos (<22)
             if (depto > munisxDepto.Length) { return false; }
+
+            //comprueba digitos de municipio que sean validos según matriz.
             if (muni > munisxDepto[depto - 1]) { return false; }
 
             int total = 0;
@@ -70,25 +74,38 @@ namespace SAESoft.Utilitarios
             return modulo == comprobar;
         }
 
-        public static Boolean decimales(Object sender, KeyPressEventArgs e)
+        public static Boolean decimales(char tecla, string textoActual)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-               (e.KeyChar != '.'))
+            char decimalSeparator = Convert.ToChar(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+
+            // Permitir los números del 0 al 9, el punto decimal y algunas teclas de control
+            if (!char.IsControl(tecla) && !char.IsDigit(tecla) && tecla != decimalSeparator)
             {
-                return true;
+                return true; // La entrada no es válida
             }
 
-            // only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            // Permitir solo un punto decimal
+            if (tecla == decimalSeparator && textoActual.Contains(decimalSeparator))
+            {
+                return true; // La entrada no es válida
+            }
+
+            return false; // La entrada es válida
+        }
+    
+
+        public static Boolean enteros(char tecla)
+        {
+            if (!char.IsControl(tecla) && !char.IsDigit(tecla))
             {
                 return true;
             }
             return false;
         }
 
-        public static Boolean enteros(Object sender, KeyPressEventArgs e)
+        public static Boolean numerosGuion(char tecla)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (!char.IsControl(tecla) && !char.IsDigit(tecla) && tecla != '-')
             {
                 return true;
             }

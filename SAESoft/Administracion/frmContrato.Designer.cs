@@ -28,18 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmContrato));
             txtNumero = new TextBox();
             label1 = new Label();
             cboEmpresa = new ComboBox();
             label2 = new Label();
             icbFinalizar = new FontAwesome.Sharp.IconButton();
+            errorProvider1 = new ErrorProvider(components);
+            lblTitulo = new Label();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // txtNumero
             // 
             txtNumero.CharacterCasing = CharacterCasing.Upper;
-            txtNumero.Location = new Point(113, 19);
+            txtNumero.Location = new Point(113, 61);
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(247, 27);
             txtNumero.TabIndex = 3;
@@ -47,7 +51,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(35, 22);
+            label1.Location = new Point(35, 64);
             label1.Name = "label1";
             label1.Size = new Size(72, 21);
             label1.TabIndex = 2;
@@ -56,7 +60,7 @@
             // cboEmpresa
             // 
             cboEmpresa.FormattingEnabled = true;
-            cboEmpresa.Location = new Point(113, 65);
+            cboEmpresa.Location = new Point(113, 107);
             cboEmpresa.Name = "cboEmpresa";
             cboEmpresa.Size = new Size(247, 29);
             cboEmpresa.TabIndex = 7;
@@ -64,7 +68,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(35, 68);
+            label2.Location = new Point(35, 110);
             label2.Name = "label2";
             label2.Size = new Size(77, 21);
             label2.TabIndex = 6;
@@ -80,7 +84,7 @@
             icbFinalizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbFinalizar.IconSize = 24;
             icbFinalizar.ImageAlign = ContentAlignment.MiddleLeft;
-            icbFinalizar.Location = new Point(130, 109);
+            icbFinalizar.Location = new Point(130, 151);
             icbFinalizar.Name = "icbFinalizar";
             icbFinalizar.Size = new Size(124, 36);
             icbFinalizar.TabIndex = 33;
@@ -89,12 +93,26 @@
             icbFinalizar.UseVisualStyleBackColor = true;
             icbFinalizar.Click += icbFinalizar_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTitulo.Location = new Point(38, 9);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(322, 40);
+            lblTitulo.TabIndex = 34;
+            lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // frmContrato
             // 
             AcceptButton = icbFinalizar;
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(391, 175);
+            ClientSize = new Size(391, 206);
+            Controls.Add(lblTitulo);
             Controls.Add(icbFinalizar);
             Controls.Add(cboEmpresa);
             Controls.Add(label2);
@@ -109,6 +127,7 @@
             Name = "frmContrato";
             StartPosition = FormStartPosition.CenterParent;
             Load += frmContrato_Load;
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -120,5 +139,7 @@
         private ComboBox cboEmpresa;
         private Label label2;
         private FontAwesome.Sharp.IconButton icbFinalizar;
+        private ErrorProvider errorProvider1;
+        private Label lblTitulo;
     }
 }

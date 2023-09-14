@@ -79,7 +79,7 @@ namespace SAESoft.Administracion
             dgvDashboardClaim.Columns["Paciente"].Width = 200;
             dgvDashboardClaim.Columns["tipo"].Width = 200;
             dgvDashboardClaim.Columns["Inicio"].Width = 150;
-            dgvDashboardClaim.Columns["Status"].Width = 100;
+            dgvDashboardClaim.Columns["Status"].Width = 150;
         }
 
         private void dgvDashboardClaim_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
