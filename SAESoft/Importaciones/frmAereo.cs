@@ -137,6 +137,7 @@ namespace SAESoft.Importaciones
                 using SAESoftContext db = new();
                 var queryable = db.Importaciones.Include(r => r.Revisiones)
                                                 .Include(r => r.BL)
+                                                .ThenInclude(p=>p.Polizas)
                                                 .Include(r => r.Contenedores)
                                                 .Include(r => r.ImportStatus)
                                                 .Include(r => r.ImportHistorial)
@@ -925,15 +926,13 @@ namespace SAESoft.Importaciones
                 try
                 {
                     db.ImportHistorial.RemoveRange(rs[CurrentIndex].ImportHistorial);
-                    db.SaveChanges();
-                    db.BL.RemoveRange(rs[CurrentIndex].BL);
-                    db.SaveChanges();
-                    db.Contenedores.RemoveRange(rs[CurrentIndex].Contenedores);
-                    db.SaveChanges();
-                    foreach (var r in rs[CurrentIndex].Revisiones)
+                    foreach (var b in rs[CurrentIndex].BL)
                     {
-                        rs[CurrentIndex].Revisiones.Remove(r);
+                        db.Polizas.RemoveRange(b.Polizas);
                     }
+                    db.BL.RemoveRange(rs[CurrentIndex].BL);
+                    db.Contenedores.RemoveRange(rs[CurrentIndex].Contenedores);
+                    rs[CurrentIndex].Revisiones.Clear();
                     db.Importaciones.Remove(rs[CurrentIndex]);
                     db.SaveChanges();
                     rs.Remove(rs[CurrentIndex]);

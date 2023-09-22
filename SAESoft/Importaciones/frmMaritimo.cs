@@ -647,6 +647,7 @@ namespace SAESoft.Importaciones
                 using SAESoftContext db = new();
                 var queryable = db.Importaciones.Include(r => r.Revisiones)
                                                 .Include(r => r.BL)
+                                                .ThenInclude(p=>p.Polizas)
                                                 .Include(r => r.Contenedores)
                                                 .ThenInclude(c => c.Pago)
                                                 .Include(r => r.ImportStatus)
@@ -979,18 +980,16 @@ namespace SAESoft.Importaciones
             {
                 using SAESoftContext db = new();
                 using IDbContextTransaction transaction = db.Database.BeginTransaction();
-                try
-                {
+               // try
+               // {
                     db.ImportHistorial.RemoveRange(rs[CurrentIndex].ImportHistorial);
-                    db.SaveChanges();
-                    db.BL.RemoveRange(rs[CurrentIndex].BL);
-                    db.SaveChanges();
-                    db.Contenedores.RemoveRange(rs[CurrentIndex].Contenedores);
-                    db.SaveChanges();
-                    foreach (var r in rs[CurrentIndex].Revisiones)
+                    foreach (var b in rs[CurrentIndex].BL)
                     {
-                        rs[CurrentIndex].Revisiones.Remove(r);
+                        db.Polizas.RemoveRange(b.Polizas);
                     }
+                    db.BL.RemoveRange(rs[CurrentIndex].BL);
+                    db.Contenedores.RemoveRange(rs[CurrentIndex].Contenedores);
+                    rs[CurrentIndex].Revisiones.Clear();
                     db.Importaciones.Remove(rs[CurrentIndex]);
                     db.SaveChanges();
                     rs.Remove(rs[CurrentIndex]);
@@ -1020,7 +1019,7 @@ namespace SAESoft.Importaciones
                         BotonesIniciales(toolStrip1);
                         CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago", "tsbComentarios" }, false, toolStrip1, "MARITIMO");
                     }
-                }
+              /*  }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
@@ -1028,7 +1027,7 @@ namespace SAESoft.Importaciones
                         MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                         MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                }*/
             }
         }
 
