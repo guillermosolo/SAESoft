@@ -204,7 +204,7 @@ namespace SAESoft.Administracion
                         reclamo.Cheque = txtNoCheque.Text;
                         reclamo.FechaRecibir = dtpFechaRecepcion.Value;
                         reclamo.IdStatus = Convert.ToInt32(cboStatus.SelectedValue);
-                        reclamo.Deducible = string.IsNullOrEmpty(txtDeducible.Text) ? 0:Convert.ToDecimal(txtDeducible.Text);
+                        reclamo.Deducible = string.IsNullOrEmpty(txtDeducible.Text) ? 0 : Convert.ToDecimal(txtDeducible.Text);
                         reclamo.MontosNoCubiertos = string.IsNullOrEmpty(txtNoCubierto.Text) ? 0 : Convert.ToDecimal(txtNoCubierto.Text);
                         reclamo.Coaseguro = string.IsNullOrEmpty(txtCoaseguro.Text) ? 0 : Convert.ToDecimal(txtCoaseguro.Text);
                         reclamo.OtrosGastos = string.IsNullOrEmpty(txtOtrosGastos.Text) ? 0 : Convert.ToDecimal(txtOtrosGastos.Text);

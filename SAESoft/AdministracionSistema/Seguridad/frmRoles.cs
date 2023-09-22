@@ -41,7 +41,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
             dt.Clear();
             using (SAESoftContext db = new())
             {
-                var permisos = db.Permisos.Include(p => p.Modulo).OrderBy(p => p.IdModulo).ThenBy(p=>p.IdPermiso).ToList();
+                var permisos = db.Permisos.Include(p => p.Modulo).OrderBy(p => p.IdModulo).ThenBy(p => p.IdPermiso).ToList();
                 foreach (var p in permisos)
                 {
                     nombre = p.Nombre[(p.Nombre.IndexOf(".") + 1)..];
@@ -331,6 +331,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
             String[] botones = { "tsbAceptar", "tsbCancelar" };
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
+            dataGridView1.ReadOnly = false;
             txtNombre.Focus();
         }
 
@@ -340,6 +341,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
             String[] botones = { "tsbAceptar", "tsbCancelar" };
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
+            dataGridView1.ReadOnly = false;
             limpiarFormulario(this);
             llenarGridVacio();
             permisosInexistentes();
@@ -458,7 +460,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1,"ROLES");
+                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ROLES");
                 habilitarFormulario(this, false);
             }
         }

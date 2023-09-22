@@ -6,6 +6,7 @@ using SAESoft.Utilitarios;
 using System.Data;
 using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Utilitarios.Validaciones;
+using static SAESoft.Cache.UserData;
 
 namespace SAESoft.Administracion
 {
@@ -14,7 +15,6 @@ namespace SAESoft.Administracion
         public int IdEmpleado;
         public readonly DataTable dtNom = new();
         public ICollection<Nombramiento> nombramientos;
-        public Usuario usuarioLogged;
         public frmNombramientos()
         {
             InitializeComponent();

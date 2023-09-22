@@ -25,7 +25,7 @@ namespace SAESoft.Administracion
                 clbEmpresas.SetItemChecked(i, true);
             }
             using SAESoftContext db = new();
-            cboDocumento.DataSource = db.TiposDocumento.Where(d => d.activo).Where(t => new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 }.Contains(t.IdTipoDocumento)).ToList();
+            cboDocumento.DataSource = db.TiposDocumento.Where(d => d.activo).Where(t => !new List<int> { 10, 12 }.Contains(t.IdTipoDocumento)).ToList();
             cboDocumento.DisplayMember = "Nombre";
             cboDocumento.ValueMember = "IdTipoDocumento";
         }
@@ -60,6 +60,10 @@ namespace SAESoft.Administracion
 
                 SLStyle mergeStyle = excel.CreateStyle();
                 mergeStyle.Alignment.Vertical = VerticalAlignmentValues.Center;
+
+                SLStyle cancelado = new();
+                cancelado.SetFontColor(System.Drawing.Color.Black);
+                cancelado.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Black, System.Drawing.Color.LightGray);
 
                 DataTable dt = new();
                 dt.Columns.Add("No.", typeof(int));
@@ -478,10 +482,6 @@ namespace SAESoft.Administracion
                     String rangoU = $"{ultimaColLetra}2:{ultimaColLetra}{ultimaFila}";
                     String rangoI = $"I2:I{ultimaFila}"; //esto es para las residencias permanentes
 
-                    SLStyle cancelado = new();
-                    cancelado.SetFontColor(System.Drawing.Color.Black);
-                    cancelado.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Black, System.Drawing.Color.LightGray);
-
                     cf2.HighlightCellsWithFormula(rangoP + "< 1", SLHighlightCellsStyleValues.LightRedFillWithDarkRedText);
                     excel.AddConditionalFormatting(cf2);
                     cf2.HighlightCellsWithFormula(rangoP + "> 0", SLHighlightCellsStyleValues.YellowFillWithDarkYellowText);
@@ -495,7 +495,7 @@ namespace SAESoft.Administracion
                     cf2.HighlightCellsContainingBlanks(true, normal);
                     excel.AddConditionalFormatting(cf2);
 
-                    cf.HighlightCellsWithFormula("OR(" +rangoP + "< 1,"+rangoI + "<>\"PERMANENTE\")", SLHighlightCellsStyleValues.LightRedFillWithDarkRedText);
+                    cf.HighlightCellsWithFormula(rangoP + "< 1", SLHighlightCellsStyleValues.LightRedFillWithDarkRedText);
                     excel.AddConditionalFormatting(cf);
                     cf.HighlightCellsWithFormula(rangoP + "> 0", SLHighlightCellsStyleValues.YellowFillWithDarkYellowText);
                     excel.AddConditionalFormatting(cf);

@@ -1,6 +1,6 @@
 ﻿namespace SAESoft.Administracion
 {
-    partial class frmDashboardClaims
+    partial class frmDashboardTramit
     {
         /// <summary>
         /// Required designer variable.
@@ -29,33 +29,11 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            dgvDashboardClaim = new DataGridView();
             chkFinalizado = new CheckBox();
             icbRefresh = new FontAwesome.Sharp.IconButton();
-            ((System.ComponentModel.ISupportInitialize)dgvDashboardClaim).BeginInit();
+            dgvDashboardTramit = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvDashboardTramit).BeginInit();
             SuspendLayout();
-            // 
-            // dgvDashboardClaim
-            // 
-            dgvDashboardClaim.AllowUserToDeleteRows = false;
-            dgvDashboardClaim.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvDashboardClaim.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgvDashboardClaim.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDashboardClaim.Location = new Point(12, 41);
-            dgvDashboardClaim.Name = "dgvDashboardClaim";
-            dgvDashboardClaim.ReadOnly = true;
-            dgvDashboardClaim.RowTemplate.Height = 25;
-            dgvDashboardClaim.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDashboardClaim.Size = new Size(776, 397);
-            dgvDashboardClaim.TabIndex = 1;
-            dgvDashboardClaim.CellDoubleClick += dgvDashboardClaim_CellDoubleClick;
             // 
             // chkFinalizado
             // 
@@ -71,10 +49,10 @@
             chkFinalizado.Image = Properties.Resources.Nunchecked;
             chkFinalizado.ImageAlign = ContentAlignment.MiddleLeft;
             chkFinalizado.ImeMode = ImeMode.NoControl;
-            chkFinalizado.Location = new Point(578, 10);
+            chkFinalizado.Location = new Point(578, 12);
             chkFinalizado.Name = "chkFinalizado";
             chkFinalizado.Size = new Size(116, 25);
-            chkFinalizado.TabIndex = 48;
+            chkFinalizado.TabIndex = 51;
             chkFinalizado.Text = "  Ver Finalizados";
             chkFinalizado.TextAlign = ContentAlignment.BottomCenter;
             chkFinalizado.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -89,35 +67,56 @@
             icbRefresh.IconColor = Color.Green;
             icbRefresh.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbRefresh.IconSize = 16;
-            icbRefresh.Location = new Point(701, 8);
+            icbRefresh.Location = new Point(701, 10);
             icbRefresh.Name = "icbRefresh";
             icbRefresh.Size = new Size(85, 28);
-            icbRefresh.TabIndex = 47;
+            icbRefresh.TabIndex = 50;
             icbRefresh.Text = "Actualizar";
             icbRefresh.TextImageRelation = TextImageRelation.ImageBeforeText;
             icbRefresh.UseVisualStyleBackColor = true;
-            icbRefresh.Click += icbRefresh_Click;
             // 
-            // frmDashboardClaims
+            // dgvDashboardTramit
+            // 
+            dgvDashboardTramit.AllowUserToDeleteRows = false;
+            dgvDashboardTramit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvDashboardTramit.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvDashboardTramit.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDashboardTramit.Location = new Point(12, 43);
+            dgvDashboardTramit.Name = "dgvDashboardTramit";
+            dgvDashboardTramit.ReadOnly = true;
+            dgvDashboardTramit.RowTemplate.Height = 25;
+            dgvDashboardTramit.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDashboardTramit.Size = new Size(776, 397);
+            dgvDashboardTramit.TabIndex = 49;
+            dgvDashboardTramit.CellDoubleClick += dgvDashboardTramit_CellDoubleClick;
+            // 
+            // frmDashboardTramit
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(chkFinalizado);
             Controls.Add(icbRefresh);
-            Controls.Add(dgvDashboardClaim);
-            Name = "frmDashboardClaims";
-            Text = "frmDashboardClaims";
-            Load += frmDashboardClaims_Load;
-            ((System.ComponentModel.ISupportInitialize)dgvDashboardClaim).EndInit();
+            Controls.Add(dgvDashboardTramit);
+            Name = "frmDashboardTramit";
+            Text = "frmDashboardTramit";
+            Load += frmDashboardTramit_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvDashboardTramit).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dgvDashboardClaim;
         private CheckBox chkFinalizado;
         private FontAwesome.Sharp.IconButton icbRefresh;
+        private DataGridView dgvDashboardTramit;
     }
 }

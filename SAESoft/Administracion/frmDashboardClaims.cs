@@ -2,7 +2,7 @@
 using SAESoft.Models;
 using SAESoft.Models.Administracion;
 using System.Data;
-using System.Linq;
+using static SAESoft.Cache.UserData;
 
 
 namespace SAESoft.Administracion
@@ -77,7 +77,7 @@ namespace SAESoft.Administracion
         {
             dgvDashboardClaim.Columns[0].Visible = false;
             dgvDashboardClaim.Columns["Paciente"].Width = 200;
-            dgvDashboardClaim.Columns["tipo"].Width = 200;
+            dgvDashboardClaim.Columns["Tipo"].Width = 200;
             dgvDashboardClaim.Columns["Inicio"].Width = 150;
             dgvDashboardClaim.Columns["Status"].Width = 150;
         }
@@ -87,24 +87,45 @@ namespace SAESoft.Administracion
             frmReclamos reclamos = new();
             if (e.RowIndex != dgvDashboardClaim.Rows.Count - 1)
             {
-                using SAESoftContext db = new();
-                DataGridViewRow fila = dgvDashboardClaim.SelectedRows[0];
-                int idReclamo = Convert.ToInt32(fila.Cells["IdReclamo"].Value.ToString());
-                Reclamo rec = db.Reclamos.Include(r => r.Historial)
-                                       .ThenInclude(s => s.Status)
-                                       .Include(s => s.Status)
-                                       .Include(t => t.TipoReclamo)
-                                       .Include(m => m.Moneda)
-                                       .Include(e => e.Empleado)
-                                       .Include(f => f.Familiar)
-                                       .FirstOrDefault(x => x.IdReclamo == idReclamo);
-                reclamos.reclamo = rec;
-            }
-            var resp = reclamos.ShowDialog();
-            if (resp == DialogResult.OK)
+                if (hasPermission("MODIFICAR.RECLAMOS"))
+                {
+                    using SAESoftContext db = new();
+                    DataGridViewRow fila = dgvDashboardClaim.SelectedRows[0];
+                    int idReclamo = Convert.ToInt32(fila.Cells["IdReclamo"].Value.ToString());
+                    Reclamo rec = db.Reclamos.Include(r => r.Historial)
+                                           .ThenInclude(s => s.Status)
+                                           .Include(s => s.Status)
+                                           .Include(t => t.TipoReclamo)
+                                           .Include(m => m.Moneda)
+                                           .Include(e => e.Empleado)
+                                           .Include(f => f.Familiar)
+                                           .FirstOrDefault(x => x.IdReclamo == idReclamo);
+                    reclamos.reclamo = rec;
+                    var resp = reclamos.ShowDialog();
+                    if (resp == DialogResult.OK)
+                    {
+                        icbRefresh_Click(null, null);
+                    }
+                } else
+                {
+                    MessageBox.Show("No posee permisos para modificar reclamos.","Información",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            } else
             {
-                icbRefresh_Click(null, null);
+                if (hasPermission("CREAR.RECLAMOS"))
+                {
+                    var resp = reclamos.ShowDialog();
+                    if (resp == DialogResult.OK)
+                    {
+                        icbRefresh_Click(null, null);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No posee permisos para crear reclamos.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
+           
         }
 
         private void icbRefresh_Click(object sender, EventArgs e)

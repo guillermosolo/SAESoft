@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             panelMenu = new Panel();
-            icbReclamos = new FontAwesome.Sharp.IconButton();
+            ibtnTramites = new FontAwesome.Sharp.IconButton();
+            ibtnReclamos = new FontAwesome.Sharp.IconButton();
             ibtnReporte = new FontAwesome.Sharp.IconButton();
             ibtnPersonal = new FontAwesome.Sharp.IconButton();
             ibtnDashboard = new FontAwesome.Sharp.IconButton();
@@ -43,7 +44,8 @@
             // panelMenu
             // 
             panelMenu.BackColor = Color.FromArgb(0, 122, 204);
-            panelMenu.Controls.Add(icbReclamos);
+            panelMenu.Controls.Add(ibtnTramites);
+            panelMenu.Controls.Add(ibtnReclamos);
             panelMenu.Controls.Add(ibtnReporte);
             panelMenu.Controls.Add(ibtnPersonal);
             panelMenu.Controls.Add(ibtnDashboard);
@@ -56,24 +58,43 @@
             panelMenu.Size = new Size(200, 538);
             panelMenu.TabIndex = 2;
             // 
-            // icbReclamos
+            // ibtnTramites
             // 
-            icbReclamos.FlatAppearance.BorderSize = 0;
-            icbReclamos.FlatStyle = FlatStyle.Flat;
-            icbReclamos.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            icbReclamos.ForeColor = Color.White;
-            icbReclamos.IconChar = FontAwesome.Sharp.IconChar.Medkit;
-            icbReclamos.IconColor = Color.White;
-            icbReclamos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            icbReclamos.IconSize = 24;
-            icbReclamos.ImageAlign = ContentAlignment.MiddleLeft;
-            icbReclamos.Location = new Point(3, 125);
-            icbReclamos.Name = "icbReclamos";
-            icbReclamos.Size = new Size(197, 43);
-            icbReclamos.TabIndex = 13;
-            icbReclamos.Text = "Reclamos";
-            icbReclamos.UseVisualStyleBackColor = true;
-            icbReclamos.Click += icbReclamos_Click;
+            ibtnTramites.FlatAppearance.BorderSize = 0;
+            ibtnTramites.FlatStyle = FlatStyle.Flat;
+            ibtnTramites.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnTramites.ForeColor = Color.White;
+            ibtnTramites.IconChar = FontAwesome.Sharp.IconChar.AddressCard;
+            ibtnTramites.IconColor = Color.White;
+            ibtnTramites.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ibtnTramites.IconSize = 24;
+            ibtnTramites.ImageAlign = ContentAlignment.MiddleLeft;
+            ibtnTramites.Location = new Point(3, 158);
+            ibtnTramites.Name = "ibtnTramites";
+            ibtnTramites.Size = new Size(197, 43);
+            ibtnTramites.TabIndex = 14;
+            ibtnTramites.Text = "Trámites";
+            ibtnTramites.UseVisualStyleBackColor = true;
+            ibtnTramites.Click += iconButton2_Click;
+            // 
+            // ibtnReclamos
+            // 
+            ibtnReclamos.FlatAppearance.BorderSize = 0;
+            ibtnReclamos.FlatStyle = FlatStyle.Flat;
+            ibtnReclamos.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnReclamos.ForeColor = Color.White;
+            ibtnReclamos.IconChar = FontAwesome.Sharp.IconChar.Medkit;
+            ibtnReclamos.IconColor = Color.White;
+            ibtnReclamos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ibtnReclamos.IconSize = 24;
+            ibtnReclamos.ImageAlign = ContentAlignment.MiddleLeft;
+            ibtnReclamos.Location = new Point(3, 125);
+            ibtnReclamos.Name = "ibtnReclamos";
+            ibtnReclamos.Size = new Size(197, 43);
+            ibtnReclamos.TabIndex = 13;
+            ibtnReclamos.Text = "Reclamos";
+            ibtnReclamos.UseVisualStyleBackColor = true;
+            ibtnReclamos.Click += icbReclamos_Click;
             // 
             // ibtnReporte
             // 
@@ -216,6 +237,7 @@
         private Label label1;
         private FontAwesome.Sharp.IconButton ibtnReporte;
         private Panel panelFormularios;
-        private FontAwesome.Sharp.IconButton icbReclamos;
+        private FontAwesome.Sharp.IconButton ibtnReclamos;
+        private FontAwesome.Sharp.IconButton ibtnTramites;
     }
 }

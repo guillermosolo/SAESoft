@@ -21,6 +21,8 @@ namespace SAESoft.Administracion
             ibtnDashboard.Enabled = hasPermission("VER.DASHBOARDADMIN");
             ibtnPersonal.Enabled = hasPermission("VER.PERSONAL");
             ibtnReporte.Enabled = hasPermission("VER.REPORTESADMIN");
+            ibtnReclamos.Enabled = hasPermission("VER.RECLAMOS");
+            ibtnTramites.Enabled = hasPermission("VER.TRAMITES");
         }
 
         private void frmMenuAdmon_Load(object sender, EventArgs e)
@@ -49,6 +51,12 @@ namespace SAESoft.Administracion
         {
             Abrir<frmDashboardClaims>(panelFormularios);
             menuActivo(ibtnDashboard, panelMenu);
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            Abrir<frmDashboardTramit>(panelFormularios);
+            menuActivo(ibtnTramites, panelMenu);
         }
     }
 }

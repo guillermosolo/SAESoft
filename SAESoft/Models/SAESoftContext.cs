@@ -54,6 +54,7 @@ namespace SAESoft.Models
         public DbSet<Documento> Documentos { get; set; }
         public DbSet<Nombramiento> Nombramientos { get; set; }
         public DbSet<HistorialReclamo> HistorialReclamos { get; set; }
+        public DbSet<HistorialTramite> HistorialTramites { get; set; }  
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

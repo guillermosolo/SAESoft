@@ -17,13 +17,18 @@ namespace SAESoft.Models.Administracion
         public int IdEmpleado { get; set; }
         [ForeignKey("IdEmpleado")]
         public virtual Empleado Empleado { get; set; }
+        public int? IdInteresado { get; set; }
+        [ForeignKey("IdInteresado")]
+        public virtual Familiar Familiar { get; set; }
         public int IdStatus { get; set; }
         [ForeignKey("IdStatus")]
         public virtual AdminStatus Status { get; set; }
         public int IdTipo { get; set; }
         [ForeignKey("IdTipo")]
-        public virtual Nombre Tipo { get; set; }    
-        public DateTime Fecha { get; set; }
+        public virtual TipoDocumento Tipo { get; set; }    
         public string? Observaciones { get; set; }
+        public DateTime? Cita { get; set; }
+        public string? NumeroSolicitud { get; set; }
+        public virtual ICollection<HistorialTramite> Historial { get; set; }
     }
 }

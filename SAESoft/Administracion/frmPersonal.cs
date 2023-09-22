@@ -106,7 +106,7 @@ namespace SAESoft.Administracion
         {
             tsddbDocumentos.DropDownItems.Clear();
             using SAESoftContext db = new();
-            var im = db.TiposDocumento.Where(i => i.activo).OrderBy(i => i.Nombre).ToList();
+            var im = db.TiposDocumento.Where(i => i.activo && i.mostrar).OrderBy(i => i.Nombre).ToList();
             foreach (var item in im)
             {
                 ToolStripMenuItem i = new(item.Nombre)
@@ -1047,7 +1047,6 @@ namespace SAESoft.Administracion
             frmNombramientos nombramiento = new()
             {
                 nombramientos = rs[CurrentIndex].Nombramientos,
-                usuarioLogged = usuarioLogged,
                 IdEmpleado = rs[CurrentIndex].IdEmpleado
             };
 
