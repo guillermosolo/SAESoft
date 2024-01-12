@@ -8,6 +8,7 @@ using SAESoft.Models;
 using System.Data;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Diagnostics;
+using static SAESoft.Cache.Constantes;
 
 namespace SAESoft.Administracion
 {
@@ -23,6 +24,7 @@ namespace SAESoft.Administracion
         readonly DataTable dtNom = new();
         private bool isLoadingcboEmpresa = false;
         private Boolean? cuotaAnual;
+        string path = PATH_Fotos;
 
         public frmPersonal()
         {
@@ -226,8 +228,31 @@ namespace SAESoft.Administracion
                 tsCuotaAnual.Visible = false;
             }
             tslIndice.Text = $"Registro {CurrentIndex + 1} de {rs.Count}";
+            cargarFoto(rs[CurrentIndex].IdEmpleado);
             despliegaDocumentos();
         }
+
+        private void cargarFoto(int id)
+        {
+            path = PATH_Fotos;
+            string[] extensiones = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
+            string encontrado = null;
+            if (Directory.Exists(path))
+            {
+                foreach (string ext in extensiones)
+                {
+                    string file = Path.Combine(path, id.ToString() + ext);
+                    if (File.Exists(file))
+                    {
+                        encontrado = file;
+                        break;
+                    }
+                }
+                encontrado ??= Path.Combine(path, "nofoto.jpg");
+            }
+            pbFoto.Image = new Bitmap(encontrado);
+        }
+
 
         private void despliegaDocumentos()
         {
@@ -294,6 +319,7 @@ namespace SAESoft.Administracion
         private void llenarDatosRepresentacion()
         {
             DataRow row;
+
             foreach (var nombramiento in rs[CurrentIndex].Nombramientos)
             {
                 if (!nombramiento.Cancelado)
@@ -484,31 +510,31 @@ namespace SAESoft.Administracion
         private Boolean ValidarDatos()
         {
             errorProvider1.Clear();
-            if (txtCodigo.Text.Trim() == "")
+            if (string.IsNullOrEmpty(txtCodigo.Text))
             {
                 errorProvider1.SetError(txtCodigo, "No puede estar vacío.");
                 txtCodigo.Focus();
                 return false;
             }
-            if (txtNombres.Text.Trim() == "")
+            if (string.IsNullOrEmpty(txtNombres.Text))
             {
                 errorProvider1.SetError(txtNombres, "No puede estar vacío.");
                 txtNombres.Focus();
                 return false;
             }
-            if (txtApellidos.Text.Trim() == "")
+            if (string.IsNullOrEmpty(txtApellidos.Text))
             {
                 errorProvider1.SetError(txtApellidos, "No puede estar vacío.");
                 txtApellidos.Focus();
                 return false;
             }
-            if (txtNombreESP.Text.Trim() == "")
+            if (string.IsNullOrEmpty(txtNombreESP.Text))
             {
                 errorProvider1.SetError(txtNombreESP, "No puede estar vacío.");
                 txtNombres.Focus();
                 return false;
             }
-            if (txtNombreCOR.Text.Trim() == "")
+            if (string.IsNullOrEmpty(txtNombreCOR.Text))
             {
                 errorProvider1.SetError(txtNombreCOR, "No puede estar vacío.");
                 txtNombreCOR.Focus();
@@ -574,8 +600,10 @@ namespace SAESoft.Administracion
                         CurrentIndex = rs.Count - 1;
                         List<Familiar> fam = new();
                         List<Documento> doc = new();
+                        List<Nombramiento> nom = new();
                         rs[CurrentIndex].Familiares = fam;
                         rs[CurrentIndex].Documentos = doc;
+                        rs[CurrentIndex].Nombramientos = nom;
                         despliegaDatos();
                         MessageBox.Show("Empleado Grabado Exitosamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -652,6 +680,7 @@ namespace SAESoft.Administracion
             {
                 using SAESoftContext db = new();
                 var queryable = db.Empleados.Include(d => d.Departamento)
+                                            .ThenInclude(e => e.Empresa)
                                             .Include(co => co.Contrato)
                                             .ThenInclude(pl => pl.Empresa)
                                             .Include(n => n.Nombramientos)
@@ -907,14 +936,14 @@ namespace SAESoft.Administracion
                     }
                     else
                     {
-                        if (rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar).SeguroMedico != null)
+                        if (rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == medico.familiar).SeguroMedico != null)
                         {
-                            rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar).IdSeguroMedico = null;
-                            db.Familiares.Update(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar));
+                            rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == medico.familiar).IdSeguroMedico = null;
+                            db.Familiares.Update(rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == medico.familiar));
                             db.SaveChanges();
-                            db.SegurosMedicos.Remove(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar).SeguroMedico);
+                            db.SegurosMedicos.Remove(rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == medico.familiar).SeguroMedico);
                             db.SaveChanges();
-                            rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar).SeguroMedico = null;
+                            rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == medico.familiar).SeguroMedico = null;
                         }
 
                         SeguroMedico med = new()
@@ -928,19 +957,21 @@ namespace SAESoft.Administracion
                         };
                         db.SegurosMedicos.Add(med);
                         db.SaveChanges();
-                        db.Entry(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar)).State = EntityState.Modified;
-                        rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar).IdResidencia = med.IdMedico;
-                        db.Familiares.Update(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar));
+                        db.Entry(rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == medico.familiar)).State = EntityState.Modified;
+                        rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == medico.familiar).IdSeguroMedico = med.IdMedico;
+                        db.Familiares.Update(rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == medico.familiar));
                         db.SaveChanges();
-                        rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == medico.familiar).SeguroMedico = med;
+                        rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == medico.familiar).SeguroMedico = med;
                     }
-                }
+                transaction.Commit();
+                despliegaDatos();
+            }
                 catch (Exception ex)
                 {
-                    transaction.Rollback();
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                transaction.Rollback();
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
         }
         private void llenarSeguroVehiculo()
         {
@@ -1082,7 +1113,7 @@ namespace SAESoft.Administracion
                             FechaCreacion = DatosServer.FechaServer(),
                             IdUsuarioCreacion = usuarioLogged.IdUsuario
                         };
-                        var documentoEliminar = rs[CurrentIndex].Documentos.First(d => d.IdTipo == tipo.IdTipoDocumento);
+                        var documentoEliminar = rs[CurrentIndex].Documentos.FirstOrDefault(d => d.IdTipo == tipo.IdTipoDocumento);
                         if (documentoEliminar != null)
                         {
                             rs[CurrentIndex].Documentos.Remove(documentoEliminar);
@@ -1108,18 +1139,18 @@ namespace SAESoft.Administracion
                             FechaCreacion = DatosServer.FechaServer(),
                             IdUsuarioCreacion = usuarioLogged.IdUsuario
                         };
-                        var documentoEliminar = rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == documento.familiar).Documentos.First(fd => fd.IdTipo == documento.id);
+                        var documentoEliminar = rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == documento.familiar).Documentos.FirstOrDefault(fd => fd.IdTipo == documento.id);
                         if (documentoEliminar != null)
                         {
-                            rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == documento.familiar).Documentos.Remove(documentoEliminar);
-                            db.Familiares.Update(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == documento.familiar));
+                            rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == documento.familiar).Documentos.Remove(documentoEliminar);
+                            db.Familiares.Update(rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == documento.familiar));
                             db.SaveChanges();
                             db.Documentos.Remove(documentoEliminar);
                             db.SaveChanges();
                         }
                         db.Documentos.Add(docto);
                         db.SaveChanges();
-                        rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == documento.familiar).Documentos.Add(docto);
+                        rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == documento.familiar).Documentos.Add(docto);
                     }
                     transaction.Commit();
                     despliegaDatos();
@@ -1175,14 +1206,14 @@ namespace SAESoft.Administracion
                     }
                     else
                     {
-                        if (rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar).Residencia != null)
+                        if (rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == residencia.familiar).Residencia != null)
                         {
-                            rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar).IdResidencia = null;
-                            db.Familiares.Update(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar));
+                            rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == residencia.familiar).IdResidencia = null;
+                            db.Familiares.Update(rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == residencia.familiar));
                             db.SaveChanges();
-                            db.Residencias.Remove(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar).Residencia);
+                            db.Residencias.Remove(rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == residencia.familiar).Residencia);
                             db.SaveChanges();
-                            rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar).Residencia = null;
+                            rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == residencia.familiar).Residencia = null;
                         }
                         var tipo = db.Nombres.Where(t => t.IdNombre == residencia.tipo).FirstOrDefault();
                         Residencia res = new()
@@ -1195,11 +1226,11 @@ namespace SAESoft.Administracion
                         };
                         db.Residencias.Add(res);
                         db.SaveChanges();
-                        db.Entry(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar)).State = EntityState.Modified;
-                        rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar).IdResidencia = res.IdResidencia;
-                        db.Familiares.Update(rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar));
+                        db.Entry(rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == residencia.familiar)).State = EntityState.Modified;
+                        rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == residencia.familiar).IdResidencia = res.IdResidencia;
+                        db.Familiares.Update(rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == residencia.familiar));
                         db.SaveChanges();
-                        rs[CurrentIndex].Familiares.First(f => f.IdFamiliar == residencia.familiar).Residencia = res;
+                        rs[CurrentIndex].Familiares.FirstOrDefault(f => f.IdFamiliar == residencia.familiar).Residencia = res;
                     }
                     transaction.Commit();
                     despliegaDatos();

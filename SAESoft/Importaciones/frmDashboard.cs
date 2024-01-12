@@ -61,7 +61,7 @@ namespace SAESoft.Importaciones
             using SAESoftContext db = new();
             var queryable = db.Importaciones.Include(r => r.Revisiones)
                                             .Include(r => r.BL)
-                                            .ThenInclude(p=>p.Polizas)
+                                            .ThenInclude(p => p.Polizas)
                                             .Include(r => r.Destino)
                                             .Include(r => r.Contenedores)
                                             .ThenInclude(c => c.Pago)
@@ -121,12 +121,12 @@ namespace SAESoft.Importaciones
                         row["Urgente"] = item.urgente ? item.personaUrgente : "";
                         foreach (var _bl in item.BL)
                         {
-                            if (!String.IsNullOrEmpty(row["Pólizas"].ToString()))
+                            if (!string.IsNullOrEmpty(row["Pólizas"].ToString()))
                             {
                                 row["Pólizas"] += ", ";
                             }
 
-                            row["Pólizas"] += string.Join(",", _bl.Polizas.Select(p=>p.Numero));
+                            row["Pólizas"] += string.Join(",", _bl.Polizas.Select(p => p.Numero));
                         }
                         if (item.IdDestino != null)
                             row["Destino"] = item.Destino.Descripcion;
@@ -169,15 +169,15 @@ namespace SAESoft.Importaciones
                 else
                 {
                     DataRow row = dt.NewRow();
-                    row["IdContenedor"] = item.BL.First().IdBL.ToString();
-                    row["Contenedor"] = item.BL.First().Numero;
+                    row["IdContenedor"] = item.BL.FirstOrDefault().IdBL.ToString();
+                    row["Contenedor"] = item.BL.FirstOrDefault().Numero;
                     row["ETA"] = item.ETA.Date;
                     row["Via"] = item.Via;
                     row["BUrgente"] = item.urgente;
                     row["Urgente"] = item.urgente ? item.personaUrgente : "";
                     foreach (var _bl in item.BL)
                     {
-                        if (!String.IsNullOrEmpty(row["Pólizas"].ToString()))
+                        if (!string.IsNullOrEmpty(row["Pólizas"].ToString()))
                         {
                             row["Pólizas"] += ", ";
                         }
@@ -230,15 +230,15 @@ namespace SAESoft.Importaciones
             {
                 if (!(Boolean)row.Cells["Originales"].Value)
                 {
-                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(255,255,153);
                 }
                 if ((Boolean)row.Cells["Selectivo Rojo"].Value)
                 {
-                    row.DefaultCellStyle.ForeColor = Color.Red;
+                    row.DefaultCellStyle.ForeColor = Color.FromArgb(255, 51, 51);
                 }
                 if ((Boolean)row.Cells["BUrgente"].Value)
                 {
-                    row.Cells["Urgente"].Style.BackColor = Color.Orange;
+                    row.Cells["Urgente"].Style.BackColor = Color.FromArgb(255,204,153);
                 }
             }
             dgvDashboard.Columns["Revisiones"].Width = 250;
@@ -280,19 +280,25 @@ namespace SAESoft.Importaciones
             int imp = (int)dgvDashboard.Rows[e.RowIndex].Cells["IdImportacion"].Value;
             if (v == "M")
             {
-                frmMaritimo mar = new()
+                if (hasPermission("VER.MARITIMO"))
                 {
-                    individual = imp
-                };
-                mar.mostrarIndividual((Panel)this.Parent);
-            }
+                    frmMaritimo mar = new()
+                    {
+                        individual = imp
+                    };
+                    mar.mostrarIndividual((Panel)this.Parent);
+                }
+                }
             else
             {
-                frmAereo aire = new()
+                if (hasPermission("VER.AEREO"))
                 {
-                    individual = imp
-                };
-                aire.mostrarIndividual((Panel)this.Parent);
+                    frmAereo aire = new()
+                    {
+                        individual = imp
+                    };
+                    aire.mostrarIndividual((Panel)this.Parent);
+                }
             }
         }
 

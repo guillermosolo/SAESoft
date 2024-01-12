@@ -63,10 +63,30 @@ namespace SAESoft.Importaciones
         }
         private void listView1_ItemActivate(object sender, EventArgs e)
         {
-            string selectedFile = listFiles[listView1.SelectedIndices[0]];
-            if (File.Exists(selectedFile))
+            if (listView1.SelectedIndices.Count > 0)
             {
-                new Process { StartInfo = new ProcessStartInfo(selectedFile) { UseShellExecute = true } }.Start();
+                string selectedFile = listFiles[listView1.SelectedIndices[0]];
+
+                if (File.Exists(selectedFile))
+                {
+                    try
+                    {
+                        // Directorio temporal
+                        string tempDirectory = Path.GetTempPath();
+
+                        // Copiar el archivo a la carpeta temporal
+                        string tempFilePath = Path.Combine(tempDirectory, Path.GetFileName(selectedFile));
+                        File.Copy(selectedFile, tempFilePath, true);
+
+                        // Abrir la copia desde la carpeta temporal
+                        new Process { StartInfo = new ProcessStartInfo(tempFilePath) { UseShellExecute = true } }.Start();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejar la excepción según tus necesidades
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
 
         }
@@ -285,7 +305,8 @@ namespace SAESoft.Importaciones
                     }
                     i++;
                 }
-                tsddbProceso.Enabled = j != im.Count;
+                if (tsddbProceso.Enabled)
+                    tsddbProceso.Enabled = (j != im.Count);
             }
         }
         private void tsbSalir_Click(object sender, EventArgs e)
@@ -341,7 +362,10 @@ namespace SAESoft.Importaciones
 
         private void fileSystemWatcher1_Deleted(object sender, FileSystemEventArgs e)
         {
-            cargarArchivos(@"\" + rs[CurrentIndex].Codigo);
+            if (rs[CurrentIndex] != null)
+            {
+                cargarArchivos(@"\" + rs[CurrentIndex].Codigo);
+            }
         }
 
         private void tsbAceptar_Click(object sender, EventArgs e)
@@ -647,7 +671,7 @@ namespace SAESoft.Importaciones
                 using SAESoftContext db = new();
                 var queryable = db.Importaciones.Include(r => r.Revisiones)
                                                 .Include(r => r.BL)
-                                                .ThenInclude(p=>p.Polizas)
+                                                .ThenInclude(p => p.Polizas)
                                                 .Include(r => r.Contenedores)
                                                 .ThenInclude(c => c.Pago)
                                                 .Include(r => r.ImportStatus)
@@ -980,54 +1004,54 @@ namespace SAESoft.Importaciones
             {
                 using SAESoftContext db = new();
                 using IDbContextTransaction transaction = db.Database.BeginTransaction();
-               // try
-               // {
-                    db.ImportHistorial.RemoveRange(rs[CurrentIndex].ImportHistorial);
-                    foreach (var b in rs[CurrentIndex].BL)
-                    {
-                        db.Polizas.RemoveRange(b.Polizas);
-                    }
-                    db.BL.RemoveRange(rs[CurrentIndex].BL);
-                    db.Contenedores.RemoveRange(rs[CurrentIndex].Contenedores);
-                    rs[CurrentIndex].Revisiones.Clear();
-                    db.Importaciones.Remove(rs[CurrentIndex]);
-                    db.SaveChanges();
-                    rs.Remove(rs[CurrentIndex]);
-                    if (Directory.Exists(path))
-                        Directory.Delete(path, true);
-                    transaction.Commit();
-                    if (rs.Count > 0)
-                    {
-                        if (rs.Count > 1)
-                        {
-                            if (CurrentIndex != 0)
-                                CurrentIndex--;
-                            BotonesInicialesNavegacion(toolStrip1);
-                        }
-                        else
-                        {
-                            CurrentIndex = 0;
-                            BotonesIniciales(toolStrip1);
-                        }
-                        despliegaDatos();
-                    }
-                    else
-                    {
-                        limpiarFormulario(this);
-                        dt.Rows.Clear();
-                        cboDestino.SelectedIndex = -1;
-                        BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago", "tsbComentarios" }, false, toolStrip1, "MARITIMO");
-                    }
-              /*  }
-                catch (Exception ex)
+                // try
+                // {
+                db.ImportHistorial.RemoveRange(rs[CurrentIndex].ImportHistorial);
+                foreach (var b in rs[CurrentIndex].BL)
                 {
-                    transaction.Rollback();
-                    if (ex.InnerException != null)
-                        MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    db.Polizas.RemoveRange(b.Polizas);
+                }
+                db.BL.RemoveRange(rs[CurrentIndex].BL);
+                db.Contenedores.RemoveRange(rs[CurrentIndex].Contenedores);
+                rs[CurrentIndex].Revisiones.Clear();
+                db.Importaciones.Remove(rs[CurrentIndex]);
+                db.SaveChanges();
+                rs.Remove(rs[CurrentIndex]);
+                if (Directory.Exists(path))
+                    Directory.Delete(path, true);
+                transaction.Commit();
+                if (rs.Count > 0)
+                {
+                    if (rs.Count > 1)
+                    {
+                        if (CurrentIndex != 0)
+                            CurrentIndex--;
+                        BotonesInicialesNavegacion(toolStrip1);
+                    }
                     else
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }*/
+                    {
+                        CurrentIndex = 0;
+                        BotonesIniciales(toolStrip1);
+                    }
+                    despliegaDatos();
+                }
+                else
+                {
+                    limpiarFormulario(this);
+                    dt.Rows.Clear();
+                    cboDestino.SelectedIndex = -1;
+                    BotonesIniciales(toolStrip1);
+                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago", "tsbComentarios" }, false, toolStrip1, "MARITIMO");
+                }
+                /*  }
+                  catch (Exception ex)
+                  {
+                      transaction.Rollback();
+                      if (ex.InnerException != null)
+                          MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                      else
+                          MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                  }*/
             }
         }
 

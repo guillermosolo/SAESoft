@@ -87,13 +87,13 @@ namespace SAESoft.Administracion
         private Boolean ValidarDatos()
         {
             errorProvider1.Clear();
-            if (string.IsNullOrWhiteSpace(txtCertificado.Text))
+            if (string.IsNullOrEmpty(txtCertificado.Text))
             {
                 errorProvider1.SetError(txtCertificado, "No puede estar vacío.");
                 txtCertificado.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtCarnet.Text))
+            if (string.IsNullOrEmpty(txtCarnet.Text))
             {
                 errorProvider1.SetError(txtCarnet, "No puede estar vacío.");
                 txtCarnet.Focus();

@@ -131,8 +131,8 @@ namespace SAESoft
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            string appManifestFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName + ".exe.manifest");
-            if (System.IO.File.Exists(appManifestFilePath))
+            string appManifestFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName + ".exe.manifest");
+            if (File.Exists(appManifestFilePath))
             {
                 var xml = new XmlDocument();
                 xml.Load(appManifestFilePath);

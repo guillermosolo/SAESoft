@@ -2,6 +2,7 @@
 using SAESoft.Models.Administracion;
 using SAESoft.Models.AdministracionSistema;
 using SAESoft.Models.Comunes;
+using SAESoft.Models.Exportaciones;
 using SAESoft.Models.Importaciones;
 using SAESoft.Utilitarios;
 using System.Configuration;
@@ -56,6 +57,14 @@ namespace SAESoft.Models
         public DbSet<HistorialReclamo> HistorialReclamos { get; set; }
         public DbSet<HistorialTramite> HistorialTramites { get; set; }  
 
+        //Exportaciones
+
+        public DbSet<Licencia> Licencias { get; set; }
+        public DbSet<Duca> Ducas { get; set; }
+        public DbSet<FacturaExport> FacturasExport { get; set; }
+        public DbSet<Descargo> Descargos { get; set; }
+        public DbSet<FacturaLocal> FacturasLocal { get; set; }
+        public DbSet<ComentFacExport> ComentFacsExport { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

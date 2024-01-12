@@ -54,7 +54,7 @@ namespace SAESoft.Administracion
         private Boolean ValidarDatos()
         {
             errorProvider1.Clear();
-            if (string.IsNullOrWhiteSpace(txtNumero.Text))
+            if (string.IsNullOrEmpty(txtNumero.Text))
             {
                 errorProvider1.SetError(txtNumero, "No puede estar vacío.");
                 txtNumero.Focus();

@@ -80,7 +80,8 @@ namespace SAESoft.Administracion
                                              .ThenInclude(e => e.Empleado)
                                              .Include(d => d.Documentos)
                                              .ThenInclude(f => f.Familiar)
-                                             .ThenInclude(em => em.Empleado);
+                                             .ThenInclude(em => em.Empleado)
+                                             .Where(d=>d.mostrar);
             foreach (var item in queryable)
             {
                 DataRow row = dt.NewRow();

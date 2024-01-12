@@ -8,6 +8,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.EntityFrameworkCore;
 using SAESoft.Models.Comunes;
 
+
 namespace SAESoft.Administracion
 {
     public partial class ReporteSeguroMedico : Form

@@ -156,9 +156,9 @@
             txtUrgente.CharacterCasing = CharacterCasing.Upper;
             txtUrgente.Enabled = false;
             txtUrgente.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txtUrgente.Location = new Point(371, 205);
+            txtUrgente.Location = new Point(383, 205);
             txtUrgente.Name = "txtUrgente";
-            txtUrgente.Size = new Size(100, 24);
+            txtUrgente.Size = new Size(88, 24);
             txtUrgente.TabIndex = 70;
             txtUrgente.Visible = false;
             // 
@@ -597,7 +597,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListarXXX, tsbModificar, tsbEliminar, tsbPago, tsbUpload, tsbComentarios, tsddbSwitchUser, tsddbProceso, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(691, 39);
+            toolStrip1.Size = new Size(351, 39);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 

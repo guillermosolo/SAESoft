@@ -122,25 +122,25 @@ namespace SAESoft.Administracion
         private Boolean ValidarDatos()
         {
             errorProvider1.Clear();
-            if (string.IsNullOrWhiteSpace(txtRegistro.Text))
+            if (string.IsNullOrEmpty(txtRegistro.Text))
             {
                 errorProvider1.SetError(txtRegistro, "No puede estar vacío.");
                 txtRegistro.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtFolio.Text))
+            if (string.IsNullOrEmpty(txtFolio.Text))
             {
                 errorProvider1.SetError(txtFolio, "No puede estar vacío.");
                 txtFolio.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtLibro.Text))
+            if (string.IsNullOrEmpty(txtLibro.Text))
             {
                 errorProvider1.SetError(txtLibro, "No puede estar vacío.");
                 txtLibro.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtExpediente.Text))
+            if (string.IsNullOrEmpty(txtExpediente.Text))
             {
                 errorProvider1.SetError(txtExpediente, "No puede estar vacío.");
                 txtExpediente.Focus();
@@ -187,8 +187,8 @@ namespace SAESoft.Administracion
                     nomb.Cancelacion = DatosServer.FechaServer();
                     db.Update(nomb);
                     db.SaveChanges();
-                    nombramientos.First(n => n.IdNombramiento == nomb.IdNombramiento).Cancelado = nomb.Cancelado;
-                    nombramientos.First(n => n.IdNombramiento == nomb.IdNombramiento).Cancelacion = nomb.Cancelacion;
+                    nombramientos.FirstOrDefault(n => n.IdNombramiento == nomb.IdNombramiento).Cancelado = nomb.Cancelado;
+                    nombramientos.FirstOrDefault(n => n.IdNombramiento == nomb.IdNombramiento).Cancelacion = nomb.Cancelacion;
                 }
                 catch (Exception ex)
                 {

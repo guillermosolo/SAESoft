@@ -104,20 +104,22 @@ namespace SAESoft.Administracion
                     var resp = reclamos.ShowDialog();
                     if (resp == DialogResult.OK)
                     {
-                        icbRefresh_Click(null, null);
+                        icbRefresh_Click(null, EventArgs.Empty);
                     }
-                } else
-                {
-                    MessageBox.Show("No posee permisos para modificar reclamos.","Información",MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            } else
+                else
+                {
+                    MessageBox.Show("No posee permisos para modificar reclamos.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
             {
                 if (hasPermission("CREAR.RECLAMOS"))
                 {
                     var resp = reclamos.ShowDialog();
                     if (resp == DialogResult.OK)
                     {
-                        icbRefresh_Click(null, null);
+                        icbRefresh_Click(null, EventArgs.Empty);
                     }
                 }
                 else
@@ -125,7 +127,7 @@ namespace SAESoft.Administracion
                     MessageBox.Show("No posee permisos para crear reclamos.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-           
+
         }
 
         private void icbRefresh_Click(object sender, EventArgs e)

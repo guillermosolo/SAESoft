@@ -16,7 +16,7 @@ namespace SAESoft.Importaciones
         private void icbBuscar_Click(object sender, EventArgs e)
         {
             ids.Clear();
-            if (txtNumero.Text == string.Empty)
+            if (string.IsNullOrEmpty(txtNumero.Text))
             {
                 todos = true;
             }
@@ -31,9 +31,12 @@ namespace SAESoft.Importaciones
                 {
                     ids = buscarContenedor();
                 }
-                else
+                else if (rbPoliza.Checked)
                 {
                     ids = buscarPoliza();
+                } else
+                {
+                    ids.Add(Convert.ToInt32(txtNumero.Text));
                 }
             }
         }

@@ -18,7 +18,7 @@ namespace SAESoft.Utilitarios
             DateTime fecha;
             using (SAESoftContext db = new())
             {
-              fecha = db.Database.SqlQuery<DateTime>($"SELECT GETDATE() AS [Value]").First();
+              fecha = db.Database.SqlQuery<DateTime>($"SELECT GETDATE() AS [Value]").FirstOrDefault();
           
             }
             return fecha;

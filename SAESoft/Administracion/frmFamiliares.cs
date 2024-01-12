@@ -72,13 +72,13 @@ namespace SAESoft.Administracion
         private Boolean ValidarDatos()
         {
             errorProvider1.Clear();
-            if (string.IsNullOrWhiteSpace(txtNombres.Text))
+            if (string.IsNullOrEmpty(txtNombres.Text))
             {
                 errorProvider1.SetError(txtNombres, "No puede estar vacío.");
                 txtNombres.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtApellidos.Text))
+            if (string.IsNullOrEmpty(txtApellidos.Text))
             {
                 errorProvider1.SetError(txtApellidos, "No puede estar vacío.");
                 txtApellidos.Focus();

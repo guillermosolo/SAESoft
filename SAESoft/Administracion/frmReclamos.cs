@@ -127,7 +127,7 @@ namespace SAESoft.Administracion
         {
             using SAESoftContext db = new();
             DateTime limite = DateTime.Now.AddYears(-23);
-            var familiares = db.Familiares.Where(f => f.IdEmpleado == selectedId).Where(f => f.FechaNac > limite).Select(f => new { f.IdFamiliar, f.Nombres, f.Apellidos, f.NombreCompleto }).OrderBy(f => f.Nombres).ToList();
+            var familiares = db.Familiares.Where(f => f.IdEmpleado == selectedId && (!f.Parentesco.Descripcion.Contains("HIJO") || (f.FechaNac > limite && f.Parentesco.Descripcion.Contains("HIJO")))).Select(f => new { f.IdFamiliar, f.Nombres, f.Apellidos, f.NombreCompleto }).OrderBy(f => f.Nombres).ToList();
             familiares.Insert(0, new { IdFamiliar = 0, Nombres = "", Apellidos = "", NombreCompleto = "NINGUNO" });
             cboFamiliares.DataSource = familiares;
             cboFamiliares.DisplayMember = "Nombrecompleto";
@@ -242,7 +242,7 @@ namespace SAESoft.Administracion
         private Boolean validarDatos()
         {
             errorProvider1.Clear();
-            if (txtMonto.Text.Trim() == "")
+            if (string.IsNullOrEmpty(txtMonto.Text))
             {
                 errorProvider1.SetError(txtMonto, "No puede estar vacío.");
                 txtMonto.Focus();

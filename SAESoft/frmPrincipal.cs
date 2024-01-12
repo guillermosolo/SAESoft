@@ -2,6 +2,7 @@
 using SAESoft.AdministracionSistema;
 using SAESoft.CambioPassword;
 using SAESoft.Importaciones;
+using SAESoft.Exportaciones;
 using System.Runtime.InteropServices;
 using static SAESoft.Cache.UserData;
 using static SAESoft.Utilitarios.ControlFormularios;
@@ -121,6 +122,7 @@ namespace SAESoft
             tsslVersion.Text = "Versión: " + AppVersion;
             btnConfiguracion.Enabled = hasPermission("VER.ADMINISTRACION SISTEMA");
             btnImportaciones.Enabled = hasPermission("VER.IMPORTACIONES");
+            btnExportaciones.Enabled = hasPermission("VER.EXPORTACIONES");
             btnAdministracion.Enabled = hasPermission("VER.ADMINISTRACION");
 
         }
@@ -139,6 +141,11 @@ namespace SAESoft
         {
             WFCambioPwd cambio = new();
             cambio.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Abrir<frmMenuExportaciones>(panelFormularios);
         }
     }
 }

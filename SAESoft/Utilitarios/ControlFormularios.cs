@@ -73,6 +73,11 @@ namespace SAESoft.Utilitarios
                             "tsbNuevo" => estado && hasPermission("CREAR." + Opcion),
                             "tsbModificar" => estado && hasPermission("MODIFICAR." + Opcion),
                             "tsbEliminar" => estado && hasPermission("ELIMINAR." + Opcion),
+                            "tsbPago" => estado && hasPermission("MODIFICAR." + Opcion),
+                            "tsbUpload" => estado && hasPermission("MODIFICAR." + Opcion),
+                            "tsbComentarios" => estado && hasPermission("MODIFICAR." + Opcion),
+                            "tsddbSwitchUser" => estado && hasPermission("MODIFICAR." + Opcion),
+                            "tsddbProceso" => estado && hasPermission("MODIFICAR." + Opcion),
                             _ => estado,
                         };
                     }

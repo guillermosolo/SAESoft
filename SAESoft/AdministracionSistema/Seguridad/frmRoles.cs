@@ -137,7 +137,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
             dataGridView1.ClearSelection();
             using (SAESoftContext db = new())
             {
-                var rs = db.Roles.Include(p => p.Permisos).Where(r => r.IdRol == IdRol).First();
+                var rs = db.Roles.Include(p => p.Permisos).Where(r => r.IdRol == IdRol).FirstOrDefault();
                 foreach (DataRow row in dt.Rows)
                 {
                     for (int i = 1; i < 6; i++)

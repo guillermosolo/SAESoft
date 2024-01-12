@@ -30,6 +30,7 @@
         {
             panelContenedor = new Panel();
             panelFormularios = new Panel();
+            btnExportaciones = new Button();
             button2 = new Button();
             btnAdministracion = new Button();
             button1 = new Button();
@@ -66,6 +67,7 @@
             // 
             // panelFormularios
             // 
+            panelFormularios.Controls.Add(btnExportaciones);
             panelFormularios.Controls.Add(button2);
             panelFormularios.Controls.Add(btnAdministracion);
             panelFormularios.Controls.Add(button1);
@@ -77,6 +79,21 @@
             panelFormularios.Name = "panelFormularios";
             panelFormularios.Size = new Size(1000, 760);
             panelFormularios.TabIndex = 1;
+            // 
+            // btnExportaciones
+            // 
+            btnExportaciones.FlatAppearance.BorderSize = 0;
+            btnExportaciones.FlatStyle = FlatStyle.Flat;
+            btnExportaciones.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnExportaciones.Image = Properties.Resources.exporter;
+            btnExportaciones.Location = new Point(441, 22);
+            btnExportaciones.Name = "btnExportaciones";
+            btnExportaciones.Size = new Size(186, 197);
+            btnExportaciones.TabIndex = 9;
+            btnExportaciones.Text = "Exportaciones";
+            btnExportaciones.TextAlign = ContentAlignment.BottomCenter;
+            btnExportaciones.UseVisualStyleBackColor = true;
+            btnExportaciones.Click += button3_Click;
             // 
             // button2
             // 
@@ -101,7 +118,7 @@
             btnAdministracion.FlatStyle = FlatStyle.Flat;
             btnAdministracion.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnAdministracion.Image = Properties.Resources.organize;
-            btnAdministracion.Location = new Point(459, 22);
+            btnAdministracion.Location = new Point(616, 22);
             btnAdministracion.Name = "btnAdministracion";
             btnAdministracion.Size = new Size(186, 197);
             btnAdministracion.TabIndex = 7;
@@ -334,5 +351,6 @@
         private Label label1;
         private Button btnAdministracion;
         private Button button2;
+        private Button btnExportaciones;
     }
 }

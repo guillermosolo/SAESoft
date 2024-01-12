@@ -33,7 +33,7 @@ namespace SAESoft.Administracion
         private Boolean ValidarDatos()
         {
             errorProvider1.Clear();
-            if (string.IsNullOrWhiteSpace(txtResolucion.Text))
+            if (string.IsNullOrEmpty(txtResolucion.Text))
             {
                 errorProvider1.SetError(txtResolucion, "No puede estar vacío.");
                 txtResolucion.Focus();

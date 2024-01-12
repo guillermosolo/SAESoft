@@ -73,25 +73,25 @@ namespace SAESoft.Administracion
         {
             errorProvider1.Clear();
             Regex placa = Validaciones.plate_validation();
-            if (string.IsNullOrWhiteSpace(txtMarca.Text))
+            if (string.IsNullOrEmpty(txtMarca.Text))
             {
                 errorProvider1.SetError(txtMarca, "No puede estar vacío.");
                 txtMarca.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtColor.Text))
+            if (string.IsNullOrEmpty(txtColor.Text))
             {
                 errorProvider1.SetError(txtColor, "No puede estar vacío.");
                 txtColor.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtPlacas.Text))
+            if (string.IsNullOrEmpty(txtPlacas.Text))
             {
                 errorProvider1.SetError(txtPlacas, "No puede estar vacío.");
                 txtPlacas.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtPoliza.Text))
+            if (string.IsNullOrEmpty(txtPoliza.Text))
             {
                 errorProvider1.SetError(txtPoliza, "No puede estar vacío.");
                 txtPoliza.Focus();
@@ -103,13 +103,13 @@ namespace SAESoft.Administracion
                 txtPlacas.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtPrima.Text))
+            if (string.IsNullOrEmpty(txtPrima.Text))
             {
                 errorProvider1.SetError(txtPrima, "No puede estar vacío.");
                 txtPrima.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtDeducible.Text))
+            if (string.IsNullOrEmpty(txtDeducible.Text))
             {
                 errorProvider1.SetError(txtDeducible, "No puede estar vacío.");
                 txtDeducible.Focus();

@@ -99,20 +99,16 @@ namespace SAESoft.Administracion
             cboEmpleados.DisplayMember = "Alias";
             cboEmpleados.ValueMember = "IdEmpleado";
             llenarFamiliares(Convert.ToInt32(cboEmpleados.SelectedValue));
-            var status = db.AdminStatuses.Select(s => new { s.IdStatus, s.Nombre, s.Orden }).OrderBy(s => s.Orden).ToList();
-            cboStatus.DataSource = status;
-            cboStatus.DisplayMember = "Nombre";
-            cboStatus.ValueMember = "IdStatus";
-            if (tramite == null)
-            {
-                cboStatus.Enabled = false;
-            }
-            List<int> docs = new() { 4, 6, 1, 8, 9, 11, 13, 14, 15 };
+            List<int> docs = new() {1, 4, 6, 8, 9, 11, 13, 14, 15 };
             var tipos = db.TiposDocumento.Select(s => new { s.IdTipoDocumento, s.Nombre }).Where(s => docs.Contains(s.IdTipoDocumento)).ToList();
             cboTipoTramite.DataSource = tipos;
             cboTipoTramite.DisplayMember = "Nombre";
             cboTipoTramite.ValueMember = "IdTipoDocumento";
             llenarStatuses(Convert.ToInt32(cboTipoTramite.SelectedValue));
+            if (tramite == null)
+            {
+                cboStatus.Enabled = false;
+            }
             isLoadingcbo = false;
         }
 

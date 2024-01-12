@@ -103,6 +103,8 @@
             label30 = new Label();
             txtAseguradora = new TextBox();
             label29 = new Label();
+            tabPage7 = new TabPage();
+            pbFoto = new PictureBox();
             tsActivo = new Utilitarios.toggleSwitch();
             label13 = new Label();
             tsBoletoOrnato = new Utilitarios.toggleSwitch();
@@ -159,6 +161,8 @@
             tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedico).BeginInit();
             tabPage6.SuspendLayout();
+            tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbFoto).BeginInit();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
@@ -508,6 +512,7 @@
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage5);
             tabControl1.Controls.Add(tabPage6);
+            tabControl1.Controls.Add(tabPage7);
             tabControl1.Location = new Point(74, 422);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -1031,6 +1036,26 @@
             label29.TabIndex = 18;
             label29.Text = "Aseguradora";
             // 
+            // tabPage7
+            // 
+            tabPage7.Controls.Add(pbFoto);
+            tabPage7.Location = new Point(4, 24);
+            tabPage7.Name = "tabPage7";
+            tabPage7.Padding = new Padding(3);
+            tabPage7.Size = new Size(632, 222);
+            tabPage7.TabIndex = 6;
+            tabPage7.Text = "Fotografía";
+            tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // pbFoto
+            // 
+            pbFoto.Location = new Point(212, 6);
+            pbFoto.Name = "pbFoto";
+            pbFoto.Size = new Size(175, 210);
+            pbFoto.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbFoto.TabIndex = 0;
+            pbFoto.TabStop = false;
+            // 
             // tsActivo
             // 
             tsActivo.Checked = true;
@@ -1293,7 +1318,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListar, tsbModificar, tsbEliminar, tsddbDocumentos, tsbRelatives, tsbFicha, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(351, 39);
+            toolStrip1.Size = new Size(610, 39);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -1487,6 +1512,8 @@
             ((System.ComponentModel.ISupportInitialize)dgvMedico).EndInit();
             tabPage6.ResumeLayout(false);
             tabPage6.PerformLayout();
+            tabPage7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pbFoto).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
@@ -1601,5 +1628,7 @@
         private Label label38;
         private ToolStripButton tsbFicha;
         private DataGridView dgvNombramientos;
+        private TabPage tabPage7;
+        private PictureBox pbFoto;
     }
 }

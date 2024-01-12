@@ -137,7 +137,7 @@ namespace SAESoft.Importaciones
                 using SAESoftContext db = new();
                 var queryable = db.Importaciones.Include(r => r.Revisiones)
                                                 .Include(r => r.BL)
-                                                .ThenInclude(p=>p.Polizas)
+                                                .ThenInclude(p => p.Polizas)
                                                 .Include(r => r.Contenedores)
                                                 .Include(r => r.ImportStatus)
                                                 .Include(r => r.ImportHistorial)
@@ -397,14 +397,8 @@ namespace SAESoft.Importaciones
                     }
                     i++;
                 }
-                if (j == im.Count)
-                {
-                    tsddbProceso.Enabled = false;
-                }
-                else
-                {
-                    tsddbProceso.Enabled = true;
-                }
+                if (tsddbProceso.Enabled)
+                    tsddbProceso.Enabled = (j != im.Count);
             }
         }
 
@@ -414,6 +408,7 @@ namespace SAESoft.Importaciones
             String[] botones = { "tsbAceptar", "tsbCancelar" };
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
+            dgvContenedores.Enabled = true;
             limpiarFormulario(this);
             dt.Rows.Clear();
             dtc.Rows.Clear();
@@ -444,6 +439,7 @@ namespace SAESoft.Importaciones
                 dt.Rows.Clear();
             }
             habilitarFormulario(this, false);
+            dgvContenedores.Enabled = false;
         }
 
         private void tsbAceptar_Click(object sender, EventArgs e)
@@ -603,6 +599,7 @@ namespace SAESoft.Importaciones
                 }
                 CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios" }, true, toolStrip1, "AEREO");
                 habilitarFormulario(this, false);
+                dgvContenedores.Enabled = false;
             }
         }
 
@@ -752,7 +749,7 @@ namespace SAESoft.Importaciones
         private Boolean ValidarDatos()
         {//Regex ValidarPlacas = plate_validation();
             errorProvider1.Clear();
-            if (txtBL.Text.Trim() == "")
+            if (string.IsNullOrEmpty(txtBL.Text))
             {
                 errorProvider1.SetError(txtBL, "No puede estar vacío.");
                 txtBL.Focus();
@@ -837,10 +834,30 @@ namespace SAESoft.Importaciones
 
         private void listView1_ItemActivate(object sender, EventArgs e)
         {
-            string selectedFile = listFiles[listView1.SelectedIndices[0]];
-            if (File.Exists(selectedFile))
+            if (listView1.SelectedIndices.Count > 0)
             {
-                new Process { StartInfo = new ProcessStartInfo(selectedFile) { UseShellExecute = true } }.Start();
+                string selectedFile = listFiles[listView1.SelectedIndices[0]];
+
+                if (File.Exists(selectedFile))
+                {
+                    try
+                    {
+                        // Directorio temporal
+                        string tempDirectory = Path.GetTempPath();
+
+                        // Copiar el archivo a la carpeta temporal
+                        string tempFilePath = Path.Combine(tempDirectory, Path.GetFileName(selectedFile));
+                        File.Copy(selectedFile, tempFilePath, true);
+
+                        // Abrir la copia desde la carpeta temporal
+                        new Process { StartInfo = new ProcessStartInfo(tempFilePath) { UseShellExecute = true } }.Start();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejar la excepción según tus necesidades
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
@@ -851,7 +868,10 @@ namespace SAESoft.Importaciones
 
         private void fileSystemWatcher1_Deleted(object sender, FileSystemEventArgs e)
         {
-            cargarArchivos(@"\" + rs[CurrentIndex].Codigo);
+            if (rs[CurrentIndex] != null)
+            {
+                cargarArchivos(@"\" + rs[CurrentIndex].Codigo);
+            }
         }
 
         private void tsbUpload_Click(object sender, EventArgs e)

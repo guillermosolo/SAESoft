@@ -29,101 +29,112 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuscarImport));
-            this.rbBL = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtNumero = new System.Windows.Forms.TextBox();
-            this.rbContendor = new System.Windows.Forms.RadioButton();
-            this.rbPoliza = new System.Windows.Forms.RadioButton();
-            this.icbBuscar = new FontAwesome.Sharp.IconButton();
-            this.SuspendLayout();
+            rbBL = new RadioButton();
+            label1 = new Label();
+            txtNumero = new TextBox();
+            rbContendor = new RadioButton();
+            rbPoliza = new RadioButton();
+            icbBuscar = new FontAwesome.Sharp.IconButton();
+            rbID = new RadioButton();
+            SuspendLayout();
             // 
             // rbBL
             // 
-            this.rbBL.AutoSize = true;
-            this.rbBL.Checked = true;
-            this.rbBL.Location = new System.Drawing.Point(12, 60);
-            this.rbBL.Name = "rbBL";
-            this.rbBL.Size = new System.Drawing.Size(52, 25);
-            this.rbBL.TabIndex = 0;
-            this.rbBL.TabStop = true;
-            this.rbBL.Text = "B.L.";
-            this.rbBL.UseVisualStyleBackColor = true;
+            rbBL.AutoSize = true;
+            rbBL.Checked = true;
+            rbBL.Location = new Point(12, 60);
+            rbBL.Name = "rbBL";
+            rbBL.Size = new Size(52, 25);
+            rbBL.TabIndex = 0;
+            rbBL.TabStop = true;
+            rbBL.Text = "B.L.";
+            rbBL.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 21);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Número";
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 21);
+            label1.Name = "label1";
+            label1.Size = new Size(72, 21);
+            label1.TabIndex = 1;
+            label1.Text = "Número";
             // 
             // txtNumero
             // 
-            this.txtNumero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNumero.Location = new System.Drawing.Point(90, 18);
-            this.txtNumero.Name = "txtNumero";
-            this.txtNumero.Size = new System.Drawing.Size(223, 27);
-            this.txtNumero.TabIndex = 2;
+            txtNumero.CharacterCasing = CharacterCasing.Upper;
+            txtNumero.Location = new Point(90, 18);
+            txtNumero.Name = "txtNumero";
+            txtNumero.Size = new Size(223, 27);
+            txtNumero.TabIndex = 2;
             // 
             // rbContendor
             // 
-            this.rbContendor.AutoSize = true;
-            this.rbContendor.Location = new System.Drawing.Point(124, 60);
-            this.rbContendor.Name = "rbContendor";
-            this.rbContendor.Size = new System.Drawing.Size(124, 25);
-            this.rbContendor.TabIndex = 3;
-            this.rbContendor.Text = "Contenedor";
-            this.rbContendor.UseVisualStyleBackColor = true;
+            rbContendor.AutoSize = true;
+            rbContendor.Location = new Point(70, 60);
+            rbContendor.Name = "rbContendor";
+            rbContendor.Size = new Size(124, 25);
+            rbContendor.TabIndex = 3;
+            rbContendor.Text = "Contenedor";
+            rbContendor.UseVisualStyleBackColor = true;
             // 
             // rbPoliza
             // 
-            this.rbPoliza.AutoSize = true;
-            this.rbPoliza.Location = new System.Drawing.Point(296, 60);
-            this.rbPoliza.Name = "rbPoliza";
-            this.rbPoliza.Size = new System.Drawing.Size(71, 25);
-            this.rbPoliza.TabIndex = 4;
-            this.rbPoliza.Text = "Póliza";
-            this.rbPoliza.UseVisualStyleBackColor = true;
+            rbPoliza.AutoSize = true;
+            rbPoliza.Location = new Point(200, 60);
+            rbPoliza.Name = "rbPoliza";
+            rbPoliza.Size = new Size(71, 25);
+            rbPoliza.TabIndex = 4;
+            rbPoliza.Text = "Póliza";
+            rbPoliza.UseVisualStyleBackColor = true;
             // 
             // icbBuscar
             // 
-            this.icbBuscar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.icbBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.icbBuscar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
-            this.icbBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.icbBuscar.IconSize = 32;
-            this.icbBuscar.Location = new System.Drawing.Point(124, 99);
-            this.icbBuscar.Name = "icbBuscar";
-            this.icbBuscar.Size = new System.Drawing.Size(143, 44);
-            this.icbBuscar.TabIndex = 5;
-            this.icbBuscar.Text = "Buscar";
-            this.icbBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.icbBuscar.UseVisualStyleBackColor = true;
-            this.icbBuscar.Click += new System.EventHandler(this.icbBuscar_Click);
+            icbBuscar.DialogResult = DialogResult.OK;
+            icbBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            icbBuscar.IconColor = Color.FromArgb(0, 122, 172);
+            icbBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icbBuscar.IconSize = 32;
+            icbBuscar.Location = new Point(124, 99);
+            icbBuscar.Name = "icbBuscar";
+            icbBuscar.Size = new Size(143, 44);
+            icbBuscar.TabIndex = 5;
+            icbBuscar.Text = "Buscar";
+            icbBuscar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            icbBuscar.UseVisualStyleBackColor = true;
+            icbBuscar.Click += icbBuscar_Click;
+            // 
+            // rbID
+            // 
+            rbID.AutoSize = true;
+            rbID.Location = new Point(277, 60);
+            rbID.Name = "rbID";
+            rbID.Size = new Size(45, 25);
+            rbID.TabIndex = 6;
+            rbID.Text = "ID";
+            rbID.UseVisualStyleBackColor = true;
             // 
             // frmBuscarImport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 155);
-            this.Controls.Add(this.icbBuscar);
-            this.Controls.Add(this.rbPoliza);
-            this.Controls.Add(this.rbContendor);
-            this.Controls.Add(this.txtNumero);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.rbBL);
-            this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "frmBuscarImport";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(10F, 21F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(400, 155);
+            Controls.Add(rbID);
+            Controls.Add(icbBuscar);
+            Controls.Add(rbPoliza);
+            Controls.Add(rbContendor);
+            Controls.Add(txtNumero);
+            Controls.Add(label1);
+            Controls.Add(rbBL);
+            Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "frmBuscarImport";
+            StartPosition = FormStartPosition.CenterParent;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -134,5 +145,6 @@
         private RadioButton rbContendor;
         private RadioButton rbPoliza;
         private FontAwesome.Sharp.IconButton icbBuscar;
+        private RadioButton rbID;
     }
 }

@@ -18,7 +18,7 @@
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
     <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing"">Blue</data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
         <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
@@ -130,24 +130,24 @@
   <data name="tsbPago.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPXSURBVFhH7ZdrSFRBGIbHNI0giwgKKigIfxRR9CO6mLtn
-        vZR2MctVM5PQqNCKsB/dSA2igqIyClKK6G5mWWtklmloJdLFTKV1z0Zrpe2ul5XSLMv9mjkNei6z214i
-        +tELD4cd57zv58w3Z8+iAV21TEGF5hxU2NKFCq3gEqUfjMj2UkMdvBCAD7pmNTJDnKF734dsdd2oo34e
-        dfJQ183hzIDf8eAD4AIIXZhZ1M0DFVqzFOauMFgAoLa6NtT+Yip1dFPXLNnMgN8hLuAXrairYQp1dUOe
-        FqAzA+qQFEAw4Z6YSJ1dlKcFEOqN8gIAb8UbZGkYR91dkDcFEO62Aqp5O0jFk370qLmMursgbwtgkW81
-        UXcX9L+Af68AC/jtLAK/LeeZ+GbdEc11gDcF+FxsBn/tPgiI2sHEf/UhQFc/SgPl/O0tmKRrhNj7Otj/
-        OAduP8+A4ucZPXaDZqvdoJpAU5yIVUB+C/hceucUlN8KgUXNcKZmL9h5jklLJWf/YeCq7MaQ6TSNIfkW
-        XDBBgHozDJuT6pSI9PVgaoyVBPYbODidFw19eo1k/DM/t9vOq+NpokyMFRhy/Cn4HnzokKATN6Bbv1AS
-        QrhxeYlQ3NGc5Yq/CRjUqTRVJDd7YAg+JVUvNyrM03dphfDJkWuFa1RqInQ3Sleit4nrBL1qDE2mUhRg
-        Ad9djo/hlqIjElNCbdkiIfTC2WXC5+qSSAgMToHL55Yq5vbz3GmaTCXvgYsm8I/JhoCIbUzKyhMVptkH
-        VsDEiLWSsQ3b42DjjjjJGMFWy/UCaH1pOpYbW+CDV8emX6wwzcuNFlbg2b1FA2O9rzVgqwuVzBvAoBG9
-        PblRQFBxHdOQ7PWMFcnCssdvSoATJ5fDp3oH4QQDl0jTsdwoYH5JFdsQQ/7b3ftWQkhSkrAa06KTHa8A
-        r1pH07EK2jawwliMv6VnmP1CfPZJU46YnyL0hnjOIBrRW3RB50h0ydrDCpRDesD8WnnGz+Qtg5VpqyRj
-        5Bhq0xMkYwQLr/oGDVp/mk5VYEnDAR/lgSzI815uWnYzSlj2yuJI4XPr0zAYHZICuaeiFXN/8OpKmipT
-        LgzFv5AiUYE1wRmhpeVpXQ1hX8Sm35s44JJXw/C5qcJ11IIUoQfaa8Mk4S081wdNqpk00XORLhYbE8j3
-        wOFjMcJKZGTGCsdQPgfft4daeC/8XM8k33bigI7aUJgdvwZM1eHSYAwu8ApUqPzo7X9GdqMm5ps+2CwL
-        kgR/5YPb8TWO3vLnRToav3gk9fNq3Xc+RP9Jr+rB7wCv8DP/LD5um+xvNGPpVJkQ+gk7/2qIDVL7KwAA
-        AABJRU5ErkJggg==
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPWSURBVFhH7ZdrSFRBGIbHNI2gCxEUVFAQ/Sii6EdUmrtn
+        NUsrzXLVzEQ0StQi7Ec3KoOooKgMg5QiuptZ1hqZZVeLiDI1ldY9G62ltrtqK6VZlvs1cxr0XGbXvUj0
+        oxceDjvOed/PmW/OnkV9umKZiorMOaiouQMVWcElypqMyFatoQ5eCMAHXbUamSHO0H3sQbaaTtReu4A6
+        eahr5kXMgIG43wS4AEIHZg5180BF1j0Kc1foLwBQa00rans9nTq6qauWbGbAQIgL+EML6qibSl3dkKcF
+        6MyA2iUFEEy4JyZRZxflaQGEWqO8AMBb8Q5Z6sZTdxfkTQGEOy2AXrzv5+GzXvS0sZy6uyBvC2BRYDVR
+        dxf0v4B/rwAL+G0vBr9N55j47rktmusAbwrwudAI/tp9EBCxjYn/mkOArnySBsr521swWVcPMfd0sP9Z
+        DtyqzIKSyqwuu0Gz2W5QTaQpTsQqoKAZfC5+cAoqaIGRxY1w+sVesPMck6bHnP2XgauwG4Nn0jSG5Ftw
+        3gQB6o0wbF6qU8Iy1oOpPkYS2Gvg4FR+FPToNZLxr/z8TjuvjqOJMjFWYMjxl+B78JFDpuVeh079YkkI
+        4fqlZUJxR3NWKP4mYFCn0lSR3OyBIfiUVFSnKcwzdmiF8CnhycI1IjUBOuulK9HdwH0GvWosTaZSFGAB
+        3x2Oj+Gm4iMSU0JV+RIh9PyZSOHz89JwGBmUApfOLlfM7eW5UzSZSt4DF0zgH50NAWFbmJQ/SFCYZh9Y
+        CZPCkiVjG7bGQtq2WMkYwVbFdQNofWk6lhtb4INXx6ZfqjDNz4sSVuDV3SV9Y91vNWCrCZHM68OgEb09
+        uVHAtJIapiHZ61krk4Rlj8uMh9wTK+BLrYNwgoFLoOlYbhQQWFrBNsSQ/3bnvlUQnJgorMaMqCTHK8Cr
+        1tF0rMLWDawwFhNu6hlmfxCffdKUIwJThN4Qz+lHI3qLLvw8Cl20drEC5ZAeML9VnvHT+ZGwKn21ZIwc
+        Q21GvGSMYOFVP6BO60/TqQot6TjgkzyQBXney03Lb0QIy/6kJFz43PIyFMYEp0DeySjF3F+8+glNlSkP
+        huJfSOGo0BrvjJCyB+kddaHfxKY/GzjgktbA8PmpwnX0whShB9qqQiXhzTzXAw2q2TTRc5EuFhsTyPfA
+        4WPRwkpk7Y4RjqF8Dr5vF7XwXvi5vpt824kD2qtCYG7cWjA9XyQNxuACL8NDlR+9fXBkN2qif+iDzLIg
+        SfB3PqgNX2PpLYMv0tH4xSOxl1frfvLB+i96VRd+B3iDn/ln8HHLtL/TjKNTZULoNxzbaoME91uMAAAA
+        AElFTkSuQmCC
 </value>
   </data>
   <metadata name="fileSystemWatcher1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
