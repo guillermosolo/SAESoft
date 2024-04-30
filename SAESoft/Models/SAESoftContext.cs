@@ -4,7 +4,7 @@ using SAESoft.Models.AdministracionSistema;
 using SAESoft.Models.Comunes;
 using SAESoft.Models.Exportaciones;
 using SAESoft.Models.Importaciones;
-using SAESoft.Utilitarios;
+using SAESoft.Models.Incentivos;
 using System.Configuration;
 
 namespace SAESoft.Models
@@ -13,8 +13,8 @@ namespace SAESoft.Models
     {
        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-          optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["MSSQL_Test"].ConnectionString);
-          // optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString);
+           optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["MSSQL_Test"].ConnectionString);
+           //optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString);
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
@@ -65,6 +65,17 @@ namespace SAESoft.Models
         public DbSet<Descargo> Descargos { get; set; }
         public DbSet<FacturaLocal> FacturasLocal { get; set; }
         public DbSet<ComentFacExport> ComentFacsExport { get; set; }
+
+        //Incentivos
+        public DbSet<EvaluacionAsistencia> EvaluacionAsistencia { get; set; }
+        public DbSet<PorcentajeEvaluacion> PorcentajeEvaluacion { get; set; }
+        public DbSet<PuntajeAsistencia> PuntajeAsistencia { get; set; }
+        public DbSet<DeptoIncentivo> DeptoIncentivo { get; set; }
+        public DbSet<EmpIncentivos> EmpIncentivos { get; set; }
+        public DbSet<Asistencia> Asistencia { get; set; }
+        public DbSet<Evaluacion> Evaluaciones { get; set; }
+        public DbSet<EvaluacionDetalle> EvaluacionesDetalle { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

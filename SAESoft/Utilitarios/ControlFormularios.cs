@@ -2,6 +2,8 @@
 using SAESoft.Models;
 using static SAESoft.Cache.UserData;
 using SAESoft.Models.Comunes;
+using System.Globalization;
+using DocumentFormat.OpenXml.Office.CoverPageProps;
 
 namespace SAESoft.Utilitarios
 {
@@ -28,6 +30,14 @@ namespace SAESoft.Utilitarios
             {
                 formulario.BringToFront();
             }
+        }
+
+        public static void llenarNumeros(NumericUpDown control, int inicio, int fin)
+        {
+            control.Minimum = Math.Min(inicio, fin);
+            control.Maximum = Math.Max(inicio, fin);
+
+            control.Value = inicio;
         }
 
         public static void BotonesIniciales(ToolStrip toolbar)
@@ -227,6 +237,21 @@ namespace SAESoft.Utilitarios
                 c.DisplayMember = "Descripcion";
                 c.ValueMember = "IdNombre";
             }
+        }
+
+        public static CultureInfo GetCultureInfo(string codigoMoneda)
+        {
+            return codigoMoneda.ToUpper() switch
+            {
+                //Quetzales
+                "GTQ" => new CultureInfo("es-GT"),
+                // Dólares estadounidenses
+                "USD" => new CultureInfo("en-US"),
+                // Wones
+                "KRW" => new CultureInfo("ko-KR"),
+                // Agrega más casos según sea necesario para otras monedas
+                _ => throw new ArgumentException("Código de moneda no válido"),
+            };
         }
 
         public static bool IsFileOpen (string filePath)

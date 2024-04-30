@@ -51,11 +51,18 @@
             icbFinalizar = new FontAwesome.Sharp.IconButton();
             errorProvider1 = new ErrorProvider(components);
             lblTitulo = new Label();
+            label10 = new Label();
+            numericUpDown1 = new NumericUpDown();
+            radioButton1 = new RadioButton();
+            radioButton2 = new RadioButton();
+            txtCuotas = new TextBox();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // txtMarca
             // 
+            txtMarca.CharacterCasing = CharacterCasing.Upper;
             txtMarca.Location = new Point(117, 69);
             txtMarca.Margin = new Padding(4);
             txtMarca.Name = "txtMarca";
@@ -84,10 +91,11 @@
             // 
             // txtColor
             // 
+            txtColor.CharacterCasing = CharacterCasing.Upper;
             txtColor.Location = new Point(117, 108);
             txtColor.Margin = new Padding(4);
             txtColor.Name = "txtColor";
-            txtColor.Size = new Size(351, 27);
+            txtColor.Size = new Size(157, 27);
             txtColor.TabIndex = 11;
             // 
             // label2
@@ -106,7 +114,7 @@
             txtPlacas.Location = new Point(117, 148);
             txtPlacas.Margin = new Padding(4);
             txtPlacas.Name = "txtPlacas";
-            txtPlacas.Size = new Size(351, 27);
+            txtPlacas.Size = new Size(85, 27);
             txtPlacas.TabIndex = 13;
             // 
             // label4
@@ -252,12 +260,66 @@
             lblTitulo.TabIndex = 35;
             lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(301, 111);
+            label10.Margin = new Padding(4, 0, 4, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(69, 21);
+            label10.TabIndex = 36;
+            label10.Text = "Modelo";
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(386, 109);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(82, 27);
+            numericUpDown1.TabIndex = 37;
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Checked = true;
+            radioButton1.Location = new Point(223, 149);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(100, 25);
+            radioButton1.TabIndex = 38;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Contado";
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(329, 149);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(85, 25);
+            radioButton2.TabIndex = 39;
+            radioButton2.Text = "Cuotas";
+            radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
+            // 
+            // txtCuotas
+            // 
+            txtCuotas.Location = new Point(420, 148);
+            txtCuotas.Name = "txtCuotas";
+            txtCuotas.Size = new Size(48, 27);
+            txtCuotas.TabIndex = 40;
+            txtCuotas.Visible = false;
+            txtCuotas.KeyPress += txtCuotas_KeyPress;
+            // 
             // frmSeguroVehiculo
             // 
             AcceptButton = icbFinalizar;
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(509, 441);
+            Controls.Add(txtCuotas);
+            Controls.Add(radioButton2);
+            Controls.Add(radioButton1);
+            Controls.Add(numericUpDown1);
+            Controls.Add(label10);
             Controls.Add(lblTitulo);
             Controls.Add(icbFinalizar);
             Controls.Add(txtDeducible);
@@ -288,6 +350,7 @@
             StartPosition = FormStartPosition.CenterParent;
             Load += frmSeguroVehiculo_Load;
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -315,5 +378,10 @@
         private FontAwesome.Sharp.IconButton icbFinalizar;
         private ErrorProvider errorProvider1;
         private Label lblTitulo;
+        private NumericUpDown numericUpDown1;
+        private Label label10;
+        private RadioButton radioButton2;
+        private RadioButton radioButton1;
+        private TextBox txtCuotas;
     }
 }

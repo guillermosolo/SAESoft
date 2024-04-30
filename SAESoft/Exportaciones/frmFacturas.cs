@@ -1,22 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SAESoft.Models;
-using SAESoft.Models.Administracion;
 using SAESoft.Models.Exportaciones;
 using SAESoft.Utilitarios;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Cache.UserData;
 using static SAESoft.Cache.Constantes;
-using SAESoft.Models.Comunes;
-using SAESoft.Models.Importaciones;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Diagnostics;
 

@@ -59,5 +59,7 @@ namespace SAESoft.Models.Administracion
         public virtual ICollection<Familiar> Familiares { get; set;}
         public virtual ICollection<Documento> Documentos { get; set;}
         public virtual ICollection<Nombramiento> Nombramientos { get; set; }
+        [NotMapped]
+        public string NombreCompleto { get { return Nombres + " " + Apellidos; } set { } }
     }
 }

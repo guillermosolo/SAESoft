@@ -194,7 +194,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(632, 440);
+            ClientSize = new Size(607, 395);
             Controls.Add(txtNumero);
             Controls.Add(dtpFecha);
             Controls.Add(label2);

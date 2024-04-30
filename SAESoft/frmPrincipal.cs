@@ -6,6 +6,7 @@ using SAESoft.Exportaciones;
 using System.Runtime.InteropServices;
 using static SAESoft.Cache.UserData;
 using static SAESoft.Utilitarios.ControlFormularios;
+using SAESoft.Incentivo;
 
 namespace SAESoft
 {
@@ -124,6 +125,7 @@ namespace SAESoft
             btnImportaciones.Enabled = hasPermission("VER.IMPORTACIONES");
             btnExportaciones.Enabled = hasPermission("VER.EXPORTACIONES");
             btnAdministracion.Enabled = hasPermission("VER.ADMINISTRACION");
+            btnIncentivo.Enabled = hasPermission("VER.INCENTIVOS");
 
         }
 
@@ -146,6 +148,11 @@ namespace SAESoft
         private void button3_Click(object sender, EventArgs e)
         {
             Abrir<frmMenuExportaciones>(panelFormularios);
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Abrir<frmMenuIncentivo>(panelFormularios);
         }
     }
 }

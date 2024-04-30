@@ -1,6 +1,6 @@
-﻿namespace SAESoft.AdministracionSistema.Comunes
+﻿namespace SAESoft.Incentivo
 {
-    partial class frmBuscarNombres
+    partial class frmBuscarEmpleado
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuscarNombres));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuscarEmpleado));
             icbBuscar = new FontAwesome.Sharp.IconButton();
-            cboGrupos = new ComboBox();
-            label7 = new Label();
-            txtDescripcion = new TextBox();
+            txtCodigo = new TextBox();
             label2 = new Label();
             SuspendLayout();
             // 
@@ -45,74 +43,52 @@
             icbBuscar.IconColor = Color.FromArgb(0, 122, 204);
             icbBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbBuscar.IconSize = 24;
-            icbBuscar.Location = new Point(154, 92);
+            icbBuscar.Location = new Point(97, 58);
             icbBuscar.Name = "icbBuscar";
             icbBuscar.Size = new Size(107, 35);
-            icbBuscar.TabIndex = 44;
+            icbBuscar.TabIndex = 47;
             icbBuscar.Text = "Buscar";
             icbBuscar.TextImageRelation = TextImageRelation.ImageBeforeText;
             icbBuscar.UseVisualStyleBackColor = true;
             icbBuscar.Click += icbBuscar_Click;
             // 
-            // cboGrupos
+            // txtCodigo
             // 
-            cboGrupos.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboGrupos.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cboGrupos.FormattingEnabled = true;
-            cboGrupos.IntegralHeight = false;
-            cboGrupos.Location = new Point(139, 54);
-            cboGrupos.Name = "cboGrupos";
-            cboGrupos.Size = new Size(241, 29);
-            cboGrupos.TabIndex = 43;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(19, 62);
-            label7.Name = "label7";
-            label7.Size = new Size(69, 21);
-            label7.TabIndex = 42;
-            label7.Text = "Módulo";
-            // 
-            // txtDescripcion
-            // 
-            txtDescripcion.CharacterCasing = CharacterCasing.Upper;
-            txtDescripcion.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDescripcion.Location = new Point(139, 12);
-            txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new Size(241, 27);
-            txtDescripcion.TabIndex = 41;
+            txtCodigo.CharacterCasing = CharacterCasing.Upper;
+            txtCodigo.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtCodigo.Location = new Point(86, 19);
+            txtCodigo.Name = "txtCodigo";
+            txtCodigo.Size = new Size(151, 27);
+            txtCodigo.TabIndex = 46;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(19, 15);
+            label2.Location = new Point(12, 19);
             label2.Name = "label2";
-            label2.Size = new Size(79, 21);
-            label2.TabIndex = 40;
-            label2.Text = "Nombres";
-            label2.Click += label2_Click;
+            label2.Size = new Size(68, 21);
+            label2.TabIndex = 45;
+            label2.Text = "Código";
             // 
-            // frmBuscarNombres
+            // frmBuscarEmpleado
             // 
             AcceptButton = icbBuscar;
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(398, 139);
+            ClientSize = new Size(277, 116);
             Controls.Add(icbBuscar);
-            Controls.Add(cboGrupos);
-            Controls.Add(label7);
-            Controls.Add(txtDescripcion);
+            Controls.Add(txtCodigo);
             Controls.Add(label2);
+            Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "frmBuscarNombres";
+            Name = "frmBuscarEmpleado";
             StartPosition = FormStartPosition.CenterParent;
-            Load += frmBuscarNombres_Load;
+            Text = "Buscar Empleado";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -120,9 +96,7 @@
         #endregion
 
         private FontAwesome.Sharp.IconButton icbBuscar;
-        private ComboBox cboGrupos;
-        private Label label7;
-        private TextBox txtDescripcion;
+        private TextBox txtCodigo;
         private Label label2;
     }
 }

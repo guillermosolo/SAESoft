@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             panelContenedor = new Panel();
             panelFormularios = new Panel();
+            btnIncentivo = new Button();
             btnExportaciones = new Button();
             button2 = new Button();
             btnAdministracion = new Button();
@@ -67,6 +69,7 @@
             // 
             // panelFormularios
             // 
+            panelFormularios.Controls.Add(btnIncentivo);
             panelFormularios.Controls.Add(btnExportaciones);
             panelFormularios.Controls.Add(button2);
             panelFormularios.Controls.Add(btnAdministracion);
@@ -79,6 +82,21 @@
             panelFormularios.Name = "panelFormularios";
             panelFormularios.Size = new Size(1000, 760);
             panelFormularios.TabIndex = 1;
+            // 
+            // btnIncentivo
+            // 
+            btnIncentivo.FlatAppearance.BorderSize = 0;
+            btnIncentivo.FlatStyle = FlatStyle.Flat;
+            btnIncentivo.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnIncentivo.Image = (Image)resources.GetObject("btnIncentivo.Image");
+            btnIncentivo.Location = new Point(57, 225);
+            btnIncentivo.Name = "btnIncentivo";
+            btnIncentivo.Size = new Size(186, 197);
+            btnIncentivo.TabIndex = 10;
+            btnIncentivo.Text = "Incentivos";
+            btnIncentivo.TextAlign = ContentAlignment.BottomCenter;
+            btnIncentivo.UseVisualStyleBackColor = true;
+            btnIncentivo.Click += button3_Click_1;
             // 
             // btnExportaciones
             // 
@@ -352,5 +370,6 @@
         private Button btnAdministracion;
         private Button button2;
         private Button btnExportaciones;
+        private Button btnIncentivo;
     }
 }

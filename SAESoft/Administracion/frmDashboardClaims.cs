@@ -2,7 +2,9 @@
 using SAESoft.Models;
 using SAESoft.Models.Administracion;
 using System.Data;
+using System.Globalization;
 using static SAESoft.Cache.UserData;
+using static SAESoft.Utilitarios.ControlFormularios;
 
 
 namespace SAESoft.Administracion
@@ -26,9 +28,11 @@ namespace SAESoft.Administracion
         private void estructuraGrid()
         {
             dt.Columns.Add("IdReclamo").DataType = Type.GetType("System.Int32");
+            dt.Columns.Add("Titular").DataType = Type.GetType("System.String");
             dt.Columns.Add("Paciente").DataType = Type.GetType("System.String");
             dt.Columns.Add("Tipo").DataType = Type.GetType("System.String");
             dt.Columns.Add("Inicio").DataType = Type.GetType("System.DateTime");
+            dt.Columns.Add("Total").DataType = Type.GetType("System.String");
             dt.Columns.Add("Status").DataType = Type.GetType("System.String");
             dgvDashboardClaim.DataSource = dt;
         }
@@ -52,13 +56,14 @@ namespace SAESoft.Administracion
             {
                 DataRow row = dt.NewRow();
                 row["IdReclamo"] = item.IdReclamo;
+                row["Titular"] = item.Empleado.Alias;
                 if (item.IdPaciente != null)
                     row["Paciente"] = item.Familiar.NombreCompleto;
-                else
-                    row["Paciente"] = item.Empleado.Alias;
                 row["Tipo"] = item.TipoReclamo.Descripcion;
                 row["Inicio"] = item.FechaCreacion;
                 row["Status"] = item.Status.Nombre;
+                CultureInfo culturaMoneda = GetCultureInfo(item.Moneda.Abreviatura);
+                row["Total"] = item.Monto?.ToString("C", culturaMoneda);
                 dt.Rows.Add(row);
             }
         }
@@ -80,6 +85,7 @@ namespace SAESoft.Administracion
             dgvDashboardClaim.Columns["Tipo"].Width = 200;
             dgvDashboardClaim.Columns["Inicio"].Width = 150;
             dgvDashboardClaim.Columns["Status"].Width = 150;
+            dgvDashboardClaim.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void dgvDashboardClaim_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

@@ -2,9 +2,6 @@
 using SAESoft.Models;
 using SAESoft.Models.Exportaciones;
 using SAESoft.Utilitarios;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using static SAESoft.Cache.UserData;
 using static SAESoft.Cache.Constantes;
@@ -139,7 +136,6 @@ namespace SAESoft.Exportaciones
                     }
                 }
             }
-
         }
 
         private void ibtnGuardar_Click(object sender, EventArgs e)

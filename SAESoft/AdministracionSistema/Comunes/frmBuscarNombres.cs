@@ -32,5 +32,10 @@ namespace SAESoft.AdministracionSistema.Comunes
             if (cboGrupos.SelectedIndex > -1)
                 grupo = Convert.ToInt32(cboGrupos.SelectedValue);
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

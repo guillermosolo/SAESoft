@@ -27,6 +27,9 @@ namespace SAESoft.Models.Administracion
         public decimal Prima { get; set; }
         [Column(TypeName = "decimal(10,2)")]
         public decimal Deducible { get; set;}
+        public Boolean Contado { get; set; }
+        public int? Cuotas { get; set; } 
+        public int? Modelo { get; set; }
         public virtual Empleado Empleado { get; set; }
     }
 }

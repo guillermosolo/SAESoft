@@ -117,29 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABEXAAARFwAAAAAAAAAA
-        AAC+cgAAvXIAAL1xAAC9cQANvHEAYrxxAMW8cQDyvHEA+7xxAPG8cQDDvHEAYL1xAAy9cQAAvXEAAL5y
-        AAAAAAAAu3AAALxxAAC+cgAKvHEAlbxxAOW8cQCovHEAabxxAFW8cQBqvHEAqrxxAOS8cQCLvnIABr1x
-        AAC8cQAAunAAALxxAAC8cQAuvHEAkbxxAJW9cQBJwXQAAbxxAAC8cQAAvHEAAMF0AAG9cQBPvHEAlrxx
-        AIq8cQAevHEAALxxAAC5bwAAvHEAabxxAOK8cQDyvHEAp71xACO8cQAAz3kAALxxAAC8cQA0vHEAurxx
-        APS8cQDYvXEAT7xxAAC8cQAAvXEAJb1yAGO9cgA0vHEAcrxxAOi8cQDGvXEAIrxxAAC8cQA2vHEA2rxx
-        ANu8cQBgvXIAL71yAGO9cgAevXEAALxxAJG8cQDOvXEAErxxAAC8cQBGvHEA57xxAKa9cQAgvHEAxLxx
-        ANW9cQAwvHEAAL1xABW8cQDSvHEAe7xxAAC8cQDSvHEAnLhvAAC9cgAAu3EAALxxAG68cQDyvHEAvrxx
-        APC8cQBOvHEAAL5yAACsaQAAvHEAorxxALS+cgAFvXEAf71xAEq7cQAAvHEAAL1xAAC9cQAXvHEA0rxx
-        AP+8cQC3vXEACb1xAAC8cQAAunAAAL1xAE29cQBsvnIAB7xxAL28cQC4vHEAkbxxAEa9cgAIu3AAALxx
-        AJe8cQD/vHEAdLxxAAC9cQAOvHEAU7xxAJq8cQC9vHEAkr5yAAq8cQCovHEAu7xxAOS8cQD0vHEApL1x
-        ABy8cQBfvHEA2rxxAEG9cQAtvHEAuLxxAPe8cQDevHEAub1xAIK+cgAJvXEAWLxxAIm9cQA6vHEAebxx
-        AOu8cQDAvXEAKrxxABW9cQA5vHEA1rxxAN+8cQBmvXEANbxxAI69cQBMvHEAALxxAEm8cQDxvHEAeLtw
-        AAC8cQBLvHEA6bxxAKG9cQAbvHEAv7xxANm9cQA0u3EAALxxAH28cQDxvHEAPLxxAAC9cQAGvHEAn7xx
-        AO28cQBNu3EAALxxAHC8cQDyvHEAubxxAPG8cQBRvHEAALxxAFG8cQDuvHEAnb5yAAW9cQAAvHEAAL1x
-        ACS8cQDNvHEA6rxxAGy9cQAtvHEA1LxxAP+8cQC5vXEAH7xxAHC8cQDsvHEAyr1xACK8cQAAvXEAALpw
-        AAC8cQAAvXEALrxxAL68cQD9vHEApLxxAJ68cQD/vHEAh7xxALa8cQD8vHEAvL1xACy8cQAAu3AAAL1x
-        AAC+cgAAqWkAALxxAAC9cQAYvHEAhLxxAKu8cQCCvHEA+rxxAHO8cQDBvHEAgL1xABe8cQAAtm4AAL5y
-        AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAEAAA==
-</value>
-  </data>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="errorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>122, 17</value>
+  </metadata>
 </root>

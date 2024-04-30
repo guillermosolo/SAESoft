@@ -18,6 +18,9 @@ namespace SAESoft.Administracion
         public DateTime vencimiento;
         public decimal prima;
         public decimal deducible;
+        public int modelo;
+        public Boolean contado;
+        public int? cuotas;
         public frmSeguroVehiculo()
         {
             InitializeComponent();
@@ -29,6 +32,7 @@ namespace SAESoft.Administracion
             int tamañoFuente = CalcularTamañoFuente(lblTitulo.Text);
             lblTitulo.Font = new Font(lblTitulo.Font.FontFamily, tamañoFuente);
             llenarNombres(cboAseguradora, "ASEGURADORA");
+            llenarNumeros(numericUpDown1, DateTime.Now.Year, 1980);
         }
 
         private static int CalcularTamañoFuente(string texto)
@@ -62,6 +66,9 @@ namespace SAESoft.Administracion
                 vencimiento = dtpVencimiento.Value.Date;
                 prima = Convert.ToDecimal(txtPrima.Text);
                 deducible = Convert.ToDecimal(txtDeducible.Text);
+                modelo = Convert.ToInt32(numericUpDown1.Value);
+                contado = radioButton1.Checked;
+                cuotas = string.IsNullOrEmpty(txtCuotas.Text) ? (int?)null : Convert.ToInt32(txtCuotas.Text);
             }
             else
             {
@@ -115,6 +122,12 @@ namespace SAESoft.Administracion
                 txtDeducible.Focus();
                 return false;
             }
+            if (radioButton2.Checked && string.IsNullOrEmpty(txtCuotas.Text))
+            {
+                errorProvider1.SetError(txtCuotas, "No puede estar vacío.");
+                txtDeducible.Focus();
+                return false;
+            }
             return true;
         }
 
@@ -126,6 +139,20 @@ namespace SAESoft.Administracion
         private void txtDeducible_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = decimales(e.KeyChar, Text);
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sender is RadioButton radioButton)
+            {
+                txtCuotas.Visible = radioButton.Checked;
+                txtCuotas.Text = "";
+            }
+        }
+
+        private void txtCuotas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = enteros(e.KeyChar);
         }
     }
 }

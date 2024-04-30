@@ -32,3 +32,9 @@ dotnet_diagnostic.IDE1006.severity = none
 
 # IDE0030: Usar expresión coalesce
 dotnet_diagnostic.IDE0030.severity = none
+
+# CS0252: Posible comparación de referencias involuntaria: El lado de la mano izquierda necesita conversión
+dotnet_diagnostic.CS0252.severity = none
+
+# CS8622: La nulabilidad de los tipos de referencia del tipo de parámetro no coincide con el delegado de destino (posiblemente debido a los atributos de nulabilidad).
+dotnet_diagnostic.CS8622.severity = none
