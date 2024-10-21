@@ -75,6 +75,9 @@ namespace SAESoft.Models
         public DbSet<Asistencia> Asistencia { get; set; }
         public DbSet<Evaluacion> Evaluaciones { get; set; }
         public DbSet<EvaluacionDetalle> EvaluacionesDetalle { get; set; }
+        public DbSet<Suspension> Suspensiones { get; set; }
+        public DbSet<HistIncentivos> HistorialIncentivos { get; set; }  
+        public DbSet<Firma> Firmas { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

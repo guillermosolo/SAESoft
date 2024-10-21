@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SAESoft.Models.AdministracionSistema;
 
 namespace SAESoft.Models.Incentivos
@@ -18,6 +13,8 @@ namespace SAESoft.Models.Incentivos
         public int IdUsuario { get; set; }
         [ForeignKey("IdUsuario")]
         public virtual Usuario Encargado { get; set; }
-
+        public Boolean Activo { get; set; } = true;
+        public virtual ICollection<EmpIncentivos> Empleados { get; set; }
+        public virtual ICollection<EvaluacionDetalle> EvalacionDetalles { get; set; }
     }
 }

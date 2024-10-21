@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static SAESoft.Utilitarios.ControlFormularios;
+﻿using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Cache.UserData;
-using SAESoft.Exportaciones;
 
 namespace SAESoft.Incentivo
 {
@@ -32,6 +22,10 @@ namespace SAESoft.Incentivo
                 ibtnDashboard.BackColor = Color.FromArgb(0, 122, 204);
             if (Application.OpenForms["frmEmpIncentivo"] == null)
                 ibtnPersonal.BackColor = Color.FromArgb(0, 122, 204);
+            if (Application.OpenForms["frmCalificacionDepto"] == null)
+                ibtnPersonal.BackColor = Color.FromArgb(0, 122, 204);
+            if (Application.OpenForms["frmImportarAsistencia"] == null)
+                ibtnPersonal.BackColor = Color.FromArgb(0, 122, 204);
         }
         private void habilitarMenu()
         {
@@ -39,6 +33,7 @@ namespace SAESoft.Incentivo
             ibtnPersonal.Enabled = hasPermission("VER.EMPLEADOSINCENTIVO");
             ibtnAsistencia.Enabled = hasPermission("VER.ASISTENCIA");
             ibtnEvaluar.Enabled = hasPermission("VER.EVALUACION");
+            ibtnSuspension.Enabled = hasPermission("VER.SUSPENSION");
         }
         private void iconButton3_Click(object sender, EventArgs e)
         {
@@ -61,6 +56,24 @@ namespace SAESoft.Incentivo
         {
             Abrir<frmCalificacionDepto>(panelFormularios);
             menuActivo(ibtnEvaluar, panelMenu);
+        }
+
+        private void iconButton2_Click_1(object sender, EventArgs e)
+        {
+            Abrir<frmSuspensiones>(panelFormularios);
+            menuActivo(ibtnSuspension, panelMenu);
+        }
+
+        private void iconButton2_Click_2(object sender, EventArgs e)
+        {
+            Abrir<frmCerrar>(panelFormularios);
+            menuActivo(ibtnCerrar, panelMenu);
+        }
+
+        private void ibtnReporte_Click(object sender, EventArgs e)
+        {
+            Abrir<frmReportes>(panelFormularios);
+            menuActivo(ibtnReporte, panelMenu);
         }
     }
 }

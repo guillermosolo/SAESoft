@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             toolStripContainer1 = new ToolStripContainer();
             groupBox3 = new GroupBox();
             rdbFemenino = new RadioButton();
@@ -104,6 +104,8 @@
             txtAseguradora = new TextBox();
             label29 = new Label();
             tabPage7 = new TabPage();
+            listView1 = new ListView();
+            imageList1 = new ImageList(components);
             pbFoto = new PictureBox();
             tsActivo = new Utilitarios.toggleSwitch();
             label13 = new Label();
@@ -145,6 +147,7 @@
             tsbSiguiente = new ToolStripButton();
             tsbSalir = new ToolStripButton();
             errorProvider1 = new ErrorProvider(components);
+            fileSystemWatcher1 = new FileSystemWatcher();
             toolStripContainer1.ContentPanel.SuspendLayout();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
             toolStripContainer1.SuspendLayout();
@@ -166,6 +169,7 @@
             ((System.ComponentModel.ISupportInitialize)pbFoto).BeginInit();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             SuspendLayout();
             // 
             // toolStripContainer1
@@ -535,14 +539,14 @@
             // 
             dgvDocumentos.AllowUserToAddRows = false;
             dgvDocumentos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.Control;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dgvDocumentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvDocumentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvDocumentos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDocumentos.Dock = DockStyle.Fill;
             dgvDocumentos.Location = new Point(3, 3);
@@ -572,23 +576,23 @@
             dgvMigracion.AllowUserToAddRows = false;
             dgvMigracion.AllowUserToDeleteRows = false;
             dgvMigracion.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = SystemColors.Control;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dgvMigracion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvMigracion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvMigracion.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = SystemColors.Window;
-            dataGridViewCellStyle10.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
-            dgvMigracion.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvMigracion.DefaultCellStyle = dataGridViewCellStyle3;
             dgvMigracion.Dock = DockStyle.Fill;
             dgvMigracion.Location = new Point(3, 3);
             dgvMigracion.Name = "dgvMigracion";
@@ -759,23 +763,23 @@
             dgvNombramientos.AllowUserToAddRows = false;
             dgvNombramientos.AllowUserToDeleteRows = false;
             dgvNombramientos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = SystemColors.Control;
-            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            dgvNombramientos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvNombramientos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvNombramientos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = SystemColors.Window;
-            dataGridViewCellStyle12.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle12.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            dgvNombramientos.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvNombramientos.DefaultCellStyle = dataGridViewCellStyle5;
             dgvNombramientos.Dock = DockStyle.Fill;
             dgvNombramientos.Location = new Point(0, 0);
             dgvNombramientos.Name = "dgvNombramientos";
@@ -801,23 +805,23 @@
             dgvMedico.AllowUserToAddRows = false;
             dgvMedico.AllowUserToDeleteRows = false;
             dgvMedico.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = SystemColors.Control;
-            dataGridViewCellStyle13.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
-            dgvMedico.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvMedico.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvMedico.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = SystemColors.Window;
-            dataGridViewCellStyle14.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle14.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
-            dgvMedico.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Window;
+            dataGridViewCellStyle7.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvMedico.DefaultCellStyle = dataGridViewCellStyle7;
             dgvMedico.Dock = DockStyle.Fill;
             dgvMedico.Location = new Point(0, 0);
             dgvMedico.Name = "dgvMedico";
@@ -1039,18 +1043,40 @@
             // 
             // tabPage7
             // 
+            tabPage7.Controls.Add(listView1);
             tabPage7.Controls.Add(pbFoto);
             tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
             tabPage7.Padding = new Padding(3);
             tabPage7.Size = new Size(632, 222);
             tabPage7.TabIndex = 6;
-            tabPage7.Text = "Fotografía";
+            tabPage7.Text = "Fotografía y Escaneos";
             tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // listView1
+            // 
+            listView1.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            errorProvider1.SetIconAlignment(listView1, ErrorIconAlignment.MiddleLeft);
+            listView1.LargeImageList = imageList1;
+            listView1.Location = new Point(245, 6);
+            listView1.MultiSelect = false;
+            listView1.Name = "listView1";
+            listView1.Size = new Size(356, 210);
+            listView1.TabIndex = 1;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Tile;
+            listView1.ItemActivate += listView1_ItemActivate;
+            listView1.KeyDown += listView1_KeyDown;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth8Bit;
+            imageList1.ImageSize = new Size(16, 16);
+            imageList1.TransparentColor = Color.Transparent;
             // 
             // pbFoto
             // 
-            pbFoto.Location = new Point(212, 6);
+            pbFoto.Location = new Point(30, 6);
             pbFoto.Name = "pbFoto";
             pbFoto.Size = new Size(175, 210);
             pbFoto.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -1067,10 +1093,10 @@
             tsActivo.MinimumSize = new Size(45, 22);
             tsActivo.Name = "tsActivo";
             tsActivo.OffBackColor = Color.Firebrick;
-            tsActivo.OffDisabledColor = Color.Gray;
+            tsActivo.OffDisabledColor = Color.IndianRed;
             tsActivo.OffTogglecolor = Color.Firebrick;
             tsActivo.OnBackColor = Color.FromArgb(0, 122, 172);
-            tsActivo.OnDisabledcolor = Color.Gray;
+            tsActivo.OnDisabledcolor = Color.LightSteelBlue;
             tsActivo.OnTogglecolor = Color.FromArgb(0, 122, 172);
             tsActivo.Size = new Size(45, 25);
             tsActivo.SolidStyle = false;
@@ -1097,10 +1123,10 @@
             tsBoletoOrnato.MinimumSize = new Size(45, 22);
             tsBoletoOrnato.Name = "tsBoletoOrnato";
             tsBoletoOrnato.OffBackColor = Color.Firebrick;
-            tsBoletoOrnato.OffDisabledColor = Color.Gray;
+            tsBoletoOrnato.OffDisabledColor = Color.IndianRed;
             tsBoletoOrnato.OffTogglecolor = Color.Firebrick;
             tsBoletoOrnato.OnBackColor = Color.FromArgb(0, 122, 172);
-            tsBoletoOrnato.OnDisabledcolor = Color.Gray;
+            tsBoletoOrnato.OnDisabledcolor = Color.LightSteelBlue;
             tsBoletoOrnato.OnTogglecolor = Color.FromArgb(0, 122, 172);
             tsBoletoOrnato.Size = new Size(45, 25);
             tsBoletoOrnato.SolidStyle = false;
@@ -1126,10 +1152,10 @@
             tsCuotaAnual.MinimumSize = new Size(45, 22);
             tsCuotaAnual.Name = "tsCuotaAnual";
             tsCuotaAnual.OffBackColor = Color.Firebrick;
-            tsCuotaAnual.OffDisabledColor = Color.Gray;
+            tsCuotaAnual.OffDisabledColor = Color.IndianRed;
             tsCuotaAnual.OffTogglecolor = Color.Firebrick;
             tsCuotaAnual.OnBackColor = Color.FromArgb(0, 122, 172);
-            tsCuotaAnual.OnDisabledcolor = Color.Gray;
+            tsCuotaAnual.OnDisabledcolor = Color.LightSteelBlue;
             tsCuotaAnual.OnTogglecolor = Color.FromArgb(0, 122, 172);
             tsCuotaAnual.Size = new Size(45, 25);
             tsCuotaAnual.SolidStyle = false;
@@ -1386,6 +1412,7 @@
             tsbUpload.Name = "tsbUpload";
             tsbUpload.Size = new Size(36, 36);
             tsbUpload.Text = "Subir Documentos";
+            tsbUpload.Click += tsbUpload_Click;
             // 
             // tsddbDocumentos
             // 
@@ -1490,6 +1517,13 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // fileSystemWatcher1
+            // 
+            fileSystemWatcher1.EnableRaisingEvents = true;
+            fileSystemWatcher1.SynchronizingObject = this;
+            fileSystemWatcher1.Created += fileSystemWatcher1_Created;
+            fileSystemWatcher1.Deleted += fileSystemWatcher1_Deleted;
+            // 
             // frmPersonal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1528,6 +1562,7 @@
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();
             ResumeLayout(false);
         }
 
@@ -1642,5 +1677,8 @@
         private TabPage tabPage7;
         private PictureBox pbFoto;
         private ToolStripButton tsbUpload;
+        private ListView listView1;
+        private ImageList imageList1;
+        private FileSystemWatcher fileSystemWatcher1;
     }
 }

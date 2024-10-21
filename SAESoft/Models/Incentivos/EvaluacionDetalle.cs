@@ -16,9 +16,14 @@ namespace SAESoft.Models.Incentivos
         public int IdEvaluacion { get; set; }
         [ForeignKey("IdEvaluacion")]
         public virtual Evaluacion Evaluacion { get; set; } = null!;
+        public int IdDepto { get; set; }
+        [ForeignKey("IdDepto")]
+        public virtual DeptoIncentivo Departamento { get; set; } = null!;
         public int IdEmpleado { get; set; }
         [ForeignKey("IdEmpleado")]
         public virtual EmpIncentivos Empleado { get; set; } = null!;
+        [Column(TypeName = "money")]
+        public decimal BaseCalculo { get; set; } = decimal.Zero;
         public int Asistencia { get; set; }
         public int Actitud { get; set; }
         public int Cooperacion { get; set; }
@@ -27,5 +32,9 @@ namespace SAESoft.Models.Incentivos
         public decimal Extra { get; set; }
         [Column(TypeName = "decimal(10,2)")]
         public decimal Total { get; set; }
+        [Column(TypeName = "decimal(10,2)")]
+        public decimal DiasProporcional { get; set; }
+        [Column(TypeName = "decimal(10,2)")]
+        public decimal Proporcional { get; set; }
     }
 }

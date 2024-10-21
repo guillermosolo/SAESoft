@@ -1,7 +1,4 @@
-﻿using DocumentFormat.OpenXml.Office2013.PowerPoint.Roaming;
-using DocumentFormat.OpenXml.Spreadsheet;
-using SAESoft.Models.AdministracionSistema;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text.RegularExpressions;
 
 

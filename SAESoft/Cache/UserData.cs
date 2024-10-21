@@ -2,6 +2,7 @@
 using SAESoft.Models.AdministracionSistema;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace SAESoft.Cache
     {
         public static Usuario? usuarioLogged { get; set; }
         public static string AppVersion { get; set; }
+
+        public static CultureInfo culture = new("es-GT");
 
         public static Boolean hasPermission(string permiso)
         {

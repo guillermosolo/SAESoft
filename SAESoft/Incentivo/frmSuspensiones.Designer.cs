@@ -1,6 +1,6 @@
 ﻿namespace SAESoft.Incentivo
 {
-    partial class frmEmpIncentivo
+    partial class frmSuspensiones
     {
         /// <summary>
         /// Required designer variable.
@@ -29,32 +29,23 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             toolStripContainer1 = new ToolStripContainer();
-            dgvHistorial = new DataGridView();
-            dtpIngreso = new DateTimePicker();
-            dtpBaja = new DateTimePicker();
-            label7 = new Label();
+            txtObs = new TextBox();
+            label2 = new Label();
             tsActivo = new Utilitarios.toggleSwitch();
             label13 = new Label();
+            cboEmpleado = new ComboBox();
+            label1 = new Label();
+            dtpInicio = new DateTimePicker();
+            dtpFin = new DateTimePicker();
+            label7 = new Label();
             label6 = new Label();
             cboDepto = new ComboBox();
             label3 = new Label();
-            txtBaseCalculo = new TextBox();
-            label1 = new Label();
-            txtApellidos = new TextBox();
-            label5 = new Label();
-            txtCodigo = new TextBox();
-            label4 = new Label();
-            txtNombres = new TextBox();
-            label2 = new Label();
             toolStrip1 = new ToolStrip();
             tsbNuevo = new ToolStripButton();
             tsbBuscar = new ToolStripButton();
-            tsbListar = new ToolStripButton();
             tsbModificar = new ToolStripButton();
-            tsbEliminar = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             tsbAceptar = new ToolStripButton();
             tsbCancelar = new ToolStripButton();
@@ -66,7 +57,6 @@
             toolStripContainer1.ContentPanel.SuspendLayout();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
             toolStripContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvHistorial).BeginInit();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
@@ -76,28 +66,23 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
-            toolStripContainer1.ContentPanel.Controls.Add(dgvHistorial);
-            toolStripContainer1.ContentPanel.Controls.Add(dtpIngreso);
-            toolStripContainer1.ContentPanel.Controls.Add(dtpBaja);
-            toolStripContainer1.ContentPanel.Controls.Add(label7);
+            toolStripContainer1.ContentPanel.Controls.Add(txtObs);
+            toolStripContainer1.ContentPanel.Controls.Add(label2);
             toolStripContainer1.ContentPanel.Controls.Add(tsActivo);
             toolStripContainer1.ContentPanel.Controls.Add(label13);
+            toolStripContainer1.ContentPanel.Controls.Add(cboEmpleado);
+            toolStripContainer1.ContentPanel.Controls.Add(label1);
+            toolStripContainer1.ContentPanel.Controls.Add(dtpInicio);
+            toolStripContainer1.ContentPanel.Controls.Add(dtpFin);
+            toolStripContainer1.ContentPanel.Controls.Add(label7);
             toolStripContainer1.ContentPanel.Controls.Add(label6);
             toolStripContainer1.ContentPanel.Controls.Add(cboDepto);
             toolStripContainer1.ContentPanel.Controls.Add(label3);
-            toolStripContainer1.ContentPanel.Controls.Add(txtBaseCalculo);
-            toolStripContainer1.ContentPanel.Controls.Add(label1);
-            toolStripContainer1.ContentPanel.Controls.Add(txtApellidos);
-            toolStripContainer1.ContentPanel.Controls.Add(label5);
-            toolStripContainer1.ContentPanel.Controls.Add(txtCodigo);
-            toolStripContainer1.ContentPanel.Controls.Add(label4);
-            toolStripContainer1.ContentPanel.Controls.Add(txtNombres);
-            toolStripContainer1.ContentPanel.Controls.Add(label2);
-            toolStripContainer1.ContentPanel.Size = new Size(800, 513);
+            toolStripContainer1.ContentPanel.Size = new Size(632, 356);
             toolStripContainer1.Dock = DockStyle.Fill;
             toolStripContainer1.Location = new Point(0, 0);
             toolStripContainer1.Name = "toolStripContainer1";
-            toolStripContainer1.Size = new Size(800, 552);
+            toolStripContainer1.Size = new Size(632, 395);
             toolStripContainer1.TabIndex = 0;
             toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -105,67 +90,24 @@
             // 
             toolStripContainer1.TopToolStripPanel.Controls.Add(toolStrip1);
             // 
-            // dgvHistorial
+            // txtObs
             // 
-            dgvHistorial.AllowUserToAddRows = false;
-            dgvHistorial.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgvHistorial.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvHistorial.DefaultCellStyle = dataGridViewCellStyle2;
-            dgvHistorial.Location = new Point(69, 286);
-            dgvHistorial.Name = "dgvHistorial";
-            dgvHistorial.ReadOnly = true;
-            dgvHistorial.RowTemplate.Height = 25;
-            dgvHistorial.Size = new Size(645, 150);
-            dgvHistorial.TabIndex = 45;
+            txtObs.Enabled = false;
+            txtObs.Location = new Point(188, 179);
+            txtObs.Multiline = true;
+            txtObs.Name = "txtObs";
+            txtObs.Size = new Size(387, 89);
+            txtObs.TabIndex = 56;
             // 
-            // dtpIngreso
+            // label2
             // 
-            dtpIngreso.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dtpIngreso.Enabled = false;
-            dtpIngreso.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dtpIngreso.Format = DateTimePickerFormat.Short;
-            dtpIngreso.Location = new Point(206, 231);
-            dtpIngreso.Name = "dtpIngreso";
-            dtpIngreso.Size = new Size(116, 27);
-            dtpIngreso.TabIndex = 44;
-            // 
-            // dtpBaja
-            // 
-            dtpBaja.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dtpBaja.Enabled = false;
-            dtpBaja.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dtpBaja.Format = DateTimePickerFormat.Short;
-            dtpBaja.Location = new Point(465, 230);
-            dtpBaja.Name = "dtpBaja";
-            dtpBaja.Size = new Size(116, 27);
-            dtpBaja.TabIndex = 43;
-            dtpBaja.Visible = false;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(337, 230);
-            label7.Name = "label7";
-            label7.Size = new Size(122, 21);
-            label7.TabIndex = 42;
-            label7.Text = "Fecha de Baja";
-            label7.Visible = false;
+            label2.AutoSize = true;
+            label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(49, 179);
+            label2.Name = "label2";
+            label2.Size = new Size(126, 21);
+            label2.TabIndex = 55;
+            label2.Text = "Observaciones";
             // 
             // tsActivo
             // 
@@ -173,7 +115,7 @@
             tsActivo.CheckState = CheckState.Checked;
             tsActivo.Enabled = false;
             tsActivo.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            tsActivo.Location = new Point(484, 27);
+            tsActivo.Location = new Point(530, 24);
             tsActivo.MinimumSize = new Size(45, 22);
             tsActivo.Name = "tsActivo";
             tsActivo.OffBackColor = Color.Firebrick;
@@ -184,141 +126,112 @@
             tsActivo.OnTogglecolor = Color.FromArgb(0, 122, 172);
             tsActivo.Size = new Size(45, 25);
             tsActivo.SolidStyle = false;
-            tsActivo.TabIndex = 41;
+            tsActivo.TabIndex = 54;
             tsActivo.TextImageRelation = TextImageRelation.ImageBeforeText;
             tsActivo.UseVisualStyleBackColor = true;
-            tsActivo.CheckedChanged += tsActivo_CheckedChanged;
             // 
             // label13
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label13.Location = new Point(409, 28);
+            label13.Location = new Point(455, 25);
             label13.Name = "label13";
             label13.Size = new Size(63, 21);
-            label13.TabIndex = 40;
+            label13.TabIndex = 53;
             label13.Text = "Activo";
+            // 
+            // cboEmpleado
+            // 
+            cboEmpleado.Enabled = false;
+            cboEmpleado.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cboEmpleado.FormattingEnabled = true;
+            cboEmpleado.Location = new Point(188, 65);
+            cboEmpleado.Name = "cboEmpleado";
+            cboEmpleado.Size = new Size(387, 29);
+            cboEmpleado.TabIndex = 52;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(55, 65);
+            label1.Name = "label1";
+            label1.Size = new Size(90, 21);
+            label1.TabIndex = 51;
+            label1.Text = "Empleado";
+            // 
+            // dtpInicio
+            // 
+            dtpInicio.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpInicio.Enabled = false;
+            dtpInicio.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpInicio.Format = DateTimePickerFormat.Short;
+            dtpInicio.Location = new Point(188, 105);
+            dtpInicio.Name = "dtpInicio";
+            dtpInicio.Size = new Size(116, 27);
+            dtpInicio.TabIndex = 50;
+            // 
+            // dtpFin
+            // 
+            dtpFin.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpFin.Enabled = false;
+            dtpFin.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpFin.Format = DateTimePickerFormat.Short;
+            dtpFin.Location = new Point(188, 142);
+            dtpFin.Name = "dtpFin";
+            dtpFin.Size = new Size(116, 27);
+            dtpFin.TabIndex = 49;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(53, 142);
+            label7.Name = "label7";
+            label7.Size = new Size(109, 21);
+            label7.TabIndex = 48;
+            label7.Text = "Fecha de Fin";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(55, 230);
+            label6.Location = new Point(39, 105);
             label6.Name = "label6";
-            label6.Size = new Size(145, 21);
-            label6.TabIndex = 33;
-            label6.Text = "Fecha de Ingreso";
+            label6.Size = new Size(129, 21);
+            label6.TabIndex = 47;
+            label6.Text = "Fecha de Inicio";
             // 
             // cboDepto
             // 
             cboDepto.Enabled = false;
             cboDepto.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cboDepto.FormattingEnabled = true;
-            cboDepto.Location = new Point(208, 186);
+            cboDepto.Location = new Point(188, 22);
             cboDepto.Name = "cboDepto";
             cboDepto.Size = new Size(239, 29);
-            cboDepto.TabIndex = 32;
+            cboDepto.TabIndex = 46;
+            cboDepto.SelectedIndexChanged += cboDepto_SelectedIndexChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(69, 189);
+            label3.Location = new Point(55, 22);
             label3.Name = "label3";
             label3.Size = new Size(129, 21);
-            label3.TabIndex = 31;
+            label3.TabIndex = 45;
             label3.Text = "Departamento";
-            // 
-            // txtBaseCalculo
-            // 
-            txtBaseCalculo.CharacterCasing = CharacterCasing.Upper;
-            txtBaseCalculo.Enabled = false;
-            txtBaseCalculo.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtBaseCalculo.Location = new Point(208, 148);
-            txtBaseCalculo.Name = "txtBaseCalculo";
-            txtBaseCalculo.Size = new Size(142, 27);
-            txtBaseCalculo.TabIndex = 29;
-            txtBaseCalculo.KeyPress += txtBaseCalculo_KeyPress;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(69, 148);
-            label1.Name = "label1";
-            label1.Size = new Size(135, 21);
-            label1.TabIndex = 30;
-            label1.Text = "Base de Cálculo";
-            // 
-            // txtApellidos
-            // 
-            txtApellidos.CharacterCasing = CharacterCasing.Upper;
-            txtApellidos.Enabled = false;
-            txtApellidos.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtApellidos.Location = new Point(208, 107);
-            txtApellidos.Name = "txtApellidos";
-            txtApellidos.Size = new Size(331, 27);
-            txtApellidos.TabIndex = 25;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(120, 110);
-            label5.Name = "label5";
-            label5.Size = new Size(80, 21);
-            label5.TabIndex = 28;
-            label5.Text = "Apellidos";
-            // 
-            // txtCodigo
-            // 
-            txtCodigo.CharacterCasing = CharacterCasing.Upper;
-            txtCodigo.Enabled = false;
-            txtCodigo.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtCodigo.Location = new Point(208, 28);
-            txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new Size(93, 27);
-            txtCodigo.TabIndex = 23;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(125, 34);
-            label4.Name = "label4";
-            label4.Size = new Size(68, 21);
-            label4.TabIndex = 27;
-            label4.Text = "Código";
-            // 
-            // txtNombres
-            // 
-            txtNombres.CharacterCasing = CharacterCasing.Upper;
-            txtNombres.Enabled = false;
-            txtNombres.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNombres.Location = new Point(208, 68);
-            txtNombres.Name = "txtNombres";
-            txtNombres.Size = new Size(331, 27);
-            txtNombres.TabIndex = 24;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(125, 72);
-            label2.Name = "label2";
-            label2.Size = new Size(79, 21);
-            label2.TabIndex = 26;
-            label2.Text = "Nombres";
             // 
             // toolStrip1
             // 
             toolStrip1.Dock = DockStyle.None;
             toolStrip1.ImageScalingSize = new Size(32, 32);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListar, tsbModificar, tsbEliminar, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbModificar, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(234, 39);
-            toolStrip1.TabIndex = 4;
+            toolStrip1.Size = new Size(162, 39);
+            toolStrip1.TabIndex = 5;
             toolStrip1.Text = "toolStrip1";
             // 
             // tsbNuevo
@@ -343,16 +256,6 @@
             tsbBuscar.Text = "Buscar";
             tsbBuscar.Click += tsbBuscar_Click;
             // 
-            // tsbListar
-            // 
-            tsbListar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            tsbListar.Image = Properties.Resources.listar;
-            tsbListar.ImageTransparentColor = Color.Magenta;
-            tsbListar.Name = "tsbListar";
-            tsbListar.Size = new Size(36, 36);
-            tsbListar.Text = "Listar";
-            tsbListar.Click += tsbListar_Click;
-            // 
             // tsbModificar
             // 
             tsbModificar.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -363,17 +266,6 @@
             tsbModificar.Size = new Size(36, 36);
             tsbModificar.Text = "Editar";
             tsbModificar.Click += tsbModificar_Click;
-            // 
-            // tsbEliminar
-            // 
-            tsbEliminar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            tsbEliminar.Enabled = false;
-            tsbEliminar.Image = Properties.Resources.delete;
-            tsbEliminar.ImageTransparentColor = Color.Magenta;
-            tsbEliminar.Name = "tsbEliminar";
-            tsbEliminar.Size = new Size(36, 36);
-            tsbEliminar.Text = "Eliminar";
-            tsbEliminar.Click += tsbEliminar_Click;
             // 
             // toolStripSeparator1
             // 
@@ -445,22 +337,24 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
-            // frmEmpIncentivo
+            // frmSuspensiones
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 552);
+            ClientSize = new Size(632, 395);
             Controls.Add(toolStripContainer1);
-            Name = "frmEmpIncentivo";
-            Text = "frmEmpIncentivo";
-            Load += frmEmpIncentivo_Load;
+            Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Margin = new Padding(4);
+            Name = "frmSuspensiones";
+            Text = "frmSuspensiones";
+            Load += frmSuspensiones_Load;
+            Shown += frmSuspensiones_Shown;
             toolStripContainer1.ContentPanel.ResumeLayout(false);
             toolStripContainer1.ContentPanel.PerformLayout();
             toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             toolStripContainer1.TopToolStripPanel.PerformLayout();
             toolStripContainer1.ResumeLayout(false);
             toolStripContainer1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvHistorial).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
@@ -473,9 +367,7 @@
         private ToolStrip toolStrip1;
         private ToolStripButton tsbNuevo;
         private ToolStripButton tsbBuscar;
-        private ToolStripButton tsbListar;
         private ToolStripButton tsbModificar;
-        private ToolStripButton tsbEliminar;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton tsbAceptar;
         private ToolStripButton tsbCancelar;
@@ -484,22 +376,17 @@
         private ToolStripButton tsbSiguiente;
         private ToolStripButton tsbSalir;
         private ErrorProvider errorProvider1;
-        private TextBox txtApellidos;
-        private Label label5;
-        private TextBox txtCodigo;
-        private Label label4;
-        private TextBox txtNombres;
-        private Label label2;
-        private TextBox txtBaseCalculo;
+        private ComboBox cboEmpleado;
         private Label label1;
-        private Label label3;
-        private ComboBox cboDepto;
-        private Label label6;
-        private DateTimePicker dtpIngreso;
-        private DateTimePicker dtpBaja;
+        private DateTimePicker dtpInicio;
+        private DateTimePicker dtpFin;
         private Label label7;
+        private Label label6;
+        private ComboBox cboDepto;
+        private Label label3;
+        private TextBox txtObs;
+        private Label label2;
         private Utilitarios.toggleSwitch tsActivo;
         private Label label13;
-        private DataGridView dgvHistorial;
     }
 }

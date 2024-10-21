@@ -338,6 +338,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmPrincipal";
             Load += frmPrincipal_Load;
+            Move += frmPrincipal_Move;
             panelContenedor.ResumeLayout(false);
             panelFormularios.ResumeLayout(false);
             panelFormularios.PerformLayout();

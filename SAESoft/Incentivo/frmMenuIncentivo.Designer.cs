@@ -30,6 +30,8 @@
         {
             panelFormularios = new Panel();
             panelMenu = new Panel();
+            ibtnCerrar = new FontAwesome.Sharp.IconButton();
+            ibtnSuspension = new FontAwesome.Sharp.IconButton();
             ibtnEvaluar = new FontAwesome.Sharp.IconButton();
             ibtnAsistencia = new FontAwesome.Sharp.IconButton();
             ibtnReporte = new FontAwesome.Sharp.IconButton();
@@ -54,6 +56,8 @@
             // panelMenu
             // 
             panelMenu.BackColor = Color.FromArgb(0, 122, 204);
+            panelMenu.Controls.Add(ibtnCerrar);
+            panelMenu.Controls.Add(ibtnSuspension);
             panelMenu.Controls.Add(ibtnEvaluar);
             panelMenu.Controls.Add(ibtnAsistencia);
             panelMenu.Controls.Add(ibtnReporte);
@@ -69,6 +73,44 @@
             panelMenu.Size = new Size(220, 565);
             panelMenu.TabIndex = 5;
             // 
+            // ibtnCerrar
+            // 
+            ibtnCerrar.FlatAppearance.BorderSize = 0;
+            ibtnCerrar.FlatStyle = FlatStyle.Flat;
+            ibtnCerrar.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnCerrar.ForeColor = Color.White;
+            ibtnCerrar.IconChar = FontAwesome.Sharp.IconChar.ClipboardCheck;
+            ibtnCerrar.IconColor = Color.White;
+            ibtnCerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ibtnCerrar.IconSize = 24;
+            ibtnCerrar.ImageAlign = ContentAlignment.MiddleLeft;
+            ibtnCerrar.Location = new Point(5, 261);
+            ibtnCerrar.Name = "ibtnCerrar";
+            ibtnCerrar.Size = new Size(211, 43);
+            ibtnCerrar.TabIndex = 16;
+            ibtnCerrar.Text = "Cerrar Evaluación";
+            ibtnCerrar.UseVisualStyleBackColor = true;
+            ibtnCerrar.Click += iconButton2_Click_2;
+            // 
+            // ibtnSuspension
+            // 
+            ibtnSuspension.FlatAppearance.BorderSize = 0;
+            ibtnSuspension.FlatStyle = FlatStyle.Flat;
+            ibtnSuspension.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnSuspension.ForeColor = Color.White;
+            ibtnSuspension.IconChar = FontAwesome.Sharp.IconChar.UserInjured;
+            ibtnSuspension.IconColor = Color.White;
+            ibtnSuspension.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ibtnSuspension.IconSize = 24;
+            ibtnSuspension.ImageAlign = ContentAlignment.MiddleLeft;
+            ibtnSuspension.Location = new Point(3, 139);
+            ibtnSuspension.Name = "ibtnSuspension";
+            ibtnSuspension.Size = new Size(211, 43);
+            ibtnSuspension.TabIndex = 15;
+            ibtnSuspension.Text = "Suspensiones";
+            ibtnSuspension.UseVisualStyleBackColor = true;
+            ibtnSuspension.Click += iconButton2_Click_1;
+            // 
             // ibtnEvaluar
             // 
             ibtnEvaluar.FlatAppearance.BorderSize = 0;
@@ -80,7 +122,7 @@
             ibtnEvaluar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             ibtnEvaluar.IconSize = 24;
             ibtnEvaluar.ImageAlign = ContentAlignment.MiddleLeft;
-            ibtnEvaluar.Location = new Point(3, 166);
+            ibtnEvaluar.Location = new Point(3, 220);
             ibtnEvaluar.Name = "ibtnEvaluar";
             ibtnEvaluar.Size = new Size(211, 43);
             ibtnEvaluar.TabIndex = 9;
@@ -99,12 +141,11 @@
             ibtnAsistencia.IconFont = FontAwesome.Sharp.IconFont.Auto;
             ibtnAsistencia.IconSize = 24;
             ibtnAsistencia.ImageAlign = ContentAlignment.MiddleLeft;
-            ibtnAsistencia.Location = new Point(3, 129);
+            ibtnAsistencia.Location = new Point(3, 182);
             ibtnAsistencia.Name = "ibtnAsistencia";
-            ibtnAsistencia.Size = new Size(211, 43);
+            ibtnAsistencia.Size = new Size(211, 38);
             ibtnAsistencia.TabIndex = 14;
-            ibtnAsistencia.Text = "Importar Asistencia";
-            ibtnAsistencia.TextImageRelation = TextImageRelation.ImageBeforeText;
+            ibtnAsistencia.Text = "Asistencia";
             ibtnAsistencia.UseVisualStyleBackColor = true;
             ibtnAsistencia.Click += ibtnAsistencia_Click;
             // 
@@ -125,6 +166,7 @@
             ibtnReporte.TabIndex = 13;
             ibtnReporte.Text = "Reportes";
             ibtnReporte.UseVisualStyleBackColor = true;
+            ibtnReporte.Click += ibtnReporte_Click;
             // 
             // iconButton3
             // 
@@ -157,7 +199,7 @@
             ibtnPersonal.IconFont = FontAwesome.Sharp.IconFont.Auto;
             ibtnPersonal.IconSize = 24;
             ibtnPersonal.ImageAlign = ContentAlignment.MiddleLeft;
-            ibtnPersonal.Location = new Point(3, 90);
+            ibtnPersonal.Location = new Point(3, 96);
             ibtnPersonal.Name = "ibtnPersonal";
             ibtnPersonal.Size = new Size(211, 43);
             ibtnPersonal.TabIndex = 8;
@@ -259,5 +301,7 @@
         private Label label1;
         private FontAwesome.Sharp.IconButton ibtnAsistencia;
         private FontAwesome.Sharp.IconButton ibtnEvaluar;
+        private FontAwesome.Sharp.IconButton ibtnSuspension;
+        private FontAwesome.Sharp.IconButton ibtnCerrar;
     }
 }

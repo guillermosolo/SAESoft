@@ -1,4 +1,6 @@
 ﻿
+using System.Globalization;
+
 namespace SAESoft.Cache
 {
     public struct Constantes
@@ -32,6 +34,7 @@ namespace SAESoft.Cache
         public const string PATH_Import = @"\\192.168.50.37\SAESoft\Import\Soporte";
         public const string PATH_Fotos = @"\\192.168.50.37\SAESoft\Admin\Fotos";
         public const string PATH_Export = @"\\192.168.50.37\SAESoft\Export\Soporte";
+        public const string PATH_Doc = @"\\192.168.50.37\SAESoft\Admin\Documentos";
 
         public const int SelectivoRojo = 5;
 

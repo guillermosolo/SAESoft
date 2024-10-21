@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System.Diagnostics;
 using static SAESoft.Cache.Constantes;
 using SAESoft.Comunes;
+using System.IO;
+using System.Windows.Forms;
 
 namespace SAESoft.Administracion
 {
@@ -26,6 +28,7 @@ namespace SAESoft.Administracion
         private bool isLoadingcboEmpresa = false;
         private Boolean? cuotaAnual;
         string path = PATH_Fotos;
+        readonly List<string> listFiles = new();
 
         public frmPersonal()
         {
@@ -231,6 +234,7 @@ namespace SAESoft.Administracion
             tslIndice.Text = $"Registro {CurrentIndex + 1} de {rs.Count}";
             cargarFoto(rs[CurrentIndex].IdEmpleado);
             despliegaDocumentos();
+            cargarArchivos(@"\" + rs[CurrentIndex].Codigo);
         }
 
         private void cargarFoto(int id)
@@ -323,8 +327,8 @@ namespace SAESoft.Administracion
             }
             txtPlacasSV.Text = rs[CurrentIndex].SeguroVehiculo?.Placa;
             txtDescSV.Text = rs[CurrentIndex].SeguroVehiculo?.Marca + " " + rs[CurrentIndex].SeguroVehiculo?.Color;
-            txtPrima.Text = rs[CurrentIndex].SeguroVehiculo?.Prima.ToString("C");
-            txtDeducibleSV.Text = rs[CurrentIndex].SeguroVehiculo?.Deducible.ToString("C");
+            txtPrima.Text = rs[CurrentIndex].SeguroVehiculo?.Prima.ToString("C2", culture);
+            txtDeducibleSV.Text = rs[CurrentIndex].SeguroVehiculo?.Deducible.ToString("C2", culture);
         }
 
         private void llenarDatosRepresentacion()
@@ -1468,7 +1472,7 @@ namespace SAESoft.Administracion
             frmListar formListar = new();
             using (SAESoftContext db = new())
             {
-                var lista = db.Empleados.Select(p => new { p.IdEmpleado, p.Alias, p.NombreCompleto }).OrderBy(p=>p.Alias).ToList();
+                var lista = db.Empleados.Select(p => new { p.IdEmpleado, p.Alias, p.NombreCompleto }).OrderBy(p => p.Alias).ToList();
                 formListar.ds.DataSource = lista;
                 formListar.ajustar = false;
             }
@@ -1511,6 +1515,97 @@ namespace SAESoft.Administracion
                 CambiarEstadoBotones(new[] { "tsbUpload", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, true, toolStrip1, "PERSONAL");
             }
             formListar.Dispose();
+        }
+
+        private void tsbUpload_Click(object sender, EventArgs e)
+        {
+            frmSubirDocumento subir = new()
+            {
+                codigo = rs[CurrentIndex].Codigo.ToString()
+            };
+            if (subir.ShowDialog() == DialogResult.OK)
+            {
+                despliegaDatos();
+            }
+        }
+
+        private void cargarArchivos(string opcion)
+        {
+            listFiles.Clear();
+            listView1.Items.Clear();
+            imageList1.Images.Clear();
+            path = PATH_Doc + opcion;
+            if (Directory.Exists(path))
+            {
+                fileSystemWatcher1.Path = path;
+                foreach (string file in Directory.GetFiles(path).Where(f => (new FileInfo(f).Attributes & FileAttributes.Hidden) == 0))
+                {
+                    imageList1.Images.Add(Icon.ExtractAssociatedIcon(file));
+                    FileInfo fi = new(file);
+                    listFiles.Add(fi.FullName);
+                    listView1.Items.Add(fi.Name, imageList1.Images.Count - 1);
+                }
+            }
+        }
+
+        private void listView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete && hasPermission("MODIFICAR.PERSONAL"))
+            {
+                string selectedFile = listFiles[listView1.SelectedIndices[0]];
+                try
+                {
+                    File.Delete(selectedFile);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("No es posible borrar el archivo,\r\n" +
+                        "asegurese que nadie lo tenga en uso.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
+
+        private void fileSystemWatcher1_Created(object sender, FileSystemEventArgs e)
+        {
+            cargarArchivos(@"\" + rs[CurrentIndex].Codigo);
+        }
+
+        private void fileSystemWatcher1_Deleted(object sender, FileSystemEventArgs e)
+        {
+            if (rs[CurrentIndex] != null)
+            {
+                cargarArchivos(@"\" + rs[CurrentIndex].Codigo);
+            }
+        }
+
+        private void listView1_ItemActivate(object sender, EventArgs e)
+        {
+            if (listView1.SelectedIndices.Count > 0)
+            {
+                string selectedFile = listFiles[listView1.SelectedIndices[0]];
+
+                if (File.Exists(selectedFile))
+                {
+                    try
+                    {
+                        // Directorio temporal
+                        string tempDirectory = Path.GetTempPath();
+
+                        // Copiar el archivo a la carpeta temporal
+                        string tempFilePath = Path.Combine(tempDirectory, Path.GetFileName(selectedFile));
+                        File.Copy(selectedFile, tempFilePath, true);
+
+                        // Abrir la copia desde la carpeta temporal
+                        new Process { StartInfo = new ProcessStartInfo(tempFilePath) { UseShellExecute = true } }.Start();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejar la excepción según tus necesidades
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

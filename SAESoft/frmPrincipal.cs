@@ -106,6 +106,19 @@ namespace SAESoft
             this.WindowState = FormWindowState.Normal;
         }
 
+        private void frmPrincipal_Move(object sender, EventArgs e)
+        {
+              if (this.WindowState == FormWindowState.Maximized)
+            {
+                icbMaximizar.Visible = false;
+                icbRestaurar.Visible = true;
+            } else
+            {
+                icbMaximizar.Visible = true;
+                icbRestaurar.Visible = false;
+            }
+        }
+
         #endregion
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
@@ -154,5 +167,7 @@ namespace SAESoft
         {
             Abrir<frmMenuIncentivo>(panelFormularios);
         }
+
+       
     }
 }

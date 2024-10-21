@@ -9,6 +9,10 @@ using SAESoft.Comunes;
 using SAESoft.Models.Comunes;
 using SAESoft.Utilitarios;
 using static SAESoft.Utilitarios.Validaciones;
+using System.Globalization;
+using Microsoft.EntityFrameworkCore.Storage;
+using SAESoft.Models.Administracion;
+using System.Net;
 
 namespace SAESoft.Incentivo
 {
@@ -17,26 +21,37 @@ namespace SAESoft.Incentivo
         private Boolean esNuevo = true;
         private List<EmpIncentivos>? rs = new();
         private int CurrentIndex = 0;
+        readonly DataTable dt = new();
         public frmEmpIncentivo()
         {
             InitializeComponent();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        public void EstructuraGrid()
         {
-
+            dt.Columns.Add("IdHistorial").DataType = Type.GetType("System.Int32");
+            dt.Columns.Add("Departamento").DataType = Type.GetType("System.String");
+            dt.Columns.Add("Desde").DataType = Type.GetType("System.DateTime");
+            dt.Columns.Add("Monto").DataType = Type.GetType("System.String");
+            dt.Columns.Add("Autorización").DataType = Type.GetType("System.String");
+            dgvHistorial.DataSource = dt;
+            dgvHistorial.Columns["IdHistorial"].Visible = false;
+            dgvHistorial.Columns["Departamento"].Width = 200;
+            dgvHistorial.Columns["Autorización"].Width = 200;
+            dgvHistorial.Columns["Monto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void frmEmpIncentivo_Load(object sender, EventArgs e)
         {
             CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "EMPLEADOSINCENTIVO");
             llenarCombos();
+            EstructuraGrid();
         }
 
         private void llenarCombos()
         {
             using SAESoftContext db = new();
-            cboDepto.DataSource = db.DeptoIncentivo.ToList();
+            cboDepto.DataSource = db.DeptoIncentivo.Where(a => a.Activo).ToList();
             cboDepto.DisplayMember = "Nombre";
             cboDepto.ValueMember = "IdDepto";
         }
@@ -53,7 +68,10 @@ namespace SAESoft.Incentivo
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                var queryable = db.EmpIncentivos.Where(b => 1 == 1);
+                var queryable = db.EmpIncentivos
+                                  .Include(b => b.HistIncentivos)
+                                  .ThenInclude(d => d.DeptoIncentivos)
+                                  .Where(b => 1 == 1);
                 if (buscar.codigo != null)
                     queryable = queryable.Where(b => b.Codigo == buscar.codigo);
                 //if (buscar.grupo != -1)
@@ -91,7 +109,37 @@ namespace SAESoft.Incentivo
             txtApellidos.Text = rs?[CurrentIndex].Apellidos;
             txtBaseCalculo.Text = rs?[CurrentIndex].BaseCalculo.ToString("N2");
             cboDepto.SelectedValue = rs[CurrentIndex].IdDepto;
+            dtpIngreso.Value = rs[CurrentIndex].FechaIngreso;
+            if (rs?[CurrentIndex].FechaBaja != null)
+            {
+                tsActivo.Checked = false;
+                dtpBaja.Value = rs?[CurrentIndex].FechaBaja ?? DateTime.Now;
+            }
+            else
+            {
+                tsActivo.Checked = true;
+            }
+           
+            despliegaHistorial();
             tslIndice.Text = $"Registro {CurrentIndex + 1} de {rs.Count}";
+        }
+
+        private void despliegaHistorial()
+        {
+            dt.Clear();
+            if (rs[CurrentIndex]?.HistIncentivos != null)
+            {
+                foreach (HistIncentivos hist in rs[CurrentIndex].HistIncentivos.OrderByDescending(h => h.FechaInicio))
+                {
+                    DataRow row = dt.NewRow();
+                    row["IdHistorial"] = hist.IdHistorial;
+                    row["Departamento"] = hist.DeptoIncentivos != null ? hist.DeptoIncentivos.Nombre : string.Empty;
+                    row["Desde"] = hist.FechaInicio;
+                    row["Monto"] = hist.BaseCalculo.ToString("C2", culture);
+                    row["Autorización"] = hist.Autorizacion;
+                    dt.Rows.Add(row);
+                }
+            }
         }
 
         private void tsbAnterior_Click(object sender, EventArgs e)
@@ -139,6 +187,7 @@ namespace SAESoft.Incentivo
                 using SAESoftContext db = new();
                 try
                 {
+                    db.HistorialIncentivos.RemoveRange(rs[CurrentIndex].HistIncentivos);
                     db.EmpIncentivos.Remove(rs[CurrentIndex]);
                     db.SaveChanges();
                     rs.Remove(rs[CurrentIndex]);
@@ -160,6 +209,7 @@ namespace SAESoft.Incentivo
                     else
                     {
                         limpiarFormulario(this);
+                        dt.Clear();
                         BotonesIniciales(toolStrip1);
                         CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "EMPLEADOSINCENTIVO");
                     }
@@ -205,6 +255,7 @@ namespace SAESoft.Incentivo
             String[] botones = { "tsbAceptar", "tsbCancelar" };
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
+            dt.Clear();
             limpiarFormulario(this);
             txtCodigo.Focus();
         }
@@ -225,6 +276,7 @@ namespace SAESoft.Incentivo
                 if (esNuevo)
                 {
                     using SAESoftContext db = new();
+                    using IDbContextTransaction transaction = db.Database.BeginTransaction();
                     try
                     {
                         EmpIncentivos empleado = new()
@@ -234,17 +286,44 @@ namespace SAESoft.Incentivo
                             Apellidos = txtApellidos.Text,
                             BaseCalculo = Convert.ToDecimal(txtBaseCalculo.Text),
                             IdDepto = Convert.ToInt32(cboDepto.SelectedValue),
+                            FechaIngreso = dtpIngreso.Value.Date,
                             FechaCreacion = DatosServer.FechaServer(),
                             IdUsuarioCreacion = usuarioLogged.IdUsuario
                         };
                         db.EmpIncentivos.Add(empleado);
                         db.SaveChanges();
                         rs.Add(empleado);
+                        string autorizacion = "";
+                        var dialogResult = InputBox("Pregunta", "Ingrese el número de Autorización", ref autorizacion);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            DeptoIncentivo dep = db.DeptoIncentivo.Where(b => b.IdDepto == empleado.IdDepto).FirstOrDefault();
+                            HistIncentivos hist = new()
+                            {
+                                IdDepto = empleado.IdDepto,
+                                DeptoIncentivos = dep,
+                                IdEmpleado = empleado.IdEmpIncentivo,
+                                FechaInicio = empleado.FechaIngreso,
+                                BaseCalculo = empleado.BaseCalculo,
+                                FechaCreacion = DatosServer.FechaServer(),
+                                IdUsuarioCreacion = usuarioLogged.IdUsuario,
+                                Autorizacion = autorizacion,
+                            };
+                            db.HistorialIncentivos.Add(hist);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            transaction.Rollback();
+                            rs.Remove(empleado);
+                            return;
+                        }
+                        transaction.Commit();
                         CurrentIndex = rs.Count - 1;
                         despliegaDatos();
                         MessageBox.Show("Empleado Grabado Exitosamente.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    catch (DbUpdateException ex)
+                    catch (Exception ex)
                     {
                         if (ex.InnerException != null)
                             MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -255,8 +334,9 @@ namespace SAESoft.Incentivo
                 }
                 else
                 {
-                    EmpIncentivos temp = rs[CurrentIndex];
+                    EmpIncentivos temp = (EmpIncentivos)rs[CurrentIndex].Clone();
                     using SAESoftContext db = new();
+                    using IDbContextTransaction transaction = db.Database.BeginTransaction();
                     try
                     {
                         db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
@@ -265,12 +345,71 @@ namespace SAESoft.Incentivo
                         rs[CurrentIndex].Apellidos = txtApellidos.Text;
                         rs[CurrentIndex].BaseCalculo = Convert.ToDecimal(txtBaseCalculo.Text);
                         rs[CurrentIndex].IdDepto = Convert.ToInt32(cboDepto.SelectedValue);
+                        rs[CurrentIndex].FechaIngreso = dtpIngreso.Value.Date;
+                        if (!tsActivo.Checked)
+                        {
+                            rs[CurrentIndex].FechaBaja = dtpBaja.Value.Date;
+                        } else
+                        {
+                            rs[CurrentIndex].FechaBaja = null;
+                        }
                         rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();
                         rs[CurrentIndex].IdUsuarioMod = usuarioLogged?.IdUsuario;
                         db.EmpIncentivos.Update(rs[CurrentIndex]);
                         db.SaveChanges();
+                        if (rs[CurrentIndex].BaseCalculo != temp.BaseCalculo)
+                        {
+                            string autorizacion = "";
+                            var dialogResult = InputBox("Pregunta", "Ingrese el número de Autorización", ref autorizacion);
+                            if (dialogResult == DialogResult.OK)
+                            {
+                                DeptoIncentivo dep = db.DeptoIncentivo.Where(b => b.IdDepto == rs[CurrentIndex].IdDepto).FirstOrDefault();
+                                DateTime fechaT = DatosServer.FechaServer();
+                                HistIncentivos hist = new()
+                                {
+                                    IdDepto = rs[CurrentIndex].IdDepto,
+                                    DeptoIncentivos = dep,
+                                    IdEmpleado = rs[CurrentIndex].IdEmpIncentivo,
+                                    FechaInicio = fechaT,
+                                    BaseCalculo = rs[CurrentIndex].BaseCalculo,
+                                    FechaCreacion = fechaT,
+                                    IdUsuarioCreacion = usuarioLogged.IdUsuario,
+                                    Autorizacion = autorizacion,
+                                };
+                                db.HistorialIncentivos.Add(hist);
+                                db.SaveChanges();
+                                rs[CurrentIndex].HistIncentivos.Add(hist);
+                            }
+                            else
+                            {
+                                transaction.Rollback();
+                                rs[CurrentIndex] = temp;
+                                return;
+                            }
+                        }
+                        else if (rs[CurrentIndex].IdDepto != temp.IdDepto)
+                        {
+                            DeptoIncentivo dep = db.DeptoIncentivo.Where(b => b.IdDepto == rs[CurrentIndex].IdDepto).FirstOrDefault();
+                            DateTime fechaT = DatosServer.FechaServer();
+                            HistIncentivos hist = new()
+                            {
+                                IdDepto = rs[CurrentIndex].IdDepto,
+                                DeptoIncentivos = dep,
+                                IdEmpleado = rs[CurrentIndex].IdEmpIncentivo,
+                                FechaInicio = fechaT,
+                                BaseCalculo = rs[CurrentIndex].BaseCalculo,
+                                FechaCreacion = fechaT,
+                                IdUsuarioCreacion = usuarioLogged.IdUsuario,
+                                Autorizacion = "",
+                            };
+                            db.HistorialIncentivos.Add(hist);
+                            db.SaveChanges();
+                            rs[CurrentIndex].HistIncentivos.Add(hist);
+                        }
+                        transaction.Commit();
+                        despliegaDatos();
                     }
-                    catch (DbUpdateException ex)
+                    catch (Exception ex)
                     {
                         if (ex.InnerException != null)
                             MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -320,12 +459,32 @@ namespace SAESoft.Incentivo
                 cboDepto.Focus();
                 return false;
             }
+            if (!tsActivo.Checked && dtpBaja.Value.Date <= dtpIngreso.Value.Date)
+            {
+                errorProvider1.SetError(dtpBaja, "La fecha de baja no puede ser anterior a la fecha de ingreso.");
+                dtpBaja.Focus();
+                return false;
+            }
             return true;
         }
 
         private void txtBaseCalculo_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = decimales(e.KeyChar, Text);
+        }
+
+        private void tsActivo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tsActivo.Checked)
+            {
+                label7.Visible = false;
+                dtpBaja.Visible = false;
+            }
+            else
+            {
+                label7.Visible = true;
+                dtpBaja.Visible = true;
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore.Storage;
 using SAESoft.Utilitarios;
 using static SAESoft.Cache.UserData;
+using static SAESoft.Utilitarios.ControlFormularios;
 
 namespace SAESoft.Incentivo
 {
@@ -37,7 +38,7 @@ namespace SAESoft.Incentivo
             dt.Columns.Add("Tardanza").DataType = Type.GetType("System.Int32");
             dt.Columns.Add("Permiso").DataType = Type.GetType("System.Int32");
             dt.Columns.Add("Ausencia").DataType = Type.GetType("System.Int32");
-            dt.Columns.Add("Porcentaje").DataType = Type.GetType("System.Int32");
+            dt.Columns.Add("Porcentaje").DataType = Type.GetType("System.Decimal");
             dgvAsistencia.DataSource = dt;
             dgvAsistencia.Columns["IdEmpIncentivo"].Visible = false;
             dgvAsistencia.Columns["Nombre Completo"].Width = 200;
@@ -64,6 +65,7 @@ namespace SAESoft.Incentivo
         private void iconButton1_Click(object sender, EventArgs e)
         {
             Boolean errorImport = false;
+            dt.Clear();
             // Establece el filtro para que solo se muestren archivos de Excel
             openFileDialog1.Filter = "Archivos de Excel|*.xls;*.xlsx";
             try
@@ -81,6 +83,7 @@ namespace SAESoft.Incentivo
                         // Obtiene las filas y columnas del archivo de Excel
                         int rowCount = sl.GetWorksheetStatistics().EndRowIndex;
                         int colCount = sl.GetWorksheetStatistics().EndColumnIndex;
+                        List<EmpIncentivos> empleadosExcel = new();
                         // Itera sobre las filas y columnas para leer los datos
                         using SAESoftContext db = new();
                         int tarde = db.EvaluacionAsistencia.Where(b => b.FechaFin == null).Where(b => b.Descripcion.Equals("TARDE")).Select(b => b.GradoPonderado).FirstOrDefault();
@@ -90,29 +93,47 @@ namespace SAESoft.Incentivo
                         {
 
                             string codigo = sl.GetCellValueAsString(row, 1);
-                            EmpIncentivos empleado = db.EmpIncentivos.FirstOrDefault(b => b.Codigo == codigo);
+                            EmpIncentivos empleado = db.EmpIncentivos.Where(b=>b.FechaBaja > dtpInicio.Value || b.FechaBaja == null).FirstOrDefault(b => b.Codigo == codigo);
                             if (empleado != null)
                             {
+                                empleadosExcel.Add(empleado);
                                 int t = Convert.ToInt32(sl.GetCellValueAsString(row, 2));
                                 int p = Convert.ToInt32(sl.GetCellValueAsString(row, 3));
                                 int a = Convert.ToInt32(sl.GetCellValueAsString(row, 4));
+                                int ponderado = t + p + (a * 2);
                                 DataRow dtrow = dt.NewRow();
                                 dtrow["IdEmpIncentivo"] = empleado.IdEmpIncentivo;
                                 dtrow["Codigo"] = empleado.Codigo;
                                 dtrow["Nombre Completo"] = empleado.Nombres + " " + empleado.Apellidos;
                                 dtrow["Tardanza"] = t;
                                 dtrow["Permiso"] = p;
-                                dtrow["Ausencia"] = a;
-                                int suma = (t * tarde) + (p * permiso) + (a * ausente);
-                                int puntaje = db.PuntajeAsistencia.Where(b => b.FechaFin == null).Where(b => suma >= b.Minimo && suma <= b.Maximo).Select(b => b.Porcentaje).FirstOrDefault();
-                                dtrow["Porcentaje"] = puntaje;
+                                dtrow["Ausencia"] = a;   
+
+                                int puntaje = db.PuntajeAsistencia.Where(b => b.FechaFin == null).Where(b => ponderado >= b.Minimo && ponderado <= b.Maximo).Select(b => b.Porcentaje).FirstOrDefault();
+                           
+                                
+                                dtrow["Porcentaje"] = puntaje.ToString("N2");
                                 dt.Rows.Add(dtrow);
                             }
                             else
                             {
-                                MessageBox.Show($"El Código {codigo} no existe en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show($"El Código {codigo} no existe en la base de datos o está de baja.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 errorImport = true;
+                                dt.Clear();
                                 break;
+                            }
+                        }
+                        if (!errorImport)
+                        {
+                            var empleados = db.EmpIncentivos.Where(b => b.FechaBaja == null).ToList();
+                            var sinAsistencia = empleados.Except(empleadosExcel).ToList();
+                            if (sinAsistencia.Count != 0)
+                            {
+                                string codSinAsistencia;
+                                codSinAsistencia = string.Join(", ", sinAsistencia.Select(b => b.Codigo));
+                                MessageBox.Show($" Existen {sinAsistencia.Count} empleados sin asistencia:\n {codSinAsistencia}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                errorImport = true;
+                                dt.Clear();
                             }
                         }
                         if (!errorImport)
@@ -139,17 +160,6 @@ namespace SAESoft.Incentivo
             EstructuraGrid();
             dtpFin.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 15);
             dtpInicio.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1, 16);
-        }
-
-        private static void EstablecerNumerosEncabezado(DataGridView dataGridView)
-        {
-            // Recorre cada fila del DataGridView
-            for (int i = 0; i < dataGridView.Rows.Count; i++)
-            {
-                // Establece el número de fila en el encabezado de fila
-                dataGridView.Rows[i].HeaderCell.Value = (i + 1).ToString();
-            }
-            dataGridView.AutoResizeRowHeadersWidth(DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
         }
 
         private bool ValidarDatos()

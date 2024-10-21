@@ -30,6 +30,7 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             label1 = new Label();
             cboDepto = new ComboBox();
             dgvEvaluar = new DataGridView();
@@ -65,31 +66,44 @@
             dgvEvaluar.AllowUserToDeleteRows = false;
             dgvEvaluar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvEvaluar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvEvaluar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvEvaluar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEvaluar.Location = new Point(27, 111);
-            dgvEvaluar.Name = "dgvEvaluar";
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvEvaluar.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvEvaluar.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvEvaluar.Location = new Point(27, 111);
+            dgvEvaluar.Name = "dgvEvaluar";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvEvaluar.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvEvaluar.RowTemplate.Height = 25;
             dgvEvaluar.Size = new Size(705, 423);
             dgvEvaluar.TabIndex = 2;
             dgvEvaluar.CellEndEdit += dgvEvaluar_CellEndEdit;
+            dgvEvaluar.CellEnter += dgvEvaluar_CellEnter;
+            dgvEvaluar.CellFormatting += dgvEvaluar_CellFormatting;
+            dgvEvaluar.CellPainting += dgvEvaluar_CellPainting;
             dgvEvaluar.CellValidating += dgvEvaluar_CellValidating;
             dgvEvaluar.EditingControlShowing += dgvEvaluar_EditingControlShowing;
+            dgvEvaluar.Paint += dgvEvaluar_Paint;
+            dgvEvaluar.KeyDown += dgvEvaluar_KeyDown;
             // 
             // label2
             // 
@@ -161,6 +175,7 @@
             Name = "frmCalificacionDepto";
             Text = "CalificacionDepto";
             Load += frmCalificacionDepto_Load;
+            Shown += frmCalificacionDepto_Shown;
             ((System.ComponentModel.ISupportInitialize)dgvEvaluar).EndInit();
             ResumeLayout(false);
             PerformLayout();

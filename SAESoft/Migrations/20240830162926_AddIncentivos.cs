@@ -19,6 +19,7 @@ namespace SAESoft.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdUsuario = table.Column<int>(type: "int", nullable: false),
+                    Activo = table.Column<bool>(type: "bit", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IdUsuarioCreacion = table.Column<int>(type: "int", nullable: true),
                     FechaUltimaMod = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -76,6 +77,31 @@ namespace SAESoft.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Firmas",
+                columns: table => new
+                {
+                    IdFirma = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdModulo = table.Column<int>(type: "int", nullable: false),
+                    puesto = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    firma = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdUsuarioCreacion = table.Column<int>(type: "int", nullable: true),
+                    FechaUltimaMod = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IdUsuarioMod = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Firmas", x => x.IdFirma);
+                    table.ForeignKey(
+                        name: "FK_Firmas_Modulos_IdModulo",
+                        column: x => x.IdModulo,
+                        principalTable: "Modulos",
+                        principalColumn: "IdModulo",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PorcentajeEvaluacion",
                 columns: table => new
                 {
@@ -125,6 +151,8 @@ namespace SAESoft.Migrations
                     Codigo = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Nombres = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Apellidos = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FechaIngreso = table.Column<DateTime>(type: "Date", nullable: false),
+                    FechaBaja = table.Column<DateTime>(type: "Date", nullable: true),
                     BaseCalculo = table.Column<decimal>(type: "money", nullable: false),
                     IdDepto = table.Column<int>(type: "int", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -184,12 +212,16 @@ namespace SAESoft.Migrations
                     IdEvaluacionDetalle = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdEvaluacion = table.Column<int>(type: "int", nullable: false),
+                    IdDepto = table.Column<int>(type: "int", nullable: false),
                     IdEmpleado = table.Column<int>(type: "int", nullable: false),
+                    BaseCalculo = table.Column<decimal>(type: "money", nullable: false),
                     Asistencia = table.Column<int>(type: "int", nullable: false),
                     Actitud = table.Column<int>(type: "int", nullable: false),
                     Cooperacion = table.Column<int>(type: "int", nullable: false),
                     Extra = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     Total = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    DiasProporcional = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    Proporcional = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IdUsuarioCreacion = table.Column<int>(type: "int", nullable: true),
                     FechaUltimaMod = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -198,6 +230,12 @@ namespace SAESoft.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EvaluacionesDetalle", x => x.IdEvaluacionDetalle);
+                    table.ForeignKey(
+                        name: "FK_EvaluacionesDetalle_DeptoIncentivo_IdDepto",
+                        column: x => x.IdDepto,
+                        principalTable: "DeptoIncentivo",
+                        principalColumn: "IdDepto",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_EvaluacionesDetalle_EmpIncentivos_IdEmpleado",
                         column: x => x.IdEmpleado,
@@ -210,21 +248,75 @@ namespace SAESoft.Migrations
                         principalTable: "Evaluaciones",
                         principalColumn: "IdEvaluacion",
                         onDelete: ReferentialAction.Restrict);
-                });      
+                });
 
-            migrationBuilder.UpdateData(
-                table: "Usuarios",
-                keyColumn: "IdUsuario",
-                keyValue: 4,
-                columns: new[] { "FechaCreacion", "Password" },
-                values: new object[] { new DateTime(2024, 4, 29, 17, 10, 54, 553, DateTimeKind.Local).AddTicks(8169), "m+kdIBtc7jWNiySqGYTzLQBYEeCtZv6J6NJpn1K5eHe1L5PlhrFbXgKylKlPuae1Elc4M8+H9BKVZwmIxDqMsb6iQRuHQBQ3Bi27" });
+            migrationBuilder.CreateTable(
+                name: "HistorialIncentivos",
+                columns: table => new
+                {
+                    IdHistorial = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdDepto = table.Column<int>(type: "int", nullable: false),
+                    IdEmpleado = table.Column<int>(type: "int", nullable: false),
+                    FechaInicio = table.Column<DateTime>(type: "Date", nullable: false),
+                    BaseCalculo = table.Column<decimal>(type: "money", nullable: false),
+                    Autorizacion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    idEvaluacion = table.Column<int>(type: "int", nullable: true),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdUsuarioCreacion = table.Column<int>(type: "int", nullable: true),
+                    FechaUltimaMod = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IdUsuarioMod = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HistorialIncentivos", x => x.IdHistorial);
+                    table.ForeignKey(
+                        name: "FK_HistorialIncentivos_DeptoIncentivo_IdDepto",
+                        column: x => x.IdDepto,
+                        principalTable: "DeptoIncentivo",
+                        principalColumn: "IdDepto",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_HistorialIncentivos_EmpIncentivos_IdEmpleado",
+                        column: x => x.IdEmpleado,
+                        principalTable: "EmpIncentivos",
+                        principalColumn: "IdEmpIncentivo",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
-            migrationBuilder.UpdateData(
-                table: "Usuarios",
-                keyColumn: "IdUsuario",
-                keyValue: 5,
-                columns: new[] { "FechaCreacion", "Password" },
-                values: new object[] { new DateTime(2024, 4, 29, 17, 10, 54, 553, DateTimeKind.Local).AddTicks(8189), "F9owu62mZkOgcjx3SVZ3rcu1PeeiwrdI5wXg5/+FI5iSHRInhaOFWakB+ZrlLPPnk8Uwl5P6ZuM/3ys/eqvHkP7kH+j36KmFGQ==" });
+            migrationBuilder.CreateTable(
+                name: "Suspensiones",
+                columns: table => new
+                {
+                    IdSuspension = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdDepto = table.Column<int>(type: "int", nullable: false),
+                    IdEmpleado = table.Column<int>(type: "int", nullable: false),
+                    FechaInicio = table.Column<DateTime>(type: "Date", nullable: false),
+                    FechaFin = table.Column<DateTime>(type: "Date", nullable: false),
+                    Observaciones = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Activo = table.Column<bool>(type: "bit", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdUsuarioCreacion = table.Column<int>(type: "int", nullable: true),
+                    FechaUltimaMod = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IdUsuarioMod = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Suspensiones", x => x.IdSuspension);
+                    table.ForeignKey(
+                        name: "FK_Suspensiones_DeptoIncentivo_IdDepto",
+                        column: x => x.IdDepto,
+                        principalTable: "DeptoIncentivo",
+                        principalColumn: "IdDepto",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Suspensiones_EmpIncentivos_IdEmpleado",
+                        column: x => x.IdEmpleado,
+                        principalTable: "EmpIncentivos",
+                        principalColumn: "IdEmpIncentivo",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Asistencia_IdEmpleado",
@@ -253,6 +345,11 @@ namespace SAESoft.Migrations
                 column: "IdDepto");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EvaluacionesDetalle_IdDepto",
+                table: "EvaluacionesDetalle",
+                column: "IdDepto");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EvaluacionesDetalle_IdEmpleado",
                 table: "EvaluacionesDetalle",
                 column: "IdEmpleado");
@@ -261,6 +358,31 @@ namespace SAESoft.Migrations
                 name: "IX_EvaluacionesDetalle_IdEvaluacion",
                 table: "EvaluacionesDetalle",
                 column: "IdEvaluacion");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Firmas_IdModulo",
+                table: "Firmas",
+                column: "IdModulo");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HistorialIncentivos_IdDepto",
+                table: "HistorialIncentivos",
+                column: "IdDepto");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HistorialIncentivos_IdEmpleado",
+                table: "HistorialIncentivos",
+                column: "IdEmpleado");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Suspensiones_IdDepto",
+                table: "Suspensiones",
+                column: "IdDepto");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Suspensiones_IdEmpleado",
+                table: "Suspensiones",
+                column: "IdEmpleado");
         }
 
         /// <inheritdoc />
@@ -276,16 +398,25 @@ namespace SAESoft.Migrations
                 name: "EvaluacionesDetalle");
 
             migrationBuilder.DropTable(
+                name: "Firmas");
+
+            migrationBuilder.DropTable(
+                name: "HistorialIncentivos");
+
+            migrationBuilder.DropTable(
                 name: "PorcentajeEvaluacion");
 
             migrationBuilder.DropTable(
                 name: "PuntajeAsistencia");
 
             migrationBuilder.DropTable(
-                name: "EmpIncentivos");
+                name: "Suspensiones");
 
             migrationBuilder.DropTable(
                 name: "Evaluaciones");
+
+            migrationBuilder.DropTable(
+                name: "EmpIncentivos");
 
             migrationBuilder.DropTable(
                 name: "DeptoIncentivo");

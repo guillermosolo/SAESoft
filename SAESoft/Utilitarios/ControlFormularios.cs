@@ -9,6 +9,110 @@ namespace SAESoft.Utilitarios
 {
     public class ControlFormularios
     {
+        public static DialogResult InputBox(string title, string promptText, ref string value)
+        {
+            Form form = new Form();
+            Label label = new Label();
+            TextBox textBox = new TextBox();
+            Button buttonOk = new Button();
+            Button buttonCancel = new Button();
+            bool isValidInput = false;
+
+            form.Text = title;
+            label.Text = promptText;
+            textBox.Text = value;
+
+            buttonOk.Text = "OK";
+            buttonCancel.Text = "Cancel";
+            buttonOk.DialogResult = DialogResult.OK;
+            buttonCancel.DialogResult = DialogResult.Cancel;
+
+            label.SetBounds(9, 20, 372, 13);
+            textBox.SetBounds(12, 36, 372, 20);
+            buttonOk.SetBounds(228, 72, 75, 23);
+            buttonCancel.SetBounds(309, 72, 75, 23);
+
+            label.AutoSize = true;
+            textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
+            buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+            form.ClientSize = new Size(396, 107);
+            form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
+            form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
+            form.FormBorderStyle = FormBorderStyle.FixedDialog;
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.MinimizeBox = false;
+            form.MaximizeBox = false;
+            form.AcceptButton = buttonOk;
+            form.CancelButton = buttonCancel;
+
+            // Event handler for buttonOk to validate input
+            buttonOk.Click += (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    MessageBox.Show("El campo no puede estar vacío.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    // Prevent closing the form by resetting DialogResult to None
+                    form.DialogResult = DialogResult.None;
+                }
+                else
+                {
+                    isValidInput = true;
+                }
+            };
+
+            DialogResult dialogResult = form.ShowDialog();
+
+            if (isValidInput)
+            {
+                value = textBox.Text;
+            }
+ 
+            return dialogResult;
+        }
+
+        public static string FormatFileName(string fileName)
+        {
+            // Máxima longitud permitida
+            const int maxLength = 40;
+
+            // Si el nombre del archivo ya es suficientemente corto, devolverlo tal cual
+            if (fileName.Length <= maxLength)
+            {
+                return fileName;
+            }
+
+            // Obtener la parte desde la última barra invertida
+            string fileNameFromLastSlash = fileName[fileName.LastIndexOf('\\')..];
+
+            // Calcular cuántos caracteres tomar del inicio para que el total sea 50 incluyendo los puntos y la parte final
+            int prefixLength = maxLength - fileNameFromLastSlash.Length - 5;
+
+            // Asegurarse de que no se tome un prefijo demasiado corto
+            if (prefixLength < 1)
+            {
+                prefixLength = 1;
+            }
+
+            // Obtener el prefijo del nombre de archivo
+            string prefix = fileName[..prefixLength];
+
+            // Formatear el nombre de archivo resultante
+            string formattedFileName = prefix + "....." + fileNameFromLastSlash;
+
+            return formattedFileName;
+        }
+        public static void EstablecerNumerosEncabezado(DataGridView dataGridView)
+        {
+            // Recorre cada fila del DataGridView
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                // Establece el número de fila en el encabezado de fila
+                dataGridView.Rows[i].HeaderCell.Value = (i + 1).ToString();
+            }
+            dataGridView.AutoResizeRowHeadersWidth(DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
+        }
         public static void Abrir<MiForm>(Panel panel) where MiForm : Form, new()
         {
             Form? formulario;
