@@ -52,7 +52,7 @@ namespace SAESoft.Administracion
                 dt.Columns.Add("Carnet", typeof(string));
                 using (SAESoftContext db = new())
                 {
-                    List<int> idsSeleccionados = new();
+                    List<int> idsSeleccionados = [];
                     foreach (var item in clbEmpresas.CheckedItems)
                     {
                         var castedItem = (Nombre)item;
@@ -76,9 +76,9 @@ namespace SAESoft.Administracion
                     }
                     List<Empleado> rs;
                     if (checkBox1.Checked)
-                        rs = query.ToList();
+                        rs = [.. query];
                     else
-                        rs = query.Where(e => e.IdSeguroMedico != null).ToList();
+                        rs = [.. query.Where(e => e.IdSeguroMedico != null)];
                     int i = 0;
                     foreach (var item in rs)
                     {

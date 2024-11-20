@@ -101,6 +101,7 @@ namespace SAESoft.Exportaciones
         {
             dt.Rows.Clear();
             using SAESoftContext db = new();
+            int[] tiposF = [155, 158];
             var queryable = db.Licencias.Include(f => f.Facturas)
                                         .ThenInclude(c => c.Consignatario)
                                         .Include(f => f.Facturas)
@@ -115,7 +116,7 @@ namespace SAESoft.Exportaciones
                                         .ThenInclude(t => t.TipoDuca)
                                         .Include(b => b.Descargos)
                                         .Include(c => c.Comentarios)
-                                        .Where(l => l.Facturas.Any(f => !new[] { 155, 158 }.Contains(f.IdTipoFactura)));
+                                        .Where(l => l.Facturas.Any(f => !tiposF.Contains(f.IdTipoFactura)));
             if (!chkFinalizado.Checked)
             {
                 queryable = queryable.Where(r => r.Descargos.All(d => d.final == false));

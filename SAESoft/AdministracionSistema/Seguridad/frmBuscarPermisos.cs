@@ -1,5 +1,4 @@
-﻿
-using SAESoft.Models;
+﻿using SAESoft.Models;
 using SAESoft.Models.AdministracionSistema;
 
 namespace SAESoft.AdministracionSistema.Seguridad

@@ -1,5 +1,4 @@
-﻿
-namespace SAESoft.AdministracionSistema.Seguridad
+﻿namespace SAESoft.AdministracionSistema.Seguridad
 {
     public partial class frmBuscarModulos : Form
     {

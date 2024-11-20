@@ -15,13 +15,13 @@ namespace SAESoft.AdministracionSistema.Seguridad
             InitializeComponent();
         }
         private Boolean esNuevo = true;
-        private List<Permiso>? rs = new();
+        private List<Permiso>? rs = [];
         private int CurrentIndex = 0;
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             limpiarFormulario(this);
@@ -35,7 +35,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
 
         private void frmPermisos_Load(object sender, EventArgs e)
         {
-            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "PERMISOS");
+            CambiarEstadoBotones(["tsbNuevo"], true, toolStrip1, "PERMISOS");
             llenarCombos();
         }
 
@@ -111,7 +111,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "PERMISOS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "PERMISOS");
                 habilitarFormulario(this, false);
             }
         }
@@ -150,18 +150,18 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "PERMISOS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "PERMISOS");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "PERMISOS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "PERMISOS");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "PERMISOS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "PERMISOS");
                 limpiarFormulario(this);
             }
             habilitarFormulario(this, false);
@@ -170,7 +170,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
         private void tsbModificar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             txtNombre.Focus();
@@ -206,7 +206,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
                     {
                         limpiarFormulario(this);
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "PERMISOS");
+                        CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "PERMISOS");
                     }
                 }
                 catch (Exception ex)
@@ -231,11 +231,11 @@ namespace SAESoft.AdministracionSistema.Seguridad
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                rs = db.Permisos.Where(p => p.IdPermiso == formListar.Id).ToList();
+                rs = [.. db.Permisos.Where(p => p.IdPermiso == formListar.Id)];
                 CurrentIndex = 0;
                 despliegaDatos();
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "PERMISOS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "PERMISOS");
             }
             formListar.Dispose();
         }
@@ -268,7 +268,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
                     queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
                 if (buscar.modulo != -1)
                     queryable = queryable.Where(b => b.IdModulo == buscar.modulo);
-                rs = queryable.ToList();
+                rs = [.. queryable];
                 buscar.Dispose();
                 if (rs.Count > 0)
                 {
@@ -282,14 +282,14 @@ namespace SAESoft.AdministracionSistema.Seguridad
                     {
                         BotonesIniciales(toolStrip1);
                     }
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "PERMISOS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "PERMISOS");
                 }
                 else
                 {
                     MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     limpiarFormulario(this);
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "PERMISOS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "PERMISOS");
                 }
             }
         }

@@ -39,6 +39,9 @@
             label3 = new Label();
             txtExtra = new TextBox();
             icbGuardar = new FontAwesome.Sharp.IconButton();
+            txtLogrado = new TextBox();
+            label4 = new Label();
+            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             ((System.ComponentModel.ISupportInitialize)dgvEvaluar).BeginInit();
             SuspendLayout();
             // 
@@ -83,7 +86,7 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvEvaluar.DefaultCellStyle = dataGridViewCellStyle2;
-            dgvEvaluar.Location = new Point(27, 111);
+            dgvEvaluar.Location = new Point(27, 150);
             dgvEvaluar.Name = "dgvEvaluar";
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Control;
@@ -94,7 +97,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dgvEvaluar.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvEvaluar.RowTemplate.Height = 25;
-            dgvEvaluar.Size = new Size(705, 423);
+            dgvEvaluar.Size = new Size(995, 384);
             dgvEvaluar.TabIndex = 2;
             dgvEvaluar.CellEndEdit += dgvEvaluar_CellEndEdit;
             dgvEvaluar.CellEnter += dgvEvaluar_CellEnter;
@@ -108,15 +111,15 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(396, 32);
+            label2.Location = new Point(460, 32);
             label2.Name = "label2";
-            label2.Size = new Size(49, 21);
+            label2.Size = new Size(89, 21);
             label2.TabIndex = 3;
-            label2.Text = "Total";
+            label2.Text = "Total Base";
             // 
             // txtTotal
             // 
-            txtTotal.Location = new Point(451, 29);
+            txtTotal.Location = new Point(554, 29);
             txtTotal.Name = "txtTotal";
             txtTotal.ReadOnly = true;
             txtTotal.Size = new Size(100, 27);
@@ -126,15 +129,15 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(396, 70);
+            label3.Location = new Point(459, 92);
             label3.Name = "label3";
-            label3.Size = new Size(50, 21);
+            label3.Size = new Size(89, 21);
             label3.TabIndex = 5;
-            label3.Text = "Extra";
+            label3.Text = "Diferencia";
             // 
             // txtExtra
             // 
-            txtExtra.Location = new Point(452, 67);
+            txtExtra.Location = new Point(554, 89);
             txtExtra.Name = "txtExtra";
             txtExtra.ReadOnly = true;
             txtExtra.Size = new Size(100, 27);
@@ -148,7 +151,7 @@
             icbGuardar.IconColor = Color.DodgerBlue;
             icbGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbGuardar.IconSize = 24;
-            icbGuardar.Location = new Point(584, 29);
+            icbGuardar.Location = new Point(717, 32);
             icbGuardar.Name = "icbGuardar";
             icbGuardar.Size = new Size(148, 66);
             icbGuardar.TabIndex = 7;
@@ -157,11 +160,36 @@
             icbGuardar.UseVisualStyleBackColor = true;
             icbGuardar.Click += icbGuardar_Click;
             // 
+            // txtLogrado
+            // 
+            txtLogrado.Location = new Point(554, 59);
+            txtLogrado.Name = "txtLogrado";
+            txtLogrado.ReadOnly = true;
+            txtLogrado.Size = new Size(100, 27);
+            txtLogrado.TabIndex = 9;
+            txtLogrado.TextAlign = HorizontalAlignment.Right;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(431, 62);
+            label4.Name = "label4";
+            label4.Size = new Size(118, 21);
+            label4.TabIndex = 8;
+            label4.Text = "Total Logrado";
+            // 
+            // sqlCommand1
+            // 
+            sqlCommand1.CommandTimeout = 30;
+            sqlCommand1.EnableOptimizedParameterBinding = false;
+            // 
             // frmCalificacionDepto
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(758, 554);
+            ClientSize = new Size(1048, 554);
+            Controls.Add(txtLogrado);
+            Controls.Add(label4);
             Controls.Add(icbGuardar);
             Controls.Add(txtExtra);
             Controls.Add(label3);
@@ -191,5 +219,8 @@
         private Label label3;
         private TextBox txtExtra;
         private FontAwesome.Sharp.IconButton icbGuardar;
+        private TextBox txtLogrado;
+        private Label label4;
+        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
     }
 }

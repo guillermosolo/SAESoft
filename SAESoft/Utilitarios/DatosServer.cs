@@ -1,13 +1,6 @@
-﻿using ConnectUNCWithCredentials;
+﻿using SAESoft.Utilitarios;
 using Microsoft.EntityFrameworkCore;
 using SAESoft.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SAESoft.Utilitarios
 {

@@ -78,7 +78,7 @@
             // txtUser
             // 
             txtUser.BorderStyle = BorderStyle.None;
-            txtUser.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtUser.Font = new Font("Century Gothic", 12F);
             txtUser.Location = new Point(355, 101);
             txtUser.Name = "txtUser";
             txtUser.PlaceholderText = "USUARIO";
@@ -88,7 +88,7 @@
             // txtPass
             // 
             txtPass.BorderStyle = BorderStyle.None;
-            txtPass.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPass.Font = new Font("Century Gothic", 12F);
             txtPass.Location = new Point(355, 164);
             txtPass.Name = "txtPass";
             txtPass.PlaceholderText = "CONTRASEÑA";
@@ -109,7 +109,7 @@
             // 
             iconPictureBox1.BackColor = Color.White;
             iconPictureBox1.ForeColor = Color.FromArgb(0, 122, 204);
-            iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
+            iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.UserLarge;
             iconPictureBox1.IconColor = Color.FromArgb(0, 122, 204);
             iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox1.IconSize = 31;
@@ -137,7 +137,7 @@
             // 
             icbLogin.BackColor = Color.FromArgb(0, 122, 204);
             icbLogin.FlatStyle = FlatStyle.Flat;
-            icbLogin.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            icbLogin.Font = new Font("Segoe UI", 15.75F);
             icbLogin.ForeColor = Color.White;
             icbLogin.IconChar = FontAwesome.Sharp.IconChar.None;
             icbLogin.IconColor = Color.FromArgb(0, 122, 204);
@@ -157,7 +157,7 @@
             // 
             icbSalir.BackColor = Color.IndianRed;
             icbSalir.FlatStyle = FlatStyle.Flat;
-            icbSalir.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            icbSalir.Font = new Font("Segoe UI", 15.75F);
             icbSalir.ForeColor = Color.White;
             icbSalir.IconChar = FontAwesome.Sharp.IconChar.None;
             icbSalir.IconColor = Color.FromArgb(0, 122, 204);
@@ -175,7 +175,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Century Gothic", 20F);
             label1.ForeColor = SystemColors.ControlDarkDark;
             label1.Location = new Point(458, 19);
             label1.Name = "label1";
@@ -186,7 +186,7 @@
             // lblError
             // 
             lblError.AutoSize = true;
-            lblError.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblError.Font = new Font("Century Gothic", 12F);
             lblError.ForeColor = Color.Red;
             lblError.Image = Properties.Resources.sign;
             lblError.ImageAlign = ContentAlignment.MiddleLeft;
@@ -201,7 +201,7 @@
             // 
             label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Location = new Point(691, 306);
+            label2.Location = new Point(662, 306);
             label2.Name = "label2";
             label2.Size = new Size(0, 15);
             label2.TabIndex = 13;

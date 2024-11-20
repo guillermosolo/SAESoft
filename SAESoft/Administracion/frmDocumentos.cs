@@ -13,6 +13,8 @@ namespace SAESoft.Administracion
         public DateTime vencimiento;
         public int familiar;
         public int idEmpleado;
+        private static readonly int[] docs = [1, 2, 5, 11];
+
         public frmDocumentos()
         {
             InitializeComponent();
@@ -21,7 +23,7 @@ namespace SAESoft.Administracion
         private void frmDocumentos_Load(object sender, EventArgs e)
         {
             lblTitulo.Text = documento;
-            if (new[] { 1, 2, 5, 11 }.Contains(id))
+            if (docs.Contains(id))
             {
                 llenarCombo();
                 label3.Visible = true;

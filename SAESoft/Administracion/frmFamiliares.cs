@@ -1,9 +1,4 @@
-﻿using SAESoft.Models.Administracion;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using static SAESoft.Utilitarios.ControlFormularios;
+﻿using static SAESoft.Utilitarios.ControlFormularios;
 
 namespace SAESoft.Administracion
 {

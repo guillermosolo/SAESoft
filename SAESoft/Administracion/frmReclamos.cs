@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using SAESoft.Models;
+﻿using SAESoft.Models;
 using SAESoft.Models.Administracion;
 using SAESoft.Utilitarios;
 using System.Data;
@@ -8,7 +7,6 @@ using static SAESoft.Utilitarios.Validaciones;
 using static SAESoft.Cache.UserData;
 using SAESoft.Models.Comunes;
 using Microsoft.EntityFrameworkCore.Storage;
-using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
 
 namespace SAESoft.Administracion

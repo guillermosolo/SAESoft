@@ -14,8 +14,8 @@ namespace SAESoft.Exportaciones
     public partial class frmFacturas : Form
     {
         Boolean esNuevo = false;
-        private List<FacturaExport>? rs = new();
-        readonly List<string> listFiles = new();
+        private List<FacturaExport>? rs = [];
+        readonly List<string> listFiles = [];
         private int CurrentIndex = 0;
         public frmFacturas()
         {
@@ -28,7 +28,8 @@ namespace SAESoft.Exportaciones
             llenarNombres(cboModalidad, "MODALIDAD EXPORT", true);
             llenarNombres(cboExportador, "EXPORTADOR");
             using SAESoftContext db = new();
-            var tipos = db.Nombres.Where(n => !new[] { 155, 158 }.Contains(n.IdNombre)).Where(g=>g.IdGrupo == 15).Select(n => new { n.IdNombre, n.Descripcion }).ToList();
+            int[] tiposF = [155, 158];
+            var tipos = db.Nombres.Where(n => !tiposF.Contains(n.IdNombre)).Where(g=>g.IdGrupo == 15).Select(n => new { n.IdNombre, n.Descripcion }).ToList();
             cboTipoFac.DataSource = tipos;
             cboTipoFac.DisplayMember = "Descripcion";
             cboTipoFac.ValueMember = "idNombre";
@@ -41,7 +42,7 @@ namespace SAESoft.Exportaciones
 
         private void frmFacturas_Load(object sender, EventArgs e)
         {
-            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "FACTURAS");
+            CambiarEstadoBotones(["tsbNuevo"], true, toolStrip1, "FACTURAS");
             llenarCombos();
         }
 
@@ -53,7 +54,7 @@ namespace SAESoft.Exportaciones
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             tsActivo.Checked = true;
@@ -79,18 +80,18 @@ namespace SAESoft.Exportaciones
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso" }, true, toolStrip1, "FACTURAS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso"], true, toolStrip1, "FACTURAS");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso"}, true, toolStrip1, "FACTURAS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso"], true, toolStrip1, "FACTURAS");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso" }, false, toolStrip1, "FACTURAS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso"], false, toolStrip1, "FACTURAS");
                 ocultarCamposVariables();
                 limpiarFormulario(this);
             }
@@ -279,7 +280,7 @@ namespace SAESoft.Exportaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar"}, true, toolStrip1, "FACTURAS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "FACTURAS");
                 habilitarFormulario(this, false);
             }
         }
@@ -299,7 +300,7 @@ namespace SAESoft.Exportaciones
             //    queryable = queryable.Where(b => b.Alias.Contains(buscar.nombreESP));
             //if (buscar.nombreCOR != null)
             //    queryable = queryable.Where(b => b.NombreCoreano.Contains(buscar.nombreCOR));
-            rs = queryable.ToList();
+            rs = [.. queryable];
             //buscar.Dispose();
             if (rs.Count > 0)
             {
@@ -313,7 +314,7 @@ namespace SAESoft.Exportaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "FACTURAS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "FACTURAS");
             }
             else
             {
@@ -321,14 +322,14 @@ namespace SAESoft.Exportaciones
                 ocultarCamposVariables();
                 limpiarFormulario(this);
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "FACTURAS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "FACTURAS");
             }
         }
 
         private void tsbModificar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             txtReferencia.Focus();
@@ -388,7 +389,7 @@ namespace SAESoft.Exportaciones
                         ocultarCamposVariables();
                         limpiarFormulario(this);
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "FACTURAS");
+                        CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "FACTURAS");
                     }
                 }
                 catch (Exception ex)

@@ -21,15 +21,15 @@ namespace SAESoft
         }
         #region Funcionalidades del Formulario
         // **********CODIGO PARA HACER QUE SE PUEDA ARRASTAR EL FORMULARIO************
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-#pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
-        private extern static void ReleaseCapture();
-#pragma warning restore SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
+        internal static partial class User32
+        {
+            [LibraryImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+            public static partial void ReleaseCapture();
 
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-#pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
-        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
-#pragma warning restore SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
+            [LibraryImport("user32.DLL", EntryPoint = "SendMessageA")]
+            public static partial void SendMessage(nint hwnd, int wmsg, int wparam, int lparam);
+        }
+
         //********* FIN CODIGO ARRASTRAR FORMULARIO***********************
 
         //RESIZE METODO PARA REDIMENCIONAR/CAMBIAR TAMAÑO A FORMULARIO EN TIEMPO DE EJECUCION ----------------------------------------------------------
@@ -88,8 +88,8 @@ namespace SAESoft
 
         private void panelBarraTitulo_MouseMove(object sender, MouseEventArgs e)
         {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            User32.ReleaseCapture();
+            User32.SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
         private void icbMaximizar_Click(object sender, EventArgs e)

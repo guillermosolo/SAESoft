@@ -1,6 +1,4 @@
-﻿using SAESoft.Models.Administracion;
-using SAESoft.Models.Comunes;
-using SAESoft.Models;
+﻿using SAESoft.Models;
 using SpreadsheetLight;
 using System.Data;
 using System.Diagnostics;
@@ -8,7 +6,6 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using static SAESoft.Utilitarios.ControlFormularios;
 using Microsoft.EntityFrameworkCore;
 using SAESoft.Models.Exportaciones;
-using System.Linq;
 
 
 namespace SAESoft.Exportaciones
@@ -45,6 +42,7 @@ namespace SAESoft.Exportaciones
                 dt.Columns.Add("cod", typeof(int));
                 using (SAESoftContext db = new())
                 {
+                    int[] tiposF = [155, 158];
                     var queryable = db.Licencias.Include(f => f.Facturas)
                                         .ThenInclude(c => c.Consignatario)
                                         .Include(f => f.Facturas)
@@ -59,11 +57,11 @@ namespace SAESoft.Exportaciones
                                         .ThenInclude(t => t.TipoDuca)
                                         .Include(b => b.Descargos)
                                         .Include(c => c.Comentarios)
-                                        .Where(l => l.Facturas.Any(f => !new[] { 155, 158 }.Contains(f.IdTipoFactura)));
+                                        .Where(l => l.Facturas.Any(f => !tiposF.Contains(f.IdTipoFactura)));
                     queryable = queryable.Where(r => r.Descargos.All(d => d.final == false));
 
                     queryable = queryable.OrderByDescending(r => r.FechaCreacion);
-                    List<Licencia> rs = queryable.ToList();
+                    List<Licencia> rs = [.. queryable];
                     foreach (var item in rs)
                     {
                         foreach (var fact in item.Facturas)
@@ -76,8 +74,8 @@ namespace SAESoft.Exportaciones
                                 row["Empresa"] = fact.Consignatario.Descripcion;
                                 row["Fecha Factura"] = fact.Fecha.Date;
                                 row["Fecha Licencia"] = item.Fecha.Date;
-                                Boolean tieneDuca = item.Ducas.Any();
-                                Boolean tieneDescargo = item.Descargos.Any();
+                                Boolean tieneDuca = item.Ducas.Count != 0;
+                                Boolean tieneDescargo = item.Descargos.Count != 0;
                                 if (tieneDescargo)
                                 {
                                     diferencia = DateTime.Now - item.Descargos.Last().Fecha;

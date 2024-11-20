@@ -1,7 +1,6 @@
 ﻿
 using SAESoft.Models;
 using SAESoft.Models.Administracion;
-using SAESoft.Models.AdministracionSistema;
 using SAESoft.Utilitarios;
 using System.Data;
 using static SAESoft.Utilitarios.ControlFormularios;

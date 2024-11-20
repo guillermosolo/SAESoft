@@ -4,7 +4,6 @@ using SAESoft.Models;
 using SAESoft.Models.Administracion;
 using SAESoft.Utilitarios;
 using System.Data;
-using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Cache.UserData;
 
 namespace SAESoft.Administracion
@@ -99,7 +98,7 @@ namespace SAESoft.Administracion
             cboEmpleados.DisplayMember = "Alias";
             cboEmpleados.ValueMember = "IdEmpleado";
             llenarFamiliares(Convert.ToInt32(cboEmpleados.SelectedValue));
-            List<int> docs = new() {1, 4, 6, 8, 9, 11, 13, 14, 15 };
+            List<int> docs = [1, 4, 6, 8, 9, 11, 13, 14, 15];
             var tipos = db.TiposDocumento.Select(s => new { s.IdTipoDocumento, s.Nombre }).Where(s => docs.Contains(s.IdTipoDocumento)).ToList();
             cboTipoTramite.DataSource = tipos;
             cboTipoTramite.DisplayMember = "Nombre";

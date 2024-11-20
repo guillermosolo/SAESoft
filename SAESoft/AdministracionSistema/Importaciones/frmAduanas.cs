@@ -11,7 +11,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
     public partial class frmAduanas : Form
     {
         private Boolean esNuevo = true;
-        private List<Aduana>? rs = new();
+        private List<Aduana>? rs = [];
         private int CurrentIndex = 0;
         public frmAduanas()
         {
@@ -20,12 +20,12 @@ namespace SAESoft.AdministracionSistema.Importaciones
 
         private void llenarCombos()
         {
-            List<object> options = new()
-                {
+            List<object> options =
+                [
                      new { Name = "Aéreo", Value = 'A' },
                      new { Name = "Marítimo", Value = 'M' },
                      new { Name = "Terrestre", Value = 'T' }
-                };
+                ];
             cboVia.DisplayMember = "Name";
             cboVia.ValueMember = "Value";
             cboVia.DataSource = options;
@@ -33,7 +33,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
 
         private void frmAduanas_Load(object sender, EventArgs e)
         {
-            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "ADUANAS");
+            CambiarEstadoBotones(["tsbNuevo"], true, toolStrip1, "ADUANAS");
             llenarCombos();
         }
 
@@ -49,7 +49,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
                     queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
                 if (buscar.via != 'O')
                     queryable = queryable.Where(b => b.Via.Equals(buscar.via));
-                rs = queryable.ToList();
+                rs = [.. queryable];
                 buscar.Dispose();
                 if (rs.Count > 0)
                 {
@@ -63,14 +63,14 @@ namespace SAESoft.AdministracionSistema.Importaciones
                     {
                         BotonesIniciales(toolStrip1);
                     }
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ADUANAS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "ADUANAS");
                 }
                 else
                 {
                     MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     limpiarFormulario(this);
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "ADUANAS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "ADUANAS");
                 }
             }
         }
@@ -109,7 +109,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             limpiarFormulario(this);
@@ -129,11 +129,11 @@ namespace SAESoft.AdministracionSistema.Importaciones
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                rs = db.Aduanas.Where(p => p.IdAduana == formListar.Id).ToList();
+                rs = [.. db.Aduanas.Where(p => p.IdAduana == formListar.Id)];
                 CurrentIndex = 0;
                 despliegaDatos();
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ADUANAS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "ADUANAS");
             }
             formListar.Dispose();
         }
@@ -141,7 +141,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
         private void tsbModificar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             txtNombre.Focus();
@@ -155,18 +155,18 @@ namespace SAESoft.AdministracionSistema.Importaciones
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ADUANAS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "ADUANAS");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ADUANAS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "ADUANAS");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "ADUANAS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "ADUANAS");
                 limpiarFormulario(this);
             }
             habilitarFormulario(this, false);
@@ -256,7 +256,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ADUANAS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "ADUANAS");
                 habilitarFormulario(this, false);
             }
         }
@@ -291,7 +291,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
                     {
                         limpiarFormulario(this);
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "ADUANAS");
+                        CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "ADUANAS");
                     }
                 }
                 catch (Exception ex)

@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using SAESoft.Models.Incentivos;
 using System.Diagnostics;
 using Color = System.Drawing.Color;
-using System.Linq;
 
 
 namespace SAESoft.Incentivo
@@ -414,7 +413,7 @@ namespace SAESoft.Incentivo
                         hoja.SetCellStyle("B" + i, "P" + i, bordeSuspendidoGris);
                         hoja.SetCellStyle("I" + i, bordeSuspPorcentajeGris);
                         hoja.SetCellStyle("M" + i, "N" + i, bordeSuspPorcentajeGris);
-                        hoja.SetCellStyle("Q" + i, bordeSuspendidoGris);
+                        hoja.SetCellStyle("Q" + i, suspendido);
                     }
                     else
                     {
@@ -436,10 +435,7 @@ namespace SAESoft.Incentivo
                 {
                     foreach (var hist in historial)
                     {
-                        if (hist.idEvaluacion == null)
-                        {
-                            hist.idEvaluacion = eval.IdEvaluacion;
-                        }
+                        hist.idEvaluacion ??= eval.IdEvaluacion;
                     }
                     db.SaveChanges();
                     hoja.SetCellStyle("E" + i, cambioBase);

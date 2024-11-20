@@ -34,7 +34,5 @@ namespace SAESoft.Models.Incentivos
         public decimal Total { get; set; }
         [Column(TypeName = "decimal(10,2)")]
         public decimal DiasProporcional { get; set; }
-        [Column(TypeName = "decimal(10,2)")]
-        public decimal Proporcional { get; set; }
     }
 }

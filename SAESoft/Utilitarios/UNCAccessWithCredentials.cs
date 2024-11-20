@@ -1,44 +1,50 @@
 using System;
 using System.Runtime.InteropServices;
-using BOOL = System.Boolean;
-using DWORD = System.UInt32;
-using LPWSTR = System.String;
 using NET_API_STATUS = System.UInt32;
 
-namespace ConnectUNCWithCredentials
+namespace SAESoft.Utilitarios
 {
-    public class UNCAccessWithCredentials : IDisposable
+    public partial class UNCAccessWithCredentials : IDisposable
     {
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
         internal struct USE_INFO_2
         {
-            internal LPWSTR ui2_local;
-            internal LPWSTR ui2_remote;
-            internal LPWSTR ui2_password;
-            internal DWORD ui2_status;
-            internal DWORD ui2_asg_type;
-            internal DWORD ui2_refcount;
-            internal DWORD ui2_usecount;
-            internal LPWSTR ui2_username;
-            internal LPWSTR ui2_domainname;
+            [MarshalAs(UnmanagedType.LPWStr)]
+            internal string ui2_local;
+
+            [MarshalAs(UnmanagedType.LPWStr)]
+            internal string ui2_remote;
+
+            [MarshalAs(UnmanagedType.LPWStr)]
+            internal string ui2_password;
+
+            internal uint ui2_status;
+            internal uint ui2_asg_type;
+            internal uint ui2_refcount;
+            internal uint ui2_usecount;
+
+            [MarshalAs(UnmanagedType.LPWStr)]
+            internal string ui2_username;
+
+            [MarshalAs(UnmanagedType.LPWStr)]
+            internal string ui2_domainname;
         }
 
-        [DllImport("NetApi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-#pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
-        internal static extern NET_API_STATUS NetUseAdd(
-#pragma warning restore SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
-            LPWSTR UncServerName,
-            DWORD Level,
-            ref USE_INFO_2 Buf,
-            out DWORD ParmError);
+        internal static partial class Compartida
+        {
+            [LibraryImport("NetApi32.dll", SetLastError = true, StringMarshalling = StringMarshalling.Utf16)]
+            public static partial NET_API_STATUS NetUseAdd(
+                [MarshalAs(UnmanagedType.LPWStr)] string UncServerName,
+                uint Level,
+                IntPtr Buf,  // Cambiado ref a IntPtr
+                out uint ParmError);
 
-        [DllImport("NetApi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-#pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
-        internal static extern NET_API_STATUS NetUseDel(
-#pragma warning restore SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
-            LPWSTR UncServerName,
-            LPWSTR UseName,
-            DWORD ForceCond);
+            [LibraryImport("NetApi32.dll", SetLastError = true, StringMarshalling = StringMarshalling.Utf16)]
+            public static partial NET_API_STATUS NetUseDel(
+                [MarshalAs(UnmanagedType.LPWStr)] string UncServerName,
+                [MarshalAs(UnmanagedType.LPWStr)] string UseName,
+                uint ForceCond);
+        }
 
         private bool disposed = false;
 
@@ -48,16 +54,8 @@ namespace ConnectUNCWithCredentials
         private string sDomain;
         private int iLastError;
 
-        /// <summary>
-        /// A disposeable class that allows access to a UNC resource with credentials.
-        /// </summary>
-        public UNCAccessWithCredentials()
-        {
-        }
+        public UNCAccessWithCredentials() { }
 
-        /// <summary>
-        /// The last system error code returned from NetUseAdd or NetUseDel.  Success = 0
-        /// </summary>
         public int LastError
         {
             get { return iLastError; }
@@ -73,14 +71,6 @@ namespace ConnectUNCWithCredentials
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// Connects to a UNC path using the credentials supplied.
-        /// </summary>
-        /// <param name="UNCPath">Fully qualified domain name UNC path</param>
-        /// <param name="User">A user with sufficient rights to access the path.</param>
-        /// <param name="Domain">Domain of User.</param>
-        /// <param name="Password">Password of User</param>
-        /// <returns>True if mapping succeeds.  Use LastError to get the system error code.</returns>
         public bool NetUseWithCredentials(string UNCPath, string User, string Domain, string Password)
         {
             sUNCPath = UNCPath;
@@ -93,6 +83,7 @@ namespace ConnectUNCWithCredentials
         private bool NetUseWithCredentials()
         {
             uint returncode;
+            IntPtr bufPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(USE_INFO_2)));
             try
             {
                 USE_INFO_2 useinfo = new()
@@ -104,10 +95,9 @@ namespace ConnectUNCWithCredentials
                     ui2_asg_type = 0,
                     ui2_usecount = 1
                 };
-#pragma warning disable IDE0018 // Declaración de variables alineada
-                uint paramErrorIndex;
-#pragma warning restore IDE0018 // Declaración de variables alineada
-                returncode = NetUseAdd(null, 2, ref useinfo, out paramErrorIndex);
+                Marshal.StructureToPtr(useinfo, bufPtr, false);
+
+                returncode = Compartida.NetUseAdd(null, 2, bufPtr, out uint paramErrorIndex);
                 iLastError = (int)returncode;
                 return returncode == 0;
             }
@@ -116,18 +106,18 @@ namespace ConnectUNCWithCredentials
                 iLastError = Marshal.GetLastWin32Error();
                 return false;
             }
+            finally
+            {
+                Marshal.FreeHGlobal(bufPtr);
+            }
         }
 
-        /// <summary>
-        /// Ends the connection to the remote resource 
-        /// </summary>
-        /// <returns>True if it succeeds.  Use LastError to get the system error code</returns>
         public bool NetUseDelete()
         {
             uint returncode;
             try
             {
-                returncode = NetUseDel(null, sUNCPath, 2);
+                returncode = Compartida.NetUseDel(null, sUNCPath, 2);
                 iLastError = (int)returncode;
                 return (returncode == 0);
             }
@@ -142,6 +132,5 @@ namespace ConnectUNCWithCredentials
         {
             Dispose();
         }
-
     }
 }

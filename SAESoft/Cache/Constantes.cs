@@ -1,7 +1,4 @@
-﻿
-using System.Globalization;
-
-namespace SAESoft.Cache
+﻿namespace SAESoft.Cache
 {
     public struct Constantes
     {

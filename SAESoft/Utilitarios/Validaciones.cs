@@ -52,7 +52,7 @@ namespace SAESoft.Utilitarios
             int comprobar = int.Parse(CUI.Substring(8, 1));
 
             //en este arreglo estan los municipios por departamento, si se creara un municipio más, hay que agregarlo aquí para validar.
-            int[] munisxDepto = new int[] { 17, 8, 16, 16, 13, 14, 19, 8, 24, 21, 9, 30, 32, 21, 8, 17, 14, 5, 11, 11, 7, 17 };
+            int[] munisxDepto = [17, 8, 16, 16, 13, 14, 19, 8, 24, 21, 9, 30, 32, 21, 8, 17, 14, 5, 11, 11, 7, 17];
 
             //comprueba primeros digitos del departamento que sean validos (<22)
             if (depto > munisxDepto.Length) { return false; }

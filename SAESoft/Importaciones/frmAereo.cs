@@ -4,12 +4,10 @@ using static SAESoft.Cache.UserData;
 using static SAESoft.Cache.Constantes;
 using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Utilitarios.DatosServer;
-using static SAESoft.Utilitarios.Validaciones;
 using SAESoft.Models;
 using Microsoft.EntityFrameworkCore;
 using SAESoft.Utilitarios;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace SAESoft.Importaciones
@@ -18,12 +16,12 @@ namespace SAESoft.Importaciones
     {
         private Boolean esNuevo = false;
         public int individual = 0;
-        private List<Importacion>? rs = new();
+        private List<Importacion>? rs = [];
         private int CurrentIndex = 0;
         private char Via = 'A';
         readonly DataTable dt = new();
         readonly DataTable dtc = new();
-        readonly List<string> listFiles = new();
+        readonly List<string> listFiles = [];
         string path = PATH_Import;
         public frmAereo()
         {
@@ -149,12 +147,12 @@ namespace SAESoft.Importaciones
                     queryable = queryable.Where(r => buscar.ids.Contains(r.IdImport));
                 if (individual != 0)
                     queryable = queryable.Where(r => r.IdImport == individual);
-                rs = queryable.ToList();
+                rs = [.. queryable];
                 individual = 0;
                 if (rs.Count > 0)
                 {
                     CurrentIndex = 0;
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios" }, true, toolStrip1, "AEREO");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios"], true, toolStrip1, "AEREO");
                     if (rs.Count > 1)
                     {
                         BotonesInicialesNavegacion(toolStrip1);
@@ -171,14 +169,14 @@ namespace SAESoft.Importaciones
                     limpiarFormulario(this);
                     dt.Rows.Clear();
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios" }, false, toolStrip1, "AEREO");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios"], false, toolStrip1, "AEREO");
                 }
             }
         }
 
         private void frmAereo_Load(object sender, EventArgs e)
         {
-            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "AEREO");
+            CambiarEstadoBotones(["tsbNuevo"], true, toolStrip1, "AEREO");
             llenarMenu();
             llenarCombos();
             estructuraGrid();
@@ -339,17 +337,17 @@ namespace SAESoft.Importaciones
                 dt.Rows.Add(row);
             }
             if (rs[CurrentIndex].IdImportStatus == StatusFinalMaritimo)
-                CambiarEstadoBotones(new[] { "tsbModificar" }, false, toolStrip1, "AEREO");
+                CambiarEstadoBotones(["tsbModificar"], false, toolStrip1, "AEREO");
             else
-                CambiarEstadoBotones(new[] { "tsbModificar" }, true, toolStrip1, "AEREO");
+                CambiarEstadoBotones(["tsbModificar"], true, toolStrip1, "AEREO");
 
             if (rs[CurrentIndex].Via == 'A')
-                CambiarEstadoBotones(new[] { "tsbPago" }, false, toolStrip1, "AEREO");
+                CambiarEstadoBotones(["tsbPago"], false, toolStrip1, "AEREO");
 
             if (rs[CurrentIndex].IdImportStatus < EntregaDigitadorAereo || hasRole(2))
-                CambiarEstadoBotones(new[] { "tsddbSwitchUser" }, false, toolStrip1, "AEREO");
+                CambiarEstadoBotones(["tsddbSwitchUser"], false, toolStrip1, "AEREO");
             else
-                CambiarEstadoBotones(new[] { "tsddbSwitchUser" }, true, toolStrip1, "AEREO");
+                CambiarEstadoBotones(["tsddbSwitchUser"], true, toolStrip1, "AEREO");
         }
 
         private void cargarArchivos(string opcion)
@@ -405,7 +403,7 @@ namespace SAESoft.Importaciones
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             dgvContenedores.Enabled = true;
@@ -423,18 +421,18 @@ namespace SAESoft.Importaciones
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios" }, true, toolStrip1, "AEREO");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios"], true, toolStrip1, "AEREO");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios" }, true, toolStrip1, "AEREO");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios"], true, toolStrip1, "AEREO");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios" }, false, toolStrip1, "AEREO");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios"], false, toolStrip1, "AEREO");
                 limpiarFormulario(this);
                 dt.Rows.Clear();
             }
@@ -484,9 +482,9 @@ namespace SAESoft.Importaciones
                         db.SaveChanges();
                         rs.Add(im);
                         CurrentIndex = rs.Count - 1;
-                        List<Revision> rev = new();
-                        List<Contenedor> _con = new();
-                        List<BL> _bl = new();
+                        List<Revision> rev = [];
+                        List<Contenedor> _con = [];
+                        List<BL> _bl = [];
                         foreach (Revision item in clbRevisiones.CheckedItems)
                         {
                             rev.Add(item);
@@ -597,7 +595,7 @@ namespace SAESoft.Importaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios" }, true, toolStrip1, "AEREO");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios"], true, toolStrip1, "AEREO");
                 habilitarFormulario(this, false);
                 dgvContenedores.Enabled = false;
             }
@@ -660,7 +658,7 @@ namespace SAESoft.Importaciones
         {
             frmPoliza FrmPoliza = new(rs[CurrentIndex])
             {
-                contenedores = rs[CurrentIndex].Contenedores.ToList()
+                contenedores = [.. rs[CurrentIndex].Contenedores]
             };
             var resp = FrmPoliza.ShowDialog();
             if (resp == DialogResult.OK)
@@ -920,7 +918,7 @@ namespace SAESoft.Importaciones
         private void tsbModificar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             cboAlmacenadora.Enabled = true;
             cboAduana.Enabled = true;
@@ -980,7 +978,7 @@ namespace SAESoft.Importaciones
                         dt.Rows.Clear();
                         cboDestino.SelectedIndex = -1;
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "AEREO");
+                        CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "AEREO");
                     }
                 }
                 catch (Exception ex)

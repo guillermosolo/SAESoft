@@ -11,7 +11,7 @@ namespace SAESoft.AdministracionSistema.Comunes
     public partial class frmGrupos : Form
     {
         private Boolean esNuevo = true;
-        private List<Grupo>? rs = new();
+        private List<Grupo>? rs = [];
         private int CurrentIndex = 0;
         public frmGrupos()
         {
@@ -46,7 +46,7 @@ namespace SAESoft.AdministracionSistema.Comunes
                 if (buscar.modulo != -1)
                     queryable = queryable.Where(b => b.IdModulo == buscar.modulo);
                 buscar.Dispose();
-                rs = queryable.ToList();
+                rs = [.. queryable];
                 if (rs.Count > 0)
                 {
                     CurrentIndex = 0;
@@ -59,14 +59,14 @@ namespace SAESoft.AdministracionSistema.Comunes
                     {
                         BotonesIniciales(toolStrip1);
                     }
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "GRUPOS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "GRUPOS");
                 }
                 else
                 {
                     MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     limpiarFormulario(this);
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "GRUPOS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "GRUPOS");
                 }
             }
         }
@@ -94,7 +94,7 @@ namespace SAESoft.AdministracionSistema.Comunes
 
         private void frmGrupos_Load(object sender, EventArgs e)
         {
-            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "GRUPOS");
+            CambiarEstadoBotones(["tsbNuevo"], true, toolStrip1, "GRUPOS");
         }
 
         private void frmGrupos_Shown(object sender, EventArgs e)
@@ -114,11 +114,11 @@ namespace SAESoft.AdministracionSistema.Comunes
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                rs = db.Grupos.Where(p => p.IdGrupo == formListar.Id).ToList();
+                rs = [.. db.Grupos.Where(p => p.IdGrupo == formListar.Id)];
                 CurrentIndex = 0;
                 despliegaDatos();
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "GRUPOS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "GRUPOS");
             }
             formListar.Dispose();
         }
@@ -131,18 +131,18 @@ namespace SAESoft.AdministracionSistema.Comunes
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "GRUPOS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "GRUPOS");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "GRUPOS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "GRUPOS");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "GRUPOS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "GRUPOS");
                 limpiarFormulario(this);
             }
             habilitarFormulario(this, false);
@@ -151,7 +151,7 @@ namespace SAESoft.AdministracionSistema.Comunes
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             limpiarFormulario(this);
@@ -161,7 +161,7 @@ namespace SAESoft.AdministracionSistema.Comunes
         private void tsbModificar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             txtNombre.Focus();
@@ -197,7 +197,7 @@ namespace SAESoft.AdministracionSistema.Comunes
                     {
                         limpiarFormulario(this);
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "GRUPOS");
+                        CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "GRUPOS");
                     }
                 }
                 catch (Exception ex)
@@ -274,7 +274,7 @@ namespace SAESoft.AdministracionSistema.Comunes
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "GRUPOS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "GRUPOS");
                 habilitarFormulario(this, false);
             }
         }

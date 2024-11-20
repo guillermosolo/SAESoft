@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-
 namespace SAESoft
 {
     internal static class Program

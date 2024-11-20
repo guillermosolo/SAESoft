@@ -126,7 +126,7 @@ namespace SAESoft.Administracion
 
                 using (SAESoftContext db = new())
                 {
-                    List<int> idsSeleccionados = new();
+                    List<int> idsSeleccionados = [];
                     foreach (var item in clbEmpresas.CheckedItems)
                     {
                         var castedItem = (Nombre)item;
@@ -170,32 +170,32 @@ namespace SAESoft.Administracion
                     }
                     List<Empleado> rs;
                     if (checkBox1.Checked)
-                        rs = query.ToList();
+                        rs = [.. query];
                     else
                     {
                         if (new List<int> { 1, 2, 3, 5, 8, 11 }.Contains(doc))
                         {
-                            rs = query.Where(d => d.Documentos.Any(d => d.IdTipo == doc)).ToList();
+                            rs = [.. query.Where(d => d.Documentos.Any(d => d.IdTipo == doc))];
                         }
                         else if (doc == 4)
                         {
-                            rs = query.Where(d => d.Residencia != null).ToList();
+                            rs = [.. query.Where(d => d.Residencia != null)];
                         }
                         else if (doc == 6)
                         {
-                            rs = query.Where(d => d.PermisoTrabajo != null).ToList();
+                            rs = [.. query.Where(d => d.PermisoTrabajo != null)];
                         }
                         else if (doc == 7)
                         {
-                            rs = query.Where(d => d.Contrato != null).ToList();
+                            rs = [.. query.Where(d => d.Contrato != null)];
                         }
                         else if (doc == 9)
                         {
-                            rs = query.Where(d => d.Nombramientos.Any(d => !d.Cancelado)).ToList();
+                            rs = [.. query.Where(d => d.Nombramientos.Any(d => !d.Cancelado))];
                         }
                         else
                         {
-                            rs = query.ToList();
+                            rs = [.. query];
                         }
                     }
                     int i = 0;
@@ -430,15 +430,15 @@ namespace SAESoft.Administracion
                 string ultimaColLetra = SLConvert.ToColumnName(ultimaCol);
                 string penultimaColLetra = SLConvert.ToColumnName(penultimaCol);
 
-                List<char> letras = new();
+                List<char> letras = [];
 
                 if (doc == 9)
                 {
-                    letras = new List<char> { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
+                    letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
                 }
                 else
                 {
-                    letras = new List<char> { 'A', 'B', 'C', 'D', 'E' };
+                    letras = ['A', 'B', 'C', 'D', 'E'];
                 }
                 foreach (char l in letras)
                 {
@@ -473,7 +473,8 @@ namespace SAESoft.Administracion
                 for (char i = 'A'; i <= ultimaColLetra[0]; i++)
                     excel.SetCellStyle(i + "1", headerStyle);
 
-                if (new List<int> { 1, 2, 4, 5, 6, 8, 9 }.Contains(doc))
+                List<int> docs = [1, 2, 4, 5, 6, 8, 9];
+                if (docs.Contains(doc))
                 {
                     SLConditionalFormatting cf = new(ultimaColLetra + "2", ultimaColLetra + ultimaFila);
                     SLConditionalFormatting cf2 = new(penultimaColLetra + "2", penultimaColLetra + ultimaFila);

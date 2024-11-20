@@ -1,5 +1,4 @@
-﻿
-namespace SAESoft.Incentivo
+﻿namespace SAESoft.Incentivo
 {
     public partial class frmReportes : Form
     {

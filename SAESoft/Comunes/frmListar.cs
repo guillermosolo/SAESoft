@@ -1,5 +1,4 @@
-﻿
-namespace SAESoft.Comunes
+﻿namespace SAESoft.Comunes
 {
     public partial class frmListar : Form
     {
@@ -7,7 +6,7 @@ namespace SAESoft.Comunes
         {
             InitializeComponent();
         }
-        public BindingSource ds = new();
+        public BindingSource ds = [];
         public Boolean ajustar = false;
         public int Id = 0;
 

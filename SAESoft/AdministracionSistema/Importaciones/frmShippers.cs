@@ -1,8 +1,6 @@
 ﻿using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Cache.UserData;
-using SAESoft.Models.AdministracionSistema;
 using SAESoft.Models.Importaciones;
-using SAESoft.AdministracionSistema.Seguridad;
 using SAESoft.Models;
 using Microsoft.EntityFrameworkCore;
 using SAESoft.Comunes;
@@ -13,7 +11,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
     public partial class frmShippers : Form
     {
         private Boolean esNuevo = true;
-        private List<Shipper>? rs = new();
+        private List<Shipper>? rs = [];
         private int CurrentIndex = 0;
         public frmShippers()
         {
@@ -32,13 +30,13 @@ namespace SAESoft.AdministracionSistema.Importaciones
 
         private void frmShippers_Load(object sender, EventArgs e)
         {
-            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "SHIPPERS");
+            CambiarEstadoBotones(["tsbNuevo"], true, toolStrip1, "SHIPPERS");
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             limpiarFormulario(this);
@@ -48,7 +46,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
         private void tsbModificar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             txtNombre.Focus();
@@ -70,7 +68,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
                     queryable = queryable.Where(b => b.Maritimo == true);
                 if (buscar.terrestre)
                     queryable = queryable.Where(b => b.Terrestre == true);
-                rs = queryable.ToList();
+                rs = [.. queryable];
                 buscar.Dispose();
                 if (rs.Count > 0)
                 {
@@ -84,14 +82,14 @@ namespace SAESoft.AdministracionSistema.Importaciones
                     {
                         BotonesIniciales(toolStrip1);
                     }
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "SHIPPERS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "SHIPPERS");
                 }
                 else
                 {
                     MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     limpiarFormulario(this);
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "SHIPPERS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "SHIPPERS");
                 }
             }
         }
@@ -135,11 +133,11 @@ namespace SAESoft.AdministracionSistema.Importaciones
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                rs = db.Shippers.Where(p => p.IdShipper == formListar.Id).ToList();
+                rs = [.. db.Shippers.Where(p => p.IdShipper == formListar.Id)];
                 CurrentIndex = 0;
                 despliegaDatos();
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "SHIPPERS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "SHIPPERS");
             }
             formListar.Dispose();
         }
@@ -174,7 +172,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
                     {
                         limpiarFormulario(this);
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "SHIPPERS");
+                        CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "SHIPPERS");
                     }
                 }
                 catch (Exception ex)
@@ -195,18 +193,18 @@ namespace SAESoft.AdministracionSistema.Importaciones
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "SHIPPERS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "SHIPPERS");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "SHIPPERS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "SHIPPERS");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "SHIPPERS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "SHIPPERS");
                 limpiarFormulario(this);
             }
             habilitarFormulario(this, false);
@@ -280,7 +278,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "SHIPPERS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "SHIPPERS");
                 habilitarFormulario(this, false);
             }
         }

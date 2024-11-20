@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -26,17 +26,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
-    <PackageReference Include="itext7" Version="8.0.2" />
-    <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.2" />
-    <PackageReference Include="itext7.pdfhtml" Version="5.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">
+    <PackageReference Include="BouncyCastle.Cryptography" Version="2.3.1" />
+    <PackageReference Include="FontAwesome.Sharp" Version="6.6.0" />
+    <PackageReference Include="itext7" Version="8.0.5" />
+    <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.5" />
+    <PackageReference Include="itext7.pdfhtml" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="SpreadsheetLight" Version="3.5.0" />
-    <PackageReference Include="WinForms.DataVisualization" Version="1.9.1" />
+    <PackageReference Include="WinForms.DataVisualization" Version="1.9.2" />
   </ItemGroup>
 
   <ItemGroup>

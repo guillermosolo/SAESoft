@@ -13,7 +13,7 @@ namespace SAESoft.Exportaciones
     public partial class frmLicencias : Form
     {
         Boolean nuevo = true;
-        readonly Dictionary<string, int> items = new();
+        readonly Dictionary<string, int> items = [];
         public frmLicencias()
         {
             InitializeComponent();
@@ -282,8 +282,10 @@ namespace SAESoft.Exportaciones
                         imageList1.Images.Add(fileExtension, fileIcon);
 
                         // Agregar el archivo al ListView
-                        ListViewItem item = new ListViewItem(fileName, fileExtension);
-                        item.Tag = fileName;
+                        ListViewItem item = new(fileName, fileExtension)
+                        {
+                            Tag = fileName
+                        };
                         listView1.Items.Add(item);
                     }
 

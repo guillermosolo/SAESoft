@@ -1,15 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SAESoft.Models;
-using SAESoft.Models.Incentivos;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using SAESoft.Models;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SAESoft.Incentivo
 {

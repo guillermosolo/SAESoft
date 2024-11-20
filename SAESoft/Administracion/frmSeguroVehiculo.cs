@@ -1,6 +1,4 @@
-﻿
-using SAESoft.Models.Administracion;
-using SAESoft.Utilitarios;
+﻿using SAESoft.Utilitarios;
 using System.Text.RegularExpressions;
 using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Utilitarios.Validaciones;

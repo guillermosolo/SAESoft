@@ -17,7 +17,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
         }
 
         private Boolean esNuevo = true;
-        private List<Rol>? rs = new();
+        private List<Rol>? rs = [];
         private int CurrentIndex = 0;
         readonly DataTable dt = new();
 
@@ -44,7 +44,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 var permisos = db.Permisos.Include(p => p.Modulo).OrderBy(p => p.IdModulo).ThenBy(p => p.IdPermiso).ToList();
                 foreach (var p in permisos)
                 {
-                    nombre = p.Nombre[(p.Nombre.IndexOf(".") + 1)..];
+                    nombre = p.Nombre[(p.Nombre.IndexOf('.') + 1)..];
                     modulo = p.Modulo.Nombre;
                     if (modulo != moduloAnt)
                     {
@@ -176,7 +176,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 var queryable = db.Roles.Include(p => p.Permisos).Where(b => 1 == 1);
                 if (buscar.nombre != null)
                     queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
-                rs = queryable.ToList();
+                rs = [.. queryable];
                 buscar.Dispose();
                 if (rs.Count > 0)
                 {
@@ -190,7 +190,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
                     {
                         BotonesIniciales(toolStrip1);
                     }
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ROLES");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "ROLES");
                 }
                 else
                 {
@@ -198,14 +198,14 @@ namespace SAESoft.AdministracionSistema.Seguridad
                     limpiarFormulario(this);
                     llenarGridVacio();
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "ROLES");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "ROLES");
                 }
             }
         }
 
         private void frmRoles_Load(object sender, EventArgs e)
         {
-            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "ROLES");
+            CambiarEstadoBotones(["tsbNuevo"], true, toolStrip1, "ROLES");
             estructuraGrid();
             llenarGridVacio();
         }
@@ -279,7 +279,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
                             limpiarFormulario(this);
                             llenarGridVacio();
                             BotonesIniciales(toolStrip1);
-                            CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "ROLES");
+                            CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "ROLES");
                         }
                     }
                     catch (Exception ex)
@@ -307,18 +307,18 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ROLES");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "ROLES");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ROLES");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "ROLES");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "ROLES");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "ROLES");
                 limpiarFormulario(this);
                 llenarGridVacio();
             }
@@ -328,7 +328,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
         private void tsbModificar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             dataGridView1.ReadOnly = false;
@@ -338,7 +338,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             dataGridView1.ReadOnly = false;
@@ -373,11 +373,11 @@ namespace SAESoft.AdministracionSistema.Seguridad
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                rs = db.Roles.Include(r => r.Permisos).Where(p => p.IdRol == formListar.Id).ToList();
+                rs = [.. db.Roles.Include(r => r.Permisos).Where(p => p.IdRol == formListar.Id)];
                 CurrentIndex = 0;
                 despliegaDatos();
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ROLES");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "ROLES");
             }
             formListar.Dispose();
         }
@@ -460,7 +460,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "ROLES");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "ROLES");
                 habilitarFormulario(this, false);
             }
         }

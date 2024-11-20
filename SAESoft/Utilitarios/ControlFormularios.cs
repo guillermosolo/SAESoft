@@ -3,7 +3,6 @@ using SAESoft.Models;
 using static SAESoft.Cache.UserData;
 using SAESoft.Models.Comunes;
 using System.Globalization;
-using DocumentFormat.OpenXml.Office.CoverPageProps;
 
 namespace SAESoft.Utilitarios
 {
@@ -11,11 +10,11 @@ namespace SAESoft.Utilitarios
     {
         public static DialogResult InputBox(string title, string promptText, ref string value)
         {
-            Form form = new Form();
-            Label label = new Label();
-            TextBox textBox = new TextBox();
-            Button buttonOk = new Button();
-            Button buttonCancel = new Button();
+            Form form = new();
+            Label label = new();
+            TextBox textBox = new();
+            Button buttonOk = new();
+            Button buttonCancel = new();
             bool isValidInput = false;
 
             form.Text = title;
@@ -33,12 +32,12 @@ namespace SAESoft.Utilitarios
             buttonCancel.SetBounds(309, 72, 75, 23);
 
             label.AutoSize = true;
-            textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
+            textBox.Anchor |= AnchorStyles.Right;
             buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
 
             form.ClientSize = new Size(396, 107);
-            form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
+            form.Controls.AddRange([label, textBox, buttonOk, buttonCancel]);
             form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
             form.FormBorderStyle = FormBorderStyle.FixedDialog;
             form.StartPosition = FormStartPosition.CenterScreen;
@@ -146,13 +145,13 @@ namespace SAESoft.Utilitarios
 
         public static void BotonesIniciales(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbRelatives", "tsddbDocumentos","tsbFicha", "tsbSalir" };
+            String[] botones = ["tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbRelatives", "tsddbDocumentos","tsbFicha", "tsbSalir"];
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
         public static void BotonesInicialesNavegacion(ToolStrip toolbar)
         {
-            String[] botones = { "tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbRelatives", "tsddbDocumentos","tsbFicha", "tsbSalir" };
+            String[] botones = ["tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbRelatives", "tsddbDocumentos","tsbFicha", "tsbSalir"];
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 

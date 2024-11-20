@@ -10,8 +10,6 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System.Diagnostics;
 using static SAESoft.Cache.Constantes;
 using SAESoft.Comunes;
-using System.IO;
-using System.Windows.Forms;
 
 namespace SAESoft.Administracion
 {
@@ -19,7 +17,7 @@ namespace SAESoft.Administracion
     {
         private Boolean esNuevo = false;
         public int individual = 0;
-        private List<Empleado>? rs = new();
+        private List<Empleado>? rs = [];
         private int CurrentIndex = 0;
         readonly DataTable dtDoc = new();
         readonly DataTable dtMig = new();
@@ -28,7 +26,7 @@ namespace SAESoft.Administracion
         private bool isLoadingcboEmpresa = false;
         private Boolean? cuotaAnual;
         string path = PATH_Fotos;
-        readonly List<string> listFiles = new();
+        readonly List<string> listFiles = [];
 
         public frmPersonal()
         {
@@ -133,7 +131,7 @@ namespace SAESoft.Administracion
 
         private void frmPersonal_Load(object sender, EventArgs e)
         {
-            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "PERSONAL");
+            CambiarEstadoBotones(["tsbNuevo"], true, toolStrip1, "PERSONAL");
             llenarCombos();
             llenarMenu();
             estructuraGrid();
@@ -147,7 +145,7 @@ namespace SAESoft.Administracion
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             ocultarCamposVariables();
@@ -165,18 +163,18 @@ namespace SAESoft.Administracion
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbUpload", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, true, toolStrip1, "PERSONAL");
+                    CambiarEstadoBotones(["tsbUpload", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos", "tsbFicha"], true, toolStrip1, "PERSONAL");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbUpload", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, true, toolStrip1, "PERSONAL");
+                    CambiarEstadoBotones(["tsbUpload", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos", "tsbFicha"], true, toolStrip1, "PERSONAL");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbUpload", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, false, toolStrip1, "PERSONAL");
+                CambiarEstadoBotones(["tsbUpload", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos", "tsbFicha"], false, toolStrip1, "PERSONAL");
                 ocultarCamposVariables();
                 limpiarDt();
                 limpiarFormulario(this);
@@ -240,7 +238,7 @@ namespace SAESoft.Administracion
         private void cargarFoto(int id)
         {
             path = PATH_Fotos;
-            string[] extensiones = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
+            string[] extensiones = [".jpg", ".jpeg", ".png", ".gif"];
             string encontrado = null;
 
             try
@@ -613,9 +611,9 @@ namespace SAESoft.Administracion
                         db.SaveChanges();
                         rs.Add(empleado);
                         CurrentIndex = rs.Count - 1;
-                        List<Familiar> fam = new();
-                        List<Documento> doc = new();
-                        List<Nombramiento> nom = new();
+                        List<Familiar> fam = [];
+                        List<Documento> doc = [];
+                        List<Nombramiento> nom = [];
                         rs[CurrentIndex].Familiares = fam;
                         rs[CurrentIndex].Documentos = doc;
                         rs[CurrentIndex].Nombramientos = nom;
@@ -682,7 +680,7 @@ namespace SAESoft.Administracion
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbUpload", "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, true, toolStrip1, "PERSONAL");
+                CambiarEstadoBotones(["tsbUpload", "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos", "tsbFicha"], true, toolStrip1, "PERSONAL");
                 habilitarFormulario(this, false);
             }
         }
@@ -729,7 +727,7 @@ namespace SAESoft.Administracion
                     queryable = queryable.Where(b => b.Alias.Contains(buscar.nombreESP));
                 if (buscar.nombreCOR != null)
                     queryable = queryable.Where(b => b.NombreCoreano.Contains(buscar.nombreCOR));
-                rs = queryable.ToList();
+                rs = [.. queryable];
                 buscar.Dispose();
                 if (rs.Count > 0)
                 {
@@ -743,7 +741,7 @@ namespace SAESoft.Administracion
                     {
                         BotonesIniciales(toolStrip1);
                     }
-                    CambiarEstadoBotones(new[] { "tsbUpload", "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, true, toolStrip1, "PERSONAL");
+                    CambiarEstadoBotones(["tsbUpload", "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos", "tsbFicha"], true, toolStrip1, "PERSONAL");
                 }
                 else
                 {
@@ -752,7 +750,7 @@ namespace SAESoft.Administracion
                     limpiarDt();
                     limpiarFormulario(this);
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbUpload", "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, false, toolStrip1, "PERSONAL");
+                    CambiarEstadoBotones(["tsbUpload", "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos", "tsbFicha"], false, toolStrip1, "PERSONAL");
                 }
             }
         }
@@ -776,7 +774,7 @@ namespace SAESoft.Administracion
         private void tsbModificar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             txtCodigo.Focus();
@@ -845,7 +843,7 @@ namespace SAESoft.Administracion
                         limpiarFormulario(this);
                         limpiarDt();
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbUpload", "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, false, toolStrip1, "PERSONAL");
+                        CambiarEstadoBotones(["tsbUpload", "tsbModificar", "tsbEliminar", "tsbRelatives", "tsddbDocumentos", "tsbFicha"], false, toolStrip1, "PERSONAL");
                     }
                 }
                 catch (Exception ex)
@@ -902,7 +900,8 @@ namespace SAESoft.Administracion
                     }
                 default:
                     {
-                        llenarDocumentos((int)e.ClickedItem.Tag);
+                        int tag = (int)(e.ClickedItem.Tag ??0);
+                        llenarDocumentos(tag);
                         break;
                     }
             }
@@ -1480,7 +1479,7 @@ namespace SAESoft.Administracion
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                rs = db.Empleados.Include(d => d.Departamento)
+                rs = [.. db.Empleados.Include(d => d.Departamento)
                                             .ThenInclude(e => e.Empresa)
                                             .Include(co => co.Contrato)
                                             .ThenInclude(pl => pl.Empresa)
@@ -1508,11 +1507,11 @@ namespace SAESoft.Administracion
                                             .Include(p => p.PermisoTrabajo)
                                             .ThenInclude(t => t.Tipo)
                                             .Include(sm => sm.SeguroMedico)
-                                            .Where(b => b.IdEmpleado == formListar.Id).ToList();
+                                            .Where(b => b.IdEmpleado == formListar.Id)];
                 CurrentIndex = 0;
                 despliegaDatos();
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbUpload", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos", "tsbFicha" }, true, toolStrip1, "PERSONAL");
+                CambiarEstadoBotones(["tsbUpload", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos", "tsbFicha"], true, toolStrip1, "PERSONAL");
             }
             formListar.Dispose();
         }

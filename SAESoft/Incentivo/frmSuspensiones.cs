@@ -12,7 +12,7 @@ namespace SAESoft.Incentivo
     {
         Boolean carga = false;
         Boolean esNuevo = true;
-        private List<Suspension>? rs = new();
+        private List<Suspension>? rs = [];
         private int CurrentIndex = 0;
         public frmSuspensiones()
         {
@@ -46,7 +46,7 @@ namespace SAESoft.Incentivo
 
         private void frmSuspensiones_Load(object sender, EventArgs e)
         {
-            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "SUSPENSION");
+            CambiarEstadoBotones(["tsbNuevo"], true, toolStrip1, "SUSPENSION");
             llenarDeptos();
         }
 
@@ -58,7 +58,7 @@ namespace SAESoft.Incentivo
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             limpiarFormulario(this);
@@ -144,7 +144,7 @@ namespace SAESoft.Incentivo
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "SUSPENSION");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "SUSPENSION");
                 habilitarFormulario(this, false);
             }
         }
@@ -201,7 +201,7 @@ namespace SAESoft.Incentivo
             //if (buscar.codigo != null)
             //    queryable = queryable.Where(b => b.Codigo == buscar.codigo);
             //buscar.Dispose();
-            rs = queryable.ToList();
+            rs = [.. queryable];
             if (rs.Count > 0)
             {
                 CurrentIndex = 0;
@@ -214,21 +214,21 @@ namespace SAESoft.Incentivo
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "SUSPENSION");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "SUSPENSION");
             }
             else
             {
                 MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 limpiarFormulario(this);
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "SUSPENSION");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "SUSPENSION");
             }
         }
 
         private void tsbModificar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             dtpInicio.Enabled = true;
             dtpFin.Enabled = true;
@@ -245,18 +245,18 @@ namespace SAESoft.Incentivo
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "SUSPENSION");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "SUSPENSION");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "SUSPENSION");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "SUSPENSION");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "SUSPENSION");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "SUSPENSION");
                 limpiarFormulario(this);
             }
             habilitarFormulario(this, false);

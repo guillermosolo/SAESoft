@@ -535,7 +535,7 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "Aduanas",
-                columns: new[] { "IdAduana", "Abreviatura", "FechaCreacion", "FechaUltimaMod", "IdUsuarioCreacion", "IdUsuarioMod", "Nombre", "Via" },
+                columns: ["IdAduana", "Abreviatura", "FechaCreacion", "FechaUltimaMod", "IdUsuarioCreacion", "IdUsuarioMod", "Nombre", "Via"],
                 values: new object[,]
                 {
                     { 1, "ST", new DateTime(2023, 3, 10, 9, 34, 54, 429, DateTimeKind.Local).AddTicks(3269), null, 1, null, "ADUANA SANTO TOMAS DE CASTILLA", "M" },
@@ -579,7 +579,7 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "Agentes",
-                columns: new[] { "IdAgente", "Activo", "Apellidos", "FechaCreacion", "FechaUltimaMod", "IdUsuarioCreacion", "IdUsuarioMod", "Nombres" },
+                columns: ["IdAgente", "Activo", "Apellidos", "FechaCreacion", "FechaUltimaMod", "IdUsuarioCreacion", "IdUsuarioMod", "Nombres"],
                 values: new object[,]
                 {
                     { 172, true, "FERNANDEZ RENTERIA", new DateTime(2023, 3, 10, 9, 34, 54, 429, DateTimeKind.Local).AddTicks(3502), null, 1, null, "CESAR" },
@@ -600,7 +600,7 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "ImportStatus",
-                columns: new[] { "IdImportStatus", "Descripcion", "FechaCreacion", "FechaUltimaMod", "IdUsuarioCreacion", "IdUsuarioMod", "Via", "orden", "ultimo" },
+                columns: ["IdImportStatus", "Descripcion", "FechaCreacion", "FechaUltimaMod", "IdUsuarioCreacion", "IdUsuarioMod", "Via", "orden", "ultimo"],
                 values: new object[,]
                 {
                     { 1, "Ingreso Inicial", new DateTime(2023, 3, 10, 9, 34, 54, 429, DateTimeKind.Local).AddTicks(3421), null, 1, null, "M", 1L, false },
@@ -634,7 +634,7 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "Modulos",
-                columns: new[] { "IdModulo", "FechaCreacion", "FechaUltimaMod", "Habilitado", "IdUsuarioCreacion", "IdUsuarioMod", "Nombre" },
+                columns: ["IdModulo", "FechaCreacion", "FechaUltimaMod", "Habilitado", "IdUsuarioCreacion", "IdUsuarioMod", "Nombre"],
                 values: new object[,]
                 {
                     { 1, new DateTime(2023, 3, 10, 9, 34, 54, 428, DateTimeKind.Local).AddTicks(5924), null, true, 1, null, "MENÚ PRINCIPAL" },
@@ -644,7 +644,7 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "Revisiones",
-                columns: new[] { "IdRevision", "Descripcion", "FechaCreacion", "FechaUltimaMod", "IdUsuarioCreacion", "IdUsuarioMod" },
+                columns: ["IdRevision", "Descripcion", "FechaCreacion", "FechaUltimaMod", "IdUsuarioCreacion", "IdUsuarioMod"],
                 values: new object[,]
                 {
                     { 1, "SGAIA", new DateTime(2023, 3, 10, 9, 34, 54, 429, DateTimeKind.Local).AddTicks(2930), null, 1, null },
@@ -656,7 +656,7 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "Roles",
-                columns: new[] { "IdRol", "FechaCreacion", "FechaUltimaMod", "Habilitado", "IdUsuarioCreacion", "IdUsuarioMod", "Nombre" },
+                columns: ["IdRol", "FechaCreacion", "FechaUltimaMod", "Habilitado", "IdUsuarioCreacion", "IdUsuarioMod", "Nombre"],
                 values: new object[,]
                 {
                     { 1, new DateTime(2023, 3, 10, 9, 34, 54, 428, DateTimeKind.Local).AddTicks(5005), null, true, 1, null, "Super Admin" },
@@ -667,7 +667,7 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "Shippers",
-                columns: new[] { "IdShipper", "Aereo", "FechaCreacion", "FechaUltimaMod", "IdUsuarioCreacion", "IdUsuarioMod", "Maritimo", "Nombre", "Terrestre" },
+                columns: ["IdShipper", "Aereo", "FechaCreacion", "FechaUltimaMod", "IdUsuarioCreacion", "IdUsuarioMod", "Maritimo", "Nombre", "Terrestre"],
                 values: new object[,]
                 {
                     { 1, true, new DateTime(2023, 3, 10, 9, 34, 54, 429, DateTimeKind.Local).AddTicks(2971), null, 1, null, true, "ANTEX KNITTING MILLS", true },
@@ -792,7 +792,7 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "Terminales",
-                columns: new[] { "IdTerminal", "FechaCreacion", "FechaUltimaMod", "IdUsuarioCreacion", "IdUsuarioMod", "Nombre", "Via" },
+                columns: ["IdTerminal", "FechaCreacion", "FechaUltimaMod", "IdUsuarioCreacion", "IdUsuarioMod", "Nombre", "Via"],
                 values: new object[,]
                 {
                     { 1, new DateTime(2023, 3, 10, 9, 34, 54, 429, DateTimeKind.Local).AddTicks(3383), null, 1, null, "TCQ", "M" },
@@ -806,7 +806,7 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "Grupos",
-                columns: new[] { "IdGrupo", "FechaCreacion", "FechaUltimaMod", "IdModulo", "IdUsuarioCreacion", "IdUsuarioMod", "Nombre" },
+                columns: ["IdGrupo", "FechaCreacion", "FechaUltimaMod", "IdModulo", "IdUsuarioCreacion", "IdUsuarioMod", "Nombre"],
                 values: new object[,]
                 {
                     { 1, new DateTime(2023, 3, 10, 9, 34, 54, 429, DateTimeKind.Local).AddTicks(2728), null, 3, 1, null, "EMPRESA" },
@@ -818,7 +818,7 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "Permisos",
-                columns: new[] { "IdPermiso", "FechaCreacion", "FechaUltimaMod", "IdModulo", "IdUsuarioCreacion", "IdUsuarioMod", "Nombre" },
+                columns: ["IdPermiso", "FechaCreacion", "FechaUltimaMod", "IdModulo", "IdUsuarioCreacion", "IdUsuarioMod", "Nombre"],
                 values: new object[,]
                 {
                     { 1, new DateTime(2023, 3, 10, 9, 34, 54, 428, DateTimeKind.Local).AddTicks(5960), null, 1, 1, null, "VER.ADMINISTRACION SISTEMA" },
@@ -852,7 +852,7 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "IdUsuario", "Activo", "Apellidos", "Email", "FechaCreacion", "FechaUltimaMod", "IdRol", "IdUsuarioCreacion", "IdUsuarioMod", "Nombres", "Password", "UserName" },
+                columns: ["IdUsuario", "Activo", "Apellidos", "Email", "FechaCreacion", "FechaUltimaMod", "IdRol", "IdUsuarioCreacion", "IdUsuarioMod", "Nombres", "Password", "UserName"],
                 values: new object[,]
                 {
                     { 1, true, "Admin", "sa@sae-a.com", new DateTime(2023, 3, 10, 9, 34, 54, 428, DateTimeKind.Local).AddTicks(5532), null, 1, 1, null, "Super", "Gx/QbJFMiYuRQmL0Xgj17890oqwfkS2JbGdNiK2/GvTMKMMpPiIC47rNVQxZrWrtrhzaN+6bhD8RDKR6fFoNC0bkHuPN1oqK7CK956x1VQ==", "sa" },
@@ -864,7 +864,7 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "Nombres",
-                columns: new[] { "IdNombre", "Descripcion", "FechaCreacion", "FechaUltimaMod", "IdGrupo", "IdUsuarioCreacion", "IdUsuarioMod" },
+                columns: ["IdNombre", "Descripcion", "FechaCreacion", "FechaUltimaMod", "IdGrupo", "IdUsuarioCreacion", "IdUsuarioMod"],
                 values: new object[,]
                 {
                     { 1, "SEABOARD", new DateTime(2023, 3, 10, 9, 34, 54, 429, DateTimeKind.Local).AddTicks(2787), null, 1, 1, null },
@@ -930,7 +930,7 @@ namespace SAESoft.Migrations
 
             migrationBuilder.InsertData(
                 table: "PermisoRol",
-                columns: new[] { "PermisosIdPermiso", "RolesIdRol" },
+                columns: ["PermisosIdPermiso", "RolesIdRol"],
                 values: new object[,]
                 {
                     { 1, 1 },
@@ -1099,7 +1099,7 @@ namespace SAESoft.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Nombres_Descripcion_IdGrupo",
                 table: "Nombres",
-                columns: new[] { "Descripcion", "IdGrupo" },
+                columns: ["Descripcion", "IdGrupo"],
                 unique: true);
 
             migrationBuilder.CreateIndex(

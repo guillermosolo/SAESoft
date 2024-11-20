@@ -74,7 +74,7 @@ namespace SAESoft.Administracion
         private void llenarSet()
         {
             dt.Rows.Clear();
-            List<int> normales = new() { 1, 2, 3, 5, 8, 11 };
+            List<int> normales = [1, 2, 3, 5, 8, 11];
             using SAESoftContext db = new();
             var queryable = db.TiposDocumento.Include(d => d.Documentos)
                                              .ThenInclude(e => e.Empleado)

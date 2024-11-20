@@ -1,7 +1,5 @@
 ﻿using SAESoft.Models;
-using SAESoft.Models.Administracion;
 using System.Data;
-using System.Windows.Forms;
 using static SAESoft.Utilitarios.ControlFormularios;
 
 namespace SAESoft.Administracion

@@ -1,8 +1,4 @@
-﻿
-
-using SAESoft.Models.Administracion;
-using SAESoft.Models;
-using System.Windows.Forms;
+﻿using SAESoft.Models;
 
 namespace SAESoft.Administracion
 {

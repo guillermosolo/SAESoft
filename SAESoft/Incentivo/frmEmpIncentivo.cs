@@ -3,23 +3,18 @@ using SAESoft.Models.Incentivos;
 using System.Data;
 using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Cache.UserData;
-using SAESoft.AdministracionSistema.Comunes;
 using Microsoft.EntityFrameworkCore;
 using SAESoft.Comunes;
-using SAESoft.Models.Comunes;
 using SAESoft.Utilitarios;
 using static SAESoft.Utilitarios.Validaciones;
-using System.Globalization;
 using Microsoft.EntityFrameworkCore.Storage;
-using SAESoft.Models.Administracion;
-using System.Net;
 
 namespace SAESoft.Incentivo
 {
     public partial class frmEmpIncentivo : Form
     {
         private Boolean esNuevo = true;
-        private List<EmpIncentivos>? rs = new();
+        private List<EmpIncentivos>? rs = [];
         private int CurrentIndex = 0;
         readonly DataTable dt = new();
         public frmEmpIncentivo()
@@ -43,7 +38,7 @@ namespace SAESoft.Incentivo
 
         private void frmEmpIncentivo_Load(object sender, EventArgs e)
         {
-            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "EMPLEADOSINCENTIVO");
+            CambiarEstadoBotones(["tsbNuevo"], true, toolStrip1, "EMPLEADOSINCENTIVO");
             llenarCombos();
             EstructuraGrid();
         }
@@ -77,7 +72,7 @@ namespace SAESoft.Incentivo
                 //if (buscar.grupo != -1)
                 //    queryable = queryable.Where(b => b.IdGrupo == buscar.grupo);
                 buscar.Dispose();
-                rs = queryable.ToList();
+                rs = [.. queryable];
                 if (rs.Count > 0)
                 {
                     CurrentIndex = 0;
@@ -90,14 +85,14 @@ namespace SAESoft.Incentivo
                     {
                         BotonesIniciales(toolStrip1);
                     }
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "EMPLEADOSINCENTIVO");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "EMPLEADOSINCENTIVO");
                 }
                 else
                 {
                     MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     limpiarFormulario(this);
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "EMPLEADOSINCENTIVO");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "EMPLEADOSINCENTIVO");
                 }
             }
         }
@@ -170,11 +165,11 @@ namespace SAESoft.Incentivo
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                rs = db.EmpIncentivos.Where(p => p.IdEmpIncentivo == formListar.Id).ToList();
+                rs = [.. db.EmpIncentivos.Where(p => p.IdEmpIncentivo == formListar.Id)];
                 CurrentIndex = 0;
                 despliegaDatos();
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "EMPLEADOSINCENTIVO");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "EMPLEADOSINCENTIVO");
             }
             formListar.Dispose();
         }
@@ -211,7 +206,7 @@ namespace SAESoft.Incentivo
                         limpiarFormulario(this);
                         dt.Clear();
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "EMPLEADOSINCENTIVO");
+                        CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "EMPLEADOSINCENTIVO");
                     }
                 }
                 catch (Exception ex)
@@ -232,18 +227,18 @@ namespace SAESoft.Incentivo
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "EMPLEADOSINCENTIVO");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "EMPLEADOSINCENTIVO");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "EMPLEADOSINCENTIVO");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "EMPLEADOSINCENTIVO");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "EMPLEADOSINCENTIVO");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "EMPLEADOSINCENTIVO");
                 limpiarFormulario(this);
             }
             habilitarFormulario(this, false);
@@ -252,7 +247,7 @@ namespace SAESoft.Incentivo
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             dt.Clear();
@@ -263,7 +258,7 @@ namespace SAESoft.Incentivo
         private void tsbModificar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             txtCodigo.Focus();
@@ -427,7 +422,7 @@ namespace SAESoft.Incentivo
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "EMPLEADOSINCENTIVO");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "EMPLEADOSINCENTIVO");
                 habilitarFormulario(this, false);
             }
         }

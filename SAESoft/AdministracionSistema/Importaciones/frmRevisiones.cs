@@ -1,5 +1,4 @@
 ﻿using SAESoft.Models;
-using SAESoft.Models.AdministracionSistema;
 using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Cache.UserData;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +11,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
     public partial class frmRevisiones : Form
     {
         private Boolean esNuevo = true;
-        private List<Revision>? rs = new();
+        private List<Revision>? rs = [];
         private int CurrentIndex = 0;
         public frmRevisiones()
         {
@@ -22,7 +21,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
             using SAESoftContext db = new();
-            rs = db.Revisiones.Where(b => 1 == 1).ToList();
+            rs = [.. db.Revisiones.Where(b => 1 == 1)];
             if (rs.Count > 0)
             {
                 CurrentIndex = 0;
@@ -35,14 +34,14 @@ namespace SAESoft.AdministracionSistema.Importaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "REVISIONES");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "REVISIONES");
             }
             else
             {
                 MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 limpiarFormulario(this);
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "REVISIONES");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "REVISIONES");
             }
 
         }
@@ -82,11 +81,11 @@ namespace SAESoft.AdministracionSistema.Importaciones
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                rs = db.Revisiones.Where(p => p.IdRevision == formListar.Id).ToList();
+                rs = [.. db.Revisiones.Where(p => p.IdRevision == formListar.Id)];
                 CurrentIndex = 0;
                 despliegaDatos();
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "REVISIONES");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "REVISIONES");
             }
             formListar.Dispose();
         }
@@ -98,13 +97,13 @@ namespace SAESoft.AdministracionSistema.Importaciones
 
         private void frmRevisiones_Load(object sender, EventArgs e)
         {
-            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "REVISIONES");
+            CambiarEstadoBotones(["tsbNuevo"], true, toolStrip1, "REVISIONES");
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             limpiarFormulario(this);
@@ -114,7 +113,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
         private void tsbModificar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             txtRevision.Focus();
@@ -129,18 +128,18 @@ namespace SAESoft.AdministracionSistema.Importaciones
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "REVISIONES");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "REVISIONES");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "REVISIONES");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "REVISIONES");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "REVISIONES");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "REVISIONES");
                 limpiarFormulario(this);
             }
             habilitarFormulario(this, false);
@@ -176,7 +175,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
                     {
                         limpiarFormulario(this);
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "REVISIONES");
+                        CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "REVISIONES");
                     }
                 }
                 catch (Exception ex)
@@ -251,7 +250,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "REVISIONES");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "REVISIONES");
                 habilitarFormulario(this, false);
             }
         }

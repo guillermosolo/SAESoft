@@ -61,7 +61,7 @@ namespace SAESoft.Exportaciones
                                         .Include(e => e.Empresa)
                                         .Where(b => b.Fecha >= dtpInicio.Value.Date && b.Fecha <= dtpFin.Value.Date);
                     queryable = queryable.OrderByDescending(r => r.FechaCreacion);
-                    List<FacturaLocal> rs = queryable.ToList();
+                    List<FacturaLocal> rs = [.. queryable];
 
                     foreach (var fact in rs)
                     {

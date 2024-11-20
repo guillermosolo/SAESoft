@@ -31,7 +31,7 @@ namespace SAESoft.Exportaciones
         {
             using SAESoftContext db = new();
             var tipos = db.Nombres.Where(n => n.IdGrupo == 19).ToList();
-            List<Nombre> tiposFiltrados = new();
+            List<Nombre> tiposFiltrados = [];
             if (ducaAnterior == 0)
             {
                 tiposFiltrados = tipos.Where(n => n.Descripcion.Contains("10") || n.Descripcion.Contains("11")).ToList();

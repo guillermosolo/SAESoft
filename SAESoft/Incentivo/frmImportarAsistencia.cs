@@ -1,20 +1,7 @@
-﻿using System;
-using System.IO;
-using SpreadsheetLight;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using SpreadsheetLight;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.Win32;
 using SAESoft.Models;
-using SAESoft.Models.Administracion;
 using SAESoft.Models.Incentivos;
-using SAESoft.Models.AdministracionSistema;
-using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore.Storage;
 using SAESoft.Utilitarios;
 using static SAESoft.Cache.UserData;
@@ -42,6 +29,8 @@ namespace SAESoft.Incentivo
             dgvAsistencia.DataSource = dt;
             dgvAsistencia.Columns["IdEmpIncentivo"].Visible = false;
             dgvAsistencia.Columns["Nombre Completo"].Width = 200;
+            dgvAsistencia.Columns["Porcentaje"].DefaultCellStyle.Format = "P2";
+            dgvAsistencia.Columns["Porcentaje"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private static bool VerifyExcel(string filePath)
@@ -83,7 +72,7 @@ namespace SAESoft.Incentivo
                         // Obtiene las filas y columnas del archivo de Excel
                         int rowCount = sl.GetWorksheetStatistics().EndRowIndex;
                         int colCount = sl.GetWorksheetStatistics().EndColumnIndex;
-                        List<EmpIncentivos> empleadosExcel = new();
+                        List<EmpIncentivos> empleadosExcel = [];
                         // Itera sobre las filas y columnas para leer los datos
                         using SAESoftContext db = new();
                         int tarde = db.EvaluacionAsistencia.Where(b => b.FechaFin == null).Where(b => b.Descripcion.Equals("TARDE")).Select(b => b.GradoPonderado).FirstOrDefault();
@@ -93,13 +82,13 @@ namespace SAESoft.Incentivo
                         {
 
                             string codigo = sl.GetCellValueAsString(row, 1);
-                            EmpIncentivos empleado = db.EmpIncentivos.Where(b=>b.FechaBaja > dtpInicio.Value || b.FechaBaja == null).FirstOrDefault(b => b.Codigo == codigo);
+                            EmpIncentivos empleado = db.EmpIncentivos.Where(b=>b.FechaBaja > dtpInicio.Value || b.FechaBaja == null).Where(a=>a.FechaIngreso <= dtpFin.Value).FirstOrDefault(b => b.Codigo == codigo);
                             if (empleado != null)
                             {
                                 empleadosExcel.Add(empleado);
-                                int t = Convert.ToInt32(sl.GetCellValueAsString(row, 2));
-                                int p = Convert.ToInt32(sl.GetCellValueAsString(row, 3));
-                                int a = Convert.ToInt32(sl.GetCellValueAsString(row, 4));
+                                int t = string.IsNullOrEmpty(sl.GetCellValueAsString(row, 2)) ? 0 : Convert.ToInt32(sl.GetCellValueAsString(row, 2));
+                                int p = string.IsNullOrEmpty(sl.GetCellValueAsString(row, 3)) ? 0 : Convert.ToInt32(sl.GetCellValueAsString(row, 3));
+                                int a = string.IsNullOrEmpty(sl.GetCellValueAsString(row, 4)) ? 0 : Convert.ToInt32(sl.GetCellValueAsString(row, 4));
                                 int ponderado = t + p + (a * 2);
                                 DataRow dtrow = dt.NewRow();
                                 dtrow["IdEmpIncentivo"] = empleado.IdEmpIncentivo;
@@ -112,7 +101,7 @@ namespace SAESoft.Incentivo
                                 int puntaje = db.PuntajeAsistencia.Where(b => b.FechaFin == null).Where(b => ponderado >= b.Minimo && ponderado <= b.Maximo).Select(b => b.Porcentaje).FirstOrDefault();
                            
                                 
-                                dtrow["Porcentaje"] = puntaje.ToString("N2");
+                                dtrow["Porcentaje"] = (decimal)puntaje/100;
                                 dt.Rows.Add(dtrow);
                             }
                             else
@@ -125,7 +114,7 @@ namespace SAESoft.Incentivo
                         }
                         if (!errorImport)
                         {
-                            var empleados = db.EmpIncentivos.Where(b => b.FechaBaja == null).ToList();
+                            var empleados = db.EmpIncentivos.Where(b => b.FechaBaja > dtpInicio.Value || b.FechaBaja == null).Where(a => a.FechaIngreso <= dtpFin.Value).ToList();
                             var sinAsistencia = empleados.Except(empleadosExcel).ToList();
                             if (sinAsistencia.Count != 0)
                             {
@@ -210,7 +199,7 @@ namespace SAESoft.Incentivo
                                 Tardanza = Convert.ToInt32(row["Tardanza"]),
                                 Permiso = Convert.ToInt32(row["Permiso"]),
                                 Ausente = Convert.ToInt32(row["Ausencia"]),
-                                Porcentaje = Convert.ToInt32(row["Porcentaje"]),
+                                Porcentaje = Convert.ToInt32(Convert.ToDecimal(row["Porcentaje"]) * 100),
                                 FechaCreacion = DatosServer.FechaServer(),
                                 IdUsuarioCreacion = usuarioLogged.IdUsuario
                             };

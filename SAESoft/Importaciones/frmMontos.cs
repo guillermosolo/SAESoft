@@ -44,7 +44,7 @@ namespace SAESoft.Importaciones
             dt.Columns.Add("Almacenaje (Q)").DataType = Type.GetType("System.Decimal");
             dt.Columns.Add("Demora ($)").DataType = Type.GetType("System.Decimal");
             dt.Columns.Add("idContenedor").DataType = Type.GetType("System.Int32");
-            dt.PrimaryKey = new DataColumn[] { dt.Columns[3] };
+            dt.PrimaryKey = [dt.Columns[3]];
             dgvPagos.DataSource = dt;
             dgvPagos.Columns[0].Width = 150;
             dgvPagos.Columns[1].Width = 115;

@@ -1,6 +1,4 @@
-﻿using iText.IO.Font;
-using iText.Kernel.Font;
-using iText.Kernel.Colors;
+﻿using iText.Kernel.Colors;
 using iText.Layout.Borders;
 using iText.Kernel.Pdf;
 using iText.Layout;
@@ -10,6 +8,7 @@ using TextAlignment = iText.Layout.Properties.TextAlignment;
 using SAESoft.Models.Administracion;
 using Border = iText.Layout.Borders.Border;
 using static SAESoft.Utilitarios.ControlFormularios;
+using static SAESoft.Utilitarios.ReportUtils;
 
 namespace SAESoft.Administracion
 {
@@ -25,48 +24,6 @@ namespace SAESoft.Administracion
                 edad--;
             }
             return edad;
-        }
-        private static Cell celdaCoreana(string text, int size, TextAlignment alinear, Border borde, int filas, int cols, Boolean bold = false)
-        {
-            Cell cell;
-            PdfFont coreano = PdfFontFactory.CreateFont(Properties.Resources.HANBatang, PdfEncodings.IDENTITY_H);
-            if (bold)
-            {
-                cell = new Cell(filas, cols).Add(new Paragraph()
-                        .SetFont(coreano).Add(text)
-                        .SetFontSize(size).SetBold())
-                              .SetTextAlignment(alinear)
-                              .SetBorder(borde);
-            }
-            else
-            {
-                cell = new Cell(filas, cols).Add(new Paragraph()
-                    .SetFont(coreano).Add(text)
-                    .SetFontSize(size))
-                          .SetTextAlignment(alinear)
-                          .SetBorder(borde);
-            }
-            return cell;
-        }
-
-        private static Cell celda(string text, int size, TextAlignment alinear, Border borde, int filas, int cols, Boolean bold = false)
-        {
-            Cell cell;
-            if (bold)
-            {
-                cell = new Cell(filas, cols).Add(new Paragraph(text)
-                    .SetFontSize(size).SetBold())
-                    .SetTextAlignment(alinear)
-                    .SetBorder(borde);
-            }
-            else
-            {
-                cell = new Cell(filas, cols).Add(new Paragraph(text)
-                   .SetFontSize(size))
-                   .SetTextAlignment(alinear)
-                   .SetBorder(borde);
-            }
-            return cell;
         }
 
         public static String Imprime(Empleado actual, int Id)

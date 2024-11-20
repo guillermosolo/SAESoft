@@ -11,7 +11,6 @@ using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Utilitarios.DatosServer;
 using static SAESoft.Utilitarios.Validaciones;
 using System.Globalization;
-using System;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace SAESoft.Importaciones
@@ -20,10 +19,10 @@ namespace SAESoft.Importaciones
     {
         private Boolean esNuevo = false;
         public int individual = 0;
-        private List<Importacion>? rs = new();
+        private List<Importacion>? rs = [];
         private int CurrentIndex = 0;
         readonly DataTable dt = new();
-        readonly List<string> listFiles = new();
+        readonly List<string> listFiles = [];
         string path = PATH_Import;
         public frmMaritimo()
         {
@@ -157,7 +156,7 @@ namespace SAESoft.Importaciones
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             limpiarFormulario(this);
@@ -167,7 +166,7 @@ namespace SAESoft.Importaciones
 
         private void frmMaritimo_Load(object sender, EventArgs e)
         {
-            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "MARITIMO");
+            CambiarEstadoBotones(["tsbNuevo"], true, toolStrip1, "MARITIMO");
             llenarMenu();
             llenarCombos();
             estructuraGrid();
@@ -180,18 +179,18 @@ namespace SAESoft.Importaciones
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago" }, true, toolStrip1, "MARITIMO");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago"], true, toolStrip1, "MARITIMO");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago" }, true, toolStrip1, "MARITIMO");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago"], true, toolStrip1, "MARITIMO");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", }, false, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago",], false, toolStrip1, "MARITIMO");
                 limpiarFormulario(this);
                 dt.Rows.Clear();
             }
@@ -264,19 +263,19 @@ namespace SAESoft.Importaciones
             }
 
             if (rs[CurrentIndex].IdImportStatus == StatusFinalMaritimo)
-                CambiarEstadoBotones(new[] { "tsbModificar" }, false, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(["tsbModificar"], false, toolStrip1, "MARITIMO");
             else
-                CambiarEstadoBotones(new[] { "tsbModificar" }, true, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(["tsbModificar"], true, toolStrip1, "MARITIMO");
 
             if (rs[CurrentIndex].Contenedores.Any(c => c.IdPago != null))
-                CambiarEstadoBotones(new[] { "tsbPago" }, false, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(["tsbPago"], false, toolStrip1, "MARITIMO");
             else
-                CambiarEstadoBotones(new[] { "tsbPago" }, true, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(["tsbPago"], true, toolStrip1, "MARITIMO");
 
             if (rs[CurrentIndex].IdImportStatus < EntregaDigitadorMaritimo || hasRole(2))
-                CambiarEstadoBotones(new[] { "tsddbSwitchUser" }, false, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(["tsddbSwitchUser"], false, toolStrip1, "MARITIMO");
             else
-                CambiarEstadoBotones(new[] { "tsddbSwitchUser" }, true, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(["tsddbSwitchUser"], true, toolStrip1, "MARITIMO");
         }
 
         private void checkProceso(uint ord)
@@ -412,15 +411,15 @@ namespace SAESoft.Importaciones
                         db.SaveChanges();
                         rs.Add(im);
                         CurrentIndex = rs.Count - 1;
-                        List<Revision> rev = new();
+                        List<Revision> rev = [];
                         foreach (Revision item in clbRevisiones.CheckedItems)
                         {
                             rev.Add(item);
                         }
                         rs[CurrentIndex].Revisiones = rev;
                         AgregarRevisiones(db, im.IdImport, rev);
-                        List<BL> _bl = new();
-                        List<Contenedor> _con = new();
+                        List<BL> _bl = [];
+                        List<Contenedor> _con = [];
                         foreach (var item in lsbBL.Items)
                         {
                             _bl.Add(new BL { Numero = item.ToString(), IdImportacion = im.IdImport, FechaCreacion = im.FechaCreacion, IdUsuarioCreacion = im.IdUsuarioCreacion });
@@ -541,7 +540,7 @@ namespace SAESoft.Importaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago" }, true, toolStrip1, "MARITIMO");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago"], true, toolStrip1, "MARITIMO");
                 habilitarFormulario(this, false);
             }
         }
@@ -684,7 +683,7 @@ namespace SAESoft.Importaciones
                     queryable = queryable.Where(r => r.IdImport == individual);
                 else if (!buscar.todos)
                     queryable = queryable.Where(r => buscar.ids.Contains(r.IdImport));
-                rs = queryable.ToList();
+                rs = [.. queryable];
                 individual = 0;
                 if (rs.Count > 0)
                 {
@@ -697,7 +696,7 @@ namespace SAESoft.Importaciones
                     {
                         BotonesIniciales(toolStrip1);
                     }
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago", "tsbComentarios" }, true, toolStrip1, "MARITIMO");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago", "tsbComentarios"], true, toolStrip1, "MARITIMO");
                     despliegaDatos();
                 }
                 else
@@ -706,7 +705,7 @@ namespace SAESoft.Importaciones
                     limpiarFormulario(this);
                     dt.Rows.Clear();
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago", "tsbComentarios" }, false, toolStrip1, "MARITIMO");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago", "tsbComentarios"], false, toolStrip1, "MARITIMO");
                 }
             }
             buscar.Dispose();
@@ -817,7 +816,7 @@ namespace SAESoft.Importaciones
         {
             frmMontos montos = new()
             {
-                contenedores = rs[CurrentIndex].Contenedores.ToList()
+                contenedores = [.. rs[CurrentIndex].Contenedores]
             };
             var resp = montos.ShowDialog();
             if (resp == DialogResult.OK)
@@ -869,7 +868,7 @@ namespace SAESoft.Importaciones
         {
             frmPoliza FrmPoliza = new(rs[CurrentIndex])
             {
-                contenedores = rs[CurrentIndex].Contenedores.ToList()
+                contenedores = [.. rs[CurrentIndex].Contenedores]
             };
             var resp = FrmPoliza.ShowDialog();
             if (resp == DialogResult.OK)
@@ -977,7 +976,7 @@ namespace SAESoft.Importaciones
         private void tsbModificar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             cboTerminal.Enabled = true;
             cboAduana.Enabled = true;
@@ -1041,7 +1040,7 @@ namespace SAESoft.Importaciones
                     dt.Rows.Clear();
                     cboDestino.SelectedIndex = -1;
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago", "tsbComentarios" }, false, toolStrip1, "MARITIMO");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbPago", "tsbComentarios"], false, toolStrip1, "MARITIMO");
                 }
                 /*  }
                   catch (Exception ex)

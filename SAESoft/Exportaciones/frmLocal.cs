@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 using static SAESoft.Utilitarios.ControlFormularios;
 using static SAESoft.Cache.UserData;
-using static SAESoft.Cache.Constantes;
 using SAESoft.Models;
 using SAESoft.Models.Exportaciones;
 using Microsoft.EntityFrameworkCore;
@@ -21,9 +12,9 @@ namespace SAESoft.Exportaciones
     public partial class frmLocal : Form
     {
         Boolean esNuevo = false;
-        private List<FacturaLocal>? rs = new();
-        readonly List<string> listFiles = new();
+        private List<FacturaLocal>? rs = [];
         private int CurrentIndex = 0;
+        private static readonly int[] sourceArray = [155, 158];
         public frmLocal()
         {
             InitializeComponent();
@@ -31,7 +22,7 @@ namespace SAESoft.Exportaciones
 
         private void frmLocal_Load(object sender, EventArgs e)
         {
-            CambiarEstadoBotones(new[] { "tsbNuevo" }, true, toolStrip1, "LOCALES");
+            CambiarEstadoBotones(["tsbNuevo"], true, toolStrip1, "LOCALES");
             llenarCombos();
         }
 
@@ -39,7 +30,7 @@ namespace SAESoft.Exportaciones
         {
             llenarNombres(cboEmpresa, "EXPORTADOR");
             using SAESoftContext db = new();
-            var tipos = db.Nombres.Where(n => new[] { 155, 158 }.Contains(n.IdNombre)).Select(n => new { n.IdNombre, n.Descripcion }).ToList();
+            var tipos = db.Nombres.Where(n => sourceArray.Contains(n.IdNombre)).Select(n => new { n.IdNombre, n.Descripcion }).ToList();
             cboTipoFac.DataSource = tipos;
             cboTipoFac.DisplayMember = "Descripcion";
             cboTipoFac.ValueMember = "idNombre";
@@ -48,7 +39,7 @@ namespace SAESoft.Exportaciones
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             tsActivo.Checked = true;
@@ -74,18 +65,18 @@ namespace SAESoft.Exportaciones
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "LOCALES");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "LOCALES");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "LOCALES");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "LOCALES");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "LOCALES");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "LOCALES");
                 ocultarCamposVariables();
                 limpiarFormulario(this);
             }
@@ -141,7 +132,7 @@ namespace SAESoft.Exportaciones
             //    queryable = queryable.Where(b => b.Alias.Contains(buscar.nombreESP));
             //if (buscar.nombreCOR != null)
             //    queryable = queryable.Where(b => b.NombreCoreano.Contains(buscar.nombreCOR));
-            rs = queryable.ToList();
+            rs = [.. queryable];
             //buscar.Dispose();
             if (rs.Count > 0)
             {
@@ -155,7 +146,7 @@ namespace SAESoft.Exportaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "LOCALES");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "LOCALES");
             }
             else
             {
@@ -163,7 +154,7 @@ namespace SAESoft.Exportaciones
                 ocultarCamposVariables();
                 limpiarFormulario(this);
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "LOCALES");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "LOCALES");
             }
         }
 
@@ -216,7 +207,7 @@ namespace SAESoft.Exportaciones
                         ocultarCamposVariables();
                         limpiarFormulario(this);
                         BotonesIniciales(toolStrip1);
-                        CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, false, toolStrip1, "LOCALES");
+                        CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "LOCALES");
                     }
                 }
                 catch (Exception ex)
@@ -233,7 +224,7 @@ namespace SAESoft.Exportaciones
         private void tsbModificar_Click(object sender, EventArgs e)
         {
             esNuevo = false;
-            String[] botones = { "tsbAceptar", "tsbCancelar" };
+            String[] botones = ["tsbAceptar", "tsbCancelar"];
             CambiarVisibilidadBotones(botones, toolStrip1, true);
             habilitarFormulario(this, true);
             txtReferencia.Focus();
@@ -353,7 +344,7 @@ namespace SAESoft.Exportaciones
                 {
                     BotonesIniciales(toolStrip1);
                 }
-                CambiarEstadoBotones(new[] { "tsbModificar", "tsbEliminar" }, true, toolStrip1, "LOCALES");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "LOCALES");
                 habilitarFormulario(this, false);
             }
         }

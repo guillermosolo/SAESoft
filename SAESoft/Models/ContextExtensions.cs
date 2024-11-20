@@ -5,14 +5,11 @@ namespace SAESoft.Models
 {
     public static class ContextExtensions
     {
-        private static readonly List<Action<IMutableEntityType>> Conventions = new();
+        private static readonly List<Action<IMutableEntityType>> Conventions = [];
 
         public static void AddRemoveOneToManyCascadeConvention(this ModelBuilder builder)
         {
-            if (builder is null)
-            {
-                throw new ArgumentNullException(nameof(builder));
-            }
+            ArgumentNullException.ThrowIfNull(builder);
 
             Conventions.Add(et => et.GetForeignKeys()
                 .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade)
