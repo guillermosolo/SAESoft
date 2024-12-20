@@ -49,15 +49,15 @@ namespace SAESoft.Incentivo
                 dtpFin.Value = evaluacion.fechaFin;
                 txtObservaciones.Text = evaluacion.Observaciones;
                 var deptos = db.DeptoIncentivo
-                    .Include(e => e.Empleados)
-                        .ThenInclude(e => e.Evaluaciones).ToList();
+                    .Include(e => e.Empleados.Where(b => b.FechaBaja >= dtpFin.Value || b.FechaBaja == null))
+                        .ThenInclude(e => e.Evaluaciones).Where(b=>b.Activo == true).ToList();
                 foreach (var depto in deptos)
                 {
                     DataRow row = dt.NewRow();
                     row["IdDepartamento"] = depto.IdDepto;
                     row["Departamento"] = depto.Nombre;
-                    row["Personal"] = depto.Empleados.Count(e => e.FechaBaja == null);
-                    decimal asignado = depto.Empleados.Sum(e => e.BaseCalculo);
+                    row["Personal"] = depto.Empleados.Count(b => b.FechaBaja > dtpFin.Value || b.FechaBaja == null);
+                    decimal asignado = depto.Empleados.Where(b => b.FechaBaja > dtpFin.Value || b.FechaBaja == null).Sum(e => e.BaseCalculo);
                     row["Monto Asignado"] = asignado;
                     decimal monto = 0m;
                     foreach (var pagado in depto.Empleados)
@@ -65,7 +65,7 @@ namespace SAESoft.Incentivo
                         monto += pagado.Evaluaciones.Where(e => e.IdEvaluacion == evaluacion.IdEvaluacion).Sum(p => p.Total);
                     }
                     row["Monto Pagado"] = monto;
-                    row["Porcentaje"] = monto / asignado;
+                    row["Porcentaje"] = asignado > 0 ? monto / asignado : 0;
                     dt.Rows.Add(row);
                 }
                 Boolean guardar = true;

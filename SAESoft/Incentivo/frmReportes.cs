@@ -12,5 +12,11 @@
             frmRepoGeneral repo = new();
             repo.ShowDialog();
         }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            frmRepoRRHH repo2 = new();
+            repo2.ShowDialog();
+        }
     }
 }

@@ -78,11 +78,19 @@ namespace SAESoft.Incentivo
                         int tarde = db.EvaluacionAsistencia.Where(b => b.FechaFin == null).Where(b => b.Descripcion.Equals("TARDE")).Select(b => b.GradoPonderado).FirstOrDefault();
                         int permiso = db.EvaluacionAsistencia.Where(b => b.FechaFin == null).Where(b => b.Descripcion.Equals("PERMISO")).Select(b => b.GradoPonderado).FirstOrDefault();
                         int ausente = db.EvaluacionAsistencia.Where(b => b.FechaFin == null).Where(b => b.Descripcion.Equals("AUSENCIA")).Select(b => b.GradoPonderado).FirstOrDefault();
+                        DateTime ultimoDia;
+                        if (dtpFin.Value.Month != 12)
+                        {
+                            ultimoDia = new DateTime(dtpFin.Value.Year, dtpFin.Value.Month + 1, 1).AddDays(-1);
+                        } else
+                        {
+                            ultimoDia = new DateTime(dtpFin.Value.Year + 1, 1, 1).AddDays(-1);
+                        }
                         for (int row = 2; row <= rowCount; row++)
                         {
 
                             string codigo = sl.GetCellValueAsString(row, 1);
-                            EmpIncentivos empleado = db.EmpIncentivos.Where(b=>b.FechaBaja > dtpInicio.Value || b.FechaBaja == null).Where(a=>a.FechaIngreso <= dtpFin.Value).FirstOrDefault(b => b.Codigo == codigo);
+                            EmpIncentivos empleado = db.EmpIncentivos.Where(b=>b.FechaBaja > dtpFin.Value || b.FechaBaja == null).Where(a=>a.FechaIngreso <= ultimoDia).FirstOrDefault(b => b.Codigo == codigo);
                             if (empleado != null)
                             {
                                 empleadosExcel.Add(empleado);
@@ -114,7 +122,7 @@ namespace SAESoft.Incentivo
                         }
                         if (!errorImport)
                         {
-                            var empleados = db.EmpIncentivos.Where(b => b.FechaBaja > dtpInicio.Value || b.FechaBaja == null).Where(a => a.FechaIngreso <= dtpFin.Value).ToList();
+                            var empleados = db.EmpIncentivos.Where(b => b.FechaBaja > dtpFin.Value || b.FechaBaja == null).Where(a => a.FechaIngreso <= ultimoDia).ToList();
                             var sinAsistencia = empleados.Except(empleadosExcel).ToList();
                             if (sinAsistencia.Count != 0)
                             {
@@ -124,9 +132,6 @@ namespace SAESoft.Incentivo
                                 errorImport = true;
                                 dt.Clear();
                             }
-                        }
-                        if (!errorImport)
-                        {
                             EstablecerNumerosEncabezado(dgvAsistencia);
                             icbGuardar.Enabled = true;
                         }

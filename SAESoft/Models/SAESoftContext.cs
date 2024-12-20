@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using SAESoft.Models.Administracion;
 using SAESoft.Models.AdministracionSistema;
 using SAESoft.Models.Comunes;
@@ -14,7 +15,9 @@ namespace SAESoft.Models
        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["MSSQL_Test"].ConnectionString);
-           //optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString);
+            //optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString);
+            //optionsBuilder.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
@@ -70,6 +73,7 @@ namespace SAESoft.Models
         public DbSet<EvaluacionAsistencia> EvaluacionAsistencia { get; set; }
         public DbSet<PorcentajeEvaluacion> PorcentajeEvaluacion { get; set; }
         public DbSet<PuntajeAsistencia> PuntajeAsistencia { get; set; }
+        public DbSet<GrupoDeptoIncentivo> GrupoDeptoIncentivo { get; set; }
         public DbSet<DeptoIncentivo> DeptoIncentivo { get; set; }
         public DbSet<EmpIncentivos> EmpIncentivos { get; set; }
         public DbSet<Asistencia> Asistencia { get; set; }
@@ -85,8 +89,6 @@ namespace SAESoft.Models
             modelBuilder.AddRemoveOneToManyCascadeConvention();
 
             modelBuilder.ApplyConventions();
-
-            modelBuilder.Seed();
         }
 
     }

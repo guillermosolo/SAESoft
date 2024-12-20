@@ -43,7 +43,7 @@
             dgvEvaluaciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
@@ -55,9 +55,8 @@
             dgvEvaluaciones.MultiSelect = false;
             dgvEvaluaciones.Name = "dgvEvaluaciones";
             dgvEvaluaciones.ReadOnly = true;
-            dgvEvaluaciones.RowTemplate.Height = 25;
             dgvEvaluaciones.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvEvaluaciones.Size = new Size(731, 332);
+            dgvEvaluaciones.Size = new Size(751, 332);
             dgvEvaluaciones.TabIndex = 0;
             // 
             // chkFinalizado
@@ -110,7 +109,7 @@
             icbPrint.IconColor = Color.DodgerBlue;
             icbPrint.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbPrint.IconSize = 16;
-            icbPrint.Location = new Point(627, 13);
+            icbPrint.Location = new Point(647, 13);
             icbPrint.Margin = new Padding(4);
             icbPrint.Name = "icbPrint";
             icbPrint.Size = new Size(121, 47);
@@ -130,9 +129,11 @@
             Controls.Add(chkFinalizado);
             Controls.Add(icbRefresh);
             Controls.Add(dgvEvaluaciones);
-            Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Century Gothic", 12F);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(4);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmRepoGeneral";
             StartPosition = FormStartPosition.CenterParent;
             Text = "frmRepoGeneral";

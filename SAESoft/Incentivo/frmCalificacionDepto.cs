@@ -18,6 +18,7 @@ namespace SAESoft.Incentivo
         Evaluacion ev;
         Boolean esNuevo = true;
         readonly List<(int id, int row)> evaluacionModificar = [];
+        int firstDisplayedScrollingRowIndex;
         public frmCalificacionDepto()
         {
             InitializeComponent();
@@ -29,21 +30,23 @@ namespace SAESoft.Incentivo
             using SAESoftContext db = new();
             if (usuarioLogged.Rol.IdRol == 1 || usuarioLogged.Rol.Nombre.Equals("Admin Incentivo"))
             {
-                cboDepto.DataSource = db.DeptoIncentivo.ToList();
+                cboDepto.DataSource = db.GrupoDeptoIncentivo.OrderBy(b=>b.Nombre).ToList();
 
             }
             else
             {
-                cboDepto.DataSource = db.DeptoIncentivo.Where(b => b.IdUsuario == usuarioLogged.IdUsuario).ToList();
+                cboDepto.DataSource = db.GrupoDeptoIncentivo.Include(d => d.Departamentos).Where(b => b.IdUsuario == usuarioLogged.IdUsuario).OrderBy(b=>b.Nombre).ToList();
             }
             cboDepto.DisplayMember = "Nombre";
-            cboDepto.ValueMember = "IdDepto";
+            cboDepto.ValueMember = "IdGrupo";
             carga = true;
         }
 
         public void EstructuraGrid()
         {
             dt.Columns.Add("IdEmpIncentivo").DataType = Type.GetType("System.Int32");
+            dt.Columns.Add("IdDepto").DataType = Type.GetType("System.Int32");
+            dt.Columns.Add("Codigo").DataType = Type.GetType("System.String");
             dt.Columns.Add("Nombre Completo").DataType = Type.GetType("System.String");
             dt.Columns.Add("Base").DataType = Type.GetType("System.Decimal");
             dt.Columns.Add("Tardanza").DataType = Type.GetType("System.Int32");
@@ -62,11 +65,14 @@ namespace SAESoft.Incentivo
 
             dgvEvaluar.DataSource = dt;
             dgvEvaluar.Columns["IdEmpIncentivo"].Visible = false;
+            dgvEvaluar.Columns["IdDepto"].Visible = false;
             dgvEvaluar.Columns["Bolsa"].Visible = false;
             dgvEvaluar.Columns["IdEvaluacionDetalle"].Visible = false;
             //dgvEvaluar.Columns["Días Proporcional"].Visible = false;
             dgvEvaluar.Columns["Nombre Completo"].Width = 200;
             dgvEvaluar.Columns["IdEmpIncentivo"].ReadOnly = true;
+            dgvEvaluar.Columns["IdDepto"].ReadOnly = true;
+            dgvEvaluar.Columns["Codigo"].ReadOnly = true;
             dgvEvaluar.Columns["Bolsa"].ReadOnly = true;
             dgvEvaluar.Columns["Nombre Completo"].ReadOnly = true;
             dgvEvaluar.Columns["Base"].ReadOnly = true;
@@ -79,7 +85,7 @@ namespace SAESoft.Incentivo
             dgvEvaluar.Columns["Días Proporcional"].ReadOnly = true;
             dgvEvaluar.Columns["IdEvaluacionDetalle"].ReadOnly = true;
 
-            for (int c = 2; c <= 14; c++)
+            for (int c = 4; c <= 16; c++)
             {
                 dgvEvaluar.Columns[c].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
@@ -130,25 +136,32 @@ namespace SAESoft.Incentivo
             TLogrado = 0.00M;
             if (carga)
             {
-                using SAESoftContext db = new();             
-                ev = db.Evaluaciones.Include(d => d.Detalles).Where(b => !b.finalizado).FirstOrDefault();     
+                using SAESoftContext db = new();
+                ev = db.Evaluaciones.Include(d => d.Detalles).Where(b => !b.finalizado).FirstOrDefault();
                 if (ev != null)
                 {
-                    var emp = db.EmpIncentivos.Include(b => b.Asistencias).Where(b => b.IdDepto == Convert.ToInt32(cboDepto.SelectedValue) && b.Asistencias.Any(a => a.IdEvaluacion == ev.IdEvaluacion));
-                    DiasMes = DateTime.DaysInMonth(ev.fechaFin.Year,ev.fechaFin.Month);
+                    var emp = db.EmpIncentivos.Include(b => b.Asistencias)
+                                              .Where(b => b.DeptoIncentivos.IdGrupo == Convert.ToInt32(cboDepto.SelectedValue) && b.Asistencias
+                                              .Any(a => a.IdEvaluacion == ev.IdEvaluacion))
+                                              .OrderBy(b=>b.IdDepto)
+                                              .ThenBy(b=>b.Codigo);
+                    DiasMes = DateTime.DaysInMonth(ev.fechaFin.Year, ev.fechaFin.Month);
                     foreach (var item in emp)
                     {
                         DataRow row = dt.NewRow();
                         DiasLaborados(ref row, ev.fechaFin, item);
                         decimal diasLaborados = Convert.ToDecimal(row["Días Proporcional"]);
-                        decimal proporcional = Math.Round(item.BaseCalculo * (diasLaborados / DiasMes));
+                        decimal proporcional = item.BaseCalculo * (diasLaborados / DiasMes);
                         row["IdEmpIncentivo"] = item.IdEmpIncentivo;
+                        row["IdDepto"] = item.IdDepto;
+                        row["Codigo"] = item.Codigo;
                         row["Nombre Completo"] = item.Nombres + " " + item.Apellidos;
                         row["Tardanza"] = item.Asistencias.Where(b => b.IdEvaluacion == ev.IdEvaluacion).Select(b => b.Tardanza).FirstOrDefault();
                         row["Permiso"] = item.Asistencias.Where(b => b.IdEvaluacion == ev.IdEvaluacion).Select(b => b.Permiso).FirstOrDefault();
                         row["Ausencia"] = item.Asistencias.Where(b => b.IdEvaluacion == ev.IdEvaluacion).Select(b => b.Ausente).FirstOrDefault();
                         row["Asistencia %"] = item.Asistencias.Where(b => b.IdEvaluacion == ev.IdEvaluacion).Select(b => b.Porcentaje).FirstOrDefault();
                         row["Base"] = proporcional.ToString("N2");
+                        //row["Base"] = item.BaseCalculo;
                         Total += proporcional;
                         var evaluacion = ev.Detalles.FirstOrDefault(d => d.IdEmpleado == item.IdEmpIncentivo);
                         if (evaluacion != null)
@@ -174,9 +187,9 @@ namespace SAESoft.Incentivo
                         }
                         dt.Rows.Add(row);
                     }
-                    txtTotal.Text = Total.ToString("C2", culture);
-                    txtExtra.Text = Extra.ToString("C2", culture);
-                    txtLogrado.Text = TLogrado.ToString("C2", culture);
+                    txtTotal.Text = Math.Round(Total,2).ToString();
+                    txtExtra.Text = Math.Round(Extra,2).ToString();
+                    txtLogrado.Text =Math.Round(TLogrado, 2).ToString();
                     EstablecerNumerosEncabezado(dgvEvaluar);
                 }
                 else
@@ -188,17 +201,21 @@ namespace SAESoft.Incentivo
 
         private void despliegaCalificaciones(EmpIncentivos emp, ref DataRow row)
         {
+            decimal diasLaborados = Convert.ToDecimal(row["Días Proporcional"]);
+            decimal proporcional = emp.BaseCalculo * (diasLaborados / DiasMes);
             var nota = ev.Detalles.FirstOrDefault(b => b.IdEmpleado == emp.IdEmpIncentivo);
             row["Asistencia %"] = nota.Asistencia;
             row["Desempeño %"] = nota.Actitud;
             row["Colaboración %"] = nota.Cooperacion;
-            row["Logro (1)"] = nota.Total - nota.Extra;
-            row["Extra (2)"] = nota.Extra;
-            row["Total Pago (1+2)"] = nota.Total;
-            row["Bolsa"] = emp.BaseCalculo - (nota.Total - nota.Extra);
+            decimal Logro = nota.Total - nota.Extra;
+            row["Logro (1)"] = Math.Round(Logro, 2);
+            row["Extra (2)"] = Math.Round(nota.Extra,2);
+            row["Total Pago (1+2)"] = Math.Round(nota.Total,2);
+            decimal bolsa = emp.BaseCalculo - (nota.Total - nota.Extra);
+            row["Bolsa"] = Math.Round(bolsa,2);
             row["Días Proporcional"] = nota.DiasProporcional;
             row["IdEvaluacionDetalle"] = nota.IdEvaluacionDetalle;
-            Extra += (emp.BaseCalculo - (nota.Total - nota.Extra)) - nota.Extra;
+            Extra += proporcional - nota.Total;
             TLogrado += nota.Total;
         }
 
@@ -208,7 +225,7 @@ namespace SAESoft.Incentivo
             DateTime fin = new(fecha.Year, fecha.Month, DiasMes);
 
             Boolean incentivoCero = false;
-           
+
             int DiasLaborados = DiasMes;
             // Calcula incentivo proporcional si ingreso en el mes de calculo.
             if (fin.Year == emp.FechaIngreso.Year && fin.Month == emp.FechaIngreso.Month)
@@ -236,19 +253,22 @@ namespace SAESoft.Incentivo
                                               .ToList();
             foreach (var susp in suspensiones)
             {
-                if (susp.FechaInicio <= ev.fechaInicio && susp.FechaFin >= ev.fechaFin)
+                if (susp.FechaInicio <= inicio && susp.FechaFin >= fin)
                 {
                     incentivoCero = true;
-                } else {
+                }
+                else
+                {
                     if (susp.FechaFin >= fin)
                     {
-                        if (susp.FechaInicio <= inicio)
-                        {
-                            incentivoCero = true;
-                        } else
+                        if (susp.FechaInicio.Day >= 16)
                         {
                             TimeSpan dias = susp.FechaInicio - inicio;
                             DiasLaborados = dias.Days;
+                        }
+                        else
+                        {
+                            incentivoCero = true;
                         }
                     }
                     else
@@ -260,7 +280,7 @@ namespace SAESoft.Incentivo
                         else
                         {
                             TimeSpan dif = susp.FechaFin.Subtract(susp.FechaInicio);
-                            DiasLaborados -= dif.Days;
+                            DiasLaborados -= dif.Days + 1;
                         }
                     }
                 }
@@ -278,8 +298,8 @@ namespace SAESoft.Incentivo
         private void dgvEvaluar_Paint(object sender, PaintEventArgs e)
         {
             // Dibuja el título "Asistencia %" encima de las tres columnas especificadas
-            int colIndexStart = 3;
-            int colIndexEnd = 5;
+            int colIndexStart = 5;
+            int colIndexEnd = 7;
 
             // Calcula el rectángulo que abarca las tres columnas
             Rectangle headerRect = dgvEvaluar.GetCellDisplayRectangle(colIndexStart, -1, false);
@@ -340,7 +360,7 @@ namespace SAESoft.Incentivo
             }
             else
             {
-                if (e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5)
+                if (e.ColumnIndex == 5 || e.ColumnIndex == 6 || e.ColumnIndex == 7)
                 {
                     // Cambia el color de fondo de las celdas
                     e.CellStyle.BackColor = Color.LightYellow;
@@ -361,7 +381,7 @@ namespace SAESoft.Incentivo
                 else
                 {
                     // Cambia el color de fondo de las celdas en las columnas específicas
-                    if (e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5)
+                    if (e.ColumnIndex == 5 || e.ColumnIndex == 6 || e.ColumnIndex == 7)
                     {
                         // Pinta el fondo de la celda de amarillo
                         e.CellStyle.BackColor = Color.LightYellow;
@@ -425,7 +445,7 @@ namespace SAESoft.Incentivo
                 if (e.FormattedValue != "")
                 {
                     string valor = e.FormattedValue.ToString();
-                   // object sumaTotal = dt.Compute("SUM([Extra (2)])", "");          
+                    // object sumaTotal = dt.Compute("SUM([Extra (2)])", "");          
                     int tardanza = dgvEvaluar.Rows[e.RowIndex].Cells["Tardanza"].Value as int? ?? 0;
 
                     if (decimal.TryParse(valor, out decimal numero))
@@ -434,7 +454,7 @@ namespace SAESoft.Incentivo
                         {
                             if (tardanza <= 1)
                             {
-                                if (numero - ExtraAnterior > Extra + ExtraAnterior)
+                                if ((numero - ExtraAnterior) > (Extra + ExtraAnterior))
                                 {
                                     dgvEvaluar.Rows[e.RowIndex].ErrorText = "El valor debe ser un número menor a la casilla \"Diferencia\".";
                                     e.Cancel = true;
@@ -486,20 +506,22 @@ namespace SAESoft.Incentivo
                     icbGuardar.Enabled = true;
                 }
             }
+            EstablecerNumerosEncabezado(dgvEvaluar);
+            dgvEvaluar.FirstDisplayedScrollingRowIndex = firstDisplayedScrollingRowIndex; 
         }
 
         private void calcular(int asistencia, int actitud, int coop, decimal baseC, decimal valorExtra, int tardanza, DataGridViewCellEventArgs e)
         {
             decimal result = baseC * ((asistencia / 100m) * (pasistencia / 100m) + (actitud / 100m) * (pactitud / 100m) + (coop / 100m) * (pcoop / 100m));
-            if (tardanza>1)
+            if (tardanza > 1)
             {
                 dgvEvaluar.Rows[e.RowIndex].Cells["Extra (2)"].Value = DBNull.Value;
                 valorExtra = 0;
             }
             dt.AcceptChanges();
-            dgvEvaluar.Rows[e.RowIndex].Cells["Logro (1)"].Value = Math.Round(result);
-            dgvEvaluar.Rows[e.RowIndex].Cells["Bolsa"].Value = baseC - Math.Round(result);
-            dgvEvaluar.Rows[e.RowIndex].Cells["Total Pago (1+2)"].Value = Math.Round(result + valorExtra);
+            dgvEvaluar.Rows[e.RowIndex].Cells["Logro (1)"].Value = result;
+            dgvEvaluar.Rows[e.RowIndex].Cells["Bolsa"].Value = baseC - result;
+            dgvEvaluar.Rows[e.RowIndex].Cells["Total Pago (1+2)"].Value = result + valorExtra;
             dt.AcceptChanges();
             object sumaBolsa = dt.Compute("SUM(Bolsa)", "");
             object sumaExtra = dt.Compute("SUM([Extra (2)])", "");
@@ -509,9 +531,9 @@ namespace SAESoft.Incentivo
             decimal sumaLogradoDecimal = sumaLogrado == DBNull.Value ? 0 : Convert.ToDecimal(sumaLogrado);
 
             Extra = sumaBolsaDecimal - sumaExtraDecimal;
-            txtExtra.Text = Extra.ToString("C2", culture);
+            txtExtra.Text = Math.Round(Extra, 2).ToString();
             TLogrado = sumaLogradoDecimal;
-            txtLogrado.Text = TLogrado.ToString("C2", culture);
+            txtLogrado.Text = Math.Round(TLogrado,2).ToString();
         }
 
         private void icbGuardar_Click(object sender, EventArgs e)
@@ -543,7 +565,7 @@ namespace SAESoft.Incentivo
                             {
                                 IdEvaluacion = ev.IdEvaluacion,
                                 IdEmpleado = Convert.ToInt32(dr["IdEmpIncentivo"]),
-                                IdDepto = Convert.ToInt32(cboDepto.SelectedValue),
+                                IdDepto = Convert.ToInt32(dr["IdDepto"]),
                                 BaseCalculo = Convert.ToDecimal(dr["Base"]),
                                 Asistencia = Convert.ToInt32(dr["Asistencia %"]),
                                 Actitud = Convert.ToInt32(dr["Desempeño %"]),
@@ -668,6 +690,11 @@ namespace SAESoft.Incentivo
             {
                 ExtraAnterior = dgvEvaluar.Rows[e.RowIndex].Cells[e.ColumnIndex].Value as decimal? ?? 0m;
             }
+        }
+
+        private void dgvEvaluar_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            firstDisplayedScrollingRowIndex = dgvEvaluar.FirstDisplayedScrollingRowIndex; 
         }
     }
 }

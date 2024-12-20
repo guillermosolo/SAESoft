@@ -71,7 +71,7 @@
             dgvEvaluar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
@@ -80,7 +80,7 @@
             dgvEvaluar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 11.25F);
             dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
@@ -90,15 +90,15 @@
             dgvEvaluar.Name = "dgvEvaluar";
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 12F);
             dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dgvEvaluar.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgvEvaluar.RowTemplate.Height = 25;
             dgvEvaluar.Size = new Size(995, 384);
             dgvEvaluar.TabIndex = 2;
+            dgvEvaluar.CellBeginEdit += dgvEvaluar_CellBeginEdit;
             dgvEvaluar.CellEndEdit += dgvEvaluar_CellEndEdit;
             dgvEvaluar.CellEnter += dgvEvaluar_CellEnter;
             dgvEvaluar.CellFormatting += dgvEvaluar_CellFormatting;
@@ -146,8 +146,8 @@
             // 
             // icbGuardar
             // 
-            icbGuardar.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            icbGuardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            icbGuardar.Font = new Font("Century Gothic", 12F);
+            icbGuardar.IconChar = FontAwesome.Sharp.IconChar.Save;
             icbGuardar.IconColor = Color.DodgerBlue;
             icbGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbGuardar.IconSize = 24;
@@ -198,7 +198,7 @@
             Controls.Add(dgvEvaluar);
             Controls.Add(cboDepto);
             Controls.Add(label1);
-            Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Century Gothic", 12F);
             Margin = new Padding(4);
             Name = "frmCalificacionDepto";
             Text = "CalificacionDepto";

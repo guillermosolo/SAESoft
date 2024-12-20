@@ -14,7 +14,7 @@ namespace SAESoft.Administracion
 {
     public static class FichaPersonal
     {
-        private static int calculaEdad(DateTime fecha)
+        private static int CalculaEdad(DateTime fecha)
         {
             int edad = DateTime.Now.Year - fecha.Year; // Calcula la diferencia en años
 
@@ -26,9 +26,9 @@ namespace SAESoft.Administracion
             return edad;
         }
 
-        public static String Imprime(Empleado actual, int Id)
+        public static String Imprime(Empleado actual, int id)
         {
-            String pathFicha = System.IO.Path.GetTempPath() + "Ficha" + Id.ToString() + ".pdf";
+            String pathFicha = System.IO.Path.GetTempPath() + "Ficha" + id.ToString() + ".pdf";
             String? texto, texto2;
             DateTime? fecha;
 
@@ -56,7 +56,7 @@ namespace SAESoft.Administracion
             table.AddCell(celda(actual.Genero == "M" ? "MASCULINO" : "FEMENINO", 12, TextAlignment.LEFT, Border.NO_BORDER, 1, 1, true));
 
             table.AddCell(celda("Fecha de Nacimiento:", 12, TextAlignment.LEFT, Border.NO_BORDER, 1, 1));
-            table.AddCell(celda(actual.FechaNac.ToShortDateString() + " (" + calculaEdad(actual.FechaNac).ToString() + " AÑOS)", 12, TextAlignment.LEFT, Border.NO_BORDER, 1, 1, true));
+            table.AddCell(celda(actual.FechaNac.ToShortDateString() + " (" + CalculaEdad(actual.FechaNac).ToString() + " AÑOS)", 12, TextAlignment.LEFT, Border.NO_BORDER, 1, 1, true));
             table.AddCell(celda("Estado Civil:", 12, TextAlignment.LEFT, Border.NO_BORDER, 1, 1));
             if (actual.Genero == "M")
                 table.AddCell(celda(actual.EstadoCivil == "S" ? "SOLTERO" : "CASADO", 12, TextAlignment.LEFT, Border.NO_BORDER, 1, 1, true));
@@ -149,7 +149,7 @@ namespace SAESoft.Administracion
                     else
                         texto2 = familiar.Parentesco.Descripcion;
                     docs.AddCell(celda(texto2, 10, TextAlignment.LEFT, new SolidBorder(1), 1, 1));
-                    int edad = calculaEdad(familiar.FechaNac);
+                    int edad = CalculaEdad(familiar.FechaNac);
                     docs.AddCell(celda(edad.ToString(), 10, TextAlignment.RIGHT, new SolidBorder(1), 1, 1));
                     texto = familiar.Documentos?.Where(d => d.IdTipo == 2)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Numero;
                     fecha = familiar.Documentos?.Where(d => d.IdTipo == 2)?.OrderByDescending(d => d.FechaCreacion)?.FirstOrDefault()?.Vencimiento;

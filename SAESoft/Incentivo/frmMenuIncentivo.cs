@@ -26,6 +26,10 @@ namespace SAESoft.Incentivo
                 ibtnPersonal.BackColor = Color.FromArgb(0, 122, 204);
             if (Application.OpenForms["frmImportarAsistencia"] == null)
                 ibtnPersonal.BackColor = Color.FromArgb(0, 122, 204);
+            if (Application.OpenForms["frmCerrar"] == null)
+                ibtnCerrar.BackColor = Color.FromArgb(0, 122, 204);
+            if (Application.OpenForms["frmReportes"] == null)
+                ibtnCerrar.BackColor = Color.FromArgb(0, 122, 204);
         }
         private void habilitarMenu()
         {
@@ -34,6 +38,8 @@ namespace SAESoft.Incentivo
             ibtnAsistencia.Enabled = hasPermission("VER.ASISTENCIA");
             ibtnEvaluar.Enabled = hasPermission("VER.EVALUACION");
             ibtnSuspension.Enabled = hasPermission("VER.SUSPENSION");
+            ibtnCerrar.Enabled = hasPermission("VER.CERRAR");
+            ibtnReporte.Enabled = hasPermission("VER.REPORTES");
         }
         private void iconButton3_Click(object sender, EventArgs e)
         {

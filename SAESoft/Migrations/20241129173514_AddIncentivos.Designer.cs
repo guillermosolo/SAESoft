@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SAESoft.Models;
 
@@ -11,9 +12,11 @@ using SAESoft.Models;
 namespace SAESoft.Migrations
 {
     [DbContext(typeof(SAESoftContext))]
-    partial class SAESoftContextModelSnapshot : ModelSnapshot
+    [Migration("20241129173514_AddIncentivos")]
+    partial class AddIncentivos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2349,9 +2352,6 @@ namespace SAESoft.Migrations
                     b.Property<DateTime?>("FechaUltimaMod")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("IdUsuario")
-                        .HasColumnType("int");
-
                     b.Property<int?>("IdUsuarioCreacion")
                         .HasColumnType("int");
 
@@ -2363,8 +2363,6 @@ namespace SAESoft.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdGrupo");
-
-                    b.HasIndex("IdUsuario");
 
                     b.ToTable("GrupoDeptoIncentivo");
                 });
@@ -3255,15 +3253,6 @@ namespace SAESoft.Migrations
                     b.Navigation("Empleado");
 
                     b.Navigation("Evaluacion");
-                });
-
-            modelBuilder.Entity("SAESoft.Models.Incentivos.GrupoDeptoIncentivo", b =>
-                {
-                    b.HasOne("SAESoft.Models.AdministracionSistema.Usuario", "Encargado")
-                        .WithMany()
-                        .HasForeignKey("IdUsuario");
-
-                    b.Navigation("Encargado");
                 });
 
             modelBuilder.Entity("SAESoft.Models.Incentivos.HistIncentivos", b =>

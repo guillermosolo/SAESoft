@@ -30,13 +30,15 @@
         {
             groupBox2 = new GroupBox();
             iconButton2 = new FontAwesome.Sharp.IconButton();
+            iconButton1 = new FontAwesome.Sharp.IconButton();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(iconButton1);
             groupBox2.Controls.Add(iconButton2);
-            groupBox2.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox2.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
             groupBox2.Location = new Point(85, 34);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(343, 362);
@@ -48,7 +50,7 @@
             // 
             iconButton2.FlatAppearance.BorderSize = 0;
             iconButton2.FlatStyle = FlatStyle.Flat;
-            iconButton2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            iconButton2.Font = new Font("Century Gothic", 12F);
             iconButton2.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
             iconButton2.IconColor = Color.Green;
             iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -62,6 +64,25 @@
             iconButton2.TextImageRelation = TextImageRelation.ImageBeforeText;
             iconButton2.UseVisualStyleBackColor = true;
             iconButton2.Click += iconButton2_Click;
+            // 
+            // iconButton1
+            // 
+            iconButton1.FlatAppearance.BorderSize = 0;
+            iconButton1.FlatStyle = FlatStyle.Flat;
+            iconButton1.Font = new Font("Century Gothic", 12F);
+            iconButton1.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
+            iconButton1.IconColor = Color.Green;
+            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButton1.IconSize = 32;
+            iconButton1.ImageAlign = ContentAlignment.MiddleLeft;
+            iconButton1.Location = new Point(19, 77);
+            iconButton1.Name = "iconButton1";
+            iconButton1.Size = new Size(298, 55);
+            iconButton1.TabIndex = 4;
+            iconButton1.Text = "Reporte para Sistema HR";
+            iconButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
+            iconButton1.UseVisualStyleBackColor = true;
+            iconButton1.Click += iconButton1_Click;
             // 
             // frmReportes
             // 
@@ -79,5 +100,6 @@
 
         private GroupBox groupBox2;
         private FontAwesome.Sharp.IconButton iconButton2;
+        private FontAwesome.Sharp.IconButton iconButton1;
     }
 }

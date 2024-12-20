@@ -288,7 +288,7 @@ namespace SAESoft.Incentivo
                         db.EmpIncentivos.Add(empleado);
                         db.SaveChanges();
                         rs.Add(empleado);
-                        string autorizacion = "";
+                        string autorizacion = "CAMBIO DEPTO.";
                         var dialogResult = InputBox("Pregunta", "Ingrese el número de Autorización", ref autorizacion);
                         if (dialogResult == DialogResult.OK)
                         {

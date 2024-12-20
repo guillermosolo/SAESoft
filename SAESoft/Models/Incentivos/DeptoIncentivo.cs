@@ -13,6 +13,10 @@ namespace SAESoft.Models.Incentivos
         public int IdUsuario { get; set; }
         [ForeignKey("IdUsuario")]
         public virtual Usuario Encargado { get; set; }
+
+        public int IdGrupo {  get; set; }
+        [ForeignKey("IdGrupo")]
+        public virtual GrupoDeptoIncentivo Grupo { get; set; }
         public Boolean Activo { get; set; } = true;
         public virtual ICollection<EmpIncentivos> Empleados { get; set; }
         public virtual ICollection<EvaluacionDetalle> EvalacionDetalles { get; set; }

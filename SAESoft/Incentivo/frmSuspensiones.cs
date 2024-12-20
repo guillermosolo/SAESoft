@@ -118,7 +118,7 @@ namespace SAESoft.Incentivo
                     {
                         db.Entry(rs[CurrentIndex]).State = EntityState.Modified;
                         rs[CurrentIndex].FechaInicio = dtpInicio.Value.Date;
-                        rs[CurrentIndex].FechaFin = dtpInicio.Value.Date;
+                        rs[CurrentIndex].FechaFin = dtpFin.Value.Date;
                         rs[CurrentIndex].Observaciones = txtObs.Text;
                         rs[CurrentIndex].Activo = tsActivo.Checked;
                         rs[CurrentIndex].FechaUltimaMod = DatosServer.FechaServer();

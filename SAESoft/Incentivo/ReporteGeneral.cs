@@ -191,6 +191,7 @@ namespace SAESoft.Incentivo
                                                        .Include(e => e.Detalles)
                                                          .ThenInclude(d => d.Empleado)
                                                          .ThenInclude(emp => emp.DeptoIncentivos)
+                                                         .ThenInclude(gru => gru.Grupo)
                                                .Where(e => e.IdEvaluacion == eval)
                                                .FirstOrDefault();
 
@@ -221,14 +222,14 @@ namespace SAESoft.Incentivo
 
                 var deptosUnicos = evaluacion.Detalles.Select(d => new
                 {
-                    d.Departamento.IdDepto,
-                    d.Departamento.Nombre
+                    d.Departamento.Grupo.IdGrupo,
+                    d.Departamento.Grupo.Nombre,
                 }).Distinct().ToList();
                 foreach (var d in deptosUnicos)
                 {
                     excel.AddWorksheet(d.Nombre);
                     excel.SetPageSettings(settings);
-                    agregaDeptos(excel, evaluacion, d.Nombre, d.IdDepto);
+                    agregaDeptos(excel, evaluacion, d.Nombre, d.IdGrupo);
                 }
                 excel.SelectWorksheet("SUMM");
                 excel.SaveAs(pathFile);
@@ -242,7 +243,7 @@ namespace SAESoft.Incentivo
             }
         }
 
-        private static void agregaDeptos(SLDocument hoja, Evaluacion eval, string depto, int idDepto)
+        private static void agregaDeptos(SLDocument hoja, Evaluacion eval, string depto, int idGrupo)
         {
             SLPageSettings settingsColor = hoja.GetPageSettings();
             settingsColor.ShowGridLines = false;
@@ -344,7 +345,8 @@ namespace SAESoft.Incentivo
             hoja.FreezePanes(9, 1);
 
             int i = 10;
-            foreach (var item in eval.Detalles.Where(b => b.IdDepto == idDepto).ToList())
+
+            foreach (var item in eval.Detalles.Where(b => b.Departamento.IdGrupo == idGrupo).ToList())
             {
                 int Tardanza = item.Empleado.Asistencias.Where(a => a.IdEvaluacion == eval.IdEvaluacion).FirstOrDefault().Tardanza;
                 int Permiso = item.Empleado.Asistencias.Where(a => a.IdEvaluacion == eval.IdEvaluacion).FirstOrDefault().Permiso;
@@ -353,9 +355,12 @@ namespace SAESoft.Incentivo
                 DateTime inicioEval = eval.fechaInicio;
                 DateTime finEval = eval.fechaFin;
 
+                DateTime inicioMes = new(finEval.Year, finEval.Month, 1);
+                DateTime finMes = new(finEval.Year, finEval.Month, DateTime.DaysInMonth(finEval.Year,finEval.Month));
+
                 SAESoftContext db = new();
                 var suspensiones = db.Suspensiones.Where(b => b.IdEmpleado == item.Empleado.IdEmpIncentivo && b.Activo == true)
-                                                 .Where(b => b.FechaInicio >= inicioEval || b.FechaFin >= inicioEval)
+                                                 .Where(b => (b.FechaInicio >= inicioMes && b.FechaInicio <= finMes) || (b.FechaFin >= inicioMes && b.FechaFin<=finMes) || (b.FechaInicio <inicioMes && b.FechaFin>finMes))
                                                  .ToList();
 
                 String mensaje = "";
@@ -375,7 +380,7 @@ namespace SAESoft.Incentivo
 
                 hoja.SetCellValue("B" + i, item.Empleado.Codigo);
                 hoja.SetCellValue("C" + i, item.Empleado.NombreCompleto);
-                hoja.SetCellValue("D" + i, depto);
+                hoja.SetCellValue("D" + i, item.Departamento.Nombre);
                 hoja.SetCellValue("E" + i, item.BaseCalculo);
                 hoja.SetCellValue("F" + i, item.Extra);
                 hoja.SetCellValue("G" + i, item.Total);
@@ -425,7 +430,7 @@ namespace SAESoft.Incentivo
                     hoja.SetCellStyle("G" + i, fondoVerdeSuspendido);
                 }
 
-                var historial = db.HistorialIncentivos.Where(e => e.IdEmpleado == item.Empleado.IdEmpIncentivo).Where(f => (f.FechaInicio >= inicioEval && f.idEvaluacion == null) || f.idEvaluacion == eval.IdEvaluacion).ToList();
+                var historial = db.HistorialIncentivos.Where(e => e.IdEmpleado == item.Empleado.IdEmpIncentivo).Where(c=>c.Autorizacion != "CAMBIO DEPTO.").Where(f => (f.FechaInicio >= inicioEval && f.idEvaluacion == null) || f.idEvaluacion == eval.IdEvaluacion).ToList();
 
                 if (item.Empleado.FechaIngreso >= inicioEval)
                 {
@@ -519,11 +524,11 @@ namespace SAESoft.Incentivo
             SAESoftContext db = new();
             foreach (var ev in eval.Detalles.OrderBy(b => b.IdDepto))
             {
-                var nombreDepto = ev.Departamento.Nombre;
+                var nombreDepto = ev.Departamento.Grupo.Nombre;
                 if (!deptoProcesado.Contains(nombreDepto))
                 {
-                    int cantidad = eval.Detalles.Count(b => b.IdDepto == ev.IdDepto);
-                    List<int> listaEmpleados = eval.Detalles.Where(b => b.IdDepto == ev.IdDepto).Select(b => b.IdEmpleado).ToList();
+                    int cantidad = eval.Detalles.Count(b => b.Departamento.IdGrupo == ev.Departamento.IdGrupo);
+                    List<int> listaEmpleados = eval.Detalles.Where(b => b.Departamento.IdGrupo == ev.Departamento.IdGrupo).Select(b => b.IdEmpleado).ToList();
                     var emps = db.EmpIncentivos.Include(e => e.HistIncentivos)
                                                        .Where(b => listaEmpleados.Contains(b.IdEmpIncentivo))
                                                        .ToList();
@@ -532,7 +537,7 @@ namespace SAESoft.Incentivo
                     {
                         asignado += e.BaseCalculo;
                     }
-                    decimal pagado = eval.Detalles.Where(b => b.IdDepto == ev.IdDepto).Sum(b => b.Total);
+                    decimal pagado = eval.Detalles.Where(b => b.Departamento.IdGrupo == ev.Departamento.IdGrupo).Sum(b => b.Total);
 
                     resumen.SetCellValue("B" + i, nombreDepto);
                     resumen.SetCellValue("C" + i, cantidad);
