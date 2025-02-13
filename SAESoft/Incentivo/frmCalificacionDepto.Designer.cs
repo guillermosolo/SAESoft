@@ -41,7 +41,6 @@
             icbGuardar = new FontAwesome.Sharp.IconButton();
             txtLogrado = new TextBox();
             label4 = new Label();
-            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             ((System.ComponentModel.ISupportInitialize)dgvEvaluar).BeginInit();
             SuspendLayout();
             // 
@@ -86,7 +85,9 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvEvaluar.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvEvaluar.EditMode = DataGridViewEditMode.EditOnKeystroke;
             dgvEvaluar.Location = new Point(27, 150);
+            dgvEvaluar.MultiSelect = false;
             dgvEvaluar.Name = "dgvEvaluar";
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Control;
@@ -96,7 +97,9 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dgvEvaluar.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgvEvaluar.Size = new Size(995, 384);
+            dgvEvaluar.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dgvEvaluar.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dgvEvaluar.Size = new Size(995, 392);
             dgvEvaluar.TabIndex = 2;
             dgvEvaluar.CellBeginEdit += dgvEvaluar_CellBeginEdit;
             dgvEvaluar.CellEndEdit += dgvEvaluar_CellEndEdit;
@@ -105,6 +108,7 @@
             dgvEvaluar.CellPainting += dgvEvaluar_CellPainting;
             dgvEvaluar.CellValidating += dgvEvaluar_CellValidating;
             dgvEvaluar.EditingControlShowing += dgvEvaluar_EditingControlShowing;
+            dgvEvaluar.SelectionChanged += dgvEvaluar_SelectionChanged;
             dgvEvaluar.Paint += dgvEvaluar_Paint;
             dgvEvaluar.KeyDown += dgvEvaluar_KeyDown;
             // 
@@ -178,11 +182,6 @@
             label4.TabIndex = 8;
             label4.Text = "Total Logrado";
             // 
-            // sqlCommand1
-            // 
-            sqlCommand1.CommandTimeout = 30;
-            sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
             // frmCalificacionDepto
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
@@ -221,6 +220,5 @@
         private FontAwesome.Sharp.IconButton icbGuardar;
         private TextBox txtLogrado;
         private Label label4;
-        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
     }
 }

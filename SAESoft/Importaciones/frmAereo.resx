@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
-    Microsoft ResX Schema 
+    Microsoft ResX Schema
 
     Version 2.0
 
@@ -48,7 +48,7 @@
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
@@ -130,24 +130,24 @@
   <data name="tsbPago.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPWSURBVFhH7ZdrSFRBGIbHNI2gCxEUVFAQ/Sii6EdUmrtn
-        NUsrzXLVzEQ0StQi7Ec3KoOooKgMg5QiuptZ1hqZZVeLiDI1ldY9G62ltrtqK6VZlvs1cxr0XGbXvUj0
-        oxceDjvOed/PmW/OnkV9umKZiorMOaiouQMVWcElypqMyFatoQ5eCMAHXbUamSHO0H3sQbaaTtReu4A6
-        eahr5kXMgIG43wS4AEIHZg5180BF1j0Kc1foLwBQa00rans9nTq6qauWbGbAQIgL+EML6qibSl3dkKcF
-        6MyA2iUFEEy4JyZRZxflaQGEWqO8AMBb8Q5Z6sZTdxfkTQGEOy2AXrzv5+GzXvS0sZy6uyBvC2BRYDVR
-        dxf0v4B/rwAL+G0vBr9N55j47rktmusAbwrwudAI/tp9EBCxjYn/mkOArnySBsr521swWVcPMfd0sP9Z
-        DtyqzIKSyqwuu0Gz2W5QTaQpTsQqoKAZfC5+cAoqaIGRxY1w+sVesPMck6bHnP2XgauwG4Nn0jSG5Ftw
-        3gQB6o0wbF6qU8Iy1oOpPkYS2Gvg4FR+FPToNZLxr/z8TjuvjqOJMjFWYMjxl+B78JFDpuVeh079YkkI
-        4fqlZUJxR3NWKP4mYFCn0lSR3OyBIfiUVFSnKcwzdmiF8CnhycI1IjUBOuulK9HdwH0GvWosTaZSFGAB
-        3x2Oj+Gm4iMSU0JV+RIh9PyZSOHz89JwGBmUApfOLlfM7eW5UzSZSt4DF0zgH50NAWFbmJQ/SFCYZh9Y
-        CZPCkiVjG7bGQtq2WMkYwVbFdQNofWk6lhtb4INXx6ZfqjDNz4sSVuDV3SV9Y91vNWCrCZHM68OgEb09
-        uVHAtJIapiHZ61krk4Rlj8uMh9wTK+BLrYNwgoFLoOlYbhQQWFrBNsSQ/3bnvlUQnJgorMaMqCTHK8Cr
-        1tF0rMLWDawwFhNu6hlmfxCffdKUIwJThN4Qz+lHI3qLLvw8Cl20drEC5ZAeML9VnvHT+ZGwKn21ZIwc
-        Q21GvGSMYOFVP6BO60/TqQot6TjgkzyQBXney03Lb0QIy/6kJFz43PIyFMYEp0DeySjF3F+8+glNlSkP
-        huJfSOGo0BrvjJCyB+kddaHfxKY/GzjgktbA8PmpwnX0whShB9qqQiXhzTzXAw2q2TTRc5EuFhsTyPfA
-        4WPRwkpk7Y4RjqF8Dr5vF7XwXvi5vpt824kD2qtCYG7cWjA9XyQNxuACL8NDlR+9fXBkN2qif+iDzLIg
-        SfB3PqgNX2PpLYMv0tH4xSOxl1frfvLB+i96VRd+B3iDn/ln8HHLtL/TjKNTZULoNxzbaoME91uMAAAA
-        AElFTkSuQmCC
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPXSURBVFhH7ZdrSFRBGIbHNI2gCxEUVFAQ/Sii6Edkmrtn
+        vZR2Mc1VM5PQqNCKsB+ZURlEBUVlFKQYUVmZWdYaXe2CFiFWZiqtezZaK3V31VZKMy33a+Y06LnMbnuR
+        6EcvPBx2nPO+nzPfnD2LBnTFMh2VmHNRSXMnKrGCS9z7ZES21xrq4IUAfNBVq5EZ4gzdxz5kq+1CHXUL
+        qZOHumYOZwb8iYefABdA6MTMo24eqMS6V2HuCoMFAGqrbUPtr2ZSRzd11ZLDDPgT4gJ+04I666dTVzfk
+        aQE6M6AOSQEEE+6JKdTZRXlaAKHOKC8A8Fa8Q5b6idTdBXlTAOFuC6Cq94M8ftqPnjaVU3cX5G0BLIqs
+        Jurugv4X8O8VYAG/naXgt/U8E9+9t0VzHeBNAT6FTeCv3Q8BUVlM/NccBnSlVRoo529vwVRdA8Q90MGB
+        Z7lw62UmlL3M7LYbNNvsBtVkmuJErAKKmsHn4genoKIWGF3aBGeq9oGd55h8fMLZfxq4SrsxZDZNY0i+
+        BRdMEKDeAiMWpDklImMDmBriJIH9Bg4K8qOhT6+RjH/lA7vsvDqBJsrEWIFhJ6rB99ATh8w4eR269Isl
+        IYTrl5YJxR3LXan4m4BBnUZTRXKzB4bhU1L5epPCPCNbK4RPi1wnXKPSkqCrQboSPY3cZ9CrxtNkKkUB
+        FvDNdnwMt5YelZgSasqXCKEXzq4QPj+/Ewmjg1Ph0rnlirn9PFdAk6nkPVBoAv+YHAiI2M6k/FGSwjTn
+        YCxMiVgnGdu4Ix42ZcVLxgi2Gq4HQOtL07Hc2AIfvDo2/VKFaX5etLACL+4vGRjreasBW22oZN4ABo3o
+        7cmNAmaU1TINyV7PiU0Rlj1hcyKcPLUSvtQ5CCcYuCSajuVGAUF3KtmGGPLf7tq/CkKSk4XVmBWd4ngF
+        eNV6mo5V3LaRFcZi0k09w+w34rNPmnJUUKrQG+I5g2hEb9HFn8egi9ZuVqAc0gPmt8ozfiZ/BaxKXy0Z
+        I8dQm5EoGSNYeFUv1Gv9aTpVsSUdB7TKA1mQ573ctPxGlLDsFWWRwueW6jAYF5IKeaejFXN/8uoKmipT
+        HgzHv5AiUbE10Rmh9x6ld9aHfROb/mjkgEtZAyMD04Tr2EWpQg+014RJwpt5rg8aVXNpouciXSw2JpDv
+        gSPHY4SVyNwTJxxD+Rx8325q4b3wc30P+bYTB3TUhML8hLVgeh4uDcbgAi/DY5UfvX1oZDdqYnr1wWZZ
+        kCT4Ox/cjq/x9JahF+lo/OKR3M+rdT/4EP0XvaobvwO8wc/8s/i4bba/00ygU2VC6Bf9qGp+FZ2KHAAA
+        AABJRU5ErkJggg==
 </value>
   </data>
   <metadata name="fileSystemWatcher1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

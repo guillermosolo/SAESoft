@@ -17,7 +17,7 @@ namespace SAESoft.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.0")
+                .HasAnnotation("ProductVersion", "9.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -34,7 +34,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("RevisionesIdRevision");
 
-                    b.ToTable("ImportacionRevision");
+                    b.ToTable("ImportacionRevision", (string)null);
                 });
 
             modelBuilder.Entity("PermisoRol", b =>
@@ -49,7 +49,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("RolesIdRol");
 
-                    b.ToTable("PermisoRol");
+                    b.ToTable("PermisoRol", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.AdminStatus", b =>
@@ -93,7 +93,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdTipoDoc");
 
-                    b.ToTable("AdminStatuses");
+                    b.ToTable("AdminStatuses", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.Contrato", b =>
@@ -127,7 +127,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdEmpresa");
 
-                    b.ToTable("Contratos");
+                    b.ToTable("Contratos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.DepartamentoInterno", b =>
@@ -161,7 +161,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdEmpresa");
 
-                    b.ToTable("DepartamentosInternos");
+                    b.ToTable("DepartamentosInternos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.Documento", b =>
@@ -214,7 +214,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdTipo");
 
-                    b.ToTable("Documentos");
+                    b.ToTable("Documentos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.Empleado", b =>
@@ -338,7 +338,7 @@ namespace SAESoft.Migrations
                         .IsUnique()
                         .HasFilter("[IdSeguroVehiculo] IS NOT NULL");
 
-                    b.ToTable("Empleados");
+                    b.ToTable("Empleados", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.Familiar", b =>
@@ -406,7 +406,7 @@ namespace SAESoft.Migrations
                         .IsUnique()
                         .HasFilter("[IdSeguroMedico] IS NOT NULL");
 
-                    b.ToTable("Familiares");
+                    b.ToTable("Familiares", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.HistorialReclamo", b =>
@@ -444,7 +444,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdStatus");
 
-                    b.ToTable("HistorialReclamos");
+                    b.ToTable("HistorialReclamos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.HistorialTramite", b =>
@@ -482,7 +482,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdTramite");
 
-                    b.ToTable("HistorialTramites");
+                    b.ToTable("HistorialTramites", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.Nombramiento", b =>
@@ -550,7 +550,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdTipo");
 
-                    b.ToTable("Nombramientos");
+                    b.ToTable("Nombramientos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.PermisoTrabajo", b =>
@@ -590,7 +590,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdTipo");
 
-                    b.ToTable("PermisosTrabajo");
+                    b.ToTable("PermisosTrabajo", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.Reclamo", b =>
@@ -670,7 +670,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdTipo");
 
-                    b.ToTable("Reclamos");
+                    b.ToTable("Reclamos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.Residencia", b =>
@@ -710,7 +710,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdTipo");
 
-                    b.ToTable("Residencias");
+                    b.ToTable("Residencias", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.SeguroMedico", b =>
@@ -749,7 +749,7 @@ namespace SAESoft.Migrations
 
                     b.HasKey("IdMedico");
 
-                    b.ToTable("SegurosMedicos");
+                    b.ToTable("SegurosMedicos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.SeguroVehiculo", b =>
@@ -816,7 +816,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdAseguradora");
 
-                    b.ToTable("SegurosVehiculos");
+                    b.ToTable("SegurosVehiculos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.TipoDocumento", b =>
@@ -851,7 +851,7 @@ namespace SAESoft.Migrations
 
                     b.HasKey("IdTipoDocumento");
 
-                    b.ToTable("TiposDocumento");
+                    b.ToTable("TiposDocumento", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Administracion.Tramite", b =>
@@ -905,7 +905,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdTipo");
 
-                    b.ToTable("Tramites");
+                    b.ToTable("Tramites", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.AdministracionSistema.Modulo", b =>
@@ -940,7 +940,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Modulos");
+                    b.ToTable("Modulos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.AdministracionSistema.Permiso", b =>
@@ -977,7 +977,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Permisos");
+                    b.ToTable("Permisos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.AdministracionSistema.Rol", b =>
@@ -1012,7 +1012,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.AdministracionSistema.Usuario", b =>
@@ -1071,7 +1071,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Usuarios", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Comunes.Firma", b =>
@@ -1109,7 +1109,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdModulo");
 
-                    b.ToTable("Firmas");
+                    b.ToTable("Firmas", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Comunes.Grupo", b =>
@@ -1146,7 +1146,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Grupos");
+                    b.ToTable("Grupos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Comunes.Moneda", b =>
@@ -1183,7 +1183,7 @@ namespace SAESoft.Migrations
 
                     b.HasKey("IdMoneda");
 
-                    b.ToTable("Monedas");
+                    b.ToTable("Monedas", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Comunes.Nombre", b =>
@@ -1220,7 +1220,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Descripcion", "IdGrupo")
                         .IsUnique();
 
-                    b.ToTable("Nombres");
+                    b.ToTable("Nombres", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Exportaciones.ComentFacExport", b =>
@@ -1257,7 +1257,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdLicencia");
 
-                    b.ToTable("ComentFacsExport");
+                    b.ToTable("ComentFacsExport", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Exportaciones.Descargo", b =>
@@ -1297,7 +1297,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdLicencia");
 
-                    b.ToTable("Descargos");
+                    b.ToTable("Descargos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Exportaciones.Duca", b =>
@@ -1342,7 +1342,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdTipoDuca");
 
-                    b.ToTable("Ducas");
+                    b.ToTable("Ducas", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Exportaciones.FacturaExport", b =>
@@ -1416,7 +1416,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdTipoFactura");
 
-                    b.ToTable("FacturasExport");
+                    b.ToTable("FacturasExport", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Exportaciones.FacturaLocal", b =>
@@ -1477,7 +1477,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdTipoFactura");
 
-                    b.ToTable("FacturasLocal");
+                    b.ToTable("FacturasLocal", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Exportaciones.Licencia", b =>
@@ -1512,7 +1512,7 @@ namespace SAESoft.Migrations
 
                     b.HasKey("IdLicencia");
 
-                    b.ToTable("Licencias");
+                    b.ToTable("Licencias", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Aduana", b =>
@@ -1556,7 +1556,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Aduanas");
+                    b.ToTable("Aduanas", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Agente", b =>
@@ -1592,7 +1592,7 @@ namespace SAESoft.Migrations
 
                     b.HasKey("IdAgente");
 
-                    b.ToTable("Agentes");
+                    b.ToTable("Agentes", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.BL", b =>
@@ -1629,7 +1629,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Numero")
                         .IsUnique();
 
-                    b.ToTable("BL");
+                    b.ToTable("BL", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Contenedor", b =>
@@ -1672,7 +1672,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdImportacion");
 
-                    b.ToTable("Contenedores");
+                    b.ToTable("Contenedores", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.ImportHistorial", b =>
@@ -1710,7 +1710,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdImportStatus");
 
-                    b.ToTable("ImportHistorial");
+                    b.ToTable("ImportHistorial", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.ImportStatus", b =>
@@ -1749,7 +1749,7 @@ namespace SAESoft.Migrations
 
                     b.HasKey("IdImportStatus");
 
-                    b.ToTable("ImportStatus");
+                    b.ToTable("ImportStatus", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Importacion", b =>
@@ -1858,7 +1858,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdUsuario");
 
-                    b.ToTable("Importaciones");
+                    b.ToTable("Importaciones", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Pago", b =>
@@ -1895,7 +1895,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("IdContenedor")
                         .IsUnique();
 
-                    b.ToTable("Pagos");
+                    b.ToTable("Pagos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Poliza", b =>
@@ -1940,7 +1940,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Numero")
                         .IsUnique();
 
-                    b.ToTable("Polizas");
+                    b.ToTable("Polizas", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Revision", b =>
@@ -1972,7 +1972,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Descripcion")
                         .IsUnique();
 
-                    b.ToTable("Revisiones");
+                    b.ToTable("Revisiones", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Shipper", b =>
@@ -2013,7 +2013,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Shippers");
+                    b.ToTable("Shippers", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Importaciones.Terminal", b =>
@@ -2049,7 +2049,7 @@ namespace SAESoft.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Terminales");
+                    b.ToTable("Terminales", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Incentivos.Asistencia", b =>
@@ -2096,7 +2096,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdEvaluacion");
 
-                    b.ToTable("Asistencia");
+                    b.ToTable("Asistencia", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Incentivos.DeptoIncentivo", b =>
@@ -2138,7 +2138,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdUsuario");
 
-                    b.ToTable("DeptoIncentivo");
+                    b.ToTable("DeptoIncentivo", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Incentivos.EmpIncentivos", b =>
@@ -2192,7 +2192,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdDepto");
 
-                    b.ToTable("EmpIncentivos");
+                    b.ToTable("EmpIncentivos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Incentivos.Evaluacion", b =>
@@ -2230,7 +2230,7 @@ namespace SAESoft.Migrations
 
                     b.HasKey("IdEvaluacion");
 
-                    b.ToTable("Evaluaciones");
+                    b.ToTable("Evaluaciones", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Incentivos.EvaluacionAsistencia", b =>
@@ -2268,7 +2268,7 @@ namespace SAESoft.Migrations
 
                     b.HasKey("IdEvaluacionAsistencia");
 
-                    b.ToTable("EvaluacionAsistencia");
+                    b.ToTable("EvaluacionAsistencia", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Incentivos.EvaluacionDetalle", b =>
@@ -2329,7 +2329,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdEvaluacion");
 
-                    b.ToTable("EvaluacionesDetalle");
+                    b.ToTable("EvaluacionesDetalle", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Incentivos.GrupoDeptoIncentivo", b =>
@@ -2366,7 +2366,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdUsuario");
 
-                    b.ToTable("GrupoDeptoIncentivo");
+                    b.ToTable("GrupoDeptoIncentivo", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Incentivos.HistIncentivos", b =>
@@ -2414,7 +2414,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdEmpleado");
 
-                    b.ToTable("HistorialIncentivos");
+                    b.ToTable("HistorialIncentivos", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Incentivos.PorcentajeEvaluacion", b =>
@@ -2452,7 +2452,7 @@ namespace SAESoft.Migrations
 
                     b.HasKey("IdPorcentajeEvaluacion");
 
-                    b.ToTable("PorcentajeEvaluacion");
+                    b.ToTable("PorcentajeEvaluacion", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Incentivos.PuntajeAsistencia", b =>
@@ -2492,7 +2492,7 @@ namespace SAESoft.Migrations
 
                     b.HasKey("IdPuntajeAsistencia");
 
-                    b.ToTable("PuntajeAsistencia");
+                    b.ToTable("PuntajeAsistencia", (string)null);
                 });
 
             modelBuilder.Entity("SAESoft.Models.Incentivos.Suspension", b =>
@@ -2540,7 +2540,7 @@ namespace SAESoft.Migrations
 
                     b.HasIndex("IdEmpleado");
 
-                    b.ToTable("Suspensiones");
+                    b.ToTable("Suspensiones", (string)null);
                 });
 
             modelBuilder.Entity("ImportacionRevision", b =>

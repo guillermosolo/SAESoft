@@ -497,8 +497,15 @@ namespace SAESoft.Incentivo
         {
             resumen.SetCellValue("B2", "인센티브 평가표 및 상여금 내역 [S&G]");
             resumen.SetCellStyle("B2", lineaNegrita);
-
-            DateTime fPago = new(eval.fechaFin.Year, eval.fechaFin.Month + 1, 6);
+            DateTime fPago;
+            if (eval.fechaFin.Month == 12)
+            {
+                fPago = new(eval.fechaFin.Year + 1, 1, 6);
+            }
+            else
+            {
+                fPago = new(eval.fechaFin.Year, eval.fechaFin.Month + 1, 6);
+            }
             resumen.SetCellValue("B4", "평가기간");
             resumen.SetCellValue("C4", $"{eval.fechaInicio:yyyy-MM-dd}  ~ {eval.fechaFin:yyyy-MM-dd}");
 
@@ -510,7 +517,7 @@ namespace SAESoft.Incentivo
             resumen.SetCellValue("B7", "부서");
             resumen.SetCellValue("C7", "인원");
             resumen.SetCellValue("D7", "책정액");
-            resumen.SetCellValue("E7", "실.지급액");
+            resumen.SetCellValue("E7", "최종액");
             resumen.SetCellValue("F7", "지급율");
             resumen.SetCellValue("G7", "비고");
             // resumen.SetCellValue("H7", "");

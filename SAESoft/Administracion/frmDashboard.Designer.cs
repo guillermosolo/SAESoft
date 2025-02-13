@@ -42,7 +42,7 @@
             dgvDashboardM.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
@@ -53,9 +53,8 @@
             dgvDashboardM.MultiSelect = false;
             dgvDashboardM.Name = "dgvDashboardM";
             dgvDashboardM.ReadOnly = true;
-            dgvDashboardM.RowTemplate.Height = 25;
             dgvDashboardM.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDashboardM.Size = new Size(761, 385);
+            dgvDashboardM.Size = new Size(749, 385);
             dgvDashboardM.TabIndex = 0;
             // 
             // dgvDetalle
@@ -66,7 +65,7 @@
             dgvDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
@@ -76,8 +75,7 @@
             dgvDetalle.Location = new Point(12, 403);
             dgvDetalle.Name = "dgvDetalle";
             dgvDetalle.ReadOnly = true;
-            dgvDetalle.RowTemplate.Height = 25;
-            dgvDetalle.Size = new Size(761, 298);
+            dgvDetalle.Size = new Size(749, 298);
             dgvDetalle.TabIndex = 1;
             dgvDetalle.CellFormatting += dgvDetalle_CellFormatting;
             dgvDetalle.CellStateChanged += dgvDetalle_CellStateChanged;
@@ -86,7 +84,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 713);
+            ClientSize = new Size(772, 713);
             Controls.Add(dgvDetalle);
             Controls.Add(dgvDashboardM);
             Name = "frmDashboard";

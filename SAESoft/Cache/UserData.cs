@@ -22,5 +22,17 @@ namespace SAESoft.Cache
             using SAESoftContext db = new();
             return usuarioLogged.Rol.IdRol == idRol;
         }
+
+        public static Boolean hasGrupoDeptoIncentivo()
+        {
+            using SAESoftContext db = new();
+            return usuarioLogged.GrupoDeptoIncentivos.Count != 0;
+        }
+
+        public static Boolean hasDeptoIncentivo()
+        {
+            using SAESoftContext db = new();
+            return usuarioLogged.DeptoIncentivos.Count != 0;
+        }
     }
 }

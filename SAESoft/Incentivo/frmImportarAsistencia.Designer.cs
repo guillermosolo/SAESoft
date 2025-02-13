@@ -42,13 +42,14 @@
             label3 = new Label();
             txtObservaciones = new TextBox();
             errorProvider1 = new ErrorProvider(components);
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvAsistencia).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // iconButton1
             // 
-            iconButton1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            iconButton1.Font = new Font("Century Gothic", 12F);
             iconButton1.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
             iconButton1.IconColor = Color.Green;
             iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -70,7 +71,7 @@
             dgvAsistencia.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
@@ -82,13 +83,12 @@
             dgvAsistencia.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dgvAsistencia.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvAsistencia.RowTemplate.Height = 25;
             dgvAsistencia.Size = new Size(759, 213);
             dgvAsistencia.TabIndex = 1;
             // 
@@ -98,7 +98,7 @@
             // 
             // dtpInicio
             // 
-            dtpInicio.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpInicio.Font = new Font("Century Gothic", 12F);
             dtpInicio.Format = DateTimePickerFormat.Short;
             dtpInicio.Location = new Point(202, 30);
             dtpInicio.Name = "dtpInicio";
@@ -108,7 +108,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Century Gothic", 12F);
             label1.Location = new Point(39, 35);
             label1.Name = "label1";
             label1.Size = new Size(112, 21);
@@ -118,7 +118,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Century Gothic", 12F);
             label2.Location = new Point(39, 74);
             label2.Name = "label2";
             label2.Size = new Size(109, 21);
@@ -127,7 +127,7 @@
             // 
             // dtpFin
             // 
-            dtpFin.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpFin.Font = new Font("Century Gothic", 12F);
             dtpFin.Format = DateTimePickerFormat.Short;
             dtpFin.Location = new Point(202, 69);
             dtpFin.Name = "dtpFin";
@@ -137,8 +137,8 @@
             // icbGuardar
             // 
             icbGuardar.Enabled = false;
-            icbGuardar.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            icbGuardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            icbGuardar.Font = new Font("Century Gothic", 12F);
+            icbGuardar.IconChar = FontAwesome.Sharp.IconChar.Save;
             icbGuardar.IconColor = Color.DodgerBlue;
             icbGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbGuardar.IconSize = 24;
@@ -154,7 +154,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Century Gothic", 12F);
             label3.Location = new Point(39, 112);
             label3.Name = "label3";
             label3.Size = new Size(126, 21);
@@ -163,7 +163,7 @@
             // 
             // txtObservaciones
             // 
-            txtObservaciones.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtObservaciones.Font = new Font("Century Gothic", 12F);
             txtObservaciones.Location = new Point(202, 112);
             txtObservaciones.Multiline = true;
             txtObservaciones.Name = "txtObservaciones";
@@ -174,11 +174,23 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Red;
+            label4.Location = new Point(45, 203);
+            label4.Name = "label4";
+            label4.Size = new Size(705, 17);
+            label4.TabIndex = 9;
+            label4.Text = "* Recuerde que los encabezados de columna deben ser las palabras: CODIGO, TARDANZA, PERMISO Y AUSENCIA.";
+            // 
             // frmImportarAsistencia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label4);
             Controls.Add(txtObservaciones);
             Controls.Add(label3);
             Controls.Add(icbGuardar);
@@ -210,5 +222,6 @@
         private Label label3;
         private TextBox txtObservaciones;
         private ErrorProvider errorProvider1;
+        private Label label4;
     }
 }

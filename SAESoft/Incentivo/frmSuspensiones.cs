@@ -34,7 +34,7 @@ namespace SAESoft.Incentivo
             if (carga)
             {
                 using SAESoftContext db = new();
-                cboEmpleado.DataSource = db.EmpIncentivos.Where(d => d.IdDepto == Convert.ToInt32(cboDepto.SelectedValue)).Select(d => new
+                cboEmpleado.DataSource = db.EmpIncentivos.Where(d => d.IdDepto == Convert.ToInt32(cboDepto.SelectedValue) && d.FechaBaja == null).Select(d => new
                 {
                     NombreCompleto = d.Apellidos + ", " + d.Nombres,
                     d.IdEmpIncentivo

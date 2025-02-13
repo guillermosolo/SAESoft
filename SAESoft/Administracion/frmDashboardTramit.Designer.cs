@@ -45,7 +45,7 @@
             chkFinalizado.FlatAppearance.MouseDownBackColor = Color.Transparent;
             chkFinalizado.FlatAppearance.MouseOverBackColor = Color.Transparent;
             chkFinalizado.FlatStyle = FlatStyle.Flat;
-            chkFinalizado.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            chkFinalizado.Font = new Font("Segoe UI", 9F);
             chkFinalizado.Image = Properties.Resources.Nunchecked;
             chkFinalizado.ImageAlign = ContentAlignment.MiddleLeft;
             chkFinalizado.ImeMode = ImeMode.NoControl;
@@ -62,7 +62,7 @@
             // icbRefresh
             // 
             icbRefresh.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            icbRefresh.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            icbRefresh.Font = new Font("Segoe UI", 9F);
             icbRefresh.IconChar = FontAwesome.Sharp.IconChar.ArrowsSpin;
             icbRefresh.IconColor = Color.Green;
             icbRefresh.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -78,10 +78,10 @@
             // dgvDashboardTramit
             // 
             dgvDashboardTramit.AllowUserToDeleteRows = false;
-            dgvDashboardTramit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            dgvDashboardTramit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
@@ -91,9 +91,8 @@
             dgvDashboardTramit.Location = new Point(12, 43);
             dgvDashboardTramit.Name = "dgvDashboardTramit";
             dgvDashboardTramit.ReadOnly = true;
-            dgvDashboardTramit.RowTemplate.Height = 25;
             dgvDashboardTramit.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDashboardTramit.Size = new Size(776, 397);
+            dgvDashboardTramit.Size = new Size(774, 397);
             dgvDashboardTramit.TabIndex = 49;
             dgvDashboardTramit.CellDoubleClick += dgvDashboardTramit_CellDoubleClick;
             // 

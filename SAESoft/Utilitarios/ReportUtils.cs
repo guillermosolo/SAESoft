@@ -21,7 +21,7 @@ namespace SAESoft.Utilitarios
 
             if (bold)
             {
-                paragraph.SetBold();
+                paragraph.SimulateBold();
             }
 
             cell = new Cell(filas, cols).Add(paragraph)

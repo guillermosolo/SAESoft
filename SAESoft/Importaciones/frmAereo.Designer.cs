@@ -155,8 +155,8 @@
             // 
             txtUrgente.CharacterCasing = CharacterCasing.Upper;
             txtUrgente.Enabled = false;
-            txtUrgente.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            txtUrgente.Location = new Point(383, 205);
+            txtUrgente.Font = new Font("Century Gothic", 10F);
+            txtUrgente.Location = new Point(360, 205);
             txtUrgente.Name = "txtUrgente";
             txtUrgente.Size = new Size(88, 24);
             txtUrgente.TabIndex = 70;
@@ -171,11 +171,11 @@
             chkUrgente.FlatAppearance.MouseDownBackColor = Color.Transparent;
             chkUrgente.FlatAppearance.MouseOverBackColor = Color.Transparent;
             chkUrgente.FlatStyle = FlatStyle.Flat;
-            chkUrgente.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkUrgente.Font = new Font("Century Gothic", 10F);
             chkUrgente.Image = Properties.Resources.Nunchecked;
             chkUrgente.ImageAlign = ContentAlignment.MiddleLeft;
             chkUrgente.ImeMode = ImeMode.NoControl;
-            chkUrgente.Location = new Point(283, 201);
+            chkUrgente.Location = new Point(260, 201);
             chkUrgente.Name = "chkUrgente";
             chkUrgente.Size = new Size(97, 29);
             chkUrgente.TabIndex = 69;
@@ -197,7 +197,7 @@
             chkDocOriginales.Image = Properties.Resources.Nunchecked;
             chkDocOriginales.ImageAlign = ContentAlignment.MiddleLeft;
             chkDocOriginales.ImeMode = ImeMode.NoControl;
-            chkDocOriginales.Location = new Point(517, 207);
+            chkDocOriginales.Location = new Point(494, 207);
             chkDocOriginales.Name = "chkDocOriginales";
             chkDocOriginales.Size = new Size(224, 31);
             chkDocOriginales.TabIndex = 68;
@@ -211,10 +211,10 @@
             // 
             cboAgente.DropDownStyle = ComboBoxStyle.DropDownList;
             cboAgente.Enabled = false;
-            cboAgente.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            cboAgente.Font = new Font("Century Gothic", 10F);
             cboAgente.FormattingEnabled = true;
             cboAgente.IntegralHeight = false;
-            cboAgente.Location = new Point(221, 355);
+            cboAgente.Location = new Point(198, 355);
             cboAgente.Name = "cboAgente";
             cboAgente.Size = new Size(248, 25);
             cboAgente.TabIndex = 67;
@@ -222,9 +222,9 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label13.Font = new Font("Century Gothic", 12F);
             label13.ImeMode = ImeMode.NoControl;
-            label13.Location = new Point(53, 358);
+            label13.Location = new Point(30, 358);
             label13.Name = "label13";
             label13.Size = new Size(162, 21);
             label13.TabIndex = 66;
@@ -234,7 +234,7 @@
             // 
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
@@ -243,16 +243,15 @@
             dgvContenedores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 10F);
             dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvContenedores.DefaultCellStyle = dataGridViewCellStyle2;
             dgvContenedores.Enabled = false;
-            dgvContenedores.Location = new Point(53, 398);
+            dgvContenedores.Location = new Point(30, 398);
             dgvContenedores.Name = "dgvContenedores";
-            dgvContenedores.RowTemplate.Height = 25;
             dgvContenedores.Size = new Size(418, 107);
             dgvContenedores.TabIndex = 65;
             dgvContenedores.Visible = false;
@@ -261,7 +260,7 @@
             // 
             txtBL.CharacterCasing = CharacterCasing.Upper;
             txtBL.Enabled = false;
-            txtBL.Location = new Point(222, 317);
+            txtBL.Location = new Point(199, 317);
             txtBL.Name = "txtBL";
             txtBL.Size = new Size(246, 27);
             txtBL.TabIndex = 64;
@@ -269,9 +268,9 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Font = new Font("Century Gothic", 12F);
             label10.ImeMode = ImeMode.NoControl;
-            label10.Location = new Point(53, 320);
+            label10.Location = new Point(30, 320);
             label10.Name = "label10";
             label10.Size = new Size(150, 21);
             label10.TabIndex = 63;
@@ -280,8 +279,8 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(clbRevisiones);
-            groupBox2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox2.Location = new Point(514, 17);
+            groupBox2.Font = new Font("Century Gothic", 12F);
+            groupBox2.Location = new Point(491, 17);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(274, 184);
             groupBox2.TabIndex = 60;
@@ -305,18 +304,17 @@
             dgvHistorial.AllowUserToDeleteRows = false;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
             dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvHistorial.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvHistorial.Location = new Point(56, 512);
+            dgvHistorial.Location = new Point(33, 512);
             dgvHistorial.Name = "dgvHistorial";
             dgvHistorial.ReadOnly = true;
             dgvHistorial.RowHeadersVisible = false;
-            dgvHistorial.RowTemplate.Height = 25;
             dgvHistorial.ScrollBars = ScrollBars.Vertical;
             dgvHistorial.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvHistorial.Size = new Size(726, 179);
@@ -325,8 +323,8 @@
             // groupBox4
             // 
             groupBox4.Controls.Add(listView1);
-            groupBox4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox4.Location = new Point(508, 238);
+            groupBox4.Font = new Font("Century Gothic", 12F);
+            groupBox4.Location = new Point(485, 238);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(277, 267);
             groupBox4.TabIndex = 58;
@@ -336,7 +334,7 @@
             // listView1
             // 
             listView1.Dock = DockStyle.Fill;
-            listView1.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            listView1.Font = new Font("Century Gothic", 10F);
             errorProvider1.SetIconAlignment(listView1, ErrorIconAlignment.MiddleLeft);
             listView1.LargeImageList = imageList1;
             listView1.Location = new Point(3, 23);
@@ -359,10 +357,10 @@
             // 
             cboAlmacenadora.DropDownStyle = ComboBoxStyle.DropDownList;
             cboAlmacenadora.Enabled = false;
-            cboAlmacenadora.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cboAlmacenadora.Font = new Font("Century Gothic", 12F);
             cboAlmacenadora.FormattingEnabled = true;
             cboAlmacenadora.IntegralHeight = false;
-            cboAlmacenadora.Location = new Point(189, 246);
+            cboAlmacenadora.Location = new Point(166, 246);
             cboAlmacenadora.Name = "cboAlmacenadora";
             cboAlmacenadora.Size = new Size(280, 29);
             cboAlmacenadora.TabIndex = 57;
@@ -371,9 +369,9 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Font = new Font("Century Gothic", 12F);
             label8.ImeMode = ImeMode.NoControl;
-            label8.Location = new Point(53, 249);
+            label8.Location = new Point(30, 249);
             label8.Name = "label8";
             label8.RightToLeft = RightToLeft.No;
             label8.Size = new Size(130, 21);
@@ -385,10 +383,10 @@
             // 
             cboTerminal.DropDownStyle = ComboBoxStyle.DropDownList;
             cboTerminal.Enabled = false;
-            cboTerminal.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cboTerminal.Font = new Font("Century Gothic", 12F);
             cboTerminal.FormattingEnabled = true;
             cboTerminal.IntegralHeight = false;
-            cboTerminal.Location = new Point(173, 246);
+            cboTerminal.Location = new Point(150, 246);
             cboTerminal.Name = "cboTerminal";
             cboTerminal.Size = new Size(296, 29);
             cboTerminal.TabIndex = 54;
@@ -397,10 +395,10 @@
             // 
             cboAduana.DropDownStyle = ComboBoxStyle.DropDownList;
             cboAduana.Enabled = false;
-            cboAduana.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cboAduana.Font = new Font("Century Gothic", 12F);
             cboAduana.FormattingEnabled = true;
             cboAduana.IntegralHeight = false;
-            cboAduana.Location = new Point(173, 280);
+            cboAduana.Location = new Point(150, 280);
             cboAduana.Name = "cboAduana";
             cboAduana.Size = new Size(296, 29);
             cboAduana.TabIndex = 53;
@@ -408,9 +406,9 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Font = new Font("Century Gothic", 12F);
             label6.ImeMode = ImeMode.NoControl;
-            label6.Location = new Point(53, 283);
+            label6.Location = new Point(30, 283);
             label6.Name = "label6";
             label6.Size = new Size(76, 21);
             label6.TabIndex = 52;
@@ -419,9 +417,9 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Font = new Font("Century Gothic", 12F);
             label5.ImeMode = ImeMode.NoControl;
-            label5.Location = new Point(53, 249);
+            label5.Location = new Point(30, 249);
             label5.Name = "label5";
             label5.Size = new Size(75, 21);
             label5.TabIndex = 51;
@@ -429,11 +427,11 @@
             // 
             // dtpETA
             // 
-            dtpETA.CalendarFont = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpETA.CalendarFont = new Font("Century Gothic", 12F);
             dtpETA.Enabled = false;
-            dtpETA.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpETA.Font = new Font("Century Gothic", 12F);
             dtpETA.Format = DateTimePickerFormat.Short;
-            dtpETA.Location = new Point(173, 205);
+            dtpETA.Location = new Point(150, 205);
             dtpETA.Name = "dtpETA";
             dtpETA.Size = new Size(107, 27);
             dtpETA.TabIndex = 50;
@@ -441,9 +439,9 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Font = new Font("Century Gothic", 12F);
             label4.ImeMode = ImeMode.NoControl;
-            label4.Location = new Point(53, 210);
+            label4.Location = new Point(30, 210);
             label4.Name = "label4";
             label4.Size = new Size(40, 21);
             label4.TabIndex = 49;
@@ -453,10 +451,10 @@
             // 
             cboShipper.DropDownStyle = ComboBoxStyle.DropDownList;
             cboShipper.Enabled = false;
-            cboShipper.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cboShipper.Font = new Font("Century Gothic", 12F);
             cboShipper.FormattingEnabled = true;
             cboShipper.IntegralHeight = false;
-            cboShipper.Location = new Point(173, 55);
+            cboShipper.Location = new Point(150, 55);
             cboShipper.Name = "cboShipper";
             cboShipper.Size = new Size(296, 29);
             cboShipper.TabIndex = 48;
@@ -465,10 +463,10 @@
             // 
             cboNaviera.DropDownStyle = ComboBoxStyle.DropDownList;
             cboNaviera.Enabled = false;
-            cboNaviera.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cboNaviera.Font = new Font("Century Gothic", 12F);
             cboNaviera.FormattingEnabled = true;
             cboNaviera.IntegralHeight = false;
-            cboNaviera.Location = new Point(173, 90);
+            cboNaviera.Location = new Point(150, 90);
             cboNaviera.Name = "cboNaviera";
             cboNaviera.Size = new Size(296, 29);
             cboNaviera.TabIndex = 47;
@@ -476,9 +474,9 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Font = new Font("Century Gothic", 12F);
             label9.ImeMode = ImeMode.NoControl;
-            label9.Location = new Point(53, 93);
+            label9.Location = new Point(30, 93);
             label9.Name = "label9";
             label9.Size = new Size(62, 21);
             label9.TabIndex = 46;
@@ -488,10 +486,10 @@
             // 
             cboDestino.DropDownStyle = ComboBoxStyle.DropDownList;
             cboDestino.Enabled = false;
-            cboDestino.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cboDestino.Font = new Font("Century Gothic", 12F);
             cboDestino.FormattingEnabled = true;
             cboDestino.IntegralHeight = false;
-            cboDestino.Location = new Point(173, 166);
+            cboDestino.Location = new Point(150, 166);
             cboDestino.Name = "cboDestino";
             cboDestino.Size = new Size(296, 29);
             cboDestino.TabIndex = 45;
@@ -499,9 +497,9 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Century Gothic", 12F);
             label3.ImeMode = ImeMode.NoControl;
-            label3.Location = new Point(53, 169);
+            label3.Location = new Point(30, 169);
             label3.Name = "label3";
             label3.Size = new Size(68, 21);
             label3.TabIndex = 44;
@@ -511,10 +509,10 @@
             // 
             cboForwarder.DropDownStyle = ComboBoxStyle.DropDownList;
             cboForwarder.Enabled = false;
-            cboForwarder.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cboForwarder.Font = new Font("Century Gothic", 12F);
             cboForwarder.FormattingEnabled = true;
             cboForwarder.IntegralHeight = false;
-            cboForwarder.Location = new Point(173, 129);
+            cboForwarder.Location = new Point(150, 129);
             cboForwarder.Name = "cboForwarder";
             cboForwarder.Size = new Size(296, 29);
             cboForwarder.TabIndex = 43;
@@ -522,9 +520,9 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Century Gothic", 12F);
             label2.ImeMode = ImeMode.NoControl;
-            label2.Location = new Point(53, 136);
+            label2.Location = new Point(30, 136);
             label2.Name = "label2";
             label2.Size = new Size(89, 21);
             label2.TabIndex = 42;
@@ -533,9 +531,9 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Font = new Font("Century Gothic", 12F);
             label7.ImeMode = ImeMode.NoControl;
-            label7.Location = new Point(53, 58);
+            label7.Location = new Point(30, 58);
             label7.Name = "label7";
             label7.Size = new Size(68, 21);
             label7.TabIndex = 41;
@@ -545,7 +543,7 @@
             // 
             rbtnTerrestre.AutoSize = true;
             rbtnTerrestre.Enabled = false;
-            rbtnTerrestre.Location = new Point(383, 13);
+            rbtnTerrestre.Location = new Point(360, 13);
             rbtnTerrestre.Margin = new Padding(4);
             rbtnTerrestre.Name = "rbtnTerrestre";
             rbtnTerrestre.Size = new Size(94, 25);
@@ -558,7 +556,7 @@
             rbtnAereo.AutoSize = true;
             rbtnAereo.Checked = true;
             rbtnAereo.Enabled = false;
-            rbtnAereo.Location = new Point(299, 13);
+            rbtnAereo.Location = new Point(276, 13);
             rbtnAereo.Margin = new Padding(4);
             rbtnAereo.Name = "rbtnAereo";
             rbtnAereo.Size = new Size(76, 25);
@@ -571,8 +569,8 @@
             // txtId
             // 
             txtId.Enabled = false;
-            txtId.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtId.Location = new Point(173, 14);
+            txtId.Font = new Font("Century Gothic", 12F);
+            txtId.Location = new Point(150, 14);
             txtId.Margin = new Padding(4);
             txtId.Name = "txtId";
             txtId.Size = new Size(118, 27);
@@ -581,9 +579,9 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Century Gothic", 12F);
             label1.ImeMode = ImeMode.NoControl;
-            label1.Location = new Point(53, 17);
+            label1.Location = new Point(30, 17);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(26, 21);
@@ -802,7 +800,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(816, 845);
             Controls.Add(toolStripContainer1);
-            Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Century Gothic", 12F);
             Margin = new Padding(4);
             Name = "frmAereo";
             Text = "frmAereo";

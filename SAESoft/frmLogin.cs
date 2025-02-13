@@ -6,6 +6,11 @@ using static SAESoft.Utilitarios.ControlFormularios;
 using Microsoft.EntityFrameworkCore;
 using SAESoft.Utilitarios;
 
+#if !DEBUG
+using System.Xml;
+#endif
+
+
 namespace SAESoft
 {
     public partial class frmLogin : Form
@@ -54,8 +59,10 @@ namespace SAESoft
                 try
                 {
                     usuarioLogged = db.Usuarios.Include(r => r.Rol)
-                                                      .Include(r => r.Rol.Permisos)
-                                                      .FirstOrDefault(c => c.UserName == txtUser.Text);
+                                               .Include(r => r.Rol.Permisos)
+                                               .Include(g => g.GrupoDeptoIncentivos)
+                                               .Include(d => d.DeptoIncentivos)
+                                               .FirstOrDefault(c => c.UserName == txtUser.Text);
                     if (usuarioLogged != null)
                     {
                         if (!ConfirmHash(txtPass.Text, usuarioLogged.Password))

@@ -153,7 +153,14 @@ namespace SAESoft.Incentivo
         {
             EstructuraGrid();
             dtpFin.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 15);
-            dtpInicio.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1, 16);
+            if (DateTime.Today.Month == 1)
+            {
+                dtpInicio.Value = new DateTime(DateTime.Today.Year - 1, 12, 16);
+            }
+            else
+            {
+                dtpInicio.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1, 16);
+            }
         }
 
         private bool ValidarDatos()

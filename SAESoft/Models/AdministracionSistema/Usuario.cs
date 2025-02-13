@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SAESoft.Models.Incentivos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -26,5 +27,7 @@ namespace SAESoft.Models.AdministracionSistema
         [ForeignKey("IdRol")]
         public virtual Rol Rol { get; set; } = null!;
         public Boolean Activo { get; set; }
+        public virtual ICollection<GrupoDeptoIncentivo> GrupoDeptoIncentivos { get; set; }
+        public virtual ICollection<DeptoIncentivo> DeptoIncentivos { get; set; }
     }
 }

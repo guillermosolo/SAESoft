@@ -4,8 +4,10 @@ using SAESoft.Models;
 using SAESoft.Models.Incentivos;
 using SAESoft.Utilitarios;
 using System.Data;
+using System.Windows.Input;
 using static SAESoft.Cache.UserData;
 using static SAESoft.Utilitarios.ControlFormularios;
+using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
 
 namespace SAESoft.Incentivo
 {
@@ -17,8 +19,10 @@ namespace SAESoft.Incentivo
         decimal Total, Extra, ExtraAnterior, TLogrado;
         Evaluacion ev;
         Boolean esNuevo = true;
-        readonly List<(int id, int row)> evaluacionModificar = [];
+        readonly List<int> evaluacionModificar = [];
         int firstDisplayedScrollingRowIndex;
+        private DataGridViewCell _celWasEndEdit;
+        readonly List<int> RolesPermitidos = [1, 6, 1006];
         public frmCalificacionDepto()
         {
             InitializeComponent();
@@ -28,17 +32,25 @@ namespace SAESoft.Incentivo
         {
             carga = false;
             using SAESoftContext db = new();
-            if (usuarioLogged.Rol.IdRol == 1 || usuarioLogged.Rol.Nombre.Equals("Admin Incentivo"))
+            if (RolesPermitidos.Contains(usuarioLogged.Rol.IdRol))
             {
-                cboDepto.DataSource = db.GrupoDeptoIncentivo.OrderBy(b=>b.Nombre).ToList();
-
+                cboDepto.DataSource = db.GrupoDeptoIncentivo.OrderBy(b => b.Nombre).Where(a => a.Activo).ToList();
+                cboDepto.ValueMember = "IdGrupo";
             }
             else
             {
-                cboDepto.DataSource = db.GrupoDeptoIncentivo.Include(d => d.Departamentos).Where(b => b.IdUsuario == usuarioLogged.IdUsuario).OrderBy(b=>b.Nombre).ToList();
+                if (hasGrupoDeptoIncentivo())
+                {
+                    cboDepto.DataSource = db.GrupoDeptoIncentivo.Include(d => d.Departamentos).Where(b => b.IdUsuario == usuarioLogged.IdUsuario && b.Activo).OrderBy(b => b.Nombre).ToList();
+                    cboDepto.ValueMember = "IdGrupo";
+                }
+                else
+                {
+                    cboDepto.DataSource = db.DeptoIncentivo.Where(b => b.IdUsuario == usuarioLogged.IdUsuario && b.Activo).OrderBy(b => b.Nombre).ToList();
+                    cboDepto.ValueMember = "IdDepto";
+                }
             }
             cboDepto.DisplayMember = "Nombre";
-            cboDepto.ValueMember = "IdGrupo";
             carga = true;
         }
 
@@ -61,6 +73,7 @@ namespace SAESoft.Incentivo
             dt.Columns.Add("Bolsa").DataType = Type.GetType("System.Decimal");
             dt.Columns.Add("Días Proporcional").DataType = Type.GetType("System.Int32");
             dt.Columns.Add("IdEvaluacionDetalle").DataType = Type.GetType("System.Int32");
+            dt.Columns.Add("esNuevo").DataType = Type.GetType("System.Boolean");
 
 
             dgvEvaluar.DataSource = dt;
@@ -68,6 +81,7 @@ namespace SAESoft.Incentivo
             dgvEvaluar.Columns["IdDepto"].Visible = false;
             dgvEvaluar.Columns["Bolsa"].Visible = false;
             dgvEvaluar.Columns["IdEvaluacionDetalle"].Visible = false;
+            dgvEvaluar.Columns["esNuevo"].Visible = false;
             //dgvEvaluar.Columns["Días Proporcional"].Visible = false;
             dgvEvaluar.Columns["Nombre Completo"].Width = 200;
             dgvEvaluar.Columns["IdEmpIncentivo"].ReadOnly = true;
@@ -84,6 +98,7 @@ namespace SAESoft.Incentivo
             dgvEvaluar.Columns["Total Pago (1+2)"].ReadOnly = true;
             dgvEvaluar.Columns["Días Proporcional"].ReadOnly = true;
             dgvEvaluar.Columns["IdEvaluacionDetalle"].ReadOnly = true;
+            dgvEvaluar.Columns["esNuevo"].ReadOnly=true;
 
             for (int c = 4; c <= 16; c++)
             {
@@ -130,6 +145,15 @@ namespace SAESoft.Incentivo
 
         private void CargarDatos()
         {
+            if (hasPermission("MODIFICAR.EVALUACION"))
+            {
+                dgvEvaluar.Enabled = true;
+            }
+            else
+            {
+                dgvEvaluar.Enabled = false;
+            }
+            evaluacionModificar.Clear();
             dt.Clear();
             Total = 0.00M;
             Extra = 0.00M;
@@ -140,11 +164,18 @@ namespace SAESoft.Incentivo
                 ev = db.Evaluaciones.Include(d => d.Detalles).Where(b => !b.finalizado).FirstOrDefault();
                 if (ev != null)
                 {
-                    var emp = db.EmpIncentivos.Include(b => b.Asistencias)
-                                              .Where(b => b.DeptoIncentivos.IdGrupo == Convert.ToInt32(cboDepto.SelectedValue) && b.Asistencias
-                                              .Any(a => a.IdEvaluacion == ev.IdEvaluacion))
-                                              .OrderBy(b=>b.IdDepto)
-                                              .ThenBy(b=>b.Codigo);
+                    IQueryable<EmpIncentivos> emp = db.EmpIncentivos.Include(b => b.Asistencias);
+                    if (RolesPermitidos.Contains(usuarioLogged.Rol.IdRol) || hasGrupoDeptoIncentivo())
+                    {
+                        emp = emp.Where(b => b.DeptoIncentivos.IdGrupo == Convert.ToInt32(cboDepto.SelectedValue)
+                                  && b.Asistencias.Any(a => a.IdEvaluacion == ev.IdEvaluacion));
+                    }
+                    else
+                    {
+                        emp = emp.Where(b => b.IdDepto == Convert.ToInt32(cboDepto.SelectedValue)
+                                  && b.Asistencias.Any(a => a.IdEvaluacion == ev.IdEvaluacion));
+                    }
+                    emp = emp.OrderBy(b => b.IdDepto).ThenBy(b => b.Codigo);
                     DiasMes = DateTime.DaysInMonth(ev.fechaFin.Year, ev.fechaFin.Month);
                     foreach (var item in emp)
                     {
@@ -166,17 +197,8 @@ namespace SAESoft.Incentivo
                         var evaluacion = ev.Detalles.FirstOrDefault(d => d.IdEmpleado == item.IdEmpIncentivo);
                         if (evaluacion != null)
                         {
-                            if (hasPermission("MODIFICAR.EVALUACION"))
-                            {
-                                dgvEvaluar.Enabled = true;
-                            }
-                            else
-                            {
-                                dgvEvaluar.Enabled = false;
-                            }
                             icbGuardar.Enabled = false;
                             esNuevo = false;
-                            evaluacionModificar.Clear();
                             despliegaCalificaciones(item, ref row);
                         }
                         else
@@ -185,11 +207,13 @@ namespace SAESoft.Incentivo
                             dgvEvaluar.Enabled = true;
                             esNuevo = true;
                         }
+                        row["esNuevo"] = esNuevo;
                         dt.Rows.Add(row);
                     }
-                    txtTotal.Text = Math.Round(Total,2).ToString();
-                    txtExtra.Text = Math.Round(Extra,2).ToString();
-                    txtLogrado.Text =Math.Round(TLogrado, 2).ToString();
+                    txtTotal.Text = Math.Round(Total, 2).ToString();
+                    Extra = Extra < 0 ? 0 : Extra;
+                    txtExtra.Text = (Math.Truncate(Extra * 100) / 100).ToString();
+                    txtLogrado.Text = Math.Round(TLogrado, 2).ToString();
                     EstablecerNumerosEncabezado(dgvEvaluar);
                 }
                 else
@@ -209,15 +233,17 @@ namespace SAESoft.Incentivo
             row["Colaboración %"] = nota.Cooperacion;
             decimal Logro = nota.Total - nota.Extra;
             row["Logro (1)"] = Math.Round(Logro, 2);
-            row["Extra (2)"] = Math.Round(nota.Extra,2);
-            row["Total Pago (1+2)"] = Math.Round(nota.Total,2);
+            row["Extra (2)"] = Math.Round(nota.Extra, 2);
+            row["Total Pago (1+2)"] = Math.Round(nota.Total, 2);
             decimal bolsa = emp.BaseCalculo - (nota.Total - nota.Extra);
-            row["Bolsa"] = Math.Round(bolsa,2);
+            row["Bolsa"] = Math.Round(bolsa, 2);
             row["Días Proporcional"] = nota.DiasProporcional;
             row["IdEvaluacionDetalle"] = nota.IdEvaluacionDetalle;
             Extra += proporcional - nota.Total;
             TLogrado += nota.Total;
         }
+
+
 
         private void DiasLaborados(ref DataRow row, DateTime fecha, EmpIncentivos emp)
         {
@@ -406,7 +432,7 @@ namespace SAESoft.Incentivo
                 if (e.Control is TextBox textBox)
                 {
                     textBox.KeyPress -= TextBox_KeyPress; // Elimina el controlador de eventos existente para evitar duplicados
-                    textBox.KeyPress += TextBox_KeyPress; // Asocia el controlador de eventos KeyPress
+                    textBox.KeyPress += TextBox_KeyPress; // Asocia el controlador de eventos KeyPress    
                 }
             }
         }
@@ -500,14 +526,15 @@ namespace SAESoft.Incentivo
             if (!esNuevo)
             {
                 int celda = Convert.ToInt32(dgvEvaluar.Rows[e.RowIndex].Cells["IdEvaluacionDetalle"].Value);
-                if (!evaluacionModificar.Contains((celda, e.RowIndex)))
+                if (!evaluacionModificar.Contains(celda))
                 {
-                    evaluacionModificar.Add((celda, e.RowIndex));
+                    evaluacionModificar.Add(celda);
                     icbGuardar.Enabled = true;
                 }
             }
             EstablecerNumerosEncabezado(dgvEvaluar);
-            dgvEvaluar.FirstDisplayedScrollingRowIndex = firstDisplayedScrollingRowIndex; 
+            dgvEvaluar.FirstDisplayedScrollingRowIndex = firstDisplayedScrollingRowIndex;
+            _celWasEndEdit = dgvEvaluar[e.ColumnIndex, e.RowIndex];
         }
 
         private void calcular(int asistencia, int actitud, int coop, decimal baseC, decimal valorExtra, int tardanza, DataGridViewCellEventArgs e)
@@ -519,6 +546,7 @@ namespace SAESoft.Incentivo
                 valorExtra = 0;
             }
             dt.AcceptChanges();
+            result = Math.Round(result, 2);
             dgvEvaluar.Rows[e.RowIndex].Cells["Logro (1)"].Value = result;
             dgvEvaluar.Rows[e.RowIndex].Cells["Bolsa"].Value = baseC - result;
             dgvEvaluar.Rows[e.RowIndex].Cells["Total Pago (1+2)"].Value = result + valorExtra;
@@ -531,14 +559,17 @@ namespace SAESoft.Incentivo
             decimal sumaLogradoDecimal = sumaLogrado == DBNull.Value ? 0 : Convert.ToDecimal(sumaLogrado);
 
             Extra = sumaBolsaDecimal - sumaExtraDecimal;
-            txtExtra.Text = Math.Round(Extra, 2).ToString();
+            Extra = Extra < 0 ? 0 : Extra;
+            txtExtra.Text = (Math.Truncate(Extra * 100) / 100).ToString();
             TLogrado = sumaLogradoDecimal;
-            txtLogrado.Text = Math.Round(TLogrado,2).ToString();
+            txtLogrado.Text = Math.Round(TLogrado, 2).ToString();
         }
 
         private void icbGuardar_Click(object sender, EventArgs e)
         {
-            if (esNuevo)
+            using SAESoftContext db = new();
+            Evaluacion ev2 = db.Evaluaciones.Include(d => d.Detalles).Where(b => !b.finalizado).FirstOrDefault();
+            if (ev2 != null)
             {
                 bool llenas = true;
                 foreach (DataRow fila in dt.Rows)
@@ -555,33 +586,65 @@ namespace SAESoft.Incentivo
                     DialogResult resp = MessageBox.Show("¿Desea Guardar la información? ", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (resp == DialogResult.Yes)
                     {
-                        using SAESoftContext db = new();
                         using IDbContextTransaction transaction = db.Database.BeginTransaction();
-                        foreach (DataRow dr in dt.Rows)
+                        try
                         {
-                            object valorCelda = dr["Extra (2)"];
-                            decimal valorExtra = valorCelda != DBNull.Value && valorCelda != null ? Convert.ToDecimal(valorCelda) : 0m;
-                            EvaluacionDetalle detalle = new()
+                            foreach (DataRow dr in dt.Rows)
                             {
-                                IdEvaluacion = ev.IdEvaluacion,
-                                IdEmpleado = Convert.ToInt32(dr["IdEmpIncentivo"]),
-                                IdDepto = Convert.ToInt32(dr["IdDepto"]),
-                                BaseCalculo = Convert.ToDecimal(dr["Base"]),
-                                Asistencia = Convert.ToInt32(dr["Asistencia %"]),
-                                Actitud = Convert.ToInt32(dr["Desempeño %"]),
-                                Cooperacion = Convert.ToInt32(dr["Colaboración %"]),
-                                Extra = valorExtra,
-                                Total = Convert.ToDecimal(dr["Total Pago (1+2)"]),
-                                DiasProporcional = Convert.ToDecimal(dr["Días Proporcional"]),
-                                FechaCreacion = DatosServer.FechaServer(),
-                                IdUsuarioCreacion = usuarioLogged.IdUsuario
-                            };
-                            db.EvaluacionesDetalle.Add(detalle);
+                                bool estatus = Convert.ToBoolean(dr["esNuevo"]);
+                                if (estatus)
+                                {
+                                    object valorCelda = dr["Extra (2)"];
+                                    decimal valorExtra = valorCelda != DBNull.Value && valorCelda != null ? Convert.ToDecimal(valorCelda) : 0m;
+                                    EvaluacionDetalle detalle = new()
+                                    {
+                                        IdEvaluacion = ev.IdEvaluacion,
+                                        IdEmpleado = Convert.ToInt32(dr["IdEmpIncentivo"]),
+                                        IdDepto = Convert.ToInt32(dr["IdDepto"]),
+                                        BaseCalculo = Convert.ToDecimal(dr["Base"]),
+                                        Asistencia = Convert.ToInt32(dr["Asistencia %"]),
+                                        Actitud = Convert.ToInt32(dr["Desempeño %"]),
+                                        Cooperacion = Convert.ToInt32(dr["Colaboración %"]),
+                                        Extra = valorExtra,
+                                        Total = Convert.ToDecimal(dr["Total Pago (1+2)"]),
+                                        DiasProporcional = Convert.ToDecimal(dr["Días Proporcional"]),
+                                        FechaCreacion = DatosServer.FechaServer(),
+                                        IdUsuarioCreacion = usuarioLogged.IdUsuario
+                                    };
+                                    db.EvaluacionesDetalle.Add(detalle);
+                                }
+                                else
+                                {
+                                    int celda = Convert.ToInt32(dr["idEvaluacionDetalle"]);
+                                    if (evaluacionModificar.Contains(celda))
+                                    {
+                                        EvaluacionDetalle detalle = db.EvaluacionesDetalle.First(b => b.IdEvaluacionDetalle == celda);
+                                        db.Entry(detalle).State = EntityState.Modified;
+                                        detalle.Actitud = Convert.ToInt32(dr["Desempeño %"]);
+                                        detalle.Cooperacion = Convert.ToInt32(dr["Colaboración %"]);
+                                        detalle.Extra = Convert.ToDecimal(dr["Extra (2)"]);
+                                        detalle.Total = Convert.ToDecimal(dr["Total Pago (1+2)"]);
+                                        detalle.DiasProporcional = Convert.ToDecimal(dr["Días Proporcional"]);
+                                        detalle.FechaUltimaMod = DatosServer.FechaServer();
+                                        detalle.IdUsuarioMod = usuarioLogged.IdUsuario;
+                                        db.EvaluacionesDetalle.Update(detalle);
+                                    }
+                                }
+                            }
+                            db.SaveChanges();
+                            transaction.Commit();
+                            MessageBox.Show("Datos guardados exitosamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CargarDatos();
+                            BloqueaSuspendidos();
                         }
-                        db.SaveChanges();
-                        transaction.Commit();
-                        MessageBox.Show("Datos guardados exitosamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CargarDatos();
+                        catch (DbUpdateException ex)
+                        {
+                            if (ex.InnerException != null)
+                                MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            else
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
                     }
                 }
                 else
@@ -591,42 +654,14 @@ namespace SAESoft.Incentivo
             }
             else
             {
-                using SAESoftContext db = new();
-                using IDbContextTransaction transaction = db.Database.BeginTransaction();
-                try
-                {
-                    foreach ((int celda, int fila) in evaluacionModificar)
-                    {
-                        EvaluacionDetalle detalle = db.EvaluacionesDetalle.First(b => b.IdEvaluacionDetalle == celda);
-                        db.Entry(detalle).State = EntityState.Modified;
-                        DataRow dr = dt.Rows[fila];
-                        detalle.Actitud = Convert.ToInt32(dr["Desempeño %"]);
-                        detalle.Cooperacion = Convert.ToInt32(dr["Colaboración %"]);
-                        detalle.Extra = Convert.ToDecimal(dr["Extra (2)"]);
-                        detalle.Total = Convert.ToDecimal(dr["Total Pago (1+2)"]);
-                        detalle.DiasProporcional = Convert.ToDecimal(dr["Días Proporcional"]);
-                        detalle.FechaUltimaMod = DatosServer.FechaServer();
-                        detalle.IdUsuarioMod = usuarioLogged.IdUsuario;
-                        db.EvaluacionesDetalle.Update(detalle);
-                    }
-                    db.SaveChanges();
-                    transaction.Commit();
-                    CargarDatos();
-                }
-                catch (DbUpdateException ex)
-                {
-                    if (ex.InnerException != null)
-                        MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    else
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                MessageBox.Show("La Evaluación ya está cerrada.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void frmCalificacionDepto_Shown(object sender, EventArgs e)
         {
             CargarDatos();
+            BloqueaSuspendidos();
         }
 
         private void dgvEvaluar_KeyDown(object sender, KeyEventArgs e)
@@ -694,7 +729,17 @@ namespace SAESoft.Incentivo
 
         private void dgvEvaluar_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            firstDisplayedScrollingRowIndex = dgvEvaluar.FirstDisplayedScrollingRowIndex; 
+            firstDisplayedScrollingRowIndex = dgvEvaluar.FirstDisplayedScrollingRowIndex;
+        }
+
+        private void dgvEvaluar_SelectionChanged(object sender, EventArgs e)
+        {
+            if (MouseButtons != 0) return;
+            if (Keyboard.IsKeyDown(Key.Enter) && _celWasEndEdit != null && dgvEvaluar.CurrentCell != null)
+            {
+                dgvEvaluar.CurrentCell = dgvEvaluar[_celWasEndEdit.ColumnIndex, _celWasEndEdit.RowIndex + 1];
+            }
+            _celWasEndEdit = null;
         }
     }
 }

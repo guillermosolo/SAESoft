@@ -83,7 +83,7 @@ namespace SAESoft.Administracion
 
             doc.Add(table);
 
-            Style encabezado = new Style().SetBackgroundColor(ColorConstants.LIGHT_GRAY).SetTextAlignment(TextAlignment.CENTER).SetBold();
+            Style encabezado = new Style().SetBackgroundColor(ColorConstants.LIGHT_GRAY).SetTextAlignment(TextAlignment.CENTER).SimulateBold();
 
             Table importante = new Table(3).UseAllAvailableWidth();
 
