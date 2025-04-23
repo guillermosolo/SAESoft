@@ -18,5 +18,15 @@
             frmRepoRRHH repo2 = new();
             repo2.ShowDialog();
         }
+
+        private void iconButton3_Click(object sender, EventArgs e)
+        {
+            ReporteTardanzas.Reporte();
+        }
+
+        private void iconButton4_Click(object sender, EventArgs e)
+        {
+            ReporteGeneralDatos.Reporte();
+        }
     }
 }

@@ -28,417 +28,405 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.lblActivo = new System.Windows.Forms.Label();
-            this.tsActivo = new SAESoft.Utilitarios.toggleSwitch();
-            this.cboRoles = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtApellidos = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtNombres = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
-            this.tsbBuscar = new System.Windows.Forms.ToolStripButton();
-            this.tsbListar = new System.Windows.Forms.ToolStripButton();
-            this.tsbModificar = new System.Windows.Forms.ToolStripButton();
-            this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbAceptar = new System.Windows.Forms.ToolStripButton();
-            this.tsbCancelar = new System.Windows.Forms.ToolStripButton();
-            this.tsbAnterior = new System.Windows.Forms.ToolStripButton();
-            this.tslIndice = new System.Windows.Forms.ToolStripLabel();
-            this.tsbSiguiente = new System.Windows.Forms.ToolStripButton();
-            this.tsbSalir = new System.Windows.Forms.ToolStripButton();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.toolStripContainer1.ContentPanel.SuspendLayout();
-            this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
-            this.toolStripContainer1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            toolStripContainer1 = new ToolStripContainer();
+            lblActivo = new Label();
+            tsActivo = new SAESoft.Utilitarios.toggleSwitch();
+            cboRoles = new ComboBox();
+            label7 = new Label();
+            txtPassword = new TextBox();
+            label6 = new Label();
+            txtUsuario = new TextBox();
+            label5 = new Label();
+            txtEmail = new TextBox();
+            label4 = new Label();
+            txtApellidos = new TextBox();
+            label3 = new Label();
+            txtNombres = new TextBox();
+            label2 = new Label();
+            txtId = new TextBox();
+            label1 = new Label();
+            toolStrip1 = new ToolStrip();
+            tsbNuevo = new ToolStripButton();
+            tsbBuscar = new ToolStripButton();
+            tsbListar = new ToolStripButton();
+            tsbModificar = new ToolStripButton();
+            tsbEliminar = new ToolStripButton();
+            toolStripSeparator1 = new ToolStripSeparator();
+            tsbAceptar = new ToolStripButton();
+            tsbCancelar = new ToolStripButton();
+            tsbAnterior = new ToolStripButton();
+            tslIndice = new ToolStripLabel();
+            tsbSiguiente = new ToolStripButton();
+            tsbSalir = new ToolStripButton();
+            errorProvider1 = new ErrorProvider(components);
+            toolStripContainer1.ContentPanel.SuspendLayout();
+            toolStripContainer1.TopToolStripPanel.SuspendLayout();
+            toolStripContainer1.SuspendLayout();
+            toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+            SuspendLayout();
             // 
             // toolStripContainer1
             // 
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.lblActivo);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.tsActivo);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.cboRoles);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.label7);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.txtPassword);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.label6);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.txtUsuario);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.label5);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.txtEmail);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.label4);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.txtApellidos);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.label3);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.txtNombres);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.label2);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.txtId);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.label1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(800, 411);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(800, 450);
-            this.toolStripContainer1.TabIndex = 0;
-            this.toolStripContainer1.Text = "toolStripContainer1";
+            toolStripContainer1.ContentPanel.Controls.Add(lblActivo);
+            toolStripContainer1.ContentPanel.Controls.Add(tsActivo);
+            toolStripContainer1.ContentPanel.Controls.Add(cboRoles);
+            toolStripContainer1.ContentPanel.Controls.Add(label7);
+            toolStripContainer1.ContentPanel.Controls.Add(txtPassword);
+            toolStripContainer1.ContentPanel.Controls.Add(label6);
+            toolStripContainer1.ContentPanel.Controls.Add(txtUsuario);
+            toolStripContainer1.ContentPanel.Controls.Add(label5);
+            toolStripContainer1.ContentPanel.Controls.Add(txtEmail);
+            toolStripContainer1.ContentPanel.Controls.Add(label4);
+            toolStripContainer1.ContentPanel.Controls.Add(txtApellidos);
+            toolStripContainer1.ContentPanel.Controls.Add(label3);
+            toolStripContainer1.ContentPanel.Controls.Add(txtNombres);
+            toolStripContainer1.ContentPanel.Controls.Add(label2);
+            toolStripContainer1.ContentPanel.Controls.Add(txtId);
+            toolStripContainer1.ContentPanel.Controls.Add(label1);
+            toolStripContainer1.ContentPanel.Size = new Size(800, 411);
+            toolStripContainer1.Dock = DockStyle.Fill;
+            toolStripContainer1.Location = new Point(0, 0);
+            toolStripContainer1.Name = "toolStripContainer1";
+            toolStripContainer1.Size = new Size(800, 450);
+            toolStripContainer1.TabIndex = 0;
+            toolStripContainer1.Text = "toolStripContainer1";
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            toolStripContainer1.TopToolStripPanel.Controls.Add(toolStrip1);
             // 
             // lblActivo
             // 
-            this.lblActivo.AutoSize = true;
-            this.lblActivo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblActivo.Location = new System.Drawing.Point(376, 35);
-            this.lblActivo.Name = "lblActivo";
-            this.lblActivo.Size = new System.Drawing.Size(76, 21);
-            this.lblActivo.TabIndex = 16;
-            this.lblActivo.Text = "Inactivo";
+            lblActivo.AutoSize = true;
+            lblActivo.Font = new Font("Century Gothic", 12F);
+            lblActivo.Location = new Point(376, 35);
+            lblActivo.Name = "lblActivo";
+            lblActivo.Size = new Size(76, 21);
+            lblActivo.TabIndex = 16;
+            lblActivo.Text = "Inactivo";
             // 
             // tsActivo
             // 
-            this.tsActivo.Enabled = false;
-            this.tsActivo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tsActivo.Location = new System.Drawing.Point(330, 32);
-            this.tsActivo.MinimumSize = new System.Drawing.Size(45, 22);
-            this.tsActivo.Name = "tsActivo";
-            this.tsActivo.OffBackColor = System.Drawing.Color.Firebrick;
-            this.tsActivo.OffDisabledColor = System.Drawing.Color.Gray;
-            this.tsActivo.OffTogglecolor = System.Drawing.Color.Firebrick;
-            this.tsActivo.OnBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
-            this.tsActivo.OnDisabledcolor = System.Drawing.Color.Gray;
-            this.tsActivo.OnTogglecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
-            this.tsActivo.Size = new System.Drawing.Size(45, 25);
-            this.tsActivo.SolidStyle = false;
-            this.tsActivo.TabIndex = 15;
-            this.tsActivo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.tsActivo.UseVisualStyleBackColor = true;
-            this.tsActivo.CheckedChanged += new System.EventHandler(this.tsActivo_CheckedChanged);
+            tsActivo.Enabled = false;
+            tsActivo.Font = new Font("Century Gothic", 12F);
+            tsActivo.Location = new Point(330, 32);
+            tsActivo.MinimumSize = new Size(45, 22);
+            tsActivo.Name = "tsActivo";
+            tsActivo.OffBackColor = Color.Firebrick;
+            tsActivo.OffDisabledColor = Color.Gray;
+            tsActivo.OffTogglecolor = Color.Firebrick;
+            tsActivo.OnBackColor = Color.FromArgb(0, 122, 172);
+            tsActivo.OnDisabledcolor = Color.Gray;
+            tsActivo.OnTogglecolor = Color.FromArgb(0, 122, 172);
+            tsActivo.Size = new Size(45, 25);
+            tsActivo.SolidStyle = false;
+            tsActivo.TabIndex = 15;
+            tsActivo.TextImageRelation = TextImageRelation.ImageBeforeText;
+            tsActivo.UseVisualStyleBackColor = true;
+            tsActivo.CheckedChanged += tsActivo_CheckedChanged;
             // 
             // cboRoles
             // 
-            this.cboRoles.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboRoles.Enabled = false;
-            this.cboRoles.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cboRoles.FormattingEnabled = true;
-            this.cboRoles.IntegralHeight = false;
-            this.cboRoles.Location = new System.Drawing.Point(211, 304);
-            this.cboRoles.Name = "cboRoles";
-            this.cboRoles.Size = new System.Drawing.Size(296, 28);
-            this.cboRoles.TabIndex = 14;
-            this.cboRoles.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cboRoles_DrawItem);
-            this.cboRoles.SelectionChangeCommitted += new System.EventHandler(this.cboRoles_SelectionChangeCommitted);
+            cboRoles.DrawMode = DrawMode.OwnerDrawFixed;
+            cboRoles.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboRoles.Enabled = false;
+            cboRoles.Font = new Font("Century Gothic", 12F);
+            cboRoles.FormattingEnabled = true;
+            cboRoles.IntegralHeight = false;
+            cboRoles.Location = new Point(211, 304);
+            cboRoles.Name = "cboRoles";
+            cboRoles.Size = new Size(296, 28);
+            cboRoles.TabIndex = 14;
+            cboRoles.DrawItem += cboRoles_DrawItem;
+            cboRoles.SelectionChangeCommitted += cboRoles_SelectionChangeCommitted;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(91, 312);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 21);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Rol";
+            label7.AutoSize = true;
+            label7.Font = new Font("Century Gothic", 12F);
+            label7.Location = new Point(91, 312);
+            label7.Name = "label7";
+            label7.Size = new Size(33, 21);
+            label7.TabIndex = 13;
+            label7.Text = "Rol";
             // 
             // txtPassword
             // 
-            this.txtPassword.Enabled = false;
-            this.txtPassword.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPassword.Location = new System.Drawing.Point(211, 257);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '•';
-            this.txtPassword.Size = new System.Drawing.Size(296, 27);
-            this.txtPassword.TabIndex = 11;
+            txtPassword.Enabled = false;
+            txtPassword.Font = new Font("Century Gothic", 12F);
+            txtPassword.Location = new Point(211, 257);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '•';
+            txtPassword.Size = new Size(296, 27);
+            txtPassword.TabIndex = 11;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(91, 260);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 21);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Contraseña";
+            label6.AutoSize = true;
+            label6.Font = new Font("Century Gothic", 12F);
+            label6.Location = new Point(91, 260);
+            label6.Name = "label6";
+            label6.Size = new Size(103, 21);
+            label6.TabIndex = 10;
+            label6.Text = "Contraseña";
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Enabled = false;
-            this.txtUsuario.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtUsuario.Location = new System.Drawing.Point(211, 210);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(296, 27);
-            this.txtUsuario.TabIndex = 9;
+            txtUsuario.Enabled = false;
+            txtUsuario.Font = new Font("Century Gothic", 12F);
+            txtUsuario.Location = new Point(211, 210);
+            txtUsuario.Name = "txtUsuario";
+            txtUsuario.Size = new Size(296, 27);
+            txtUsuario.TabIndex = 9;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(91, 213);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 21);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Usuario";
+            label5.AutoSize = true;
+            label5.Font = new Font("Century Gothic", 12F);
+            label5.Location = new Point(91, 213);
+            label5.Name = "label5";
+            label5.Size = new Size(66, 21);
+            label5.TabIndex = 8;
+            label5.Text = "Usuario";
             // 
             // txtEmail
             // 
-            this.txtEmail.Enabled = false;
-            this.txtEmail.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtEmail.Location = new System.Drawing.Point(211, 165);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(296, 27);
-            this.txtEmail.TabIndex = 7;
+            txtEmail.Enabled = false;
+            txtEmail.Font = new Font("Century Gothic", 12F);
+            txtEmail.Location = new Point(211, 165);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(296, 27);
+            txtEmail.TabIndex = 7;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(91, 168);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 21);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Email";
+            label4.AutoSize = true;
+            label4.Font = new Font("Century Gothic", 12F);
+            label4.Location = new Point(91, 168);
+            label4.Name = "label4";
+            label4.Size = new Size(51, 21);
+            label4.TabIndex = 6;
+            label4.Text = "Email";
             // 
             // txtApellidos
             // 
-            this.txtApellidos.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtApellidos.Enabled = false;
-            this.txtApellidos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtApellidos.Location = new System.Drawing.Point(211, 121);
-            this.txtApellidos.Name = "txtApellidos";
-            this.txtApellidos.Size = new System.Drawing.Size(296, 27);
-            this.txtApellidos.TabIndex = 5;
+            txtApellidos.CharacterCasing = CharacterCasing.Upper;
+            txtApellidos.Enabled = false;
+            txtApellidos.Font = new Font("Century Gothic", 12F);
+            txtApellidos.Location = new Point(211, 121);
+            txtApellidos.Name = "txtApellidos";
+            txtApellidos.Size = new Size(296, 27);
+            txtApellidos.TabIndex = 5;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(91, 124);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 21);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Apellidos";
+            label3.AutoSize = true;
+            label3.Font = new Font("Century Gothic", 12F);
+            label3.Location = new Point(91, 124);
+            label3.Name = "label3";
+            label3.Size = new Size(80, 21);
+            label3.TabIndex = 4;
+            label3.Text = "Apellidos";
             // 
             // txtNombres
             // 
-            this.txtNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNombres.Enabled = false;
-            this.txtNombres.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtNombres.Location = new System.Drawing.Point(211, 75);
-            this.txtNombres.Name = "txtNombres";
-            this.txtNombres.Size = new System.Drawing.Size(296, 27);
-            this.txtNombres.TabIndex = 3;
+            txtNombres.CharacterCasing = CharacterCasing.Upper;
+            txtNombres.Enabled = false;
+            txtNombres.Font = new Font("Century Gothic", 12F);
+            txtNombres.Location = new Point(211, 75);
+            txtNombres.Name = "txtNombres";
+            txtNombres.Size = new Size(296, 27);
+            txtNombres.TabIndex = 3;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(91, 78);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 21);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nombres";
+            label2.AutoSize = true;
+            label2.Font = new Font("Century Gothic", 12F);
+            label2.Location = new Point(91, 78);
+            label2.Name = "label2";
+            label2.Size = new Size(79, 21);
+            label2.TabIndex = 2;
+            label2.Text = "Nombres";
             // 
             // txtId
             // 
-            this.txtId.Enabled = false;
-            this.txtId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtId.Location = new System.Drawing.Point(211, 32);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(100, 27);
-            this.txtId.TabIndex = 1;
+            txtId.Enabled = false;
+            txtId.Font = new Font("Century Gothic", 12F);
+            txtId.Location = new Point(211, 32);
+            txtId.Name = "txtId";
+            txtId.Size = new Size(100, 27);
+            txtId.TabIndex = 1;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(91, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Id";
+            label1.AutoSize = true;
+            label1.Font = new Font("Century Gothic", 12F);
+            label1.Location = new Point(91, 35);
+            label1.Name = "label1";
+            label1.Size = new Size(26, 21);
+            label1.TabIndex = 0;
+            label1.Text = "Id";
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbNuevo,
-            this.tsbBuscar,
-            this.tsbListar,
-            this.tsbModificar,
-            this.tsbEliminar,
-            this.toolStripSeparator1,
-            this.tsbAceptar,
-            this.tsbCancelar,
-            this.tsbAnterior,
-            this.tslIndice,
-            this.tsbSiguiente,
-            this.tsbSalir});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(234, 39);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            toolStrip1.Dock = DockStyle.None;
+            toolStrip1.ImageScalingSize = new Size(32, 32);
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBuscar, tsbListar, tsbModificar, tsbEliminar, toolStripSeparator1, tsbAceptar, tsbCancelar, tsbAnterior, tslIndice, tsbSiguiente, tsbSalir });
+            toolStrip1.Location = new Point(3, 0);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Size = new Size(234, 39);
+            toolStrip1.TabIndex = 0;
+            toolStrip1.Text = "toolStrip1";
             // 
             // tsbNuevo
             // 
-            this.tsbNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbNuevo.Enabled = false;
-            this.tsbNuevo.Image = global::SAESoft.Properties.Resources.add_file;
-            this.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNuevo.Name = "tsbNuevo";
-            this.tsbNuevo.Size = new System.Drawing.Size(36, 36);
-            this.tsbNuevo.Text = "Nuevo";
-            this.tsbNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.tsbNuevo.Click += new System.EventHandler(this.tsbNuevo_Click);
+            tsbNuevo.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbNuevo.Enabled = false;
+            tsbNuevo.Image = Properties.Resources.add_file;
+            tsbNuevo.ImageTransparentColor = Color.Magenta;
+            tsbNuevo.Name = "tsbNuevo";
+            tsbNuevo.Size = new Size(36, 36);
+            tsbNuevo.Text = "Nuevo";
+            tsbNuevo.TextAlign = ContentAlignment.BottomCenter;
+            tsbNuevo.Click += tsbNuevo_Click;
             // 
             // tsbBuscar
             // 
-            this.tsbBuscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbBuscar.Image = global::SAESoft.Properties.Resources.file;
-            this.tsbBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbBuscar.Name = "tsbBuscar";
-            this.tsbBuscar.Size = new System.Drawing.Size(36, 36);
-            this.tsbBuscar.Text = "Buscar";
-            this.tsbBuscar.Click += new System.EventHandler(this.tsbBuscar_Click);
+            tsbBuscar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbBuscar.Image = Properties.Resources.file;
+            tsbBuscar.ImageTransparentColor = Color.Magenta;
+            tsbBuscar.Name = "tsbBuscar";
+            tsbBuscar.Size = new Size(36, 36);
+            tsbBuscar.Text = "Buscar";
+            tsbBuscar.Click += tsbBuscar_Click;
             // 
             // tsbListar
             // 
-            this.tsbListar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbListar.Image = global::SAESoft.Properties.Resources.listar;
-            this.tsbListar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbListar.Name = "tsbListar";
-            this.tsbListar.Size = new System.Drawing.Size(36, 36);
-            this.tsbListar.Text = "Listar";
-            this.tsbListar.Click += new System.EventHandler(this.tsbListar_Click);
+            tsbListar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbListar.Image = Properties.Resources.listar;
+            tsbListar.ImageTransparentColor = Color.Magenta;
+            tsbListar.Name = "tsbListar";
+            tsbListar.Size = new Size(36, 36);
+            tsbListar.Text = "Listar";
+            tsbListar.Click += tsbListar_Click;
             // 
             // tsbModificar
             // 
-            this.tsbModificar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbModificar.Enabled = false;
-            this.tsbModificar.Image = global::SAESoft.Properties.Resources.edit;
-            this.tsbModificar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbModificar.Name = "tsbModificar";
-            this.tsbModificar.Size = new System.Drawing.Size(36, 36);
-            this.tsbModificar.Text = "Editar";
-            this.tsbModificar.Click += new System.EventHandler(this.tsbModificar_Click);
+            tsbModificar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbModificar.Enabled = false;
+            tsbModificar.Image = Properties.Resources.edit;
+            tsbModificar.ImageTransparentColor = Color.Magenta;
+            tsbModificar.Name = "tsbModificar";
+            tsbModificar.Size = new Size(36, 36);
+            tsbModificar.Text = "Editar";
+            tsbModificar.Click += tsbModificar_Click;
             // 
             // tsbEliminar
             // 
-            this.tsbEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbEliminar.Enabled = false;
-            this.tsbEliminar.Image = global::SAESoft.Properties.Resources.delete;
-            this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEliminar.Name = "tsbEliminar";
-            this.tsbEliminar.Size = new System.Drawing.Size(36, 36);
-            this.tsbEliminar.Text = "Eliminar";
-            this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
+            tsbEliminar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbEliminar.Enabled = false;
+            tsbEliminar.Image = Properties.Resources.delete;
+            tsbEliminar.ImageTransparentColor = Color.Magenta;
+            tsbEliminar.Name = "tsbEliminar";
+            tsbEliminar.Size = new Size(36, 36);
+            tsbEliminar.Text = "Eliminar";
+            tsbEliminar.Click += tsbEliminar_Click;
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 39);
             // 
             // tsbAceptar
             // 
-            this.tsbAceptar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbAceptar.Image = global::SAESoft.Properties.Resources.check;
-            this.tsbAceptar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbAceptar.Name = "tsbAceptar";
-            this.tsbAceptar.Size = new System.Drawing.Size(36, 36);
-            this.tsbAceptar.Text = "Guardar";
-            this.tsbAceptar.Visible = false;
-            this.tsbAceptar.Click += new System.EventHandler(this.tsbAceptar_Click);
+            tsbAceptar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbAceptar.Image = Properties.Resources.check;
+            tsbAceptar.ImageTransparentColor = Color.Magenta;
+            tsbAceptar.Name = "tsbAceptar";
+            tsbAceptar.Size = new Size(36, 36);
+            tsbAceptar.Text = "Guardar";
+            tsbAceptar.Visible = false;
+            tsbAceptar.Click += tsbAceptar_Click;
             // 
             // tsbCancelar
             // 
-            this.tsbCancelar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbCancelar.Image = global::SAESoft.Properties.Resources.close;
-            this.tsbCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbCancelar.Name = "tsbCancelar";
-            this.tsbCancelar.Size = new System.Drawing.Size(36, 36);
-            this.tsbCancelar.Text = "Cancelar";
-            this.tsbCancelar.Visible = false;
-            this.tsbCancelar.Click += new System.EventHandler(this.tsbCancelar_Click);
+            tsbCancelar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbCancelar.Image = Properties.Resources.close;
+            tsbCancelar.ImageTransparentColor = Color.Magenta;
+            tsbCancelar.Name = "tsbCancelar";
+            tsbCancelar.Size = new Size(36, 36);
+            tsbCancelar.Text = "Cancelar";
+            tsbCancelar.Visible = false;
+            tsbCancelar.Click += tsbCancelar_Click;
             // 
             // tsbAnterior
             // 
-            this.tsbAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbAnterior.Image = global::SAESoft.Properties.Resources.arrow_l;
-            this.tsbAnterior.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbAnterior.Name = "tsbAnterior";
-            this.tsbAnterior.Size = new System.Drawing.Size(36, 36);
-            this.tsbAnterior.Text = "Anterior";
-            this.tsbAnterior.Visible = false;
-            this.tsbAnterior.Click += new System.EventHandler(this.tsbAnterior_Click);
+            tsbAnterior.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbAnterior.Image = Properties.Resources.arrow_l;
+            tsbAnterior.ImageTransparentColor = Color.Magenta;
+            tsbAnterior.Name = "tsbAnterior";
+            tsbAnterior.Size = new Size(36, 36);
+            tsbAnterior.Text = "Anterior";
+            tsbAnterior.Visible = false;
+            tsbAnterior.Click += tsbAnterior_Click;
             // 
             // tslIndice
             // 
-            this.tslIndice.Name = "tslIndice";
-            this.tslIndice.Size = new System.Drawing.Size(84, 36);
-            this.tslIndice.Text = "Registro 0 de 0";
-            this.tslIndice.Visible = false;
+            tslIndice.Name = "tslIndice";
+            tslIndice.Size = new Size(84, 36);
+            tslIndice.Text = "Registro 0 de 0";
+            tslIndice.Visible = false;
             // 
             // tsbSiguiente
             // 
-            this.tsbSiguiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbSiguiente.Image = global::SAESoft.Properties.Resources.arrow_r;
-            this.tsbSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSiguiente.Name = "tsbSiguiente";
-            this.tsbSiguiente.Size = new System.Drawing.Size(36, 36);
-            this.tsbSiguiente.Text = "Siguiente";
-            this.tsbSiguiente.Visible = false;
-            this.tsbSiguiente.Click += new System.EventHandler(this.tsbSiguiente_Click);
+            tsbSiguiente.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbSiguiente.Image = Properties.Resources.arrow_r;
+            tsbSiguiente.ImageTransparentColor = Color.Magenta;
+            tsbSiguiente.Name = "tsbSiguiente";
+            tsbSiguiente.Size = new Size(36, 36);
+            tsbSiguiente.Text = "Siguiente";
+            tsbSiguiente.Visible = false;
+            tsbSiguiente.Click += tsbSiguiente_Click;
             // 
             // tsbSalir
             // 
-            this.tsbSalir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbSalir.Image = global::SAESoft.Properties.Resources.logout;
-            this.tsbSalir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSalir.Name = "tsbSalir";
-            this.tsbSalir.Size = new System.Drawing.Size(36, 36);
-            this.tsbSalir.Text = "Salir";
-            this.tsbSalir.Click += new System.EventHandler(this.tsbSalir_Click);
+            tsbSalir.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbSalir.Image = Properties.Resources.logout;
+            tsbSalir.ImageTransparentColor = Color.Magenta;
+            tsbSalir.Name = "tsbSalir";
+            tsbSalir.Size = new Size(36, 36);
+            tsbSalir.Text = "Salir";
+            tsbSalir.Click += tsbSalir_Click;
             // 
             // errorProvider1
             // 
-            this.errorProvider1.ContainerControl = this;
+            errorProvider1.ContainerControl = this;
             // 
             // frmUsuarios
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.toolStripContainer1);
-            this.Name = "frmUsuarios";
-            this.Text = "frmUsuarios";
-            this.Load += new System.EventHandler(this.frmUsuarios_Load);
-            this.Shown += new System.EventHandler(this.frmUsuarios_Shown);
-            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
-            this.toolStripContainer1.ContentPanel.PerformLayout();
-            this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer1.TopToolStripPanel.PerformLayout();
-            this.toolStripContainer1.ResumeLayout(false);
-            this.toolStripContainer1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(toolStripContainer1);
+            Name = "frmUsuarios";
+            Text = "frmUsuarios";
+            Load += frmUsuarios_Load;
+            Shown += frmUsuarios_Shown;
+            toolStripContainer1.ContentPanel.ResumeLayout(false);
+            toolStripContainer1.ContentPanel.PerformLayout();
+            toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
+            toolStripContainer1.TopToolStripPanel.PerformLayout();
+            toolStripContainer1.ResumeLayout(false);
+            toolStripContainer1.PerformLayout();
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+            ResumeLayout(false);
 
         }
 

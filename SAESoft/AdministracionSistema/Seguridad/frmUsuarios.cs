@@ -41,18 +41,18 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 if (rs.Count > 1)
                 {
                     BotonesInicialesNavegacion(toolStrip1);
-                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1,"USUARIOS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "USUARIOS");
                 }
                 else
                 {
                     BotonesIniciales(toolStrip1);
-                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1,"USUARIOS");
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "USUARIOS");
                 }
             }
             else
             {
                 BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1,"USUARIOS");
+                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "USUARIOS");
                 limpiarFormulario(this);
             }
             habilitarFormulario(this, false);
@@ -172,7 +172,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 txtPassword.Focus();
                 return false;
             }
-            if (cboRoles.SelectedIndex== -1)
+            if (cboRoles.SelectedIndex == -1)
             {
                 errorProvider1.SetError(cboRoles, "No puede estar vacío.");
                 cboRoles.Focus();
@@ -257,7 +257,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
             txtEmail.Text = rs?[CurrentIndex].Email;
             txtUsuario.Text = rs?[CurrentIndex].UserName;
             txtPassword.Text = "xxxxxxxxxxxxx";
-            cboRoles.SelectedValue= rs?[CurrentIndex].IdRol;
+            cboRoles.SelectedValue = rs?[CurrentIndex].IdRol;
             tsActivo.Checked = rs[CurrentIndex].Activo;
             tslIndice.Text = $"Registro {CurrentIndex + 1} de {rs.Count}";
         }
@@ -333,7 +333,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
             frmListar formListar = new();
             using (SAESoftContext db = new())
             {
-                var lista = db.Usuarios.Include(p => p.Rol).Select(p => new {p.IdUsuario,p.Nombres, p.Apellidos,Usuario= p.UserName, p.Activo,Rol= p.Rol.Nombre }).ToList();
+                var lista = db.Usuarios.Include(p => p.Rol).Select(p => new { p.IdUsuario, p.Nombres, p.Apellidos, Usuario = p.UserName, p.Activo, Rol = p.Rol.Nombre }).ToList();
                 formListar.ds.DataSource = lista;
             }
             DialogResult resp = formListar.ShowDialog();
@@ -362,17 +362,18 @@ namespace SAESoft.AdministracionSistema.Seguridad
             if (!((Rol)cboRoles.Items[e.Index]).Habilitado)
             {
                 e.Graphics.DrawString(((Rol)cboRoles.Items[e.Index]).Nombre, cboRoles.Font, Brushes.LightSlateGray, e.Bounds);
-            } else
+            }
+            else
             {
                 e.DrawBackground();
-                e.Graphics.DrawString(((Rol)cboRoles.Items[e.Index]).Nombre, cboRoles.Font,Brushes.Black,e.Bounds);
+                e.Graphics.DrawString(((Rol)cboRoles.Items[e.Index]).Nombre, cboRoles.Font, Brushes.Black, e.Bounds);
                 e.DrawFocusRectangle();
             }
         }
 
         private void cboRoles_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void cboRoles_SelectionChangeCommitted(object sender, EventArgs e)
