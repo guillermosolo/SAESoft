@@ -29,5 +29,8 @@ namespace SAESoft.Models.AdministracionSistema
         public Boolean Activo { get; set; }
         public virtual ICollection<GrupoDeptoIncentivo> GrupoDeptoIncentivos { get; set; }
         public virtual ICollection<DeptoIncentivo> DeptoIncentivos { get; set; }
+
+        [NotMapped]
+        public string NombreCompleto { get { return Nombres + " " + Apellidos; } set { } }
     }
 }

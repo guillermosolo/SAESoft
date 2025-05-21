@@ -81,5 +81,11 @@ namespace SAESoft.Incentivo
             Abrir<frmReportes>(panelFormularios);
             menuActivo(ibtnReporte, panelMenu);
         }
+
+        private void ibtnDeptos_Click(object sender, EventArgs e)
+        {
+            Abrir<FrmDeptoIncentivo>(panelFormularios);
+            menuActivo(ibtnDeptos, panelMenu);
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
             using SAESoftContext db = new();
-            rs = [.. db.Revisiones.Where(b => 1 == 1)];
+            rs = [.. db.Revisiones];
             if (rs.Count > 0)
             {
                 CurrentIndex = 0;
@@ -71,7 +71,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
 
         private void tsbListar_Click(object sender, EventArgs e)
         {
-            frmListar formListar = new();
+            using frmListar formListar = new();
             using (SAESoftContext db = new())
             {
                 var lista = db.Revisiones.Select(p => new { p.IdRevision, p.Descripcion }).ToList();
@@ -87,7 +87,6 @@ namespace SAESoft.AdministracionSistema.Importaciones
                 BotonesIniciales(toolStrip1);
                 CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "REVISIONES");
             }
-            formListar.Dispose();
         }
 
         private void tsbSalir_Click(object sender, EventArgs e)

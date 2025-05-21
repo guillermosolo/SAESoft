@@ -41,6 +41,7 @@
             iconButton1 = new FontAwesome.Sharp.IconButton();
             ibtnSalir = new FontAwesome.Sharp.IconButton();
             label1 = new Label();
+            ibtnDeptos = new FontAwesome.Sharp.IconButton();
             panelMenu.SuspendLayout();
             SuspendLayout();
             // 
@@ -56,6 +57,7 @@
             // panelMenu
             // 
             panelMenu.BackColor = Color.FromArgb(0, 122, 204);
+            panelMenu.Controls.Add(ibtnDeptos);
             panelMenu.Controls.Add(ibtnCerrar);
             panelMenu.Controls.Add(ibtnSuspension);
             panelMenu.Controls.Add(ibtnEvaluar);
@@ -77,14 +79,14 @@
             // 
             ibtnCerrar.FlatAppearance.BorderSize = 0;
             ibtnCerrar.FlatStyle = FlatStyle.Flat;
-            ibtnCerrar.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnCerrar.Font = new Font("Century Gothic", 12F);
             ibtnCerrar.ForeColor = Color.White;
             ibtnCerrar.IconChar = FontAwesome.Sharp.IconChar.ClipboardCheck;
             ibtnCerrar.IconColor = Color.White;
             ibtnCerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             ibtnCerrar.IconSize = 24;
             ibtnCerrar.ImageAlign = ContentAlignment.MiddleLeft;
-            ibtnCerrar.Location = new Point(5, 261);
+            ibtnCerrar.Location = new Point(5, 306);
             ibtnCerrar.Name = "ibtnCerrar";
             ibtnCerrar.Size = new Size(211, 43);
             ibtnCerrar.TabIndex = 16;
@@ -96,14 +98,14 @@
             // 
             ibtnSuspension.FlatAppearance.BorderSize = 0;
             ibtnSuspension.FlatStyle = FlatStyle.Flat;
-            ibtnSuspension.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnSuspension.Font = new Font("Century Gothic", 12F);
             ibtnSuspension.ForeColor = Color.White;
             ibtnSuspension.IconChar = FontAwesome.Sharp.IconChar.UserInjured;
             ibtnSuspension.IconColor = Color.White;
             ibtnSuspension.IconFont = FontAwesome.Sharp.IconFont.Auto;
             ibtnSuspension.IconSize = 24;
             ibtnSuspension.ImageAlign = ContentAlignment.MiddleLeft;
-            ibtnSuspension.Location = new Point(3, 139);
+            ibtnSuspension.Location = new Point(3, 182);
             ibtnSuspension.Name = "ibtnSuspension";
             ibtnSuspension.Size = new Size(211, 43);
             ibtnSuspension.TabIndex = 15;
@@ -115,14 +117,14 @@
             // 
             ibtnEvaluar.FlatAppearance.BorderSize = 0;
             ibtnEvaluar.FlatStyle = FlatStyle.Flat;
-            ibtnEvaluar.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnEvaluar.Font = new Font("Century Gothic", 12F);
             ibtnEvaluar.ForeColor = Color.White;
             ibtnEvaluar.IconChar = FontAwesome.Sharp.IconChar.UserCheck;
             ibtnEvaluar.IconColor = Color.White;
             ibtnEvaluar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             ibtnEvaluar.IconSize = 24;
             ibtnEvaluar.ImageAlign = ContentAlignment.MiddleLeft;
-            ibtnEvaluar.Location = new Point(3, 220);
+            ibtnEvaluar.Location = new Point(3, 263);
             ibtnEvaluar.Name = "ibtnEvaluar";
             ibtnEvaluar.Size = new Size(211, 43);
             ibtnEvaluar.TabIndex = 9;
@@ -134,14 +136,14 @@
             // 
             ibtnAsistencia.FlatAppearance.BorderSize = 0;
             ibtnAsistencia.FlatStyle = FlatStyle.Flat;
-            ibtnAsistencia.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnAsistencia.Font = new Font("Century Gothic", 12F);
             ibtnAsistencia.ForeColor = Color.White;
             ibtnAsistencia.IconChar = FontAwesome.Sharp.IconChar.ClockFour;
             ibtnAsistencia.IconColor = Color.White;
             ibtnAsistencia.IconFont = FontAwesome.Sharp.IconFont.Auto;
             ibtnAsistencia.IconSize = 24;
             ibtnAsistencia.ImageAlign = ContentAlignment.MiddleLeft;
-            ibtnAsistencia.Location = new Point(3, 182);
+            ibtnAsistencia.Location = new Point(3, 225);
             ibtnAsistencia.Name = "ibtnAsistencia";
             ibtnAsistencia.Size = new Size(211, 38);
             ibtnAsistencia.TabIndex = 14;
@@ -153,14 +155,14 @@
             // 
             ibtnReporte.FlatAppearance.BorderSize = 0;
             ibtnReporte.FlatStyle = FlatStyle.Flat;
-            ibtnReporte.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnReporte.Font = new Font("Century Gothic", 12F);
             ibtnReporte.ForeColor = Color.White;
             ibtnReporte.IconChar = FontAwesome.Sharp.IconChar.Print;
             ibtnReporte.IconColor = Color.White;
             ibtnReporte.IconFont = FontAwesome.Sharp.IconFont.Auto;
             ibtnReporte.IconSize = 24;
             ibtnReporte.ImageAlign = ContentAlignment.MiddleLeft;
-            ibtnReporte.Location = new Point(3, 345);
+            ibtnReporte.Location = new Point(5, 381);
             ibtnReporte.Name = "ibtnReporte";
             ibtnReporte.Size = new Size(197, 43);
             ibtnReporte.TabIndex = 13;
@@ -173,7 +175,7 @@
             iconButton3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             iconButton3.FlatAppearance.BorderSize = 0;
             iconButton3.FlatStyle = FlatStyle.Flat;
-            iconButton3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            iconButton3.Font = new Font("Century Gothic", 12F);
             iconButton3.ForeColor = Color.White;
             iconButton3.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
             iconButton3.IconColor = Color.White;
@@ -192,7 +194,7 @@
             // 
             ibtnPersonal.FlatAppearance.BorderSize = 0;
             ibtnPersonal.FlatStyle = FlatStyle.Flat;
-            ibtnPersonal.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnPersonal.Font = new Font("Century Gothic", 12F);
             ibtnPersonal.ForeColor = Color.White;
             ibtnPersonal.IconChar = FontAwesome.Sharp.IconChar.Users;
             ibtnPersonal.IconColor = Color.White;
@@ -211,7 +213,7 @@
             // 
             ibtnDashboard.FlatAppearance.BorderSize = 0;
             ibtnDashboard.FlatStyle = FlatStyle.Flat;
-            ibtnDashboard.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnDashboard.Font = new Font("Century Gothic", 12F);
             ibtnDashboard.ForeColor = Color.White;
             ibtnDashboard.IconChar = FontAwesome.Sharp.IconChar.ChartColumn;
             ibtnDashboard.IconColor = Color.White;
@@ -230,7 +232,7 @@
             iconButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             iconButton1.FlatAppearance.BorderSize = 0;
             iconButton1.FlatStyle = FlatStyle.Flat;
-            iconButton1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            iconButton1.Font = new Font("Century Gothic", 12F);
             iconButton1.ForeColor = Color.White;
             iconButton1.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
             iconButton1.IconColor = Color.White;
@@ -249,7 +251,7 @@
             ibtnSalir.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             ibtnSalir.FlatAppearance.BorderSize = 0;
             ibtnSalir.FlatStyle = FlatStyle.Flat;
-            ibtnSalir.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ibtnSalir.Font = new Font("Century Gothic", 12F);
             ibtnSalir.ForeColor = Color.White;
             ibtnSalir.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
             ibtnSalir.IconColor = Color.White;
@@ -265,7 +267,7 @@
             // 
             // label1
             // 
-            label1.Font = new Font("Century Gothic", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Century Gothic", 14F, FontStyle.Bold);
             label1.ForeColor = Color.White;
             label1.Location = new Point(-3, 11);
             label1.Name = "label1";
@@ -273,6 +275,25 @@
             label1.TabIndex = 2;
             label1.Text = "Incentivos";
             label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // ibtnDeptos
+            // 
+            ibtnDeptos.FlatAppearance.BorderSize = 0;
+            ibtnDeptos.FlatStyle = FlatStyle.Flat;
+            ibtnDeptos.Font = new Font("Century Gothic", 12F);
+            ibtnDeptos.ForeColor = Color.White;
+            ibtnDeptos.IconChar = FontAwesome.Sharp.IconChar.Building;
+            ibtnDeptos.IconColor = Color.White;
+            ibtnDeptos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ibtnDeptos.IconSize = 24;
+            ibtnDeptos.ImageAlign = ContentAlignment.MiddleLeft;
+            ibtnDeptos.Location = new Point(3, 139);
+            ibtnDeptos.Name = "ibtnDeptos";
+            ibtnDeptos.Size = new Size(211, 43);
+            ibtnDeptos.TabIndex = 17;
+            ibtnDeptos.Text = "Departamentos";
+            ibtnDeptos.UseVisualStyleBackColor = true;
+            ibtnDeptos.Click += ibtnDeptos_Click;
             // 
             // frmMenuIncentivo
             // 
@@ -303,5 +324,6 @@
         private FontAwesome.Sharp.IconButton ibtnEvaluar;
         private FontAwesome.Sharp.IconButton ibtnSuspension;
         private FontAwesome.Sharp.IconButton ibtnCerrar;
+        private FontAwesome.Sharp.IconButton ibtnDeptos;
     }
 }

@@ -687,7 +687,7 @@ namespace SAESoft.Administracion
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarEmpleados buscar = new();
+            using frmBuscarEmpleados buscar = new();
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
@@ -720,7 +720,7 @@ namespace SAESoft.Administracion
                                             .Include(p => p.PermisoTrabajo)
                                             .ThenInclude(t => t.Tipo)
                                             .Include(sm => sm.SeguroMedico)
-                                            .Where(b => 1 == 1);
+                                            .AsQueryable();
                 if (buscar.codigo != null)
                     queryable = queryable.Where(b => b.Codigo.Contains(buscar.codigo));
                 if (buscar.nombreESP != null)
@@ -728,7 +728,6 @@ namespace SAESoft.Administracion
                 if (buscar.nombreCOR != null)
                     queryable = queryable.Where(b => b.NombreCoreano.Contains(buscar.nombreCOR));
                 rs = [.. queryable];
-                buscar.Dispose();
                 if (rs.Count > 0)
                 {
                     CurrentIndex = 0;
@@ -1468,7 +1467,7 @@ namespace SAESoft.Administracion
 
         private void tsbListar_Click(object sender, EventArgs e)
         {
-            frmListar formListar = new();
+            using frmListar formListar = new();
             using (SAESoftContext db = new())
             {
                 var lista = db.Empleados.Select(p => new { p.IdEmpleado, p.Alias, p.NombreCompleto }).OrderBy(p => p.Alias).ToList();
@@ -1513,7 +1512,6 @@ namespace SAESoft.Administracion
                 BotonesIniciales(toolStrip1);
                 CambiarEstadoBotones(["tsbUpload", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbRelatives", "tsddbDocumentos", "tsbFicha"], true, toolStrip1, "PERSONAL");
             }
-            formListar.Dispose();
         }
 
         private void tsbUpload_Click(object sender, EventArgs e)

@@ -52,17 +52,17 @@ namespace SAESoft.AdministracionSistema.Comunes
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarNombres buscar = new();
+            using frmBuscarNombres buscar = new();
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                var queryable = db.Nombres.Where(b => 1 == 1);
+                var queryable = db.Nombres.AsQueryable();
                 if (buscar.descripcion != null)
                     queryable = queryable.Where(b => b.Descripcion.Contains(buscar.descripcion));
                 if (buscar.grupo != -1)
                     queryable = queryable.Where(b => b.IdGrupo == buscar.grupo);
-                buscar.Dispose();
+
                 rs = [.. queryable];
                 if (rs.Count > 0)
                 {
@@ -105,7 +105,7 @@ namespace SAESoft.AdministracionSistema.Comunes
         }
         private void tsbListar_Click(object sender, EventArgs e)
         {
-            frmListar formListar = new();
+            using frmListar formListar = new();
             using (SAESoftContext db = new())
             {
                 var lista = db.Nombres.Include(p => p.Grupo).Select(p => new { p.IdNombre, p.Descripcion, Grupo = p.Grupo.Nombre }).OrderBy(p => p.Grupo).ThenBy(p => p.Descripcion).ToList();
@@ -121,7 +121,6 @@ namespace SAESoft.AdministracionSistema.Comunes
                 BotonesIniciales(toolStrip1);
                 CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "NOMBRES");
             }
-            formListar.Dispose();
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e)

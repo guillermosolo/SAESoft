@@ -36,7 +36,7 @@ namespace SAESoft.Incentivo
         private void cargaDatos()
         {
             SAESoftContext db = new();
-            var eval = db.Evaluaciones.Where(e => e.finalizado == true).ToList();
+            var eval = db.Evaluaciones.Where(e => e.finalizado == true).OrderByDescending(b => b.fechaFin).ToList();
             foreach (var e in eval)
             {
                 DataRow row = dt.NewRow();

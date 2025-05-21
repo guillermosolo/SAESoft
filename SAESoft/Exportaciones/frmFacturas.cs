@@ -293,7 +293,7 @@ namespace SAESoft.Exportaciones
                                              .Include(a => a.Aduana)
                                              .Include(m => m.Modalidad)
                                              .Include(l => l.Licencia)
-                                             .Where(b => 1 == 1);
+                                             .AsQueryable();
             //if (buscar.codigo != null)
             //    queryable = queryable.Where(b => b.Codigo.Contains(buscar.codigo));
             //if (buscar.nombreESP != null)

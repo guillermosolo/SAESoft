@@ -54,12 +54,12 @@ namespace SAESoft.AdministracionSistema.Importaciones
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarShipper buscar = new();
+            using frmBuscarShipper buscar = new();
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                var queryable = db.Shippers.Where(b => 1 == 1);
+                var queryable = db.Shippers.AsQueryable();
                 if (buscar.nombre != null)
                     queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
                 if (buscar.aereo)
@@ -69,7 +69,6 @@ namespace SAESoft.AdministracionSistema.Importaciones
                 if (buscar.terrestre)
                     queryable = queryable.Where(b => b.Terrestre == true);
                 rs = [.. queryable];
-                buscar.Dispose();
                 if (rs.Count > 0)
                 {
                     CurrentIndex = 0;
@@ -122,7 +121,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
 
         private void tsbListar_Click(object sender, EventArgs e)
         {
-            frmListar formListar = new();
+            using frmListar formListar = new();
             using (SAESoftContext db = new())
             {
                 var lista = db.Shippers.Select(p => new { p.IdShipper, p.Nombre, Aéreo = p.Aereo, Marítimo = p.Maritimo, p.Terrestre }).ToList();
@@ -139,7 +138,6 @@ namespace SAESoft.AdministracionSistema.Importaciones
                 BotonesIniciales(toolStrip1);
                 CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "SHIPPERS");
             }
-            formListar.Dispose();
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)

@@ -34,7 +34,7 @@ namespace SAESoft.Incentivo
             if (carga)
             {
                 using SAESoftContext db = new();
-                cboEmpleado.DataSource = db.EmpIncentivos.Where(d => d.IdDepto == Convert.ToInt32(cboDepto.SelectedValue) && d.FechaBaja == null).Select(d => new
+                cboEmpleado.DataSource = db.EmpIncentivos.Where(d => d.IdDepto == Convert.ToInt32(cboDepto.SelectedValue)).Select(d => new
                 {
                     NombreCompleto = d.Apellidos + ", " + d.Nombres,
                     d.IdEmpIncentivo
@@ -153,6 +153,10 @@ namespace SAESoft.Incentivo
         {
             cboDepto.SelectedValue = rs[CurrentIndex].IdDepto;
             cboEmpleado.SelectedValue = rs[CurrentIndex].IdEmpleado;
+            if (cboEmpleado.SelectedIndex == -1)
+            {
+                cboEmpleado.Text = rs[CurrentIndex].Empleado.Apellidos + ", " + rs[CurrentIndex].Empleado.Nombres;
+            }
             dtpInicio.Value = rs[CurrentIndex].FechaInicio;
             dtpFin.Value = rs[CurrentIndex].FechaFin;
             txtObs.Text = rs[CurrentIndex].Observaciones;
@@ -163,18 +167,21 @@ namespace SAESoft.Incentivo
         private Boolean ValidarDatos()
         {
             errorProvider1.Clear();
-            if (txtObs.Text == "")
+
+            if (string.IsNullOrWhiteSpace(txtObs.Text))
             {
                 errorProvider1.SetError(txtObs, "No puede estar vacío.");
                 txtObs.Focus();
                 return false;
             }
-            if (dtpFin.Value.Date <= dtpInicio.Value.Date)
+
+            if (dtpFin.Value.Date < dtpInicio.Value.Date)
             {
                 errorProvider1.SetError(dtpFin, "La fecha de fin no puede ser anterior a la fecha de inicio.");
                 dtpFin.Focus();
                 return false;
             }
+
             return true;
         }
 
@@ -196,32 +203,37 @@ namespace SAESoft.Incentivo
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            using SAESoftContext db = new();
-            var queryable = db.Suspensiones.Where(b => 1 == 1);
-            //if (buscar.codigo != null)
-            //    queryable = queryable.Where(b => b.Codigo == buscar.codigo);
-            //buscar.Dispose();
-            rs = [.. queryable];
-            if (rs.Count > 0)
+            using frmBuscarEmpleado buscar = new();
+            DialogResult resp = buscar.ShowDialog();
+            if (resp == DialogResult.OK)
             {
-                CurrentIndex = 0;
-                despliegaDatos();
-                if (rs.Count > 1)
+                using SAESoftContext db = new();
+                var queryable = db.Suspensiones.Include(e => e.Empleado).AsQueryable();
+                if (buscar.codigo != null)
+                    queryable = queryable.Where(b => b.Empleado.Codigo == buscar.codigo);
+
+                rs = [.. queryable];
+                if (rs.Count > 0)
                 {
-                    BotonesInicialesNavegacion(toolStrip1);
+                    CurrentIndex = 0;
+                    despliegaDatos();
+                    if (rs.Count > 1)
+                    {
+                        BotonesInicialesNavegacion(toolStrip1);
+                    }
+                    else
+                    {
+                        BotonesIniciales(toolStrip1);
+                    }
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "SUSPENSION");
                 }
                 else
                 {
+                    MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    limpiarFormulario(this);
                     BotonesIniciales(toolStrip1);
+                    CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "SUSPENSION");
                 }
-                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "SUSPENSION");
-            }
-            else
-            {
-                MessageBox.Show("No existen registros para ese criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                limpiarFormulario(this);
-                BotonesIniciales(toolStrip1);
-                CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], false, toolStrip1, "SUSPENSION");
             }
         }
 

@@ -10,7 +10,7 @@
 
         private void icbBuscar_Click(object sender, EventArgs e)
         {
-            if (txtCodigo.Text != "")
+            if (!string.IsNullOrWhiteSpace(txtCodigo.Text))
                 codigo = txtCodigo.Text;
         }
     }

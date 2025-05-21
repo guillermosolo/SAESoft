@@ -160,15 +160,15 @@ namespace SAESoft.AdministracionSistema.Seguridad
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarModulos buscar = new();
+            using frmBuscarModulos buscar = new();
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                var queryable = db.Modulos.Where(b => 1 == 1);
+                var queryable = db.Modulos.AsQueryable();
                 if (buscar.nombre != null)
                     queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
-                buscar.Dispose();
+
                 rs = [.. queryable];
                 if (rs.Count > 0)
                 {
@@ -264,7 +264,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
 
         private void tsbListar_Click(object sender, EventArgs e)
         {
-            frmListar formListar = new();
+            using frmListar formListar = new();
             using (SAESoftContext db = new())
             {
                 var lista = db.Modulos.Select(p => new {p.IdModulo, p.Nombre,p.Habilitado }).ToList();
@@ -280,7 +280,6 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 BotonesIniciales(toolStrip1);
                 CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "MODULOS");
             }
-            formListar.Dispose();
         }
 
         private void frmModulos_Load(object sender, EventArgs e)

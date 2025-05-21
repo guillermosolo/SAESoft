@@ -11,6 +11,7 @@ namespace SAESoft.Incentivo
     {
         readonly DataTable dt = new();
         Evaluacion evaluacion = new();
+        Boolean guardar = true;
         public frmCerrar()
         {
             InitializeComponent();
@@ -50,7 +51,7 @@ namespace SAESoft.Incentivo
                 txtObservaciones.Text = evaluacion.Observaciones;
                 var deptos = db.DeptoIncentivo
                     .Include(e => e.Empleados.Where(b => b.FechaBaja >= dtpFin.Value || b.FechaBaja == null))
-                        .ThenInclude(e => e.Evaluaciones).Where(b=>b.Activo == true).ToList();
+                        .ThenInclude(e => e.Evaluaciones).Where(b => b.Activo == true).ToList();
                 foreach (var depto in deptos)
                 {
                     DataRow row = dt.NewRow();
@@ -68,7 +69,6 @@ namespace SAESoft.Incentivo
                     row["Porcentaje"] = asignado > 0 ? monto / asignado : 0;
                     dt.Rows.Add(row);
                 }
-                Boolean guardar = true;
                 foreach (DataRow r in dt.Rows)
                 {
                     if (Convert.ToDecimal(r["Monto Pagado"]) == 0m && Convert.ToDecimal(r["Monto Asignado"]) != 0m)
@@ -76,11 +76,11 @@ namespace SAESoft.Incentivo
                         guardar = false;
                     }
                 }
-                icbGuardar.Enabled = guardar;
             }
             else
             {
                 MessageBox.Show("No existe evaluación abierta", "Información", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                icbGuardar.Enabled = false;
             }
         }
 
@@ -97,25 +97,33 @@ namespace SAESoft.Incentivo
 
         private void icbGuardar_Click(object sender, EventArgs e)
         {
-            using SAESoftContext db = new();
-            try
+            if (!guardar)
             {
-                db.Entry(evaluacion).State = EntityState.Modified;
-                evaluacion.finalizado = true;
-                evaluacion.FechaUltimaMod = DatosServer.FechaServer();
-                evaluacion.IdUsuarioMod = usuarioLogged.IdUsuario;
-                db.Evaluaciones.Update(evaluacion);
-                db.SaveChanges();
-            } catch (Exception ex)
-            {
-                if (ex.InnerException != null)
-                    MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                var resp = MessageBox.Show("Existen departamentos que no tienen monto pagado, ¿Desea continuar?", "Validación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resp == DialogResult.Yes)
+                {
+                    using SAESoftContext db = new();
+                    try
+                    {
+                        db.Entry(evaluacion).State = EntityState.Modified;
+                        evaluacion.finalizado = true;
+                        evaluacion.FechaUltimaMod = DatosServer.FechaServer();
+                        evaluacion.IdUsuarioMod = usuarioLogged.IdUsuario;
+                        db.Evaluaciones.Update(evaluacion);
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.InnerException != null)
+                            MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    MessageBox.Show("Período de Evaluaciones cerrado correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    icbGuardar.Enabled = false;
+                }
             }
-            MessageBox.Show("Período de Evaluaciones cerrado correctamente","Información",MessageBoxButtons.OK, MessageBoxIcon.Information);
-            icbGuardar.Enabled = false;
         }
     }
 }

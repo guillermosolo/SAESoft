@@ -145,13 +145,13 @@ namespace SAESoft.Utilitarios
 
         public static void BotonesIniciales(ToolStrip toolbar)
         {
-            String[] botones = ["tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbRelatives", "tsddbDocumentos","tsbFicha", "tsbSalir"];
+            String[] botones = ["tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbRelatives", "tsddbDocumentos","tsbFicha", "tsbAgregarDeptos", "tsbSalir"];
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
         public static void BotonesInicialesNavegacion(ToolStrip toolbar)
         {
-            String[] botones = ["tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbRelatives", "tsddbDocumentos","tsbFicha", "tsbSalir"];
+            String[] botones = ["tsbNuevo", "tsbBuscar", "tsbListar", "tsbModificar", "tsbEliminar", "tsddbProceso", "tsbUpload", "tsbComentarios", "tsbPago", "tsddbSwitchUser", "tsbAnterior", "tslIndice", "tsbSiguiente", "tsbRelatives", "tsddbDocumentos","tsbFicha","tsbAgregarDeptos", "tsbSalir"];
             CambiarVisibilidadBotones(botones, toolbar, true);
         }
 
@@ -187,6 +187,7 @@ namespace SAESoft.Utilitarios
                             "tsbModificar" => estado && hasPermission("MODIFICAR." + Opcion),
                             "tsbEliminar" => estado && hasPermission("ELIMINAR." + Opcion),
                             "tsbPago" => estado && hasPermission("MODIFICAR." + Opcion),
+                            "tsbAgregarDeptos" => estado && hasPermission("MODIFICAR." + Opcion),
                             "tsbUpload" => estado && hasPermission("MODIFICAR." + Opcion),
                             "tsbComentarios" => estado && hasPermission("MODIFICAR." + Opcion),
                             "tsddbSwitchUser" => estado && hasPermission("MODIFICAR." + Opcion),

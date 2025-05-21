@@ -209,12 +209,12 @@ namespace SAESoft.AdministracionSistema.Seguridad
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarUsuarios buscar = new();
+            using frmBuscarUsuarios buscar = new();
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                var queryable = db.Usuarios.Where(b => 1 == 1);
+                var queryable = db.Usuarios.AsQueryable();
                 if (buscar.nombre != null)
                     queryable = queryable.Where(b => b.Nombres.Contains(buscar.nombre));
                 if (buscar.apellido != null)
@@ -224,7 +224,6 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 if (buscar.rol != -1)
                     queryable = queryable.Where(b => b.IdRol == buscar.rol);
                 rs = [.. queryable];
-                buscar.Dispose();
                 if (rs.Count > 0)
                 {
                     CurrentIndex = 0;
@@ -330,7 +329,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
 
         private void tsbListar_Click(object sender, EventArgs e)
         {
-            frmListar formListar = new();
+            using frmListar formListar = new();
             using (SAESoftContext db = new())
             {
                 var lista = db.Usuarios.Include(p => p.Rol).Select(p => new { p.IdUsuario, p.Nombres, p.Apellidos, Usuario = p.UserName, p.Activo, Rol = p.Rol.Nombre }).ToList();
@@ -346,7 +345,6 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 BotonesIniciales(toolStrip1);
                 CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "USUARIOS");
             }
-            formListar.Dispose();
         }
 
         private void tsActivo_CheckedChanged(object sender, EventArgs e)

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using SAESoft.Models;
 using SAESoft.Models.Incentivos;
@@ -23,6 +24,7 @@ namespace SAESoft.Incentivo
         int firstDisplayedScrollingRowIndex;
         private DataGridViewCell _celWasEndEdit;
         readonly List<int> RolesPermitidos = [1, 6, 1006];
+        const int QUINCENA = 15;
         public frmCalificacionDepto()
         {
             InitializeComponent();
@@ -238,7 +240,7 @@ namespace SAESoft.Incentivo
             row["Logro (1)"] = Math.Round(Logro, 2);
             row["Extra (2)"] = Math.Round(nota.Extra, 2);
             row["Total Pago (1+2)"] = Math.Round(nota.Total, 2);
-            decimal bolsa = emp.BaseCalculo - (nota.Total - nota.Extra);
+            decimal bolsa = proporcional - (nota.Total - nota.Extra);
             row["Bolsa"] = Math.Round(bolsa, 2);
             row["Días Proporcional"] = nota.DiasProporcional;
             row["IdEvaluacionDetalle"] = nota.IdEvaluacionDetalle;
@@ -253,8 +255,6 @@ namespace SAESoft.Incentivo
             DateTime inicio = new(fecha.Year, fecha.Month, 1);
             DateTime fin = new(fecha.Year, fecha.Month, DiasMes);
 
-            Boolean incentivoCero = false;
-
             int DiasLaborados = DiasMes;
             // Calcula incentivo proporcional si ingreso en el mes de calculo.
             if (fin.Year == emp.FechaIngreso.Year && fin.Month == emp.FechaIngreso.Month)
@@ -265,56 +265,38 @@ namespace SAESoft.Incentivo
             // calcula incentivo si se retiro en el mes del calculo.
             if (emp.FechaBaja != null)
             {
-                if (((DateTime)emp.FechaBaja).Day > 15)
+                if (((DateTime)emp.FechaBaja).Day > QUINCENA)
                 {
                     DiasLaborados = ((DateTime)emp.FechaBaja).Day;
                 }
                 else
                 {
-                    incentivoCero = true;
+                    DiasLaborados = 0;
                 }
             }
 
             // toma suspensiones
             using SAESoftContext db = new();
             var suspensiones = db.Suspensiones.Where(b => b.IdEmpleado == emp.IdEmpIncentivo && b.Activo == true)
-                                              .Where(b => b.FechaInicio >= inicio || b.FechaFin >= inicio)
+                                              .Where(b => b.FechaFin >= inicio && b.FechaInicio <= fin)
                                               .ToList();
+
+            HashSet<int> diasSuspendido = [];
+
             foreach (var susp in suspensiones)
             {
-                if (susp.FechaInicio <= inicio && susp.FechaFin >= fin)
+                int startDay = (susp.FechaInicio.Month < inicio.Month) ? 1 : susp.FechaInicio.Day;
+                int endDay = (susp.FechaFin.Month > inicio.Month) ? DiasMes : susp.FechaFin.Day;
+
+                for (int day = startDay; day <= endDay; day++)
                 {
-                    incentivoCero = true;
-                }
-                else
-                {
-                    if (susp.FechaFin >= fin)
-                    {
-                        if (susp.FechaInicio.Day >= 16)
-                        {
-                            TimeSpan dias = susp.FechaInicio - inicio;
-                            DiasLaborados = dias.Days;
-                        }
-                        else
-                        {
-                            incentivoCero = true;
-                        }
-                    }
-                    else
-                    {
-                        if (susp.FechaInicio <= inicio)
-                        {
-                            DiasLaborados -= susp.FechaFin.Day;
-                        }
-                        else
-                        {
-                            TimeSpan dif = susp.FechaFin.Subtract(susp.FechaInicio);
-                            DiasLaborados -= dif.Days + 1;
-                        }
-                    }
+                    diasSuspendido.Add(day);
                 }
             }
-            if (incentivoCero || DiasLaborados < 0)
+            // Calcula los días laborados restando los días de suspensión
+            DiasLaborados -= diasSuspendido.Count;
+
+            if (DiasLaborados <= 0)
             {
                 row["Días Proporcional"] = 0;
             }
@@ -469,6 +451,7 @@ namespace SAESoft.Incentivo
                     }
                 }
             }
+
             if (e.ColumnIndex == dgvEvaluar.Columns["Extra (2)"].Index)
             {
                 if (e.FormattedValue != "")
@@ -534,6 +517,10 @@ namespace SAESoft.Incentivo
                     evaluacionModificar.Add(celda);
                     icbGuardar.Enabled = true;
                 }
+            }
+            else if (esNuevo)
+            {
+                icbGuardar.Enabled = true;
             }
             EstablecerNumerosEncabezado(dgvEvaluar);
             dgvEvaluar.FirstDisplayedScrollingRowIndex = firstDisplayedScrollingRowIndex;
@@ -625,7 +612,7 @@ namespace SAESoft.Incentivo
                                         db.Entry(detalle).State = EntityState.Modified;
                                         detalle.Actitud = Convert.ToInt32(dr["Desempeño %"]);
                                         detalle.Cooperacion = Convert.ToInt32(dr["Colaboración %"]);
-                                        detalle.Extra = Convert.ToDecimal(dr["Extra (2)"]);
+                                        detalle.Extra = decimal.TryParse(dr["Extra (2)"]?.ToString(), out decimal ext) ? ext : 0.00m;
                                         detalle.Total = Convert.ToDecimal(dr["Total Pago (1+2)"]);
                                         detalle.DiasProporcional = Convert.ToDecimal(dr["Días Proporcional"]);
                                         detalle.FechaUltimaMod = DatosServer.FechaServer();

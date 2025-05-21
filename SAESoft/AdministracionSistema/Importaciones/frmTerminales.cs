@@ -47,18 +47,17 @@ namespace SAESoft.AdministracionSistema.Importaciones
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarTerminal buscar = new();
+            using frmBuscarTerminal buscar = new();
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                var queryable = db.Terminales.Where(b => 1 == 1);
+                var queryable = db.Terminales.AsQueryable();
                 if (buscar.nombre != null)
                     queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
                 if (buscar.via != 'O')
                     queryable = queryable.Where(b => b.Via.Equals(buscar.via));
                 rs = [.. queryable];
-                buscar.Dispose();
                 if (rs.Count > 0)
                 {
                     CurrentIndex = 0;
@@ -102,7 +101,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
         private void tsbListar_Click(object sender, EventArgs e)
         {
 
-            frmListar formListar = new();
+            using frmListar formListar = new();
             using (SAESoftContext db = new())
             {
                 var lista = db.Terminales.Select(p => new { p.IdTerminal, p.Nombre }).ToList();
@@ -119,7 +118,6 @@ namespace SAESoft.AdministracionSistema.Importaciones
                 BotonesIniciales(toolStrip1);
                 CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "TERMINALES");
             }
-            formListar.Dispose();
         }
 
         private void tsbSalir_Click(object sender, EventArgs e)

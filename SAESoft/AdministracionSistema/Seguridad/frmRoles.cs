@@ -168,16 +168,15 @@ namespace SAESoft.AdministracionSistema.Seguridad
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarRoles buscar = new();
+            using frmBuscarRoles buscar = new();
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                var queryable = db.Roles.Include(p => p.Permisos).Where(b => 1 == 1);
+                var queryable = db.Roles.Include(p => p.Permisos).AsQueryable();
                 if (buscar.nombre != null)
                     queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
                 rs = [.. queryable];
-                buscar.Dispose();
                 if (rs.Count > 0)
                 {
                     CurrentIndex = 0;
@@ -363,7 +362,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
 
         private void tsbListar_Click(object sender, EventArgs e)
         {
-            frmListar formListar = new();
+            using frmListar formListar = new();
             using (SAESoftContext db = new())
             {
                 var lista = db.Roles.Select(p => new { p.IdRol, p.Nombre, p.Habilitado }).ToList();
@@ -379,7 +378,6 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 BotonesIniciales(toolStrip1);
                 CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "ROLES");
             }
-            formListar.Dispose();
         }
         private Boolean ValidarDatos()
         {

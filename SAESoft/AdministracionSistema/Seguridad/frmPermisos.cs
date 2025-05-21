@@ -221,7 +221,7 @@ namespace SAESoft.AdministracionSistema.Seguridad
 
         private void tsbListar_Click(object sender, EventArgs e)
         {
-            frmListar formListar = new();
+            using frmListar formListar = new();
             using (SAESoftContext db = new())
             {
                 var lista = db.Permisos.Include(p => p.Modulo).Select(p => new { p.IdPermiso, p.Nombre,Módulo = p.Modulo.Nombre }).ToList();
@@ -237,7 +237,6 @@ namespace SAESoft.AdministracionSistema.Seguridad
                 BotonesIniciales(toolStrip1);
                 CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "PERMISOS");
             }
-            formListar.Dispose();
         }
 
         private void tsbAnterior_Click(object sender, EventArgs e)
@@ -258,18 +257,17 @@ namespace SAESoft.AdministracionSistema.Seguridad
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarPermisos buscar = new();
+            using frmBuscarPermisos buscar = new();
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                var queryable = db.Permisos.Where(b => 1 == 1);
+                var queryable = db.Permisos.AsQueryable();
                 if (buscar.nombre != null)
                     queryable = queryable.Where(b => b.Nombre.Contains(buscar.nombre));
                 if (buscar.modulo != -1)
                     queryable = queryable.Where(b => b.IdModulo == buscar.modulo);
                 rs = [.. queryable];
-                buscar.Dispose();
                 if (rs.Count > 0)
                 {
                     CurrentIndex = 0;

@@ -58,7 +58,7 @@ namespace SAESoft.Incentivo
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarEmpleado buscar = new();
+            using frmBuscarEmpleado buscar = new();
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
@@ -66,12 +66,11 @@ namespace SAESoft.Incentivo
                 var queryable = db.EmpIncentivos
                                   .Include(b => b.HistIncentivos)
                                   .ThenInclude(d => d.DeptoIncentivos)
-                                  .Where(b => 1 == 1);
+                                  .AsQueryable();
                 if (buscar.codigo != null)
                     queryable = queryable.Where(b => b.Codigo == buscar.codigo);
                 //if (buscar.grupo != -1)
                 //    queryable = queryable.Where(b => b.IdGrupo == buscar.grupo);
-                buscar.Dispose();
                 rs = [.. queryable];
                 if (rs.Count > 0)
                 {
@@ -155,7 +154,7 @@ namespace SAESoft.Incentivo
 
         private void tsbListar_Click(object sender, EventArgs e)
         {
-            frmListar formListar = new();
+            using frmListar formListar = new();
             using (SAESoftContext db = new())
             {
                 var lista = db.EmpIncentivos.Include(p => p.DeptoIncentivos).Select(p => new { p.IdEmpIncentivo, p.Codigo, p.Nombres, p.Apellidos, Departamento = p.DeptoIncentivos.Nombre }).OrderBy(p => p.Departamento).ThenBy(p => p.Apellidos).ToList();
@@ -171,7 +170,6 @@ namespace SAESoft.Incentivo
                 BotonesIniciales(toolStrip1);
                 CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "EMPLEADOSINCENTIVO");
             }
-            formListar.Dispose();
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)

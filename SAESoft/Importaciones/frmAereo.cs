@@ -702,7 +702,7 @@ namespace SAESoft.Importaciones
 
         private void llenarMontos()
         {
-            frmMontos montos = new();
+            using frmMontos montos = new();
             var resp = montos.ShowDialog();
             if (resp == DialogResult.OK)
             {
@@ -729,10 +729,6 @@ namespace SAESoft.Importaciones
                     else
                         MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-                }
-                finally
-                {
-                    montos.Dispose();
                 }
             }
         }

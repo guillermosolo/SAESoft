@@ -27,12 +27,12 @@ namespace SAESoft.Incentivo
         private void cargaDatos()
         {
             SAESoftContext db = new();
-            var queryable = db.Evaluaciones.Where(e => 1 == 1);
+            var queryable = db.Evaluaciones.AsQueryable();
             if (chkFinalizado.Checked)
             {
                 queryable = queryable.Where(b => b.finalizado == true);
             }
-            var eval = queryable.ToList();
+            var eval = queryable.OrderByDescending(b=>b.fechaFin).ToList();
             foreach (var e in eval)
             {
                 DataRow row = dt.NewRow();

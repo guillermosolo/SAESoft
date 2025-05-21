@@ -44,7 +44,7 @@
             // 
             // txtObservaciones
             // 
-            txtObservaciones.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtObservaciones.Font = new Font("Century Gothic", 12F);
             txtObservaciones.Location = new Point(194, 55);
             txtObservaciones.Multiline = true;
             txtObservaciones.Name = "txtObservaciones";
@@ -55,7 +55,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Century Gothic", 12F);
             label3.Location = new Point(31, 55);
             label3.Name = "label3";
             label3.Size = new Size(126, 21);
@@ -64,9 +64,8 @@
             // 
             // icbGuardar
             // 
-            icbGuardar.Enabled = false;
-            icbGuardar.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            icbGuardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            icbGuardar.Font = new Font("Century Gothic", 12F);
+            icbGuardar.IconChar = FontAwesome.Sharp.IconChar.Save;
             icbGuardar.IconColor = Color.DodgerBlue;
             icbGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbGuardar.IconSize = 24;
@@ -83,7 +82,7 @@
             // dtpFin
             // 
             dtpFin.Enabled = false;
-            dtpFin.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpFin.Font = new Font("Century Gothic", 12F);
             dtpFin.Format = DateTimePickerFormat.Short;
             dtpFin.Location = new Point(447, 22);
             dtpFin.Name = "dtpFin";
@@ -93,7 +92,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Century Gothic", 12F);
             label2.Location = new Point(332, 27);
             label2.Name = "label2";
             label2.Size = new Size(109, 21);
@@ -103,7 +102,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Century Gothic", 12F);
             label1.Location = new Point(31, 27);
             label1.Name = "label1";
             label1.Size = new Size(112, 21);
@@ -113,7 +112,7 @@
             // dtpInicio
             // 
             dtpInicio.Enabled = false;
-            dtpInicio.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpInicio.Font = new Font("Century Gothic", 12F);
             dtpInicio.Format = DateTimePickerFormat.Short;
             dtpInicio.Location = new Point(194, 22);
             dtpInicio.Name = "dtpInicio";
@@ -128,7 +127,7 @@
             dgvAsistencia.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
@@ -140,19 +139,18 @@
             dgvAsistencia.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dgvAsistencia.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvAsistencia.RowTemplate.Height = 25;
             dgvAsistencia.Size = new Size(721, 247);
             dgvAsistencia.TabIndex = 10;
             // 
             // iconButton1
             // 
-            iconButton1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            iconButton1.Font = new Font("Century Gothic", 12F);
             iconButton1.IconChar = FontAwesome.Sharp.IconChar.Recycle;
             iconButton1.IconColor = Color.Green;
             iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;

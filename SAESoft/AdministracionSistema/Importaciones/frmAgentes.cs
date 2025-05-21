@@ -35,18 +35,17 @@ namespace SAESoft.AdministracionSistema.Importaciones
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            frmBuscarAgente buscar = new();
+            using frmBuscarAgente buscar = new();
             DialogResult resp = buscar.ShowDialog();
             if (resp == DialogResult.OK)
             {
                 using SAESoftContext db = new();
-                var queryable = db.Agentes.Where(b => 1 == 1);
+                var queryable = db.Agentes.AsQueryable();
                 if (buscar.nombre != null)
                     queryable = queryable.Where(b => b.Nombres.Contains(buscar.nombre));
                 if (buscar.apellido != null)
                     queryable = queryable.Where(b => b.Apellidos.Contains(buscar.apellido));
                 rs = [.. queryable];
-                buscar.Dispose();
                 if (rs.Count > 0)
                 {
                     CurrentIndex = 0;
@@ -102,7 +101,7 @@ namespace SAESoft.AdministracionSistema.Importaciones
 
         private void tsbListar_Click(object sender, EventArgs e)
         {
-            frmListar formListar = new();
+            using frmListar formListar = new();
             using (SAESoftContext db = new())
             {
                 var lista = db.Agentes.Select(p => new { p.IdAgente, p.Nombres, p.Apellidos, p.Activo }).ToList();
@@ -119,7 +118,6 @@ namespace SAESoft.AdministracionSistema.Importaciones
                 BotonesIniciales(toolStrip1);
                 CambiarEstadoBotones(["tsbModificar", "tsbEliminar"], true, toolStrip1, "AGENTES");
             }
-            formListar.Dispose();
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e)

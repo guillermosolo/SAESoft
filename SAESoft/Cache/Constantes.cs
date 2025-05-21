@@ -2,8 +2,9 @@
 {
     public struct Constantes
     {
-        //CONSTANTES DEL MODULO DE IMPORTACIONES
+        public const int IdSuperAdmin = 1;
 
+        //CONSTANTES DEL MODULO DE IMPORTACIONES
         public const int DigitadorImportaciones = 2;
 
         public const int EntregaDigitadorMaritimo = 2;
@@ -36,5 +37,12 @@
         public const int SelectivoRojo = 5;
 
         //FIN CONSTANTES MODULO DE IMPORTACIONES
+
+        //CONSTANTES DEL MODULO DE INCENTIVO
+
+        public const int JefeDeptoIncentivo = 8;
+        public const int SubJefeDeptoIncentivo = 2006;
+
+        //FIN CONSTANTES MODULO DE INCENTIVO
     }
 }

@@ -224,7 +224,7 @@ namespace SAESoft.Incentivo
                 {
                     d.Departamento.Grupo.IdGrupo,
                     d.Departamento.Grupo.Nombre,
-                }).Distinct().ToList();
+                }).Distinct().OrderBy(d=>d.Nombre).ToList();
                 foreach (var d in deptosUnicos)
                 {
                     excel.AddWorksheet(d.Nombre);
@@ -381,7 +381,7 @@ namespace SAESoft.Incentivo
                 hoja.SetCellValue("B" + i, item.Empleado.Codigo);
                 hoja.SetCellValue("C" + i, item.Empleado.NombreCompleto);
                 hoja.SetCellValue("D" + i, item.Departamento.Nombre);
-                hoja.SetCellValue("E" + i, item.BaseCalculo);
+                hoja.SetCellValue("E" + i, item.Empleado.BaseCalculo);
                 hoja.SetCellValue("F" + i, item.Extra);
                 hoja.SetCellValue("G" + i, item.Total);
                 hoja.SetCellValue("H" + i, subTotal);
@@ -529,13 +529,13 @@ namespace SAESoft.Incentivo
 
             var deptoProcesado = new HashSet<string>();
             SAESoftContext db = new();
-            foreach (var ev in eval.Detalles.OrderBy(b => b.IdDepto))
+            foreach (var ev in eval.Detalles.OrderBy(b => b.Departamento.Nombre))
             {
                 var nombreDepto = ev.Departamento.Grupo.Nombre;
                 if (!deptoProcesado.Contains(nombreDepto))
                 {
                     int cantidad = eval.Detalles.Count(b => b.Departamento.IdGrupo == ev.Departamento.IdGrupo);
-                    List<int> listaEmpleados = eval.Detalles.Where(b => b.Departamento.IdGrupo == ev.Departamento.IdGrupo).Select(b => b.IdEmpleado).ToList();
+                    List<int> listaEmpleados = [.. eval.Detalles.Where(b => b.Departamento.IdGrupo == ev.Departamento.IdGrupo).Select(b => b.IdEmpleado)];
                     var emps = db.EmpIncentivos.Include(e => e.HistIncentivos)
                                                        .Where(b => listaEmpleados.Contains(b.IdEmpIncentivo))
                                                        .ToList();
@@ -573,6 +573,7 @@ namespace SAESoft.Incentivo
             string director = firmas.FirstOrDefault(b => b.puesto.Equals("DIRECTOR"))?.firma ?? string.Empty;
             string presidente = firmas.FirstOrDefault(b => b.puesto.Equals("PRESIDENTE"))?.firma ?? string.Empty;
             i += 5;
+
             resumen.SetCellValue("E" + i, responsable);
             resumen.SetCellValue("F" + i, gerente);
             resumen.SetCellValue("G" + i, director);

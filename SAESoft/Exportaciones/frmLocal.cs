@@ -125,7 +125,7 @@ namespace SAESoft.Exportaciones
             using SAESoftContext db = new();
             var queryable = db.FacturasLocal.Include(t => t.TipoFactura)
                                              .Include(e => e.Empresa)
-                                             .Where(b => 1 == 1);
+                                             .AsQueryable();
             //if (buscar.codigo != null)
             //    queryable = queryable.Where(b => b.Codigo.Contains(buscar.codigo));
             //if (buscar.nombreESP != null)
@@ -133,7 +133,6 @@ namespace SAESoft.Exportaciones
             //if (buscar.nombreCOR != null)
             //    queryable = queryable.Where(b => b.NombreCoreano.Contains(buscar.nombreCOR));
             rs = [.. queryable];
-            //buscar.Dispose();
             if (rs.Count > 0)
             {
                 CurrentIndex = 0;
